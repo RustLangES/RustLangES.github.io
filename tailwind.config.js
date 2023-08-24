@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       fill: (theme) => ({
         'shape-fill-light': "rgb(203 213 225 / 1)", 
-        'shape-fill-dark': "rgb(51 65 85 / 1)", 
+        'shape-fill-dark': "rgb(39 39 42 / 1)", 
       }),
     },
   },

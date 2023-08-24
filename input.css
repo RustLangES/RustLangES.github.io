@@ -232,5 +232,6 @@
     display: block;
     width: calc(100% + 1.3px);
     height: 150px;
-    filter: drop-shadow(5px 5px 10px #FFFFFF);
+    /* TODO: fix the border made it with drop-shadow */
+    filter: drop-shadow(5px 5px 0px #FFFFFF);
 }

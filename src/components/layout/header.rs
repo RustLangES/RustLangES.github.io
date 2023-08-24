@@ -6,7 +6,7 @@ pub fn Header(
     cx: Scope
 ) -> impl IntoView {
     view!{ cx,
-        <header class="w-full py-1 px-12 bg-amber-500 p-1 flex justify-between items-center drop-shadow-md">
+        <header class="w-full py-1 px-12 bg-amber-500 p-1 flex justify-between items-center drop-shadow-md dark:text-black">
             <div class="flex items-center">
                 <img src="https://www.rust-lang.org/static/images/rust-logo-blk.svg" class="max-h-20 rounded-full" />
                 <h1 class="text-xl font-alfa-slab">{ "Rust Lang en Español" }</h1>
