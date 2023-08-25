@@ -1,5 +1,3 @@
-
-
 use leptos::*;
 
 use crate::components::atom::discord_icon::DiscordIcon;
@@ -10,7 +8,7 @@ use crate::components::atom::telegram_icon::TelegramIcon;
 pub fn CommunityLinks(
     cx: Scope
 ) -> impl IntoView {
-    view!{ cx, 
+    view!{ cx,
         // TODO: Fix the border
         <div class="custom-shape-divider-top-1692767000 fill-shape-fill-light dark:fill-shape-fill-dark ">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -33,5 +31,5 @@ pub fn CommunityLinks(
             </div>
         </div>
     }
-        
+
 }
