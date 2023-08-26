@@ -17,7 +17,7 @@ pub fn Header(cx: Scope) -> impl IntoView {
                 <nav>
                     <ul class="flex items-center gap-5">
                         <li>
-                            <a href="#">"Aprende"</a>
+                            <a href="https://rustlanges.github.io/rust-book-es">"Aprende"</a>
                         </li>
                         <li>
                             <a href="#">"Comunidad"</a>
