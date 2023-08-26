@@ -1,4 +1,6 @@
-pub mod layout;
-pub mod atom;
+pub mod icons;
 pub mod hero;
-pub mod out_communities;
+pub mod header;
+pub mod button_link;
+pub mod our_communities;
+pub mod other_communities;
