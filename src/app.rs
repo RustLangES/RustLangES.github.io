@@ -11,7 +11,7 @@ pub fn App(cx: Scope) -> impl IntoView {
     view! {
         cx,
         <Stylesheet id="leptos" href="/pkg/tailwind.css"/>
-        <Link rel="shortcut icon" type_="image/ico" href="/favicon.ico"/>
+        <Link rel="shortcut icon" type_="image/ico" href="/LogoSegunMichael.ico"/>
         <Router>
             <Routes>
                 <Route path="" view=  move |cx| view! { cx, <Index /> }/>
