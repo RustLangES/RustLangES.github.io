@@ -20,7 +20,7 @@ pub fn OtherCommunities() -> impl IntoView {
                         class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
                     >
                         <div>
-                            <img src="./RustBCN.webp" width="60" class="rounded-full mb-4" />
+                            <img src="./RustBCN.webp" width="60" class="rounded-full mb-4" alt="Logo de Rust Barcelona" />
                             <h5 class="text-xl">
                                 <span class="font-alfa-slab text-orange-500 group-hover:text-white">
                                     "Rust "
@@ -43,7 +43,7 @@ pub fn OtherCommunities() -> impl IntoView {
                         class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
                     >
                         <div>
-                            <img src="./Whizzles.webp" width="60" class="mb-4" />
+                            <img src="./Whizzles.webp" width="60" class="mb-4" alt="Logo de Whizzles" />
                             <h5 class="text-xl">
                                 <span class="font-work-sans text-black">
                                     "Whizzles"
@@ -63,7 +63,7 @@ pub fn OtherCommunities() -> impl IntoView {
                         class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
                     >
                         <div>
-                            <img src="./RustMX.png" width="60" class="mb-4" />
+                            <img src="./RustMX.png" width="60" class="mb-4" alt="Logo de RustMX" />
                             <h5 class="text-xl">
                                 <span class="font-alfa-slab text-orange-500 group-hover:text-white">
                                     "Rust"
@@ -86,7 +86,7 @@ pub fn OtherCommunities() -> impl IntoView {
                         class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
                     >
                         <div>
-                            <img src="./aprender-rust.jpg" width="60" class="rounded-full mb-4" />
+                            <img src="./aprender-rust.jpg" width="60" class="rounded-full mb-4" alt="Logo de Aprende Rust" />
                             <h5 class="text-xl">
                                 <span class="font-work-sans text-black">
                                     "Aprende "
@@ -109,7 +109,7 @@ pub fn OtherCommunities() -> impl IntoView {
                         class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
                     >
                         <div>
-                            <img src="./RustGeneral.jpg" width="60" class="rounded-full mb-4" />
+                            <img src="./RustGeneral.jpg" width="60" class="rounded-full mb-4" alt="Logo de Rust Español" />
                             <h5 class="text-xl">
                                 <span class="font-alfa-slab text-orange-500 group-hover:text-white">
                                     "Rust"
