@@ -2,12 +2,10 @@ use leptos::*;
 
 #[component]
 pub fn DiscordIcon(
-    cx: Scope,
     #[prop(default = 40)] size: u32,
     #[prop(default = "fill-black".to_string())] class: String,
 ) -> impl IntoView {
     view!{
-        cx,
         <svg
             width=size
             height=size

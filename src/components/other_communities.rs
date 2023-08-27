@@ -4,8 +4,8 @@ use crate::components::icons::discord_icon::DiscordIcon;
 use crate::components::icons::telegram_icon::TelegramIcon;
 
 #[component]
-pub fn OtherCommunities(cx: Scope) -> impl IntoView {
-    view! { cx,
+pub fn OtherCommunities() -> impl IntoView {
+    view! { 
         <section class="bg-orange-100 py-20">
             <div class="container mx-auto px-4">
                 <div class="w-full grid grid-cols-4 gap-x-8">

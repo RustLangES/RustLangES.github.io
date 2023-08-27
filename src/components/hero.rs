@@ -3,8 +3,8 @@ use leptos::*;
 use crate::components::header::Header;
 
 #[component]
-pub fn Hero(cx: Scope) -> impl IntoView {
-    view! { cx,
+pub fn Hero() -> impl IntoView {
+    view! {
         <section class="w-full flex flex-col">
             <Header />
             <div class="flex items-center justify-center py-32">

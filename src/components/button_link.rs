@@ -3,7 +3,6 @@ use leptos::*;
 
 #[component]
 pub fn ButtonLink(
-    cx: Scope,
     href: String,
     #[prop(default = "primary".to_string())] color: String,
     #[prop(default = "normal".to_string())] size: String,
@@ -20,13 +19,13 @@ pub fn ButtonLink(
     let current_color = colors.get(&color).unwrap().to_string();
     let current_size = sizes.get(&size).unwrap().to_string();
 
-    view! { cx,
+    view! {
         <a
             href=href.to_string()
             target="_blank"
             class=format!("tracking-widest font-work-sans border border-black flex items-center px-4 drop-shadow-[4px_4px_0_rgba(0,0,0)] hover:drop-shadow-[0_0_0_rgba(0,0,0)] transition w-fit gap-x-4 {} {}", current_color, current_size)
         >
-            {children(cx)}
+            {children()}
         </a>
     }
 }

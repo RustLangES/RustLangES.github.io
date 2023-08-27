@@ -6,9 +6,8 @@ use crate::components::icons::telegram_icon::TelegramIcon;
 use crate::components::button_link::ButtonLink;
 
 #[component]
-pub fn OurCommunities(cx: Scope) -> impl IntoView {
+pub fn OurCommunities() -> impl IntoView {
     view! {
-        cx,
         <section class="bg-orange-300/30">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col items-center py-20 gap-y-6">

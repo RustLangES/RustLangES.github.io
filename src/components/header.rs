@@ -3,8 +3,8 @@ use leptos::*;
 use crate::components::button_link::ButtonLink;
 
 #[component]
-pub fn Header(cx: Scope) -> impl IntoView {
-    view! { cx,
+pub fn Header() -> impl IntoView {
+    view! {
         <header class="border-b border-b-black/20">
             <div class="container mx-auto px-4 flex items-center justify-between">
                 <div class="flex items-center gap-x-4">
