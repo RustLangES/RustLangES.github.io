@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn DiscordIcon(
     #[prop(default = 40)] size: u32,
-    #[prop(default = "fill-black".to_string())] class: String,
+    #[prop(default = "fill-black")] class: &'static str,
 ) -> impl IntoView {
     view!{
         <svg

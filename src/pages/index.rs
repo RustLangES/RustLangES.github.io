@@ -3,6 +3,7 @@ use leptos::*;
 use crate::components::hero::Hero;
 use crate::components::our_communities::OurCommunities;
 use crate::components::other_communities::OtherCommunities;
+use crate::components::community_projects::CommunityProjects;
 
 #[component]
 pub fn Index() -> impl IntoView {
@@ -12,6 +13,7 @@ pub fn Index() -> impl IntoView {
             <main>
                 <OurCommunities />
                 <OtherCommunities />
+                <CommunityProjects />
             </main>
         </div>
     }

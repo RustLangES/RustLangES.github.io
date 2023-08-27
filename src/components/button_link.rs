@@ -13,6 +13,7 @@ pub fn ButtonLink(
         ("white".to_string(), "bg-orange-100")
     ]);
     let sizes = HashMap::from([
+        ("tiny".to_string(), "h-7"),
         ("normal".to_string(), "h-9"),
         ("big".to_string(), "h-12")
     ]);
