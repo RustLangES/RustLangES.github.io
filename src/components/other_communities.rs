@@ -8,6 +8,11 @@ pub fn OtherCommunities() -> impl IntoView {
     view! { 
         <section class="bg-orange-100 py-20">
             <div class="container mx-auto px-4">
+                <h2 class="text-2xl text-left mb-4">
+                    <span class="font-work-sans font-light">"Otras "</span>
+                    <span class="font-alfa-slab text-orange-500">"Comunidades"</span>
+                    <span class="font-work-sans font-light">" recomendadas "</span>
+                </h2>
                 <div class="w-full grid grid-cols-4 gap-x-8">
                     <a
                         href="https://discord.gg/DeZKCCyMcq"
