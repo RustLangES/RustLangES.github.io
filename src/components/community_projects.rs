@@ -33,7 +33,7 @@ pub fn CommunityProjects() -> impl IntoView {
                             </p>
                         </div>
                         <div class="flex gap-2 items-center">
-                            <ButtonLink href="https://github.com/RustLangES".to_string() size="tiny".to_string()>
+                            <ButtonLink href="https://github.com/RustLangES" size="tiny">
                                 "Rust Lang en Español"
                             </ButtonLink>
                             <span class="ml-auto">
@@ -64,7 +64,7 @@ pub fn CommunityProjects() -> impl IntoView {
                             </p>
                         </div>
                         <div class="flex gap-2 items-center">
-                            <ButtonLink href="https://github.com/RustLangES".to_string() size="tiny".to_string()>
+                            <ButtonLink href="https://github.com/RustLangES" size="tiny">
                                 "Rust Lang en Español"
                             </ButtonLink>
                             <span class="ml-auto">
@@ -96,7 +96,7 @@ pub fn CommunityProjects() -> impl IntoView {
                         </p>
                     </div>
                     <div class="flex gap-2 items-center">
-                        <ButtonLink href="https://github.com/superoptimo".to_string() size="tiny".to_string()>
+                        <ButtonLink href="https://github.com/superoptimo" size="tiny">
                             "Francisco Leon"
                         </ButtonLink>
                         <span class="ml-auto">
@@ -125,7 +125,7 @@ pub fn CommunityProjects() -> impl IntoView {
                     </p>
                 </div>
                 <div class="flex gap-2 items-center">
-                    <ButtonLink href="https://github.com/EstebanBorai".to_string() size="tiny".to_string()>
+                    <ButtonLink href="https://github.com/EstebanBorai" size="tiny">
                         "Esteban Borai"
                     </ButtonLink>
                     <span class="ml-auto">
@@ -152,7 +152,7 @@ pub fn CommunityProjects() -> impl IntoView {
                         </p>
                     </div>
                     <div class="flex gap-2 items-center">
-                        <ButtonLink href="https://github.com/SamuelBonilla".to_string() size="tiny".to_string()>
+                        <ButtonLink href="https://github.com/SamuelBonilla" size="tiny">
                             "Samuel Bonilla"
                         </ButtonLink>
                         <span class="ml-auto">
@@ -179,7 +179,7 @@ pub fn CommunityProjects() -> impl IntoView {
                         </p>
                     </div>
                     <div class="flex gap-2 items-center">
-                        <ButtonLink href="https://github.com/EstebanBorai".to_string() size="tiny".to_string()>
+                        <ButtonLink href="https://github.com/EstebanBorai" size="tiny">
                             "Esteban Borai"
                         </ButtonLink>
                         <span class="ml-auto">
@@ -206,7 +206,7 @@ pub fn CommunityProjects() -> impl IntoView {
                         </p>
                     </div>
                     <div class="flex gap-2 items-center">
-                        <ButtonLink href="https://github.com/marc2332".to_string() size="tiny".to_string()>
+                        <ButtonLink href="https://github.com/marc2332" size="tiny">
                             "Marc Espín"
                         </ButtonLink>
                         <span class="ml-auto">

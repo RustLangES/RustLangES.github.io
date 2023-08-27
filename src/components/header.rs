@@ -26,16 +26,12 @@ pub fn Header() -> impl IntoView {
                             <a href="#">"Blog"</a>
                         </li>
                         <li class="ml-4">
-                            <ButtonLink
-                                href="https://github.com/RustLangES".to_string()
-                            >
+                            <ButtonLink href="https://github.com/RustLangES" >
                                 "Github"
                             </ButtonLink>
                         </li>
                         <li>
-                            <ButtonLink
-                                href="https://discord.gg/4ng5HgmaMg".to_string()
-                            >
+                            <ButtonLink href="https://discord.gg/4ng5HgmaMg" >
                                 "Discord"
                             </ButtonLink>
                         </li>

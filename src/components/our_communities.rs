@@ -17,25 +17,25 @@ pub fn OurCommunities() -> impl IntoView {
                     </h2>
                     <div class="flex items-center gap-x-12">
                         <ButtonLink
-                            href="https://discord.gg/4ng5HgmaMg".to_string()
-                            color="white".to_string()
-                            size="big".to_string()
+                            href="https://discord.gg/4ng5HgmaMg"
+                            color="white"
+                            size="big"
                         >
                             <DiscordIcon size=30 />
                             "Discord"
                         </ButtonLink>
                         <ButtonLink
-                            href="https://github.com/RustLangES".to_string()
-                            color="white".to_string()
-                            size="big".to_string()
+                            href="https://github.com/RustLangES"
+                            color="white"
+                            size="big"
                         >
                             <GithubIcon size=30 />
                             "Github"
                         </ButtonLink>
                         <ButtonLink
-                            href="https://t.me/rust_es".to_string()
-                            color="white".to_string()
-                            size="big".to_string()
+                            href="https://t.me/rust_es"
+                            color="white"
+                            size="big"
                         >
                             <TelegramIcon size=30 />
                             "Telegram"
