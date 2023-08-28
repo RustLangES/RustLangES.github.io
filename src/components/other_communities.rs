@@ -35,7 +35,7 @@ pub fn OtherCommunities() -> impl IntoView {
             description: "Comunidad de Rust en Mexico",
             link: "https://t.me/RustMX",
             icon: "telegram",
-            brand_src: "./RustMX.png",
+            brand_src: "./RustMX-min.png",
             brand_alt: "Logo de RustMX"
         },
         CommunityItem {
@@ -43,7 +43,7 @@ pub fn OtherCommunities() -> impl IntoView {
             description: "Comunidad de Rust en Mexico",
             link: "https://t.me/aprenderrust",
             icon: "telegram",
-            brand_src: "./aprender-rust.jpg",
+            brand_src: "./aprender-rust-min.jpg",
             brand_alt: "Logo de Aprende Rust"
         },
         CommunityItem {

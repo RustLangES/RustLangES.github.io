@@ -30,7 +30,7 @@ pub fn CommunityProjects() -> impl IntoView {
             name: vec!["The ", "Rust", " Programming Language [Spanish Ed.]"],
             description: "Traducción del libro oficial de Rust al español",
             link: "https://github.com/RustLangES/rust-book-es",
-            brand_src: "./RustLogo.png",
+            brand_src: "./RustLogo-min.png",
             button_link: "https://github.com/RustLangES",
             button_text: "Rust Lang en Español",
             brand_as_letter: false,
