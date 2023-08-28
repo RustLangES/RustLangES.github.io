@@ -27,7 +27,7 @@ pub fn ProjectCard(
         <a
             href=link
             target="_blank"
-            class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-200 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
+            class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 hover:bg-orange-500 bg-orange-200 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
         >
             <div class="flex flex-col justify-between gap-y-2">
                 {if brand_as_letter {
