@@ -5,15 +5,15 @@ use crate::components::icons::telegram_icon::TelegramIcon;
 
 #[component]
 pub fn OtherCommunities() -> impl IntoView {
-    view! { 
-        <section class="bg-orange-100 py-20 drop-shadow-md">
+    view! {
+        <section class="bg-orange-100 py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl text-left mb-4">
+                <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Otras "</span>
                     <span class="font-alfa-slab text-orange-500">"Comunidades"</span>
                     <span class="font-work-sans font-light">" recomendadas "</span>
                 </h2>
-                <div class="w-full grid grid-cols-5 gap-x-8">
+                <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-4">
                     <a
                         href="https://discord.gg/DeZKCCyMcq"
                         target="_blank"
