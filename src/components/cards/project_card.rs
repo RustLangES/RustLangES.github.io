@@ -60,7 +60,7 @@ pub fn ProjectCard(
             <div class="flex gap-2 items-center mt-4">
                 <ButtonLink href=button_link size="tiny">
                     {if button_text.is_empty() {
-                        name.into_iter().map(|word| word).collect::<Vec<_>>().join("")
+                        name.into_iter().collect::<Vec<_>>().join("")
                     } else {
                         button_text.to_string()
                     }}
