@@ -1,10 +1,61 @@
 use leptos::*;
 
-use crate::components::icons::discord_icon::DiscordIcon;
-use crate::components::icons::telegram_icon::TelegramIcon;
+use crate::components::cards::community_card::CommunityCard;
+
+struct CommunityItem {
+    name: Vec<&'static str>,
+    description: &'static str,
+    link: &'static str,
+    icon: &'static str,
+    brand_src: &'static str,
+    brand_alt: &'static str,
+}
 
 #[component]
 pub fn OtherCommunities() -> impl IntoView {
+    let items: Vec<CommunityItem> = vec![
+        CommunityItem {
+            name: vec!["Rust ", "Barcelona"],
+            description: "Comunidad de Rust en Barcelona",
+            link: "https://discord.gg/DeZKCCyMcq",
+            icon: "discord",
+            brand_src: "./RustBCN.webp",
+            brand_alt: "Logo de Rust Barcelona"
+        },
+        CommunityItem {
+            name: vec!["Whizzles"],
+            description: "Comunidad de Open Source con fuertes raices en Rust.",
+            link: "https://discord.gg/b9EbVnSkuw",
+            icon: "discord",
+            brand_src: "./Whizzles.webp",
+            brand_alt: "Logo de Whizzles"
+        },
+        CommunityItem {
+            name: vec!["Rust", "MX"],
+            description: "Comunidad de Rust en Mexico",
+            link: "https://t.me/RustMX",
+            icon: "telegram",
+            brand_src: "./RustMX.png",
+            brand_alt: "Logo de RustMX"
+        },
+        CommunityItem {
+            name: vec!["Aprende ", "Rust"],
+            description: "Comunidad de Rust en Mexico",
+            link: "https://t.me/aprenderrust",
+            icon: "telegram",
+            brand_src: "./aprender-rust.jpg",
+            brand_alt: "Logo de Aprende Rust"
+        },
+        CommunityItem {
+            name: vec!["Rust ", "Español"],
+            description: "Anteriormente Rust Argentina, hoy una comunidad internacional.",
+            link: "https://t.me/rust_lang_es",
+            icon: "telegram",
+            brand_src: "./RustGeneral.jpg",
+            brand_alt: "Logo de Rust Español"
+        },
+    ];
+
     view! {
         <section class="bg-orange-100 py-20">
             <div class="container mx-auto px-4">
@@ -14,118 +65,18 @@ pub fn OtherCommunities() -> impl IntoView {
                     <span class="font-work-sans font-light">" recomendadas "</span>
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-4">
-                    <a
-                        href="https://discord.gg/DeZKCCyMcq"
-                        target="_blank"
-                        class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
-                    >
-                        <div>
-                            <img src="./RustBCN.webp" width="60" class="rounded-full mb-4" alt="Logo de Rust Barcelona" />
-                            <h5 class="text-xl">
-                                <span class="font-alfa-slab text-orange-500 group-hover:text-white">
-                                    "Rust "
-                                </span>
-                                <span class="font-work-sans text-black">
-                                    "Barcelona"
-                                </span>
-                            </h5>
-                            <p class="font-work-sans text-black">
-                                "Comunidad de Rust en Barcelona"
-                            </p>
-                        </div>
-                        <span class="ml-auto">
-                            <DiscordIcon size=30 />
-                        </span>
-                    </a>
-                    <a
-                        href="https://discord.gg/b9EbVnSkuw"
-                        target="_blank"
-                        class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
-                    >
-                        <div>
-                            <img src="./Whizzles.webp" width="60" class="mb-4" alt="Logo de Whizzles" />
-                            <h5 class="text-xl">
-                                <span class="font-work-sans text-black">
-                                    "Whizzles"
-                                </span>
-                            </h5>
-                            <p class="font-work-sans text-black">
-                                "Comunidad de Open Source con fuertes raices en Rust."
-                            </p>
-                        </div>
-                        <span class="ml-auto">
-                            <DiscordIcon size=30 />
-                        </span>
-                    </a>
-                    <a
-                        href="https://t.me/RustMX"
-                        target="_blank"
-                        class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
-                    >
-                        <div>
-                            <img src="./RustMX.png" width="60" class="mb-4" alt="Logo de RustMX" />
-                            <h5 class="text-xl">
-                                <span class="font-alfa-slab text-orange-500 group-hover:text-white">
-                                    "Rust"
-                                </span>
-                                <span class="font-work-sans text-black">
-                                    "MX"
-                                </span>
-                            </h5>
-                            <p class="font-work-sans text-black">
-                                "Comunidad de Rust en Mexico"
-                            </p>
-                        </div>
-                        <span class="ml-auto">
-                            <TelegramIcon size=30 />
-                        </span>
-                    </a>
-                    <a
-                        href="https://t.me/aprenderrust"
-                        target="_blank"
-                        class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
-                    >
-                        <div>
-                            <img src="./aprender-rust.jpg" width="60" class="rounded-full mb-4" alt="Logo de Aprende Rust" />
-                            <h5 class="text-xl">
-                                <span class="font-work-sans text-black">
-                                    "Aprende "
-                                </span>
-                                <span class="font-alfa-slab text-orange-500 group-hover:text-white">
-                                    "Rust"
-                                </span>
-                            </h5>
-                            <p class="font-work-sans text-black">
-                                "Comunidad de gente queriendo aprender."
-                            </p>
-                        </div>
-                        <span class="ml-auto">
-                            <TelegramIcon size=30 />
-                        </span>
-                    </a>
-                    <a
-                        href="https://t.me/rust_lang_es"
-                        target="_blank"
-                        class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
-                    >
-                        <div>
-                            <img src="./RustGeneral.jpg" width="60" class="rounded-full mb-4" alt="Logo de Rust Español" />
-                            <h5 class="text-xl">
-                                <span class="font-alfa-slab text-orange-500 group-hover:text-white">
-                                    "Rust"
-                                </span>
-                                <span class="font-work-sans text-black">
-                                    " Español"
-                                </span>
-                            </h5>
-                            <p class="font-work-sans text-black">
-                                "Anteriormente Rust Argentina, hoy una comunidad internacional."
-                            </p>
-                        </div>
-                        <span class="ml-auto">
-                            <TelegramIcon size=30 />
-                        </span>
-                    </a>
+                    {items.into_iter().map(|item| {
+                        view! {
+                            <CommunityCard
+                                name=item.name.clone()
+                                description=item.description
+                                link=item.link
+                                icon=item.icon
+                                brand_src=item.brand_src
+                                brand_alt=item.brand_alt
+                            />
+                        }
+                    }).collect::<Vec<_>>()}
                 </div>
             </div>
         </section>
