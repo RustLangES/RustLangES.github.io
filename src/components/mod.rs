@@ -1,6 +1,7 @@
 pub mod icons;
 pub mod hero;
 pub mod header;
+pub mod footer;
 pub mod button_link;
 pub mod our_communities;
 pub mod other_communities;

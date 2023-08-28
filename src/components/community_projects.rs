@@ -6,13 +6,13 @@ use crate::components::button_link::ButtonLink;
 #[component]
 pub fn CommunityProjects() -> impl IntoView {
     view! {
-        <section class="bg-orange-200 py-20 ">
+        <section class="bg-orange-200 py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl text-left mb-4">
+                <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Proyectos de la "</span>
                     <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                 </h2>
-                <div class="w-full grid grid-cols-4 gap-x-8 gap-y-4">
+                <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-4">
                     <a
                         href="https://github.com/RustLangES/rust-book-es"
                         target="_blank"
