@@ -1,10 +1,10 @@
 use leptos::*;
 
-use crate::components::dummy_component::DummyComponent;
-use crate::components::icons::discord_icon::DiscordIcon;
-use crate::components::icons::github_icon::GithubIcon;
-use crate::components::icons::telegram_icon::TelegramIcon;
-use crate::components::cards::card_title::CardTitle;
+use crate::components::{
+    cards::card_title::CardTitle,
+    dummy_component::DummyComponent,
+    icons::{discord_icon::DiscordIcon, github_icon::GithubIcon, telegram_icon::TelegramIcon},
+};
 
 #[component]
 pub fn CommunityCard(

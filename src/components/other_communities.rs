@@ -20,7 +20,7 @@ pub fn OtherCommunities() -> impl IntoView {
             link: "https://discord.gg/DeZKCCyMcq",
             icon: "discord",
             brand_src: "./RustBCN.webp",
-            brand_alt: "Logo de Rust Barcelona"
+            brand_alt: "Logo de Rust Barcelona",
         },
         CommunityItem {
             name: vec!["Whizzles"],
@@ -28,7 +28,7 @@ pub fn OtherCommunities() -> impl IntoView {
             link: "https://discord.gg/b9EbVnSkuw",
             icon: "discord",
             brand_src: "./Whizzles.webp",
-            brand_alt: "Logo de Whizzles"
+            brand_alt: "Logo de Whizzles",
         },
         CommunityItem {
             name: vec!["Rust", "MX"],
@@ -36,7 +36,7 @@ pub fn OtherCommunities() -> impl IntoView {
             link: "https://t.me/RustMX",
             icon: "telegram",
             brand_src: "./RustMX-min.png",
-            brand_alt: "Logo de RustMX"
+            brand_alt: "Logo de RustMX",
         },
         CommunityItem {
             name: vec!["Aprende ", "Rust"],
@@ -44,7 +44,7 @@ pub fn OtherCommunities() -> impl IntoView {
             link: "https://t.me/aprenderrust",
             icon: "telegram",
             brand_src: "./aprender-rust-min.jpg",
-            brand_alt: "Logo de Aprende Rust"
+            brand_alt: "Logo de Aprende Rust",
         },
         CommunityItem {
             name: vec!["Rust ", "Español"],
@@ -52,7 +52,7 @@ pub fn OtherCommunities() -> impl IntoView {
             link: "https://t.me/rust_lang_es",
             icon: "telegram",
             brand_src: "./RustGeneral.jpg",
-            brand_alt: "Logo de Rust Español"
+            brand_alt: "Logo de Rust Español",
         },
     ];
 

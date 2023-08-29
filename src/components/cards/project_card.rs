@@ -1,9 +1,9 @@
-use std::collections::HashMap;
 use leptos::*;
+use std::collections::HashMap;
 
-use crate::components::cards::card_title::CardTitle;
-use crate::components::button_link::ButtonLink;
-use crate::components::icons::github_icon::GithubIcon;
+use crate::components::{
+    button_link::ButtonLink, cards::card_title::CardTitle, icons::github_icon::GithubIcon,
+};
 
 #[component]
 pub fn ProjectCard(

@@ -1,9 +1,9 @@
 use leptos::*;
 
-use crate::components::icons::discord_icon::DiscordIcon;
-use crate::components::icons::github_icon::GithubIcon;
-use crate::components::icons::telegram_icon::TelegramIcon;
-use crate::components::button_link::ButtonLink;
+use crate::components::{
+    button_link::ButtonLink,
+    icons::{discord_icon::DiscordIcon, github_icon::GithubIcon, telegram_icon::TelegramIcon},
+};
 
 #[component]
 pub fn OurCommunities() -> impl IntoView {

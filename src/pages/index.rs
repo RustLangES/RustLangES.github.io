@@ -1,14 +1,13 @@
 use leptos::*;
 
-use crate::components::hero::Hero;
-use crate::components::footer::Footer;
-use crate::components::our_communities::OurCommunities;
-use crate::components::other_communities::OtherCommunities;
-use crate::components::community_projects::CommunityProjects;
+use crate::components::{
+    community_projects::CommunityProjects, footer::Footer, hero::Hero,
+    other_communities::OtherCommunities, our_communities::OurCommunities,
+};
 
 #[component]
 pub fn Index() -> impl IntoView {
-    view!{
+    view! {
         <div>
             <Hero />
             <main>

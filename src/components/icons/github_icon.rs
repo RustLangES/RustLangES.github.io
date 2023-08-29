@@ -1,7 +1,7 @@
 use leptos::*;
 
 #[component]
-pub fn GithubIcon (
+pub fn GithubIcon(
     #[prop(default = 40)] size: u32,
     #[prop(default = "fill-black")] class: &'static str,
 ) -> impl IntoView {

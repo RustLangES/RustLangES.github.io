@@ -1,9 +1,7 @@
 use leptos::*;
 
 #[component]
-pub fn CardTitle(
-    #[prop(into)] texts: Vec<&'static str>
-) -> impl IntoView {
+pub fn CardTitle(#[prop(into)] texts: Vec<&'static str>) -> impl IntoView {
     view! {
         <h5 class="text-xl">
             {texts.into_iter()

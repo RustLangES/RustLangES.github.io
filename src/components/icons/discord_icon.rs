@@ -5,7 +5,7 @@ pub fn DiscordIcon(
     #[prop(default = 40)] size: u32,
     #[prop(default = "fill-black")] class: &'static str,
 ) -> impl IntoView {
-    view!{
+    view! {
         <svg
             width=size
             height=size
