@@ -1,9 +1,22 @@
 use leptos::*;
 
 use crate::components::header::Header;
+use rand::seq::SliceRandom;
 
 #[component]
 pub fn Hero() -> impl IntoView {
+    let slogans = [
+        "Una comunidad de gente mal intencionada y tonta.",
+        "9 de cada 10 Go dev's lo recomiendan",
+        "Acá le pegamos a la rústica bien recio",
+        "⚡ Blazingly fast ⚡ 🚀🚀🚀 Super fast 🔥🔥🔥🔥 pero ahora en español!!",
+        "Si te falla va ser de forma segura 😉",
+        "Furrificando..."
+    ];
+
+    let sloganToShow = slogans.choose(&mut rand::thread_rng()).unwrap();
+
+
     view! {
         <section class="w-full flex flex-col">
             <Header/>
@@ -25,7 +38,7 @@ pub fn Hero() -> impl IntoView {
                             </span>
                         </h1>
                         <p class="font-work-sans font-light text-center lg:text-left">
-                            "Una comunidad de gente mal intencionada y tonta."
+                            {sloganToShow.to_string()}
                         </p>
                     </div>
                 </div>
