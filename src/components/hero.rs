@@ -13,8 +13,12 @@ pub fn Hero() -> impl IntoView {
         "Si te falla va ser de forma segura 😉",
         "Furrificando...",
     ];
+    let (slogan, set_slogan) =
+        create_signal(slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
 
-    let sloganToShow = slogans.choose(&mut rand::thread_rng()).unwrap();
+    let click_handler = move |_| {
+        set_slogan.update(|n| *n = slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
+    };
 
     view! {
         <section class="w-full flex flex-col">
@@ -36,8 +40,15 @@ pub fn Hero() -> impl IntoView {
                                 "En Español"
                             </span>
                         </h1>
-                        <p class="font-work-sans font-light text-center lg:text-left">
-                            {sloganToShow.to_string()}
+                        // TODO: Alguien que sepa de diseño que me ayude a hacer esto mas bonito
+                        <button
+                            class=" border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition flex justify-center items-center rounded-[100%]  w-6 h-6 mx-auto"
+                            on:click=click_handler
+                        >
+                            <span class="motion-safe:animate-spin">"🎲"</span>
+                        </button>
+                        <p class="font-work-sans font-light text-center lg:text-left max-w-[90%]">
+                            {slogan}
                         </p>
                     </div>
                 </div>
