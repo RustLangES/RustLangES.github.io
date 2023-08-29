@@ -11,11 +11,10 @@ pub fn Hero() -> impl IntoView {
         "Acá le pegamos a la rústica bien recio",
         "⚡ Blazingly fast ⚡ 🚀🚀🚀 Super fast 🔥🔥🔥🔥 pero ahora en español!!",
         "Si te falla va ser de forma segura 😉",
-        "Furrificando..."
+        "Furrificando...",
     ];
 
     let sloganToShow = slogans.choose(&mut rand::thread_rng()).unwrap();
-
 
     view! {
         <section class="w-full flex flex-col">
