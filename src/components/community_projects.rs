@@ -96,20 +96,23 @@ pub fn CommunityProjects() -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-4">
-                    {items.into_iter().map(|item| {
-                        view! {
-                            <ProjectCard
-                                name=item.name
-                                description=item.description
-                                link=item.link
-                                brand_src=item.brand_src
-                                button_link=item.button_link
-                                button_text=item.button_text
-                                brand_as_letter=item.brand_as_letter
-                                button_bg_color=item.button_bg_color
-                            />
-                        }
-                    }).collect::<Vec<_>>()}
+                    {items
+                        .into_iter()
+                        .map(|item| {
+                            view! {
+                                <ProjectCard
+                                    name=item.name
+                                    description=item.description
+                                    link=item.link
+                                    brand_src=item.brand_src
+                                    button_link=item.button_link
+                                    button_text=item.button_text
+                                    brand_as_letter=item.brand_as_letter
+                                    button_bg_color=item.button_bg_color
+                                />
+                            }
+                        })
+                        .collect::<Vec<_>>()}
                 </div>
             </div>
         </section>

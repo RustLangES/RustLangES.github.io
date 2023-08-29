@@ -11,9 +11,8 @@ pub fn App() -> impl IntoView {
     view! {
         <Router>
             <Routes>
-                <Route path="" view=|| view! { <Index /> }/>
+                <Route path="" view=|| view! { <Index/> }/>
             </Routes>
         </Router>
     }
 }
-

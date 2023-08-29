@@ -1,10 +1,10 @@
-pub mod icons;
-pub mod hero;
-pub mod header;
-pub mod footer;
 pub mod button_link;
-pub mod our_communities;
-pub mod other_communities;
-pub mod community_projects;
 pub mod cards;
+pub mod community_projects;
 pub mod dummy_component;
+pub mod footer;
+pub mod header;
+pub mod hero;
+pub mod icons;
+pub mod other_communities;
+pub mod our_communities;

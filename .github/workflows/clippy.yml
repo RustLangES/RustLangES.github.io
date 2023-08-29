@@ -1,14 +1,54 @@
 name: clippy
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches:
       - main
 
 jobs:
-  clippy:
+  fmt:
     runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+      
+  leptosfmt:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+          components: clippy
+      - name: Cache .cargo and target
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo
+          key: ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
+            ${{ runner.os }}-cargo-leptos
+      - name: Install LeptosFmt
+        run: cargo install leptosfmt --version 0.1.13
+      - name: Check LeptosFmt
+        run: leptosfmt --check .
 
+  clippy:
+    needs: [ fmt, leptosfmt ]
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
 
