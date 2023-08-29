@@ -9,13 +9,13 @@ use crate::components::{
 pub fn Index() -> impl IntoView {
     view! {
         <div>
-            <Hero />
+            <Hero/>
             <main>
-                <OurCommunities />
-                <OtherCommunities />
-                <CommunityProjects />
+                <OurCommunities/>
+                <OtherCommunities/>
+                <CommunityProjects/>
             </main>
-            <Footer />
+            <Footer/>
         </div>
     }
 }

@@ -32,12 +32,11 @@ pub fn ProjectCard(
             <div class="flex flex-col justify-between gap-y-2">
                 {if brand_as_letter {
                     view! {
-                        <span
-                            class=format!(
-                                "h-[60px] w-[60px] rounded-full text-4xl flex justify-center items-center {}",
-                                current_color
-                            )
-                        >
+                        <span class=format!(
+                            "h-[60px] w-[60px] rounded-full text-4xl flex justify-center items-center {}",
+                            current_color
+                        )>
+
                             {brand_src}
                         </span>
                     }
@@ -45,17 +44,16 @@ pub fn ProjectCard(
                     view! {
                         <span>
                             <img
-                                src=brand_src width="60"
+                                src=brand_src
+                                width="60"
                                 class=format!("rounded-full h-[60px] w-[60px] {}", current_color)
                                 alt=brand_alt
                             />
                         </span>
                     }
                 }}
-                <CardTitle texts=name.clone() />
-                <p class="mt-2 font-work-sans text-black">
-                    {description}
-                </p>
+                <CardTitle texts=name.clone()/>
+                <p class="mt-2 font-work-sans text-black">{description}</p>
             </div>
             <div class="flex gap-2 items-center mt-4">
                 <ButtonLink href=button_link size="tiny">
@@ -64,9 +62,10 @@ pub fn ProjectCard(
                     } else {
                         button_text.to_string()
                     }}
+
                 </ButtonLink>
                 <span class="ml-auto">
-                    <GithubIcon size=30 />
+                    <GithubIcon size=30/>
                 </span>
             </div>
         </a>

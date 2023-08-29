@@ -12,6 +12,6 @@ pub fn main() {
     log!("csr mode - mounting to body");
 
     mount_to_body(|| {
-        view! { <App /> }
+        view! { <App/> }
     });
 }
