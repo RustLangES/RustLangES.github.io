@@ -5,7 +5,7 @@ use rand::seq::SliceRandom;
 
 #[component]
 pub fn Hero() -> impl IntoView {
-    let slogans = vec![
+    let slogans = [
         "Una comunidad de gente mal intencionada y tonta.",
         "9 de cada 10 Go dev's lo recomiendan",
         "Acá le pegamos a la rústica bien recio",
