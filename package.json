@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Phosphorus-M/leptos-csr#readme",
   "dependencies": {
-    "mini-svg-data-uri": "^1.4.4",
+    "mini-svg-data-uri": "^1.4.4"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.3.3"
   }
 }
