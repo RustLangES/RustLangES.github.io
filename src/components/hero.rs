@@ -9,7 +9,7 @@ pub fn Hero() -> impl IntoView {
         "Una comunidad de gente mal intencionada y tonta.",
         "9 de cada 10 Go dev's lo recomiendan",
         "Acá le pegamos a la rústica bien recio",
-        "⚡ Blazingly fast ⚡ 🚀🚀🚀 Super fast 🔥🔥🔥🔥 pero ahora en español!!",
+        "⚡Blazingly fast⚡ 🚀 Super fast 🔥 pero ahora en español!",
         "Si te falla va ser de forma segura 😉",
         "Furrificando...",
     ];
@@ -24,9 +24,9 @@ pub fn Hero() -> impl IntoView {
         <section class="w-full flex flex-col">
             <Header/>
             <div class="flex items-center justify-center py-14 lg:py-32 px-4">
-                <div class="grid items-center gap-x-20 gap-y-10 lg:grid-cols-2">
+                <div class="grid items-center gap-x-20 gap-y-10 lg:grid-cols-2 w-full">
                     <figure class="w-80 mx-auto lg:w-full">
-                        <img src="./rhq3ezvso9611-min.png" width="500" class="mx-auto"/>
+                        <img src="./rhq3ezvso9611-min.png" width="500" class="ml-auto"/>
                     </figure>
                     <div class="">
                         <h1 class="flex flex-col mb-4 gap-y-2">
@@ -40,16 +40,17 @@ pub fn Hero() -> impl IntoView {
                                 "En Español"
                             </span>
                         </h1>
-                        // TODO: Alguien que sepa de diseño que me ayude a hacer esto mas bonito
-                        <button
-                            class=" border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition flex justify-center items-center rounded-[100%]  w-6 h-6 mx-auto"
-                            on:click=click_handler
-                        >
-                            <span class="motion-safe:animate-spin">"🎲"</span>
-                        </button>
-                        <p class="font-work-sans font-light text-center lg:text-left max-w-[90%]">
-                            {slogan}
-                        </p>
+                        <div class="flex items-center justify-center lg:justify-start group">
+                            <button
+                                class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 flex items-center justify-center text-xl relative z-10"
+                                on:click=click_handler
+                            >
+                                <span class="motion-safe:animate-spin">"🎲"</span>
+                            </button>
+                            <p class="font-work-sans font-light lg:text-left bg-orange-400 h-12 pr-4 pl-10 flex items-center -ml-6 flex-1 rounded-r-full group-hover:bg-orange-500 max-w-lg">
+                                {slogan}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

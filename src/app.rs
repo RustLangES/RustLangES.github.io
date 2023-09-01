@@ -2,7 +2,7 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-use crate::pages::index::Index;
+use crate::pages::{contributors::Contributors, index::Index};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -12,6 +12,7 @@ pub fn App() -> impl IntoView {
         <Router>
             <Routes>
                 <Route path="" view=|| view! { <Index/> }/>
+                <Route path="/colaboradores" view=|| view! { <Contributors/> }/>
             </Routes>
         </Router>
     }
