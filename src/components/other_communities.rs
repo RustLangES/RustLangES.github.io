@@ -54,6 +54,15 @@ pub fn OtherCommunities() -> impl IntoView {
             brand_src: "./RustGeneral.jpg",
             brand_alt: "Logo de Rust Español",
         },
+
+        CommunityItem {
+            name: vec!["Salamandra ", "Devs"],
+            description: "Comunidad de Programación en general.",
+            link: "https://t.me/salamandradevs",
+            icon: "telegram",
+            brand_src: "./Salamandra.png",
+            brand_alt: "Logo de Salamandra Devs",
+        },
     ];
 
     view! {
