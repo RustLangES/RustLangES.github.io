@@ -14,14 +14,14 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           override: true
       - run: rustup component add rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all -- --check
-      
+
   leptosfmt:
     runs-on: ubuntu-22.04
     steps:
@@ -47,7 +47,7 @@ jobs:
         run: leptosfmt --check .
 
   clippy:
-    needs: [ fmt, leptosfmt ]
+    needs: [fmt, leptosfmt]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
