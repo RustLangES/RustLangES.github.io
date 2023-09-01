@@ -40,17 +40,17 @@ pub fn ProjectCard(
                             {brand_src}
                         </span>
                     }
+                        .into_any()
                 } else {
                     view! {
-                        <span>
-                            <img
-                                src=brand_src
-                                width="60"
-                                class=format!("rounded-full h-[60px] w-[60px] {}", current_color)
-                                alt=brand_alt
-                            />
-                        </span>
+                        <img
+                            src=brand_src
+                            width="60"
+                            class=format!("rounded-full h-[60px] w-[60px] {}", current_color)
+                            alt=brand_alt
+                        />
                     }
+                        .into_any()
                 }}
                 <CardTitle texts=name.clone()/>
                 <p class="mt-2 font-work-sans text-black">{description}</p>

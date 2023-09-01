@@ -10,13 +10,13 @@ pub fn Header() -> impl IntoView {
         <header class="border-b border-b-black/20">
             <div class="container mx-auto px-4 flex items-center justify-between flex-col lg:flex-row">
                 <div class="flex justify-between w-full lg:w-auto">
-                    <div class="flex items-center gap-x-4">
+                    <a href="/" class="flex items-center gap-x-4">
                         <img
                             src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"
                             class="max-h-20 rounded-full"
                             alt="Rust Lang en Español"
                         />
-                    </div>
+                    </a>
                     <button
                         class="lg:hidden"
                         on:click=move |_| { set_is_open.update(|n| *n = !*n) }
@@ -30,7 +30,6 @@ pub fn Header() -> impl IntoView {
                         "hidden lg:block" }
                     )
                 }>
-
                     <ul class="flex items-center gap-6 flex-col lg:flex-row lg:items-center">
                         <li>
                             <a href="https://rustlanges.github.io/rust-book-es" target="_blank">
@@ -38,7 +37,7 @@ pub fn Header() -> impl IntoView {
                             </a>
                         </li>
                         <li>
-                            <a href="#">"Comunidad"</a>
+                            <a href="/colaboradores">"Colaboradores"</a>
                         </li>
                         <li>
                             <a href="#">"Blog"</a>
