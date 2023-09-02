@@ -1,5 +1,7 @@
 mod app;
 mod components;
+mod extras;
+mod models;
 mod pages;
 
 use app::*;
