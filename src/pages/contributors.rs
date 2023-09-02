@@ -12,7 +12,7 @@ pub struct Contributor {
 
 async fn fetch_contributors() -> Result<Vec<Contributor>> {
     let response = reqwasm::http::Request::get(
-        &"https://api.github.com/repos/RustLangES/rustlanges.github.io/contributors",
+        "https://api.github.com/repos/RustLangES/rustlanges.github.io/contributors",
     )
     .send()
     .await?
