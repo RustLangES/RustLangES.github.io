@@ -28,7 +28,7 @@ pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |_| fetch_contributors());
 
     let contributors_view = move || {
-        let data = contributors_results.read();
+        let data = contributors_results.get();
         let Some(Ok(items)) = data else { return None };
         let result = items
             .iter()
