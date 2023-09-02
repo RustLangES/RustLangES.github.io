@@ -27,3 +27,7 @@ lto = true        # Link time optimization.
 incremental = true
 codegen-units = 1 # Allow for maximum size reduction optimizations.
 debug-assertions = false
+
+[build-dependencies]
+toml = "0.7.6"
+serde = { version = "1.0.188", features = ["derive"] }
