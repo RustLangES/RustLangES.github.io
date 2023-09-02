@@ -7,7 +7,7 @@ use crate::components::{cards::contributor_card::ContributorCard, footer::Footer
 pub struct Contributor {
     login: String,
     avatar_url: String,
-    url: String,
+    html_url: String,
 }
 
 async fn fetch_contributors() -> Result<Vec<Contributor>> {
@@ -19,8 +19,7 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     .json::<Vec<Contributor>>()
     .await?
     .into_iter()
-    .map(|item| item)
-    .collect::<Vec<_>>();
+    .collect();
     Ok(response)
 }
 
@@ -38,7 +37,7 @@ pub fn Contributors() -> impl IntoView {
                     <ContributorCard
                         name=item.login.clone()
                         description=""
-                        link=item.url.clone()
+                        link=item.html_url.clone()
                         brand_src=item.avatar_url.clone()
                     />
                 }
