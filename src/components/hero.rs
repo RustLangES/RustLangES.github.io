@@ -12,6 +12,12 @@ pub fn Hero() -> impl IntoView {
         "⚡Blazingly fast⚡ 🚀 Super fast 🔥 pero ahora en español!",
         "Si te falla va ser de forma segura 😉",
         "Furrificando...",
+        "Dumb Pointer != Smart Pointer",
+        "std::mem::transmute::<Go, Rust>(developer)",
+        "In Rust, We Trust",
+        "Rust es el nuevo C",
+        "Clippy >>>>>>>>>> ESLint!",
+        "Null Sucks",
     ];
     let (slogan, set_slogan) =
         create_signal(slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
