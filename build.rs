@@ -3,11 +3,16 @@ use std::{
     fs,
     fs::{DirEntry, Metadata},
     io::Write,
-    path::PathBuf,
+    path::{Path, PathBuf},
 };
 
 fn main() {
     println!("cargo:rerun-if-changed=extras");
+
+    // install pre-push hook
+    if !Path::new(".git/hooks/pre-push").exists() {
+        fs::hard_link(".githooks/pre-push.sh", ".git/hooks/pre-push").unwrap();
+    }
 
     let folders = fs::read_dir("extras").unwrap();
     if let Err(e) = fs::create_dir("src/extras") {
