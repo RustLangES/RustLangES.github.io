@@ -26,22 +26,22 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
 #[component]
 pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |_| fetch_contributors());
+    let contributorMapper = |item: &Contributor| {
+        view! {
+            <ContributorCard
+                name=item.login.clone()
+                description=""
+                link=item.html_url.clone()
+                brand_src=item.avatar_url.clone()
+            />
+        }
+    };
 
     let contributors_view = move || {
-        let data = contributors_results.get();
-        let Some(Ok(items)) = data else { return None };
-        let result = items
+        let contributors = contributors_results.get()?.ok()?;
+        let result = contributors
             .iter()
-            .map(|item| {
-                view! {
-                    <ContributorCard
-                        name=item.login.clone()
-                        description=""
-                        link=item.html_url.clone()
-                        brand_src=item.avatar_url.clone()
-                    />
-                }
-            })
+            .map(contributorMapper)
             .collect::<Fragment>();
         Some(result.into_view())
     };
