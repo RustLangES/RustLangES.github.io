@@ -59,17 +59,7 @@ jobs:
           override: true
           components: clippy
 
-      - name: Cache .cargo and target
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo
-            ./target
-          key: ${{ runner.os }}-cargo-clippy-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-clippy-${{ hashFiles('**/Cargo.lock') }}
-            ${{ runner.os }}-cargo-clippy
-
+      - uses: Swatinem/rust-cache@v2
       - name: cargo clippy
         uses: actions-rs/cargo@v1
         with:

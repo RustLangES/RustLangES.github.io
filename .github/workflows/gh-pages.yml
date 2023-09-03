@@ -22,7 +22,6 @@ jobs:
       - name: Update submodule
         run: |
           git submodule update --remote
-
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -30,14 +29,16 @@ jobs:
           target: wasm32-unknown-unknown
           override: true
 
+      - uses: Swatinem/rust-cache@v2
       - name: Install Trunk
-        run: wget -qO- https://github.com/thedodd/trunk/releases/download/v0.17.5/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
-        # https://github.com/thedodd/trunk#install
+        uses: jetli/trunk-action@v0.4.0
+        with:
+          version: "v0.17.5"
 
       - name: Build
         run: |
           npm i
-          ./trunk build --release
+          trunk build --release
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
