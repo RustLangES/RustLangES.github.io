@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn CardTitle(#[prop(into)] texts: Vec<&'static str>) -> impl IntoView {
     view! {
-        <h5 class="text-xl">
+        <h3 class="text-xl">
             {texts
                 .into_iter()
                 .map(|word| {
@@ -18,6 +18,6 @@ pub fn CardTitle(#[prop(into)] texts: Vec<&'static str>) -> impl IntoView {
                     }
                 })
                 .collect::<Vec<_>>()}
-        </h5>
+        </h3>
     }
 }

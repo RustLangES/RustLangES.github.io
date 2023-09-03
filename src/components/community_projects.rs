@@ -60,7 +60,7 @@ pub fn CommunityProjects() -> impl IntoView {
             name: vec!["Graphul"],
             description: "Un framework web basado en Axum",
             link: "https://graphul-rs.github.io",
-            brand_src: "https://graphul-rs.github.io/img/logo.svg",
+            brand_src: "./graphul.webp",
             button_link: "https://github.com/SamuelBonilla",
             button_text: "Samuel Bonilla",
             brand_as_letter: false,

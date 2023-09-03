@@ -29,7 +29,7 @@ pub fn Hero() -> impl IntoView {
         <div class="flex items-center justify-center py-14 lg:py-32 px-4">
             <div class="grid items-center gap-x-20 gap-y-10 lg:grid-cols-2 w-full">
                 <figure class="w-80 mx-auto lg:w-full">
-                    <img src="./rhq3ezvso9611-min.png" width="500" class="ml-auto"/>
+                    <img src="./rhq3ezvso9611-min.png" alt="Rust Lang en Español" width="500" class="ml-auto"/>
                 </figure>
                 <div class="">
                     <h1 class="flex flex-col mb-4 gap-y-2">
@@ -45,7 +45,7 @@ pub fn Hero() -> impl IntoView {
                     </h1>
                     <div class="flex items-center justify-center lg:justify-start group">
                         <button
-                            class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 flex items-center justify-center text-xl relative z-10"
+                            class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10"
                             on:click=click_handler
                         >
                             <span class="motion-safe:animate-spin">"🎲"</span>

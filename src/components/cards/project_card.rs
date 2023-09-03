@@ -15,7 +15,6 @@ pub fn ProjectCard(
     #[prop(into, optional)] brand_as_letter: bool,
     #[prop(into, default = "white")] button_bg_color: &'static str,
     #[prop(into, optional)] button_text: &'static str,
-    #[prop(into, optional)] brand_alt: Option<&'static str>,
 ) -> impl IntoView {
     let colors = HashMap::from([
         ("white", "bg-white text-black"),
@@ -47,7 +46,7 @@ pub fn ProjectCard(
                             src=brand_src
                             width="60"
                             class=format!("rounded-full h-[60px] w-[60px] {}", current_color)
-                            alt=brand_alt
+                            alt=name.clone().join(" ")
                         />
                     }
                         .into_any()

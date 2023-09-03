@@ -15,12 +15,15 @@ pub fn Header() -> impl IntoView {
                         <img
                             src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"
                             class="max-h-20 rounded-full"
+                            height="80"
+                            width="80"
                             alt="Rust Lang en Español"
                         />
                     </A>
                     <button
                         class="lg:hidden"
                         on:click=move |_| { set_is_open.update(|n| *n = !*n) }
+                        aria-label="Menu de opciones"
                     >
                         <span class="w-6 h-1 bg-black block my-4 relative after:absolute after:block after:bg-black after:w-6 after:h-1 after:bottom-2 before:absolute before:block before:bg-black before:w-6 before:h-1 before:-bottom-2"></span>
                     </button>
@@ -43,18 +46,20 @@ pub fn Header() -> impl IntoView {
                         <li>
                             <a href="#">"Blog"</a>
                         </li>
-                        <ul class="lg:ml-4 flex items-center gap-x-6">
-                            <li>
-                                <ButtonLink href="https://github.com/RustLangES">
-                                    "Github"
-                                </ButtonLink>
-                            </li>
-                            <li>
-                                <ButtonLink href="https://discord.gg/4ng5HgmaMg">
-                                    "Discord"
-                                </ButtonLink>
-                            </li>
-                        </ul>
+                        <li>
+                            <ul class="lg:ml-4 flex items-center gap-x-6">
+                                <li>
+                                    <ButtonLink href="https://github.com/RustLangES">
+                                        "Github"
+                                    </ButtonLink>
+                                </li>
+                                <li>
+                                    <ButtonLink href="https://discord.gg/4ng5HgmaMg">
+                                        "Discord"
+                                    </ButtonLink>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
