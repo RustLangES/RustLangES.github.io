@@ -18,6 +18,9 @@ console_log = { version = "1"}
 console_error_panic_hook = { version = "0.1"}
 rand = "0.8.5"
 
+[dev-dependencies]
+rusty-hook = "^0.11.2"
+
 [profile.release]
 opt-level = "z"   # Optimize for size.
 lto = true        # Link time optimization.

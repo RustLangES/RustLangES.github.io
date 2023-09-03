@@ -1,0 +1,6 @@
+[hooks]
+pre-commit = "leptosfmt ."
+post-commit = "echo yay"
+
+[logging]
+verbose = true
