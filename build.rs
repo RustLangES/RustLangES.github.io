@@ -21,7 +21,7 @@ fn main() {
         }
     }
 
-    fs::copy("extras/comunidades/assets", "gen_assets").unwrap();
+    copy_dir_all("extras/comunidades/assets", "gen_assets").unwrap();
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
@@ -43,6 +43,20 @@ fn main() {
             _ => {}
         }
     }
+}
+
+fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> std::io::Result<()> {
+    fs::create_dir_all(&dst)?;
+    for entry in fs::read_dir(src)? {
+        let entry = entry?;
+        let ty = entry.file_type()?;
+        if ty.is_dir() {
+            copy_dir_all(entry.path(), dst.as_ref().join(entry.file_name()))?;
+        } else {
+            fs::copy(entry.path(), dst.as_ref().join(entry.file_name()))?;
+        }
+    }
+    Ok(())
 }
 
 fn generate_comunity(path: PathBuf) {
@@ -93,7 +107,6 @@ fn generate_comunity(path: PathBuf) {
 }
 
 fn iter_dir(path: PathBuf, mut callback: impl FnMut(DirEntry, Metadata)) {
-    println!("Read Dir: {path:?}");
     let folders = fs::read_dir(path.as_path()).unwrap();
     for folder in folders {
         let folder = folder.unwrap();
@@ -110,7 +123,6 @@ fn generate_projects(path: PathBuf) {
         }
         let category = folder.file_name();
         let category = category.to_str().unwrap();
-        println!("Category: {category}");
 
         let category = category.to_string();
         iter_dir(folder.path(), |file, meta| {
@@ -124,6 +136,7 @@ fn generate_projects(path: PathBuf) {
                 let file_name = file_name.to_str().unwrap();
                 // Copy images or other files
                 fs::copy(&file_path, format!("gen_assets/{file_name}")).unwrap();
+                return;
             }
 
             let toml_str = fs::read_to_string(&file_path).unwrap();
