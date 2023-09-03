@@ -17,7 +17,7 @@ pub fn App() -> impl IntoView {
                 <Header/>
                 <main>
                     <Routes>
-                        <Route path="" view=|| view! { <Index/> }/>
+                        <Route path="/" view=|| view! { <Index/> }/>
                         <Route path="/colaboradores" view=|| view! { <Contributors/> }/>
                     </Routes>
                     <Outlet/>
