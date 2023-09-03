@@ -89,6 +89,7 @@ fn generate_comunity(path: PathBuf) {
             brand_src,
             brand_alt,
         } = t;
+        let brand_src = brand_src.replace("./", "img/");
         write!(
             out,
             r#"
@@ -162,6 +163,7 @@ fn generate_projects(path: PathBuf) {
             brand_as_letter,
             button_bg_color,
         } = t;
+        let brand_src = brand_src.replace("./", "img/");
         write!(
             out,
             r#"
