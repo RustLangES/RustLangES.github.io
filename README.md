@@ -1,3 +1,11 @@
+## Development
+> [!NOTE]
+> You need run `git submodule update --init --recursive` to get external assets for development generation
+Now you can run:
+```sh
+trunk serve
+```
+
 # Leptos Starter Template
 
 This is a template demonstrating how to integrate [TailwindCSS](https://tailwindcss.com/) with the [Leptos](https://github.com/leptos-rs/leptos) web framework and the [trunk](https://github.com/thedodd/trunk) tool.
