@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - ".rusty-hook.toml"
+      - "**/Makefile.toml"
+      - "README.md"
 
 permissions:
   contents: read
@@ -35,11 +39,12 @@ jobs:
         with:
           version: "v0.17.5"
 
-      - name: Build
+      - name: Pre Build
         run: |
           npm i
           cargo check
-          trunk build --release
+      - name: Build
+        run: trunk build --release
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

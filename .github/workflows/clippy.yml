@@ -5,6 +5,12 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "extras"
+      - ".rusty-hook.toml"
+      - ".github/workflows/gh-pages.yml"
+      - "**/Makefile.toml"
+      - "README.md"
 
 jobs:
   fmt:
