@@ -17,9 +17,7 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     .send()
     .await?
     .json::<Vec<Contributor>>()
-    .await?
-    .into_iter()
-    .collect();
+    .await?;
     Ok(response)
 }
 
