@@ -1,13 +1,5 @@
 [watch]
-ignore = [
-    ".git",
-    ".githooks",
-    "style",
-    "extras",
-    "gen_assets",
-    "src/extras",
-    "build.rs",
-]
+ignore = [".git", "style", "extras", "gen_assets", "src/extras", "build.rs"]
 
 [[hooks]]
 stage = "pre_build"
