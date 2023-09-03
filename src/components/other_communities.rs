@@ -14,7 +14,7 @@ pub fn OtherCommunities() -> impl IntoView {
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8">
                     {OTHER_COMUNITIES
-                        .into_iter()
+                        .iter()
                         .map(|item| {
                             view! {
                                 <CommunityCard

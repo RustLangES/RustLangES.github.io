@@ -13,7 +13,7 @@ pub fn CommunityProjects() -> impl IntoView {
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-4">
                     {COMUNITY_PROJECTS
-                        .into_iter()
+                        .iter()
                         .map(|item| {
                             view! {
                                 <ProjectCard
