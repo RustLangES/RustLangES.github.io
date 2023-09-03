@@ -151,7 +151,7 @@ fn generate_projects(path: PathBuf) {
         "use crate::models::ProjectItem;\npub const COMUNITY_PROJECTS: &[ProjectItem] = &[\n"
     )
     .unwrap();
-    for (_c, _p, t) in projects {
+    for (c, _p, t) in projects {
         let ProjectItem {
             name,
             description,
@@ -167,6 +167,7 @@ fn generate_projects(path: PathBuf) {
             r#"
     ProjectItem {{
         name: &{name:?},
+        category: "{c}",
         description: "{description}",
         link: "{link}",
         brand_src: "{brand_src}",

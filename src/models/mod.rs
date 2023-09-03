@@ -8,6 +8,7 @@ pub struct CommunityItem {
 }
 pub struct ProjectItem {
     pub name: &'static [&'static str],
+    pub category: &'static str,
     pub description: &'static str,
     pub link: &'static str,
     pub brand_src: &'static str,
