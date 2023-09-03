@@ -11,7 +11,7 @@ pub fn CommunityProjects() -> impl IntoView {
                     <span class="font-work-sans font-light">"Proyectos de la "</span>
                     <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                 </h2>
-                <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-4">
+                <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-8">
                     {COMUNITY_PROJECTS
                         .iter()
                         .map(|item| {
