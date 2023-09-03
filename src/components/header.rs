@@ -11,7 +11,11 @@ pub fn Header() -> impl IntoView {
         <header class="border-b border-b-black/20">
             <div class="container mx-auto px-4 flex items-center justify-between flex-col lg:flex-row">
                 <div class="flex justify-between w-full lg:w-auto">
-                    <A href="/" exact=true class="flex items-center gap-x-4">
+                    <A
+                        href="https://rustlanges.github.io/"
+                        exact=true
+                        class="flex items-center gap-x-4"
+                    >
                         <img
                             src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"
                             class="max-h-20 rounded-full"
