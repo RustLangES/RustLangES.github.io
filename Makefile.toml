@@ -1,8 +1,5 @@
-extend = [{ path = "../cargo-make/main.toml" }]
-
 [tasks.fmt-all]
 script = '''
-#!@duckscript
 leptosfmt .
 cargo fmt --all
 cargo clippy --fix -- -D warnings
@@ -11,7 +8,6 @@ cargo clippy --fix -- -D warnings
 
 [tasks.check]
 script = '''
-#!@duckscript
 leptosfmt --check .
 cargo fmt --all --check
 cargo clippy -- -D warnings
