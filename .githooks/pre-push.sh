@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cargo fmt --all
-leptosfmt .
+cargo fmt --all -- --check
+leptosfmt --check .
 cargo clippy -- -D warnings
