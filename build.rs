@@ -21,6 +21,8 @@ fn main() {
         }
     }
 
+    fs::copy("extras/comunidades/assets", "gen_assets").unwrap();
+
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
     write!(out, "#[rustfmt::skip]\nmod comunities;\n#[rustfmt::skip]\nmod projects;\npub use comunities::*;\npub use projects::*;").unwrap();
@@ -116,6 +118,14 @@ fn generate_projects(path: PathBuf) {
                 return;
             }
             let file_path = file.path();
+
+            if !file_path.extension().is_some_and(|e| e == "toml") {
+                let file_name = file.file_name();
+                let file_name = file_name.to_str().unwrap();
+                // Copy images or other files
+                fs::copy(&file_path, format!("gen_assets/{file_name}")).unwrap();
+            }
+
             let toml_str = fs::read_to_string(&file_path).unwrap();
             let toml_str = toml::from_str::<ProjectItem>(&toml_str).unwrap();
             projects.push((category.clone(), file_path, toml_str));
