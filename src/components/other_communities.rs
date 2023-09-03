@@ -72,7 +72,7 @@ pub fn OtherCommunities() -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Comunidades"</span>
                     <span class="font-work-sans font-light">" recomendadas "</span>
                 </h2>
-                <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-4">
+                <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8">
                     {items
                         .into_iter()
                         .map(|item| {
