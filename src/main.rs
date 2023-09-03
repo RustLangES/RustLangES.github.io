@@ -1,5 +1,6 @@
 mod app;
 mod components;
+#[rustfmt::skip]
 mod extras;
 mod models;
 mod pages;
