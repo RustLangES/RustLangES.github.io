@@ -38,6 +38,7 @@ jobs:
       - name: Build
         run: |
           npm i
+          cargo check
           trunk build --release
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
