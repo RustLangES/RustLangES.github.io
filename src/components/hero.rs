@@ -1,6 +1,5 @@
 use leptos::*;
 
-
 use rand::seq::SliceRandom;
 
 #[component]

@@ -1,8 +1,8 @@
 use leptos::*;
 
 use crate::components::{
-    community_projects::CommunityProjects, hero::Hero,
-    other_communities::OtherCommunities, our_communities::OurCommunities,
+    community_projects::CommunityProjects, hero::Hero, other_communities::OtherCommunities,
+    our_communities::OurCommunities,
 };
 
 #[component]
