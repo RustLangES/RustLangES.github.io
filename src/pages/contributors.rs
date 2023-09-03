@@ -1,7 +1,7 @@
 use leptos::{error::Result, *};
 use serde::{Deserialize, Serialize};
 
-use crate::components::{cards::contributor_card::ContributorCard, footer::Footer, header::Header};
+use crate::components::cards::contributor_card::ContributorCard;
 
 #[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contributor {
@@ -47,22 +47,16 @@ pub fn Contributors() -> impl IntoView {
     };
 
     view! {
-        <div>
-            <Header/>
-            <main>
-                <section class="bg-orange-300/30 py-16">
-                    <div class="flex flex-col gap-y-6 container mx-auto px-4">
-                        <h2 class="text-3xl text-left mb-6">
-                            <span class="font-work-sans font-light">"Nuestros "</span>
-                            <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
-                        </h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
+        <section class="bg-orange-300/30 py-16">
+            <div class="flex flex-col gap-y-6 container mx-auto px-4">
+                <h2 class="text-3xl text-left mb-6">
+                    <span class="font-work-sans font-light">"Nuestros "</span>
+                    <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
                             {contributors_view}
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer/>
-        </div>
+                </div>
+            </div>
+        </section>
     }
 }
