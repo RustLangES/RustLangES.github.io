@@ -6,7 +6,7 @@ mod models;
 mod pages;
 
 use app::*;
-use leptos::*;
+use leptos::{logging::log, *};
 use log::info;
 
 pub fn main() {
