@@ -44,7 +44,9 @@ pub fn Header() -> impl IntoView {
                             <A href="/colaboradores">"Colaboradores"</A>
                         </li>
                         <li>
-                            <a href="#">"Blog"</a>
+                            <a href="https://rustlanges.github.io/blog/" target="_self">
+                                "Blog"
+                            </a>
                         </li>
                         <li>
                             <ul class="lg:ml-4 flex items-center gap-x-6">
