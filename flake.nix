@@ -83,7 +83,7 @@
               hash = "sha256-X6VHTxVymZ76DLqDw6ZF59PRCEc7R5SVdcJ6qmrsXY4=";
             };
             # Build trunk derivation and resolve result folder with all output files
-            my-app = craneLib.buildTrunkPackage (commonArgs
+            web-app = craneLib.buildTrunkPackage (commonArgs
               // {
               inherit cargoArtifacts;
               # Adding tailwind for build all styles pre trunk build and hashing files
@@ -102,7 +102,7 @@
             });
             # Serve via python3 http.server result folder in buildTrunkPackage derivation
             serve-app = pkgs.writeShellScriptBin "serve-app" ''
-              ${pkgs.python3Minimal}/bin/python3 -m http.server -d ${my-app} 8000
+              ${pkgs.python3Minimal}/bin/python3 -m http.server -d ${web-app} 8000
             '';
             # Custom derivation using source filtering and run leptosfmt check
             leptosFmtCheck = {}:
@@ -118,7 +118,7 @@
           {
             # nix flake check
             checks = {
-              inherit my-app;
+              inherit web-app;
 
               cargo-clippy = craneLib.cargoClippy (commonArgs
                 // {
@@ -129,11 +129,11 @@
                 inherit src;
                 cargoExtraArgs = "--all";
               };
-              my-app-leptosfmt = leptosFmtCheck { };
+              web-app-leptosfmt = leptosFmtCheck { };
             };
 
             # nix build
-            packages.default = my-app;
+            packages.default = web-app;
 
             # nix run
             apps.default = flake-utils.lib.mkApp {
