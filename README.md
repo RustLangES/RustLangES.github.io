@@ -1,4 +1,5 @@
-![image](https://github.com/SergioRibera/RustLangES.github.io/assets/56278796/cfc76ed8-b833-4746-a985-b0fcefde5a66)
+![image](https://github.com/RustLangES/RustLangES.github.io/assets/56278796/cc7009a2-a11b-4847-a561-fcc6807e1d98)
+
 
 <p align="center">
 <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/RustLangES/RustLangES.github.io/clippy.yml?label=ci" />
