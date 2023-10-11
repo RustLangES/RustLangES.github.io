@@ -33,7 +33,7 @@ pub fn ProjectCard(
                     view! {
                         <span class=format!(
                             "h-[60px] w-[60px] rounded-full text-4xl flex justify-center items-center {}",
-                            current_color
+                            current_color,
                         )>
 
                             {brand_src}

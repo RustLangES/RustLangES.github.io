@@ -30,8 +30,8 @@ pub fn Header() -> impl IntoView {
                 </div>
                 <nav class=move || {
                     format!(
-                        "w-full lg:w-auto pb-10 pt-5 lg:p-0 {}", if is_open() { "block" } else {
-                        "hidden lg:block" }
+                        "w-full lg:w-auto pb-10 pt-5 lg:p-0 {}",
+                        if is_open() { "block" } else { "hidden lg:block" },
                     )
                 }>
                     <ul class="flex items-center gap-6 flex-col lg:flex-row lg:items-center">
