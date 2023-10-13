@@ -19,3 +19,4 @@ end2end/playwright-report/
 playwright/.cache/
 pnpm-lock.yaml
 .idea/
+settings.json
