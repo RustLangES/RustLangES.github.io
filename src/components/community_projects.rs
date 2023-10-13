@@ -3,9 +3,9 @@ use leptos::*;
 use crate::{components::cards::project_card::ProjectCard, extras::COMUNITY_PROJECTS};
 
 #[component]
-pub fn CommunityProjects() -> impl IntoView {
+pub fn CommunityProjects(#[prop(default = false)] main: bool) -> impl IntoView {
     view! {
-        <section class="bg-orange-200 py-20">
+        <section class="bg-orange-100 py-20">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Proyectos de la "</span>
@@ -14,6 +14,7 @@ pub fn CommunityProjects() -> impl IntoView {
                 <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-8">
                     {COMUNITY_PROJECTS
                         .iter()
+                        .take(if main { 4 } else { COMUNITY_PROJECTS.len()  })
                         .map(|item| {
                             view! {
                                 <ProjectCard

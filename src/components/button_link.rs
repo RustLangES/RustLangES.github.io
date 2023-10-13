@@ -9,7 +9,7 @@ pub fn ButtonLink(
     children: Children,
 ) -> impl IntoView {
     let colors = HashMap::from([
-        ("primary", "bg-orange-300 hover:bg-black hover:text-white"),
+        ("primary", "bg-orange-200 hover:bg-black hover:text-white"),
         ("white", "bg-orange-100"),
     ]);
     let sizes = HashMap::from([("tiny", "min-h-7"), ("normal", "h-9"), ("big", "h-12")]);

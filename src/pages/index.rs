@@ -11,8 +11,8 @@ pub fn Index() -> impl IntoView {
         <div>
             <Hero/>
             <OurCommunities/>
-            <OtherCommunities/>
-            <CommunityProjects/>
+            <CommunityProjects main={true}/>
+            <OtherCommunities main={true}/>
         </div>
     }
 }

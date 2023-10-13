@@ -19,7 +19,7 @@ pub fn CommunityCard(
         <a
             href=link
             target="_blank"
-            class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
+            class="group flex flex-col gap-y-6 border border-black p-6 hover:bg-orange-500 bg-orange-200 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
         >
             <div>
                 <img src=brand_src width="60" height="60" class="rounded-full mb-4" alt=brand_alt/>
