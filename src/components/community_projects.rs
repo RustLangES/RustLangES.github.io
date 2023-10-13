@@ -1,6 +1,6 @@
 use leptos::*;
 
-use crate::{components::cards::project_card::ProjectCard, extras::COMUNITY_PROJECTS};
+use crate::{components::ProjectCard, extras::COMUNITY_PROJECTS};
 
 #[component]
 pub fn CommunityProjects(#[prop(default = false)] main: bool) -> impl IntoView {

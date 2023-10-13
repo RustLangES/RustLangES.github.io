@@ -50,7 +50,6 @@ pub fn Hero() -> impl IntoView {
                         </span>
                     </h1>
                     <div class="flex items-center justify-center lg:justify-start group"
-                    
                             on:click=click_handler
                     >
                         <button

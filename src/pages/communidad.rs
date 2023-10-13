@@ -1,6 +1,6 @@
 use leptos::*;
 
-use crate::components::{community_projects::CommunityProjects, other_communities::OtherCommunities};
+use crate::components::{CommunityProjects, OtherCommunities};
 
 #[component]
 pub fn Communidad() -> impl IntoView {
