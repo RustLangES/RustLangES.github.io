@@ -3,7 +3,7 @@ use leptos::*;
 use crate::components::{
     cards::card_title::CardTitle,
     dummy_component::DummyComponent,
-    icons::{discord_icon::DiscordIcon, github_icon::GithubIcon, telegram_icon::TelegramIcon},
+    icons::{DiscordIcon, GithubIcon, TelegramIcon},
 };
 
 #[component]

@@ -2,7 +2,7 @@ use leptos::*;
 use std::collections::HashMap;
 
 use crate::components::{
-    button_link::ButtonLink, cards::card_title::CardTitle, icons::github_icon::GithubIcon,
+    button_link::ButtonLink, cards::card_title::CardTitle, icons::GithubIcon,
 };
 
 #[component]

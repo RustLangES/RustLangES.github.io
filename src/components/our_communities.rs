@@ -2,7 +2,7 @@ use leptos::*;
 
 use crate::components::{
     button_link::ButtonLink,
-    icons::{discord_icon::DiscordIcon, github_icon::GithubIcon, telegram_icon::TelegramIcon},
+    icons::{DiscordIcon, GithubIcon, TelegramIcon},
 };
 
 #[component]

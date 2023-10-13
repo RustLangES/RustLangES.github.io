@@ -1,6 +1,6 @@
 use leptos::*;
 
-use crate::components::icons::github_icon::GithubIcon;
+use crate::components::icons::GithubIcon;
 
 #[component]
 pub fn ContributorCard(

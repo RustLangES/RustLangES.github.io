@@ -1,3 +1,7 @@
-pub mod discord_icon;
-pub mod github_icon;
-pub mod telegram_icon;
+use mod_use::mod_use;
+
+mod_use![
+    discord_icon,
+    github_icon,
+    telegram_icon
+];

@@ -1,6 +1,8 @@
-pub mod contributors;
-pub use contributors::*;
-pub mod communidad;
-pub use communidad::*;
-pub mod index;
-pub use index::*;
+use mod_use::mod_use;
+
+
+mod_use![
+    contributors,
+    communidad,
+    index
+];

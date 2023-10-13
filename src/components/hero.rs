@@ -49,7 +49,7 @@ pub fn Hero() -> impl IntoView {
                             "En Español"
                         </span>
                     </h1>
-                    <div class="flex items-center justify-center lg:justify-start group"
+                    <div class="flex select-none items-center justify-center lg:justify-start group"
                             on:click=click_handler
                     >
                         <button
