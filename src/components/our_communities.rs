@@ -8,7 +8,7 @@ use crate::components::{
 #[component]
 pub fn OurCommunities() -> impl IntoView {
     view! {
-        <section class="bg-orange-300/30">
+        <section class=" bg-orange-300/30">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col items-center py-20 gap-y-6">
                     <h2 class="text-4xl text-center mb-4">

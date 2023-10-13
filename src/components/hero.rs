@@ -11,6 +11,7 @@ pub fn Hero() -> impl IntoView {
         "⚡Blazingly fast⚡ 🚀 Super fast 🔥 pero ahora en español!",
         "Si te falla va ser de forma segura 😉",
         "Furrificando...",
+        "(*rust)malloc(sizeof(c))",
         "Dumb Pointer != Smart Pointer",
         "std::mem::transmute::<Go, Rust>(developer)",
         "In Rust, We Trust",
@@ -48,10 +49,12 @@ pub fn Hero() -> impl IntoView {
                             "En Español"
                         </span>
                     </h1>
-                    <div class="flex items-center justify-center lg:justify-start group">
+                    <div class="flex items-center justify-center lg:justify-start group"
+                    
+                            on:click=click_handler
+                    >
                         <button
                             class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10"
-                            on:click=click_handler
                         >
                             <span class="motion-safe:animate-spin">"🎲"</span>
                         </button>

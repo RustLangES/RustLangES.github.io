@@ -4,7 +4,7 @@ use leptos_router::*;
 
 use crate::{
     components::{footer::Footer, header::Header},
-    pages::{contributors::Contributors, index::Index},
+    pages::{contributors::Contributors, index::Index, Communidad::Communidad},
 };
 
 #[component]
@@ -19,6 +19,7 @@ pub fn App() -> impl IntoView {
                     <Routes>
                         <Route path="/" view=|| view! { <Index/> }/>
                         <Route path="/colaboradores" view=|| view! { <Contributors/> }/>
+                        <Route path="/Communidad" view=|| view! { <Communidad/> }/>
                     </Routes>
                     <Outlet/>
                 </main>
