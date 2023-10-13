@@ -1,3 +1,6 @@
 pub mod contributors;
-pub mod Communidad;
+pub use contributors::*;
+pub mod communidad;
+pub use communidad::*;
 pub mod index;
+pub use index::*;

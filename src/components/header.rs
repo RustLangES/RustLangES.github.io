@@ -1,7 +1,7 @@
 use leptos::*;
 use leptos_router::*;
 
-use crate::components::button_link::ButtonLink;
+use crate::components::ButtonLink;
 
 #[component]
 pub fn Header() -> impl IntoView {

@@ -3,8 +3,8 @@ use leptos_meta::*;
 use leptos_router::*;
 
 use crate::{
-    components::{footer::Footer, header::Header},
-    pages::{contributors::Contributors, index::Index, Communidad::Communidad},
+    components::{Footer, Header},
+    pages::{Contributors, Index, Communidad},
 };
 
 #[component]

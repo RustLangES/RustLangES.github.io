@@ -1,7 +1,7 @@
 use leptos::{error::Result, *};
 use serde::{Deserialize, Serialize};
 
-use crate::components::cards::contributor_card::ContributorCard;
+use crate::components::ContributorCard;
 
 #[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contributor {
