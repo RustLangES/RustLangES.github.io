@@ -1,20 +1,14 @@
-mod button_link;
-pub use button_link::{*};
-pub mod cards;
-pub use cards::{*};
-pub mod community_projects;
-pub use community_projects::{*};
-mod dummy_component;
-pub use dummy_component::{*};
-pub mod footer;
-pub use footer::{*};
-pub mod header;
-pub use header::{*};
-pub mod hero;
-pub use hero::{*};
-pub mod icons;
-pub use icons::{*};
-pub mod other_communities;
-pub use other_communities::{*};
-pub mod our_communities;
-pub use our_communities::{*};
+use mod_use::mod_use;
+
+mod_use![
+    button_link,
+    cards,
+    community_projects,
+    dummy_component,
+    footer,
+    header,
+    hero,
+    icons,
+    other_communities,
+    our_communities
+];

@@ -1072,6 +1072,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "mod_use"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d95ee98a292cf91c2f5b3f35424773af16842a68b3be33b389137606b2633539"
+
+[[package]]
 name = "nias"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1561,6 +1567,7 @@ dependencies = [
  "leptos_meta",
  "leptos_router",
  "log",
+ "mod_use",
  "rand",
  "reqwasm",
  "rusty-hook",

@@ -4,7 +4,7 @@ use leptos_router::*;
 
 use crate::{
     components::{Footer, Header},
-    pages::{Contributors, Index, Communidad},
+    pages::{Communidad, Contributors, Index},
 };
 
 #[component]
