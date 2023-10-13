@@ -30,8 +30,8 @@ trunk serve
 ```
 
 
-```bash
-    npm install 
+```bash 
+npm install 
 ```
 
 ## Configura tu VSCode
