@@ -6,26 +6,36 @@
 <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/RustLangES/RustLangES.github.io/gh-pages.yml?label=deploy" />
 </p>
 
+## Requisitos
+antes de empezar tienes que instalar estos programas
+- [Rust](https://rust-lang.org/tools/install) 
+- [NodeJs](https://nodejs.org)
+- [Trunk](https://trunk.dev)
+
+
+
+
 ## Desarrollo
 > [!NOTE]
-> You need run `git submodule update --init --recursive` to get external assets for development generation
+> necesitas fetch git submodules para clonar los assets externos para el desarrollo 
+
+```sh
+git submodule update --init --recursive
+```
+
+
 Now you can run:
 ```sh
 trunk serve
 ```
-
-## Requisitos
-- [Rust](https://rust-lang.org/tools/install)
-- [NodeJs](https://nodejs.org)
-    ```bash
-    npm install -D tailwindcss
+ ```bash
+    npm install 
     ```
-- [Trunk](https://trunk.dev)
-
 ## Configura tu VSCode
 Agrega esto en tu `settings.json`
 
 ```json
+{
   "emmet.includeLanguages": {
     "rust": "html",
     "*.rs": "html"
@@ -42,5 +52,7 @@ Agrega esto en tu `settings.json`
     "comments": "on",
     "strings": true
   },
-  "css.validate": false,
+  "css.validate": false
+}
 ```
+
