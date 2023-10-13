@@ -28,9 +28,12 @@ Now you can run:
 ```sh
 trunk serve
 ```
- ```bash
+
+
+```bash
     npm install 
-    ```
+```
+
 ## Configura tu VSCode
 Agrega esto en tu `settings.json`
 
