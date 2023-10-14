@@ -12,8 +12,5 @@ pub fn CardTitle(#[prop(into)] texts: Vec<&'static str>) -> impl IntoView {
         }
     }
     
-    view!{
-            <h3 class="text-xl font-work-sans text-black" inner_html=words.join(" ")>
-            </h3>
-    }
+    view! { <h3 class="text-xl font-work-sans text-black" inner_html=words.join(" ")></h3> }
 }

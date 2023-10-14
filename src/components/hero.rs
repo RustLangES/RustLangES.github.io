@@ -49,12 +49,11 @@ pub fn Hero() -> impl IntoView {
                             "En Español"
                         </span>
                     </h1>
-                    <div class="flex select-none items-center justify-center lg:justify-start group"
-                            on:click=click_handler
+                    <div
+                        class="flex select-none items-center justify-center lg:justify-start group"
+                        on:click=click_handler
                     >
-                        <button
-                            class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10"
-                        >
+                        <button class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10">
                             <span class="motion-safe:animate-spin">"🎲"</span>
                         </button>
                         <p class="font-work-sans font-light lg:text-left bg-orange-400 h-12 pr-4 pl-10 flex items-center -ml-6 flex-1 rounded-r-full group-hover:bg-orange-500 max-w-lg">
