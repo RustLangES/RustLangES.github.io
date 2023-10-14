@@ -1,6 +1,7 @@
 use leptos::*;
+use leptos_router::*;
 
-use crate::{components::ProjectCard, extras::COMUNITY_PROJECTS};
+use crate::{components::{ProjectCard, NextIcon}, extras::COMUNITY_PROJECTS};
 
 #[component]
 pub fn CommunityProjects(#[prop(default = false)] main: bool) -> impl IntoView {
@@ -30,6 +31,14 @@ pub fn CommunityProjects(#[prop(default = false)] main: bool) -> impl IntoView {
                             }
                         })
                         .collect::<Vec<_>>()}
+                </div>
+                <div class="w-full flex justify-end my-3">
+                    <A href="/comunidad" class="text-black/80 hover:text-orange-500 fill-black/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
+                        Ver todos los proyectos
+                        <span class="inline-block ml-2">
+                            <NextIcon class="fill-current" size=20 />
+                        </span>
+                    </A>
                 </div>
             </div>
         </section>

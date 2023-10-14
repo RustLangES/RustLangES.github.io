@@ -2,22 +2,18 @@ use leptos::*;
 
 #[component]
 pub fn CardTitle(#[prop(into)] texts: Vec<&'static str>) -> impl IntoView {
-    view! {
-        <h3 class="text-xl">
-            {texts
-                .into_iter()
-                .map(|word| {
-                    if word.to_lowercase().contains("rust") {
-                        view! {
-                            <span class="font-alfa-slab text-orange-500 group-hover:text-white">
-                                {word}
-                            </span>
-                        }
-                    } else {
-                        view! { <span class="font-work-sans text-black">{word}</span> }
-                    }
-                })
-                .collect::<Vec<_>>()}
-        </h3>
+    // split the vec in two when a word contains "rust"
+    // and wrap it in a span with a different color
+    // For example: The Rust book Spanish Edition -> ["The ", "Rust", " book Spanish Edition"]
+    let mut words = texts.clone();
+    for word in words.iter_mut() {
+        if word.to_lowercase().contains("rust") {
+            *word = r#"<span class="font-alfa-slab text-orange-500 group-hover:text-white">Rust</span>"#;
+        }
+    }
+    
+    view!{
+            <h3 class="text-xl font-work-sans text-black" inner_html=words.join(" ")>
+            </h3>
     }
 }

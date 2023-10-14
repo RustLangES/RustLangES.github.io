@@ -41,7 +41,7 @@ pub fn Header() -> impl IntoView {
                             </a>
                         </li>
                         <li>
-                            <A href="/Communidad">"Communidad"</A>
+                            <A href="/comunidad">"Communidad"</A>
                         </li>
 
                         <li>

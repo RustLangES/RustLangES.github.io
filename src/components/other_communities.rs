@@ -1,6 +1,7 @@
 use leptos::*;
+use leptos_router::*;
 
-use crate::{components::CommunityCard, extras::OTHER_COMUNITIES};
+use crate::{components::{CommunityCard, NextIcon}, extras::OTHER_COMUNITIES};
 
 #[component]
 pub fn OtherCommunities(#[prop(default = false)] main: bool) -> impl IntoView {
@@ -12,10 +13,10 @@ pub fn OtherCommunities(#[prop(default = false)] main: bool) -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Comunidades"</span>
                     <span class="font-work-sans font-light">" recomendadas "</span>
                 </h2>
-                <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-8 gap-y-8">
+                <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8">
                     {OTHER_COMUNITIES
                         .iter()
-                        .take(if main { 4 } else { OTHER_COMUNITIES.len()  })
+                        .take(if main { 5 } else { OTHER_COMUNITIES.len()  })
                         .map(|item| {
                             view! {
                                 <CommunityCard
@@ -29,6 +30,14 @@ pub fn OtherCommunities(#[prop(default = false)] main: bool) -> impl IntoView {
                             }
                         })
                         .collect::<Vec<_>>()}
+                </div>
+                <div class="w-full flex justify-end my-3">
+                    <A href="/comunidad" class="text-black/80 hover:text-orange-500 fill-black/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
+                        Ver todas las comunidades
+                        <span class="inline-block ml-2">
+                            <NextIcon class="fill-current" size=20 />
+                        </span>
+                    </A>
                 </div>
             </div>
         </section>
