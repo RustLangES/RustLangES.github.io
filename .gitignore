@@ -20,3 +20,4 @@ playwright/.cache/
 pnpm-lock.yaml
 .idea/
 settings.json
+style/

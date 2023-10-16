@@ -18,6 +18,7 @@ console_log = { version = "1"}
 console_error_panic_hook = { version = "0.1"}
 rand = "0.8.5"
 mod_use = "0.2.1"
+futures = "0.3.28"
 
 [dev-dependencies]
 rusty-hook = "^0.11.2"

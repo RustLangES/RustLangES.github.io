@@ -1,3 +1,4 @@
+use futures::future::join_all;
 use leptos::{error::Result, *};
 use serde::{Deserialize, Serialize};
 
@@ -8,6 +9,9 @@ pub struct Contributor {
     login: String,
     avatar_url: String,
     html_url: String,
+    bio: Option<String>,
+    twitter_username: Option<String>,
+    location: Option<String>,
 }
 
 async fn fetch_contributors() -> Result<Vec<Contributor>> {
@@ -17,6 +21,30 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     .send()
     .await?
     .json::<Vec<Contributor>>()
+    .await?;
+
+    let response = join_all(
+        response
+            .into_iter()
+            .map(|contributor| fetch_contributor_info(contributor.login.clone())),
+    ).await;
+
+    let response = response
+        .into_iter()
+        .filter_map(|contributor| contributor.ok())
+        .collect::<Vec<Contributor>>();
+
+    Ok(response)
+}
+
+async fn fetch_contributor_info(username: String) -> Result<Contributor> {
+    let response = reqwasm::http::Request::get(&format!(
+        "https://api.github.com/users/{}",
+        username
+    ))
+    .send()
+    .await?
+    .json::<Contributor>()
     .await?;
     Ok(response)
 }
@@ -28,9 +56,11 @@ pub fn Contributors() -> impl IntoView {
         view! {
             <ContributorCard
                 name=item.login.clone()
-                description=""
+                description=item.bio.clone()
                 link=item.html_url.clone()
                 brand_src=item.avatar_url.clone()
+                twitter=item.twitter_username.clone()
+                location=item.location.clone()
             />
         }
     };
