@@ -21,3 +21,5 @@ pnpm-lock.yaml
 .idea/
 settings.json
 style/
+
+public/sitemap.xml

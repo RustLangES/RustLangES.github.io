@@ -2,6 +2,12 @@
 ignore = [".git", "style", "extras", "gen_assets", "src/extras", "build.rs"]
 
 [[hooks]]
+# Just fetching the generated sitemap from the external repo
+stage = "pre_build"
+command = "cargo"
+command_arguments = ["run", "--bin", "sitemap"]
+
+[[hooks]]
 stage = "pre_build"
 command = "sh"
 command_arguments = ["-c", "npx tailwindcss -i input.css -o style/output.css"]

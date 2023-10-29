@@ -15,14 +15,57 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  ping-sitemap:
     runs-on: ubuntu-latest
 
+    outputs:
+      can-build: ${{ steps.set-flag.outputs.CAN_BUILD }}
+
+    name: ping sitemap generator
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v39
+        with:
+          json: true
+          files: |
+            src/pages
+            index.html
+
+      - name: Run step if any file(s) in the src folder change
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          echo "One or more files in the src folder has changed."
+          echo "${{ steps.changed-files-specific.outputs.all_modified_files }}"
+
+      - name: Set flag
+        if: steps.changed-files-specific.outputs.any_changed == 'false'
+        id: set-flag
+        run: echo "CAN_BUILD=true" >> $GITHUB_OUTPUT
+
+      - name: Dispatch Modified Files
+        #? @see https://github.com/peter-evans/repository-dispatch#example
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          repository: ph4un00b/github-actions
+          event-type: modified-pages
+          client-payload: '{"from": "home", "files": "${{ steps.changed-files-specific.outputs.all_changed_files }}", "other": "${{ steps.changed-files-specific.outputs.other_changed_files }}"}'
+
+  build:
+    needs: ping-sitemap
+    if: needs.ping-sitemap.outputs.can-build == 'true'
+
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: 'recursive'
+          submodules: "recursive"
       - name: Update submodule
         run: |
           git submodule update --remote
