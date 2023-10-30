@@ -52,7 +52,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         uses: peter-evans/repository-dispatch@v2
         with:
-          repository: ph4un00b/github-actions
+          repository: ph4un00b/sitemap-rustico
           event-type: modified-pages
           client-payload: '{"from": "home", "files": "${{ steps.changed-files-specific.outputs.all_changed_files }}", "other": "${{ steps.changed-files-specific.outputs.other_changed_files }}"}'
 
