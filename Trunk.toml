@@ -4,8 +4,8 @@ ignore = [".git", "style", "extras", "gen_assets", "src/extras", "build.rs"]
 [[hooks]]
 # Just fetching the generated sitemap from the external repo
 stage = "pre_build"
-command = "cargo"
-command_arguments = ["run", "--bin", "sitemap"]
+command = "sh"
+command_arguments = ["-c", "rm -f public/sitemap.xml && wget -S -P public https://github.com/ph4un00b/sitemap-rustico/releases/download/latest/sitemap.xml"]
 
 [[hooks]]
 stage = "pre_build"

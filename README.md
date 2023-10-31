@@ -6,14 +6,16 @@
 <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/RustLangES/RustLangES.github.io/gh-pages.yml?label=deploy" />
 </p>
 
-## Requisitos
+## Requisitos Generales
 antes de empezar tienes que instalar estos programas
-- [Rust](https://rust-lang.org/tools/install) 
+- [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
 - [Trunk](https://trunk.dev)
 
-
-
+## Requisitos Windows >= 10
+- [BusyBox](https://busybox.net/)
+  - try: `scoop install busybox`
+  - try: `choco install busybox`
 
 ## Desarrollo
 > [!NOTE]
