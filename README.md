@@ -25,7 +25,6 @@ antes de empezar tienes que instalar estos programas
 git submodule update --init --recursive
 ```
 
-
 Now you can run:
 
 ```bash
@@ -50,7 +49,6 @@ trunk serve --open
 # Or more verbose
 trunk --config Trunk.toml serve --verbose --open
 ```
-
 
 ## Configura tu VSCode
 Agrega esto en tu `settings.json`
