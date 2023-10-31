@@ -27,14 +27,30 @@ git submodule update --init --recursive
 
 
 Now you can run:
+
+```bash
+rustup toolchain install nightly
+```
+```bash
+rustup default nightly
+```
+```bash
+rustup target add wasm32-unknown-unknown
+```
+```bash
+npm install
+```
 ```sh
-trunk serve
+trunk build
+```
+```sh
+trunk serve --open
+```
+```sh
+# Or more verbose
+trunk --config Trunk.toml serve --verbose --open
 ```
 
-
-```bash 
-npm install 
-```
 
 ## Configura tu VSCode
 Agrega esto en tu `settings.json`
