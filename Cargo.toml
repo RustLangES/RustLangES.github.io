@@ -2,15 +2,6 @@
 name = "rust_lang_es"
 version = "0.1.0"
 edition = "2021"
-default-run = "rust_lang_es"
-
-[[bin]]
-name = "rust_lang_es"
-path = "src/main.rs"
-
-[[bin]]
-name = "sitemap"
-path = "src/bin/sitemap.rs"
 
 [dependencies]
 leptos = { version = "0.5.0-rc2", features = ["csr", "nightly"] }
