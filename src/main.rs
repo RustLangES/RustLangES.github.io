@@ -29,7 +29,14 @@ pub fn main() {
 
 pub async fn track_previous_url() {
     let previous_domain = if document().referrer() == "" {
-        "Undefined".to_owned()
+        let mut res = "Undefined".to_owned();
+        if let Some(from) = document().location() {
+            if let Ok(url) = Url::new(&from.href().unwrap_or_default()) {
+                let search_params = url.search_params();
+                res = search_params.get("from").unwrap_or("Undefined".to_string());
+            }
+        }
+        res
     } else {
         let address = document().referrer();
         let url = Url::new(&address).unwrap();
