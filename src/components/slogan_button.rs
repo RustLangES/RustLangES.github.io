@@ -27,7 +27,7 @@ pub fn SloganButton() -> impl IntoView {
     };
 
 
-    view!{
+    view! {
         <div
             class="flex select-none items-center justify-center lg:justify-start group"
             on:click=click_handler
@@ -39,6 +39,5 @@ pub fn SloganButton() -> impl IntoView {
                 {slogan}
             </p>
         </div>
-
     }
 }

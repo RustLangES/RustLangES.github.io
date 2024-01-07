@@ -17,12 +17,13 @@ pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoVi
                         .iter()
                         .take(if show_more { 5 } else { OTHER_COMUNITIES.len() })
                         .map(|item| {
-                            let image_src= if cfg!(debug_assertions) && item.brand_src.starts_with("/gen_assets"){
+                            let image_src = if cfg!(debug_assertions)
+                                && item.brand_src.starts_with("/gen_assets")
+                            {
                                 format!("/assets{}", item.brand_src)
-                            }else {
+                            } else {
                                 item.brand_src.to_string()
                             };
-
                             view! {
                                 <CommunityCard
                                     name=item.name

@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - next
     paths-ignore:
       - "extras"
       - ".rusty-hook.toml"

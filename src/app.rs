@@ -2,11 +2,10 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
-use crate::components::Header;
-use crate::components::Footer;
-use crate::pages::Index;
-use crate::pages::Communidad;
-use crate::pages::Contributors;
+use crate::{
+    components::{Footer, Header},
+    pages::{Communidad, Contributors, Index},
+};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -18,25 +17,37 @@ pub fn App() -> impl IntoView {
         <Meta name="viewport" content="width=device-width, initial-scale=1"/>
         <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
         <Title text="Rust Lang en Español"/>
-        <Meta property="description" content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."/>
-        
+        <Meta
+            property="description"
+            content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."
+        />
+
         <Meta property="og:site_name" content="Rust Lang en Español"/>
         <Meta property="og:title" content="Bienvenidos a Rust Lang en Español"/>
-        <Meta property="og:description" content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."/>
-        <Meta property="og:url" content="https://rustlanges.github.io" />
-        <Meta property="og:image" content="https://rustlanges.github.io/preview_concept.png" />
-        <Meta property="twitter:image" content="https://rustlanges.github.io/preview_concept.png" />
-        <Meta name="twitter:card" content="summary_large_image" />
-        <Meta name="twitter:site" content="@rustlang" />
-        <Meta name="google-site-verification" content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0" />
+        <Meta
+            property="og:description"
+            content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."
+        />
+        <Meta property="og:url" content="https://rustlanges.github.io"/>
+        <Meta property="og:image" content="https://rustlanges.github.io/preview_concept.png"/>
+        <Meta property="twitter:image" content="https://rustlanges.github.io/preview_concept.png"/>
+        <Meta name="twitter:card" content="summary_large_image"/>
+        <Meta name="twitter:site" content="@rustlang"/>
+        <Meta
+            name="google-site-verification"
+            content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
+        />
 
-        <Link rel="preconnect" href="https://fonts.googleapis.com" />
-        <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-        <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap" />
+        <Link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+        <Link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap"
+        />
 
         <Body class="bg-orange-200"/>
         <Router>
-            <Header  />
+            <Header/>
             <main>
                 <Routes>
                     <StaticRoute
@@ -61,7 +72,7 @@ pub fn App() -> impl IntoView {
                     />
                 </Routes>
             </main>
-            <Footer />
+            <Footer/>
         </Router>
     }
 }

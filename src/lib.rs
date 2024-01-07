@@ -1,8 +1,8 @@
 pub mod app;
 pub mod components;
-pub mod pages;
 pub mod extras;
 pub mod models;
+pub mod pages;
 
 use wasm_bindgen::prelude::wasm_bindgen;
 
