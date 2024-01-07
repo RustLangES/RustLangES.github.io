@@ -28,17 +28,14 @@ jobs:
           override: true
 
       - uses: Swatinem/rust-cache@v2
-      - name: Install Trunk
-        uses: jetli/trunk-action@v0.4.0
-        with:
-          version: "v0.17.5"
+      - uses: davidB/rust-cargo-make@v1
 
       - name: Pre Build
         run: |
           npm i
           cargo check
       - name: Build
-        run: trunk build --release
+        run: cargo make build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
