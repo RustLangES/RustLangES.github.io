@@ -1,3 +1,8 @@
+[tasks.cargo-format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--all"]
+
 [tasks.fmt-all]
 script = '''
 leptosfmt .
@@ -5,10 +10,45 @@ cargo fmt --all
 cargo clippy --fix -- -D warnings
 '''
 
-
 [tasks.check]
 script = '''
 leptosfmt --check .
 cargo fmt --all --check
 cargo clippy -- -D warnings
 '''
+
+[tasks.leptos-format]
+install_crate = "leptosfmt"
+command = "leptosfmt"
+args = ["."]
+
+[tasks.format]
+dependencies = [
+    "cargo-format",
+    "leptos-format"
+]
+
+[tasks.fmt]
+alias = "format"
+
+[tasks.get-sitemap]
+command = "sh"
+args = ["-c", "rm -f assets/sitemap.xml && wget -S -P assets https://github.com/ph4un00b/sitemap-rustico/releases/download/latest/sitemap.xml"]
+
+[tasks.prebuild]
+command = "npx"
+args = ["tailwindcss", "-i", "./input.css", "-o", "./style/output.css"]
+
+[tasks.build]
+dependencies = [
+    "get-sitemap",
+    "prebuild",
+]
+install_crate = "cargo-leptos"
+command = "cargo"
+args = ["leptos", "serve", "-r"]
+
+[tasks.serve]
+install_crate = "cargo-leptos"
+command = "cargo"
+args = ["leptos", "watch", "--features", "development", "--hot-reload"]

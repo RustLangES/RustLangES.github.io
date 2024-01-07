@@ -1,5 +1,4 @@
 use leptos::*;
-use leptos_router::*;
 
 use crate::{components::{CommunityCard, NextIcon}, extras::OTHER_COMUNITIES};
 
@@ -18,13 +17,19 @@ pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoVi
                         .iter()
                         .take(if show_more { 5 } else { OTHER_COMUNITIES.len() })
                         .map(|item| {
+                            let image_src= if cfg!(debug_assertions) && item.brand_src.starts_with("/gen_assets"){
+                                format!("/assets{}", item.brand_src)
+                            }else {
+                                item.brand_src.to_string()
+                            };
+
                             view! {
                                 <CommunityCard
                                     name=item.name
                                     description=item.description
                                     link=item.link
                                     icon=item.icon
-                                    brand_src=item.brand_src
+                                    brand_src=image_src
                                     brand_alt=item.brand_alt
                                 />
                             }
@@ -35,7 +40,7 @@ pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoVi
                 {if show_more {
                     view! {
                         <div class="w-full flex justify-end my-3">
-                            <A
+                            <a
                                 href="/comunidad"
                                 class="text-black/80 hover:text-orange-500 fill-black/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center"
                             >
@@ -43,7 +48,7 @@ pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoVi
                                 <span class="inline-block ml-2">
                                     <NextIcon class="fill-current" size=20/>
                                 </span>
-                            </A>
+                            </a>
                         </div>
                     }
                 } else {

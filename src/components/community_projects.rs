@@ -17,12 +17,18 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                         .iter()
                         .take(if show_more { 4 } else { COMUNITY_PROJECTS.len() })
                         .map(|item| {
+                            let image_src= if cfg!(debug_assertions) && item.brand_src.starts_with("/gen_assets"){
+                                format!("/assets{}", item.brand_src)
+                            }else {
+                                item.brand_src.to_string()
+                            };
+
                             view! {
                                 <ProjectCard
                                     name=item.name
                                     description=item.description
                                     link=item.link
-                                    brand_src=item.brand_src
+                                    brand_src=image_src
                                     button_link=item.button_link
                                     button_text=item.button_text
                                     brand_as_letter=item.brand_as_letter

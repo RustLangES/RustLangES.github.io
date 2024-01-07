@@ -4,4 +4,3 @@ post-commit = "echo yay"
 
 [logging]
 verbose = true
-

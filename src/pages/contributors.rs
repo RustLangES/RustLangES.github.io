@@ -49,7 +49,7 @@ async fn fetch_contributor_info(username: String) -> Result<Contributor> {
     Ok(response)
 }
 
-#[component]
+#[island]
 pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |_| fetch_contributors());
     let contributorMapper = |item: &Contributor| {

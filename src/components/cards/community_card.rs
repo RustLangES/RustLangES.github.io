@@ -2,7 +2,6 @@ use leptos::*;
 
 use crate::components::{
     cards::card_title::CardTitle,
-    dummy_component::DummyComponent,
     icons::{DiscordIcon, GithubIcon, TelegramIcon},
 };
 
@@ -12,7 +11,7 @@ pub fn CommunityCard(
     #[prop(into)] description: &'static str,
     #[prop(into)] link: &'static str,
     #[prop(into)] icon: &'static str,
-    #[prop(into)] brand_src: &'static str,
+    #[prop(into)] brand_src: String,
     #[prop(into, optional)] brand_alt: Option<&'static str>,
 ) -> impl IntoView {
     view! {
@@ -31,7 +30,7 @@ pub fn CommunityCard(
                     "discord" => view! { <DiscordIcon size=30/> },
                     "github" => view! { <GithubIcon size=30/> },
                     "telegram" => view! { <TelegramIcon size=30/> },
-                    _ => view! { <DummyComponent/> },
+                    _ => unreachable!(),
                 }}
 
             </span>

@@ -2,9 +2,10 @@ use mod_use::mod_use;
 
 mod_use![
     button_link,
+    slogan_button,
     cards,
     community_projects,
-    dummy_component,
+    // dummy_component,
     footer,
     header,
     hero,

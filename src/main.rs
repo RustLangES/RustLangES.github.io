@@ -1,51 +1,57 @@
-mod app;
-mod components;
-#[rustfmt::skip]
-mod extras;
-mod models;
-mod pages;
+use leptos_actix::generate_route_list_with_ssg;
+use leptos_router::build_static_routes;
 
-use app::*;
-use leptos::{logging::log, *};
-use log::{error, info};
-use web_sys::Url;
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    use leptos::*;
+    use test_leptos::app::*;
 
-static API_URL: &str = "https://rust-lang-en-espanol-api.shuttleapp.rs";
+    let conf = get_configuration(None).await.unwrap();
+    let leptos_options = conf.leptos_options;
+    let (routes, static_data_map) = generate_route_list_with_ssg(App);
 
-pub fn main() {
-    let _ = create_local_resource(move || (), |_| track_previous_url());
+    build_static_routes(&leptos_options, App, &routes, &static_data_map)
+        .await
+        .unwrap();
 
-    _ = console_log::init_with_level(log::Level::Debug);
-    console_error_panic_hook::set_once();
+    #[cfg(feature = "development")]
+    {
+        use actix_files::Files;
+        use actix_web::web;
+        use leptos_actix::LeptosRoutes;
 
-    log!("Si estas leyendo esto, hace un pull request:");
-    info!("https://github.com/RustLangES/RustLangES.github.io/issues");
-    info!("https://youtu.be/MldLXIB_ZXE");
+        let addr = leptos_options.site_addr.clone();
+        println!("listening on http://{}", &addr);
 
-    mount_to_body(|| {
-        view! { <App/> }
-    });
+        return actix_web::HttpServer::new(move || {
+            let site_root = &leptos_options.site_root;
+
+            actix_web::App::new()
+                .route("/api/{tail:.*}", leptos_actix::handle_server_fns())
+                // serve JS/WASM/CSS from `pkg`
+                .service(Files::new("/pkg", format!("{site_root}/pkg")))
+                // serve other assets from the `assets` directory
+                .service(Files::new("/assets", site_root))
+                // serve the favicon from /favicon.ico
+                .service(favicon)
+                .leptos_routes(leptos_options.to_owned(), routes.to_owned(), App)
+                .app_data(web::Data::new(leptos_options.to_owned()))
+        })
+        .bind(&addr)?
+        .run()
+        .await;
+    }
+    #[cfg(not(feature = "development"))]
+    Ok(())
 }
 
-pub async fn track_previous_url() {
-    let previous_domain = if document().referrer() == "" {
-        let mut res = "Undefined".to_owned();
-        if let Some(from) = document().location() {
-            if let Ok(url) = Url::new(&from.href().unwrap_or_default()) {
-                let search_params = url.search_params();
-                res = search_params.get("from").unwrap_or("Undefined".to_string());
-            }
-        }
-        res
-    } else {
-        let address = document().referrer();
-        let url = Url::new(&address).unwrap();
-        url.host()
-    };
-
-    let endpoint = format!("{API_URL}/track/count?reference={previous_domain}");
-    match reqwasm::http::Request::post(&endpoint).send().await {
-        Ok(_) => log!("Tracking previous url"),
-        Err(_) => error!("Error tracking previous url"),
-    };
+#[actix_web::get("favicon.ico")]
+async fn favicon(
+    leptos_options: actix_web::web::Data<leptos::LeptosOptions>,
+) -> actix_web::Result<actix_files::NamedFile> {
+    let leptos_options = leptos_options.into_inner();
+    let site_root = &leptos_options.site_root;
+    Ok(actix_files::NamedFile::open(format!(
+        "{site_root}/favicon.ico"
+    ))?)
 }

@@ -1,29 +1,12 @@
 use leptos::*;
-
-use rand::seq::SliceRandom;
+use crate::components::SloganButton;
 
 #[component]
 pub fn Hero() -> impl IntoView {
-    let slogans = [
-        "Una comunidad de gente mal intencionada y tonta.",
-        "9 de cada 10 Go dev's lo recomiendan",
-        "Acá le pegamos a la rústica bien recio",
-        "⚡Blazingly fast⚡ 🚀 Super fast 🔥 pero ahora en español!",
-        "Si te falla va ser de forma segura 😉",
-        "Furrificando...",
-        "(*rust)malloc(sizeof(c))",
-        "Dumb Pointer != Smart Pointer",
-        "std::mem::transmute::<Go, Rust>(developer)",
-        "In Rust, We Trust",
-        "Rust es el nuevo C",
-        "Clippy >>>>>>>>>> ESLint!",
-        "Null Sucks",
-    ];
-    let (slogan, set_slogan) =
-        create_signal(slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
-
-    let click_handler = move |_| {
-        set_slogan.update(|n| *n = slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
+    let image_src= if cfg!(debug_assertions) {
+        "./assets/ferris-hero.png"
+    }else {
+        "/ferris-hero.png"
     };
 
     view! {
@@ -31,7 +14,7 @@ pub fn Hero() -> impl IntoView {
             <div class="grid items-center gap-x-20 gap-y-10 lg:grid-cols-2 w-full">
                 <figure class="w-80 mx-auto lg:w-full">
                     <img
-                        src="./rhq3ezvso9611-min.png"
+                        src=image_src
                         alt="Rust Lang en Español"
                         width="500"
                         class="ml-auto"
@@ -49,17 +32,7 @@ pub fn Hero() -> impl IntoView {
                             "En Español"
                         </span>
                     </h1>
-                    <div
-                        class="flex select-none items-center justify-center lg:justify-start group"
-                        on:click=click_handler
-                    >
-                        <button class="bg-orange-300 border-4 border-orange-400 group-hover:border-orange-500 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10">
-                            <span class="motion-safe:animate-spin">"🎲"</span>
-                        </button>
-                        <p class="font-work-sans font-light lg:text-left bg-orange-400 h-12 pr-4 pl-10 flex items-center -ml-6 flex-1 rounded-r-full group-hover:bg-orange-500 max-w-lg">
-                            {slogan}
-                        </p>
-                    </div>
+                    <SloganButton />
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ fn main() {
         }
     }
 
-    copy_dir_all("extras/comunidades/assets", "gen_assets").unwrap();
+    copy_dir_all("extras/comunidades/assets", "assets/gen_assets").unwrap();
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
@@ -84,7 +84,7 @@ fn generate_comunity(path: PathBuf) {
             brand_src,
             brand_alt,
         } = t;
-        let brand_src = brand_src.replace("./", "img/");
+        let brand_src = brand_src.replace("./", "/gen_assets/");
         write!(
             out,
             r#"
@@ -131,7 +131,7 @@ fn generate_projects(path: PathBuf) {
                 let file_name = file.file_name();
                 let file_name = file_name.to_str().unwrap();
                 // Copy images or other files
-                fs::copy(&file_path, format!("gen_assets/{file_name}")).unwrap();
+                fs::copy(&file_path, format!("assets/gen_assets/{file_name}")).unwrap();
                 return;
             }
 
@@ -158,7 +158,7 @@ fn generate_projects(path: PathBuf) {
             brand_as_letter,
             button_bg_color,
         } = t;
-        let brand_src = brand_src.replace("./", "img/");
+        let brand_src = brand_src.replace("./", "/gen_assets/");
         write!(
             out,
             r#"

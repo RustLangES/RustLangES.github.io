@@ -26,7 +26,6 @@ pub fn ButtonLink(
                 current_size,
             )
         >
-
             {children()}
         </a>
     }

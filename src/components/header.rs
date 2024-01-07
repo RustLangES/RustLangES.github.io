@@ -1,17 +1,17 @@
 use leptos::*;
-use leptos_router::*;
 
 use crate::components::ButtonLink;
 
-#[component]
-pub fn Header() -> impl IntoView {
+#[island]
+pub fn Header(
+) -> impl IntoView {
     let (is_open, set_is_open) = create_signal(false);
 
     view! {
         <header class="border-b border-b-black/20">
             <div class="container mx-auto px-4 flex items-center justify-between flex-col lg:flex-row">
                 <div class="flex justify-between w-full lg:w-auto">
-                    <A href="/" exact=true class="flex items-center gap-x-4">
+                    <a href="/" exact=true class="flex items-center gap-x-4">
                         <img
                             src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"
                             class="max-h-20 rounded-full"
@@ -19,7 +19,7 @@ pub fn Header() -> impl IntoView {
                             width="80"
                             alt="Rust Lang en Español"
                         />
-                    </A>
+                    </a>
                     <button
                         class="lg:hidden"
                         on:click=move |_| { set_is_open.update(|n| *n = !*n) }
@@ -41,11 +41,11 @@ pub fn Header() -> impl IntoView {
                             </a>
                         </li>
                         <li>
-                            <A href="/comunidad">"Comunidad"</A>
+                            <a href="/comunidad">"Comunidad"</a>
                         </li>
 
                         <li>
-                            <A href="/colaboradores">"Colaboradores"</A>
+                            <a href="/colaboradores">"Colaboradores"</a>
                         </li>
                         <li>
                             <a href="https://rustlanges.github.io/blog/" target="_self">

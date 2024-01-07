@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 test("homepage has title and links to intro page", async ({ page }) => {
-  await page.goto("http://localhost:8080/");
+  await page.goto("http://localhost:3000/steve");
 
-  await expect(page).toHaveTitle("Leptos • Counter with Tailwind");
+  await expect(page).toHaveTitle("Welcome to Leptos");
 
-  await expect(page.locator("h2")).toHaveText("Welcome to Leptos with Tailwind");
+  await expect(page.locator("h1")).toHaveText("Welcome to Leptos!");
 });
