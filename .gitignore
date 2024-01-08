@@ -4,6 +4,7 @@
 
 /dist/
 /gen_assets/
+/assets/gen_assets/
 /src/extras/
 
 # NixOs output folder
