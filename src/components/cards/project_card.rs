@@ -42,6 +42,7 @@ pub fn ProjectCard(
                         view! {
                             <img
                                 src=brand_src
+                                loading="lazy"
                                 width="60"
                                 class=format!("rounded-full h-[60px] w-[60px] {}", current_color)
                                 alt=name.clone().join(" ")
