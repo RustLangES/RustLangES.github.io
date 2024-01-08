@@ -4,9 +4,9 @@ use crate::components::SloganButton;
 #[component]
 pub fn Hero() -> impl IntoView {
     let image_src= if cfg!(debug_assertions) {
-        "./assets/ferris-hero.webp"
+        "./assets/ferris-hero.avif"
     }else {
-        "/ferris-hero.webp"
+        "/ferris-hero.avif"
     };
 
     view! {
