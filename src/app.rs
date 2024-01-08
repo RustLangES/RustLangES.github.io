@@ -20,14 +20,14 @@ pub fn App() -> impl IntoView {
         <Title text="Rust Lang en Español"/>
         <Meta
             name="description"
-            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión del lenguaje de programación Rust, compartiendo conocimientos, recursos y proyectos emocionantes."
+            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
         />
 
         <Meta name="og:site_name" content="Rust Lang en Español"/>
         <Meta name="og:title" content="Bienvenidos a Rust Lang en Español"/>
         <Meta
             name="og:description"
-            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión del lenguaje de programación Rust, compartiendo conocimientos, recursos y proyectos emocionantes."
+            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
         />
         <Meta name="og:url" content="https://rustlanges.github.io"/>
         <Meta name="og:image" content="https://rustlanges.github.io/preview_concept.png"/>
