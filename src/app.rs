@@ -14,23 +14,24 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Html lang="es"/>
+        <Meta charset="utf-8"/>
         <Meta name="viewport" content="width=device-width, initial-scale=1"/>
         <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
         <Title text="Rust Lang en Español"/>
         <Meta
-            property="description"
-            content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."
+            name="description"
+            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión del lenguaje de programación Rust, compartiendo conocimientos, recursos y proyectos emocionantes."
         />
 
-        <Meta property="og:site_name" content="Rust Lang en Español"/>
-        <Meta property="og:title" content="Bienvenidos a Rust Lang en Español"/>
+        <Meta name="og:site_name" content="Rust Lang en Español"/>
+        <Meta name="og:title" content="Bienvenidos a Rust Lang en Español"/>
         <Meta
-            property="og:description"
-            content="Somos una comunidad de Rust hispana, buscamos la promoción del lenguaje de programación Rust."
+            name="og:description"
+            content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión del lenguaje de programación Rust, compartiendo conocimientos, recursos y proyectos emocionantes."
         />
-        <Meta property="og:url" content="https://rustlanges.github.io"/>
-        <Meta property="og:image" content="https://rustlanges.github.io/preview_concept.png"/>
-        <Meta property="twitter:image" content="https://rustlanges.github.io/preview_concept.png"/>
+        <Meta name="og:url" content="https://rustlanges.github.io"/>
+        <Meta name="og:image" content="https://rustlanges.github.io/preview_concept.png"/>
+        <Meta name="twitter:image" content="https://rustlanges.github.io/preview_concept.png"/>
         <Meta name="twitter:card" content="summary_large_image"/>
         <Meta name="twitter:site" content="@rustlang"/>
         <Meta
