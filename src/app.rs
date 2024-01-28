@@ -11,11 +11,17 @@ use crate::{
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
+    let assets_folder = if cfg!(debug_assertions) {
+        "./assets"
+    } else {
+        "."
+    };
 
     view! {
         <Html lang="es"/>
         <Meta charset="utf-8"/>
         <Meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <Stylesheet id="fonts" href=format!("{}/fonts.css", assets_folder)/>
         <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
         <Title text="Rust Lang en Español"/>
         <Meta
@@ -37,13 +43,6 @@ pub fn App() -> impl IntoView {
         <Meta
             name="google-site-verification"
             content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
-        />
-
-        <Link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-        <Link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap"
         />
 
         <Body class="bg-orange-200"/>

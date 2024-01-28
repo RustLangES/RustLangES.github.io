@@ -6,6 +6,11 @@ use crate::components::ButtonLink;
 pub fn Header(
 ) -> impl IntoView {
     let (is_open, set_is_open) = create_signal(false);
+    let assets_folder = if cfg!(debug_assertions) {
+        "./assets"
+    }else {
+        "."
+    };
 
     view! {
         <header class="border-b border-b-black/20">
@@ -13,7 +18,7 @@ pub fn Header(
                 <div class="flex justify-between w-full lg:w-auto">
                     <a href="/" exact=true class="flex items-center gap-x-4">
                         <img
-                            src="https://www.rust-lang.org/static/images/rust-logo-blk.svg"
+                            src=format!("{}/gen_assets/logo-rust-page.svg", assets_folder)
                             class="max-h-20 rounded-full"
                             height="80"
                             width="80"

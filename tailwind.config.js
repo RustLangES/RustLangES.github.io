@@ -11,7 +11,6 @@ module.exports = {
   theme: {
     fontFamily: {
       "alfa-slab": ["Alfa Slab One", "sans-serif"],
-      "fira-sans": ["Fira Sans", "sans-serif"],
       "work-sans": ["Work Sans", "sans-serif"],
     },
     extend: {
