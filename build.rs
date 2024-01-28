@@ -16,6 +16,7 @@ fn main() {
         }
     }
 
+    copy_dir_all("extras/proyectos/assets", "assets/gen_assets").unwrap();
     copy_dir_all("extras/comunidades/assets", "assets/gen_assets").unwrap();
 
     // Generate src/extras/mod.rs
