@@ -5,7 +5,7 @@ use crate::{components::{CommunityCard, NextIcon}, extras::OTHER_COMUNITIES};
 #[component]
 pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoView {
     view! {
-        <section class="bg-orange-200 py-20">
+        <section class="bg-orange-50 py-20">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Otras "</span>

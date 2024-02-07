@@ -25,7 +25,7 @@ pub fn Hero() -> impl IntoView {
                     <span class="font-work-sans text-4xl font-light text-center lg:text-left">
                         "Bienvenidos a"
                     </span>
-                    <span class="font-alfa-slab text-orange-500 text-6xl sm:text-7xl lg:text-8xl text-center lg:text-left">
+                    <span class="font-alfa-slab text-orange-500 dark:text-orange_(pantone)-500 text-6xl sm:text-7xl lg:text-8xl text-center lg:text-left">
                         "Rust Lang"
                     </span>
                     <span class="font-work-sans text-5xl font-semibold text-center lg:text-left">
