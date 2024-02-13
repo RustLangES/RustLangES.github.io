@@ -24,7 +24,11 @@ pub fn OurCommunities() -> impl IntoView {
                             <GithubIcon size=30/>
                             "Github"
                         </ButtonLink>
-                        <ButtonLink href="https://www.linkedin.com/company/rustlanges" color="white" size="big">
+                        <ButtonLink
+                            href="https://www.linkedin.com/company/rustlanges"
+                            color="white"
+                            size="big"
+                        >
                             <LinkedinIcon size=30/>
                             "Linkedin"
                         </ButtonLink>
