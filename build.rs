@@ -21,7 +21,7 @@ fn main() {
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
-    write!(out, "#[rustfmt::skip]\nmod comunities;\n#[rustfmt::skip]\nmod projects;\npub use comunities::*;\npub use projects::*;").unwrap();
+    write!(out, "#[rustfmt::skip]\nmod comunities;\n#[rustfmt::skip]\nmod projects;\npub use comunities::*;\npub use projects::*;\n").unwrap();
 
     for folder in folders {
         let folder = folder.unwrap();
