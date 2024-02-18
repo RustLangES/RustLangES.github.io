@@ -2,7 +2,7 @@ use leptos::{IntoView, component, tracing, view};
 
 use crate::components::{
     button_link::ButtonLink,
-    icons::{DiscordIcon, GithubIcon, TelegramIcon},
+    icons::{DiscordIcon, GithubIcon, LinkedinIcon, TelegramIcon},
 };
 
 #[component]
@@ -23,6 +23,14 @@ pub fn OurCommunities() -> impl IntoView {
                         <ButtonLink href="https://github.com/RustLangES" color="white" size="big">
                             <GithubIcon size=30/>
                             "Github"
+                        </ButtonLink>
+                        <ButtonLink
+                            href="https://www.linkedin.com/company/rustlanges"
+                            color="white"
+                            size="big"
+                        >
+                            <LinkedinIcon size=30/>
+                            "Linkedin"
                         </ButtonLink>
                         <ButtonLink href="https://t.me/rust_es" color="white" size="big">
                             <TelegramIcon size=30/>

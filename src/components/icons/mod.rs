@@ -5,6 +5,7 @@ mod_use![
     github_icon,
     telegram_icon,
     twitter_icon,
+    linkedin_icon,
     location_icon,
     next
 ];
