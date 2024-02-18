@@ -2,6 +2,8 @@ const svgToDataUri = require("mini-svg-data-uri");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,6 +16,10 @@ module.exports = {
       "work-sans": ["Work Sans", "sans-serif"],
     },
     extend: {
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+      },
       gridTemplateColumns:  (theme) => ({
         "divided": "2.5fr 1fr",
         "sidebar": "1fr 1fr"

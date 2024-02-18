@@ -17,7 +17,7 @@ pub fn Youtube(
                 </p>
             </div>
             <div class="p-6 w-full">
-                <div class="list">
+                <div class="list py-6">
                     <YoutubeCard
                         username="robertohuertasm"
                         title="Roberto Huertas"
