@@ -148,6 +148,7 @@
                 nodePackages.tailwindcss
                 toolchain
                 trunk
+                cargo-leptos
               ];
             };
           };
