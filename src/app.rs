@@ -1,6 +1,6 @@
-use leptos::{component, view, IntoView};
+use leptos::{component, use_context, view, IntoView, SignalGet};
 use leptos_meta::{provide_meta_context, Body, Html, Meta, Stylesheet, Title};
-use leptos_router::{Router, Routes, StaticParamsMap, StaticRoute};
+use leptos_router::{Router, RouterIntegrationContext, Routes, StaticParamsMap, StaticRoute};
 
 use crate::{
     components::{Footer, Header},
@@ -15,6 +15,14 @@ pub fn App() -> impl IntoView {
         "./assets"
     } else {
         "."
+    };
+
+    let preview = if use_context::<RouterIntegrationContext>()
+        .is_some_and(|ctx| ctx.0.location().get().value.contains("/aprende"))
+    {
+        "aprende_preview.webp"
+    } else {
+        "preview_concept.png"
     };
 
     view! {
@@ -36,8 +44,8 @@ pub fn App() -> impl IntoView {
             content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
         />
         <Meta name="og:url" content="https://rustlanges.github.io"/>
-        <Meta name="og:image" content="https://rustlanges.github.io/preview_concept.png"/>
-        <Meta name="twitter:image" content="https://rustlanges.github.io/preview_concept.png"/>
+        <Meta name="og:image" content=format!("https://rustlanges.github.io/{preview}")/>
+        <Meta name="twitter:image" content=format!("https://rustlanges.github.io/{preview}")/>
         <Meta name="twitter:card" content="summary_large_image"/>
         <Meta name="twitter:site" content="@rustlang"/>
         <Meta
