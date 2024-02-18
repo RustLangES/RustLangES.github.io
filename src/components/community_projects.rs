@@ -1,5 +1,5 @@
-use leptos::*;
-use leptos_router::*;
+use leptos::{IntoView, component, tracing, view};
+use leptos_router::A;
 
 use crate::{components::{ProjectCard, NextIcon}, extras::COMUNITY_PROJECTS};
 

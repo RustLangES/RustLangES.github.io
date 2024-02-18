@@ -1,3 +1,3 @@
 use mod_use::mod_use;
 
-mod_use![index, communidad, contributors];
+mod_use![index, communidad, contributors, aprende];

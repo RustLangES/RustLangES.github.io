@@ -1,5 +1,5 @@
 use futures::future::join_all;
-use leptos::{error::Result, *};
+use leptos::{error::Result, Fragment, IntoView, SignalGet, create_local_resource, island, serde, tracing, view};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
@@ -26,22 +26,19 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     let response = join_all(
         response
             .into_iter()
-            .map(|contributor| fetch_contributor_info(contributor.login.clone())),
+            .map(|contributor| fetch_contributor_info(contributor.login)),
     ).await;
 
     let response = response
         .into_iter()
-        .filter_map(|contributor| contributor.ok())
+        .filter_map(std::result::Result::ok)
         .collect::<Vec<Contributor>>();
 
     Ok(response)
 }
 
 async fn fetch_contributor_info(username: String) -> Result<Contributor> {
-    let response = reqwasm::http::Request::get(&format!(
-        "https://api.github.com/users/{}",
-        username
-    ))
+    let response = reqwasm::http::Request::get(&format!("https://api.github.com/users/{username}"))
     .send()
     .await?
     .json::<Contributor>()
@@ -51,7 +48,7 @@ async fn fetch_contributor_info(username: String) -> Result<Contributor> {
 
 #[island]
 pub fn Contributors() -> impl IntoView {
-    let contributors_results = create_local_resource(move || (), |_| fetch_contributors());
+    let contributors_results = create_local_resource(move || (), |()| fetch_contributors());
     let contributorMapper = |item: &Contributor| {
         view! {
             <ContributorCard

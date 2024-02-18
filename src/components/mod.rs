@@ -11,5 +11,6 @@ mod_use![
     hero,
     icons,
     other_communities,
-    our_communities
+    our_communities,
+    aprende
 ];

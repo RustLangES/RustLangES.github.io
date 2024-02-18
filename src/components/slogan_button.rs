@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, SignalUpdate, create_signal, island, tracing, view};
 
 use rand::seq::SliceRandom;
 
@@ -33,10 +33,10 @@ pub fn SloganButton() -> impl IntoView {
         "Null Sucks",
     ];
     let (slogan, set_slogan) =
-        create_signal(slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
+        create_signal((*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
 
     let click_handler = move |_| {
-        set_slogan.update(|n| *n = slogans.choose(&mut rand::thread_rng()).unwrap().to_string());
+        set_slogan.update(|n| *n = (*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
     };
 
 

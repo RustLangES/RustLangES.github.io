@@ -4,7 +4,7 @@ use leptos_router::build_static_routes;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     use leptos::*;
-    use test_leptos::app::*;
+    use rust_lang_es::app::*;
 
     let conf = get_configuration(None).await.unwrap();
     let leptos_options = conf.leptos_options;

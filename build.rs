@@ -3,7 +3,7 @@ use std::{
     fs,
     fs::{DirEntry, Metadata},
     io::Write,
-    path::{Path, PathBuf},
+    path::Path,
 };
 
 fn main() {
@@ -34,8 +34,8 @@ fn main() {
         path.push(folder.path());
 
         match folder.file_name().to_str().unwrap() {
-            "comunidades" => generate_comunity(path),
-            "proyectos" => generate_projects(path),
+            "comunidades" => generate_comunity(&path),
+            "proyectos" => generate_projects(&path),
             _ => {}
         }
     }
@@ -55,8 +55,8 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> std::io::Result
     Ok(())
 }
 
-fn generate_comunity(path: PathBuf) {
-    let folders = fs::read_dir(path.as_path()).unwrap();
+fn generate_comunity(path: &Path) {
+    let folders = fs::read_dir(path).unwrap();
     let mut comunities = Vec::new();
 
     for file in folders {
@@ -103,8 +103,8 @@ fn generate_comunity(path: PathBuf) {
     write!(out, "\n];").unwrap();
 }
 
-fn iter_dir(path: PathBuf, mut callback: impl FnMut(DirEntry, Metadata)) {
-    let folders = fs::read_dir(path.as_path()).unwrap();
+fn iter_dir(path: &Path, mut callback: impl FnMut(DirEntry, Metadata)) {
+    let folders = fs::read_dir(path).unwrap();
     for folder in folders {
         let folder = folder.unwrap();
         let meta = folder.metadata().unwrap();
@@ -112,7 +112,7 @@ fn iter_dir(path: PathBuf, mut callback: impl FnMut(DirEntry, Metadata)) {
     }
 }
 
-fn generate_projects(path: PathBuf) {
+fn generate_projects(path: &Path) {
     let mut projects = Vec::new();
     iter_dir(path, |folder, meta| {
         if meta.is_file() {
@@ -122,7 +122,7 @@ fn generate_projects(path: PathBuf) {
         let category = category.to_str().unwrap();
 
         let category = category.to_string();
-        iter_dir(folder.path(), |file, meta| {
+        iter_dir(&folder.path(), |file, meta| {
             if meta.is_dir() {
                 return;
             }

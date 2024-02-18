@@ -14,6 +14,15 @@ module.exports = {
       "work-sans": ["Work Sans", "sans-serif"],
     },
     extend: {
+      gridTemplateColumns:  (theme) => ({
+        "divided": "2.5fr 1fr",
+        "sidebar": "1fr 1fr"
+      }),
+      transitionProperty: {
+        'height': 'height',
+        'width': 'width',
+        'size': 'height, width'
+      },
       fill: (theme) => ({
         "shape-fill-light": "rgb(203 213 225 / 1)",
         "shape-fill-dark": "rgb(39 39 42 / 1)",

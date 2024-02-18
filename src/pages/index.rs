@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, component, tracing, view};
 
 use crate::components::{CommunityProjects, Hero, OtherCommunities, OurCommunities};
 

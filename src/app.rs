@@ -1,10 +1,10 @@
-use leptos::*;
-use leptos_meta::*;
-use leptos_router::*;
+use leptos::{component, tracing, view, IntoView};
+use leptos_meta::{provide_meta_context, Body, Html, Meta, Stylesheet, Title};
+use leptos_router::{Router, Routes, StaticParamsMap, StaticRoute};
 
 use crate::{
     components::{Footer, Header},
-    pages::{Communidad, Contributors, Index},
+    pages::{Aprende, Communidad, Contributors, Index},
 };
 
 #[component]
@@ -63,6 +63,11 @@ pub fn App() -> impl IntoView {
                     <StaticRoute
                         path="/colaboradores"
                         view=Contributors
+                        static_params=move || Box::pin(async move { StaticParamsMap::default() })
+                    />
+                    <StaticRoute
+                        path="/aprende"
+                        view=Aprende
                         static_params=move || Box::pin(async move { StaticParamsMap::default() })
                     />
                     <StaticRoute

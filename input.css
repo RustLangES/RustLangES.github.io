@@ -17,3 +17,29 @@
   /* TODO: fix the border made it with drop-shadow */
   filter: drop-shadow(5px 5px 0px #ffffff);
 }
+
+.image-container img:not(:first-child) {
+  @apply opacity-60
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.group:hover > span.badge-container {
+  @apply first:min-w-28 first:min-h-6 items-center justify-center transition-all transform duration-1000;
+}
+
+.group:hover > span.badge-container > span.badge-content {
+  @apply not-sr-only transition-all transform duration-1000;
+}
+
+.list{
+  @apply grid grid-flow-col auto-cols-min items-center justify-between gap-3 overflow-x-auto snap-x snap-mandatory;
+}
+
+.list-container {
+  @apply min-w-80 md:min-w-[420px];
+}

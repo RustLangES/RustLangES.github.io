@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, component, tracing, view};
 
 #[component]
 pub fn Footer() -> impl IntoView {

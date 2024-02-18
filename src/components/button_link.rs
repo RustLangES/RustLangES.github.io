@@ -1,9 +1,9 @@
-use leptos::*;
+use leptos::{Children, IntoView, IntoAttribute, component, tracing, view};
 use std::collections::HashMap;
 
 #[component]
 pub fn ButtonLink(
-    href: &'static str,
+    #[prop(into)] href: String,
     #[prop(default = "primary")] color: &'static str,
     #[prop(default = "normal")] size: &'static str,
     children: Children,
@@ -13,8 +13,8 @@ pub fn ButtonLink(
         ("white", "bg-orange-100"),
     ]);
     let sizes = HashMap::from([("tiny", "min-h-7"), ("normal", "h-9"), ("big", "h-12")]);
-    let current_color = colors.get(&color).unwrap().to_string();
-    let current_size = sizes.get(&size).unwrap().to_string();
+    let current_color = (*colors.get(&color).unwrap()).to_string();
+    let current_size = (*sizes.get(&size).unwrap()).to_string();
 
     view! {
         <a

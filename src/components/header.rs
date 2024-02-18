@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, IntoAttribute, SignalUpdate, create_signal, island, tracing, view};
 
 use crate::components::ButtonLink;
 
@@ -42,8 +42,11 @@ pub fn Header(
                     <ul class="flex items-center gap-6 flex-col lg:flex-row lg:items-center">
                         <li>
                             <a href="https://rustlanges.github.io/rust-book-es" target="_blank">
-                                "Aprende"
+                                "El Libro"
                             </a>
+                        </li>
+                        <li>
+                            <a href="/aprende">"Aprende"</a>
                         </li>
                         <li>
                             <a href="/comunidad">"Comunidad"</a>

@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, IntoAttribute, component, tracing, view};
 
 use crate::components::{
     cards::card_title::CardTitle,
@@ -7,7 +7,7 @@ use crate::components::{
 
 #[component]
 pub fn CommunityCard(
-    #[prop(into)] name: Vec<&'static str>,
+    #[prop(into)] name: &'static [&'static str],
     #[prop(into)] description: &'static str,
     #[prop(into)] link: &'static str,
     #[prop(into)] icon: &'static str,

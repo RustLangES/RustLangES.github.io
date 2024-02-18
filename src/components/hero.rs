@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{IntoView, IntoAttribute, component, tracing, view};
 use crate::components::SloganButton;
 
 #[component]
