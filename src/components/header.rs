@@ -1,4 +1,4 @@
-use leptos::{IntoView, IntoAttribute, SignalUpdate, create_signal, island, tracing, view};
+use leptos::{IntoView, SignalUpdate, create_signal, island, view};
 
 use crate::components::ButtonLink;
 

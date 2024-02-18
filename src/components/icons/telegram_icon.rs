@@ -1,4 +1,4 @@
-use leptos::{IntoView, IntoAttribute, component, tracing, view};
+use leptos::{IntoView, component, view};
 
 #[component]
 pub fn TelegramIcon(

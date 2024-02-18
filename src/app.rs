@@ -1,4 +1,4 @@
-use leptos::{component, tracing, view, IntoView};
+use leptos::{component, view, IntoView};
 use leptos_meta::{provide_meta_context, Body, Html, Meta, Stylesheet, Title};
 use leptos_router::{Router, Routes, StaticParamsMap, StaticRoute};
 

@@ -1,4 +1,4 @@
-use leptos::{IntoView, component, tracing, view};
+use leptos::{IntoView, component, view};
 
 use crate::components::{
     button_link::ButtonLink,

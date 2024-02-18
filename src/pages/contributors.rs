@@ -1,5 +1,5 @@
 use futures::future::join_all;
-use leptos::{error::Result, Fragment, IntoView, SignalGet, create_local_resource, island, serde, tracing, view};
+use leptos::{error::Result, Fragment, IntoView, SignalGet, create_local_resource, island, serde, view};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;

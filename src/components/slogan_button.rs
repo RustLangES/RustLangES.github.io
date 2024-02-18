@@ -1,4 +1,4 @@
-use leptos::{IntoView, SignalUpdate, create_signal, island, tracing, view};
+use leptos::{IntoView, SignalUpdate, create_signal, island, view};
 
 use rand::seq::SliceRandom;
 
