@@ -18,16 +18,6 @@
   filter: drop-shadow(5px 5px 0px #ffffff);
 }
 
-.image-container img:not(:first-child) {
-  @apply opacity-60
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
 .group:hover > span.badge-container {
   @apply first:min-w-28 first:min-h-6 items-center justify-center transition-all transform duration-1000;
 }
