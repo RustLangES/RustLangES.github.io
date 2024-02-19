@@ -6,7 +6,7 @@ use crate::components::ButtonLink;
 pub fn Roadmap(
 ) -> impl IntoView {
     let assets_folder = if cfg!(debug_assertions) {
-        "./assets"
+        "../../../assets"
     }else {
         "."
     };
