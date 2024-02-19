@@ -33,3 +33,13 @@
 .list-container {
   @apply min-w-80 md:min-w-[420px];
 }
+
+.image-container img:not(:first-child) {
+  @apply opacity-60
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}

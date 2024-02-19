@@ -24,15 +24,29 @@ pub fn Roadmap(
                     "Ir al Roadmap"
                 </ButtonLink>
             </div>
-            <div class="w-full lg:w-1/2 min-h-72 xs:min-h-[420px] lg:min-h-[450px] xs:mb-12">
-                <div class="w-full h-full max-w-60 xs:max-w-none mx-auto">
+            <div class="w-full lg:w-1/2 min-h-72 xs:min-h-[420px] lg:min-h-[450px]  xs:mb-12">
+                <div class="image-container w-full max-w-60 xs:max-w-none mx-auto">
                     <img
-                        src=format!("{}/roadmap.webp", assets_folder)
+                        src=format!("{}/roadmap.avif", assets_folder)
                         alt="Roadmap"
                         width="748"
                         height="515"
                         loading="eager"
-                        class="skew-y-2 -left-8 -top-5 z-30"
+                        class="skew-y-2 absolute -left-8 -top-5 z-30"
+                    />
+                    <img
+                        src=format!("{}/roadmap2.avif", assets_folder)
+                        alt="Roadmap"
+                        width="748"
+                        height="515"
+                        class="skew-y-2 absolute z-0 left-0 top-0"
+                    />
+                    <img
+                        src=format!("{}/roadmap3.avif", assets_folder)
+                        alt="Roadmap"
+                        width="748"
+                        height="515"
+                        class="skew-y-2 absolute z-0 left-10 top-10"
                     />
                 </div>
             </div>
