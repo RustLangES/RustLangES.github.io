@@ -1,14 +1,13 @@
-use leptos::{IntoView, SignalUpdate, create_signal, island, view};
+use leptos::{create_signal, island, view, IntoView, SignalUpdate};
 
 use crate::components::ButtonLink;
 
 #[island]
-pub fn Header(
-) -> impl IntoView {
+pub fn Header() -> impl IntoView {
     let (is_open, set_is_open) = create_signal(false);
     let assets_folder = if cfg!(debug_assertions) {
         "./assets"
-    }else {
+    } else {
         "."
     };
 

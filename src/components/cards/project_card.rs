@@ -1,9 +1,7 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 use std::collections::HashMap;
 
-use crate::components::{
-    button_link::ButtonLink, cards::card_title::CardTitle, icons::GithubIcon,
-};
+use crate::components::{button_link::ButtonLink, cards::card_title::CardTitle, icons::GithubIcon};
 
 #[component]
 pub fn ProjectCard(

@@ -1,4 +1,4 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
 #[component]
 pub fn CardTitle(#[prop(into)] texts: &'static [&'static str]) -> impl IntoView {
@@ -11,6 +11,6 @@ pub fn CardTitle(#[prop(into)] texts: &'static [&'static str]) -> impl IntoView 
             *word = r#"<span class="font-alfa-slab text-orange-500 group-hover:text-white">Rust</span>"#;
         }
     }
-    
+
     view! { <h3 class="text-xl font-work-sans text-black" inner_html=words.join(" ")></h3> }
 }

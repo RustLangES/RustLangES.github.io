@@ -1,6 +1,6 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
-use crate::components::icons::{GithubIcon, TwitterIcon, LocationIcon};
+use crate::components::icons::{GithubIcon, LocationIcon, TwitterIcon};
 
 #[component]
 pub fn ContributorCard(
@@ -12,7 +12,6 @@ pub fn ContributorCard(
     #[prop(into)] brand_src: String,
     #[prop(into)] contributions: i32,
 ) -> impl IntoView {
-
     view! {
         <article>
             <a

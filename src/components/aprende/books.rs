@@ -1,10 +1,9 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
 use crate::components::ButtonLink;
 
 #[component]
-pub fn Books(
-) -> impl IntoView {
+pub fn Books() -> impl IntoView {
     view! {
         <section class=" bg-orange-300/30 py-20">
             <div class="container mx-auto mb-5">

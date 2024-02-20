@@ -1,7 +1,10 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 use leptos_router::A;
 
-use crate::{components::{ProjectCard, NextIcon}, extras::COMUNITY_PROJECTS};
+use crate::{
+    components::{NextIcon, ProjectCard},
+    extras::COMUNITY_PROJECTS,
+};
 
 #[component]
 pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoView {

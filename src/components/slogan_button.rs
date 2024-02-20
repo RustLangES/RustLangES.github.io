@@ -1,4 +1,4 @@
-use leptos::{IntoView, SignalUpdate, create_signal, island, view};
+use leptos::{create_signal, island, view, IntoView, SignalUpdate};
 
 use rand::seq::SliceRandom;
 
@@ -38,7 +38,6 @@ pub fn SloganButton() -> impl IntoView {
     let click_handler = move |_| {
         set_slogan.update(|n| *n = (*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
     };
-
 
     view! {
         <div

@@ -1,6 +1,9 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
-use crate::{components::{CommunityCard, NextIcon}, extras::OTHER_COMUNITIES};
+use crate::{
+    components::{CommunityCard, NextIcon},
+    extras::OTHER_COMUNITIES,
+};
 
 #[component]
 pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoView {

@@ -1,9 +1,7 @@
-use leptos::{IntoView, component, view};
-
+use leptos::{component, view, IntoView};
 
 #[component]
-pub fn HeaderAprende(
-) -> impl IntoView {
+pub fn HeaderAprende() -> impl IntoView {
     view! {
         <header class="border-b border-b-black/20 bg-orange-100 py-20 flex ">
             <div class="container mx-auto">

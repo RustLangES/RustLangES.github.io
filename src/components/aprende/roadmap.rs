@@ -1,13 +1,12 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
 use crate::components::ButtonLink;
 
 #[component]
-pub fn Roadmap(
-) -> impl IntoView {
+pub fn Roadmap() -> impl IntoView {
     let assets_folder = if cfg!(debug_assertions) {
         "./assets"
-    }else {
+    } else {
         "."
     };
 

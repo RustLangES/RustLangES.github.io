@@ -1,4 +1,4 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
 use crate::components::{
     cards::card_title::CardTitle,

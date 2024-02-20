@@ -1,11 +1,11 @@
-use leptos::{IntoView, component, view};
 use crate::components::SloganButton;
+use leptos::{component, view, IntoView};
 
 #[component]
 pub fn Hero() -> impl IntoView {
-    let image_src= if cfg!(debug_assertions) {
+    let image_src = if cfg!(debug_assertions) {
         "./assets/ferris-hero.avif"
-    }else {
+    } else {
         "/ferris-hero.avif"
     };
 

@@ -1,11 +1,9 @@
-use leptos::{IntoView, component, view};
+use leptos::{component, view, IntoView};
 
 use crate::components::ButtonLink;
 
 #[component]
-pub fn Youtube(
-) -> impl IntoView {
-
+pub fn Youtube() -> impl IntoView {
     view! {
         <section class="bg-orange-200 py-20 gap-10 w-full lg:px-5">
             <div class="">
@@ -52,11 +50,11 @@ fn YoutubeCard(
     #[prop(into)] username: &'static str,
     #[prop(into)] title: &'static str,
     #[prop(into)] description: &'static str,
-    #[prop(optional)] twitch: bool
+    #[prop(optional)] twitch: bool,
 ) -> impl IntoView {
     let assets_folder = if cfg!(debug_assertions) {
         "./assets/youtube"
-    }else {
+    } else {
         "./youtube"
     };
 
@@ -93,5 +91,4 @@ fn YoutubeCard(
             {}
         </div>
     }
-
 }
