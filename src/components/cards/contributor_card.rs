@@ -13,7 +13,7 @@ pub fn ContributorCard(
     #[prop(into)] contributions: i32,
 ) -> impl IntoView {
     view! {
-        <article>
+        <article class="hover:z-10">
             <a
                 href=link.clone()
                 target="_blank"
