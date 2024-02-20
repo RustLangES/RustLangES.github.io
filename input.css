@@ -19,7 +19,7 @@
 }
 
 .group:hover > span.badge-container {
-  @apply first:min-w-28 first:min-h-6 items-center justify-center transition-all transform duration-1000;
+  @apply first:min-h-6 items-center justify-center transition-all transform duration-1000;
 }
 
 .group:hover > span.badge-container > span.badge-content {

@@ -18,7 +18,7 @@ pub fn Books(
             <div class="flex flex-col md:flex-row justify-center items-center  container mx-auto mb-16 md:mb-28 gap-4">
                 <section class="w-full md:w-1/2 px-10">
                     <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
-                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
+                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
                             <span class="sr-only text-black badge-content transition-all transform ">
                                 "Recomendado"
                             </span>
@@ -39,7 +39,7 @@ pub fn Books(
 
                 <section class="w-full md:w-1/2 px-10 flex flex-col h-full ">
                     <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
-                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-yellow-500 dark:border-slate-900 badge-container">
+                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-yellow-500 dark:border-slate-900 badge-container">
                             <span class="sr-only text-black badge-content transition-all transform ">
                                 "¡En Progreso!"
                             </span>

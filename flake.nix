@@ -149,6 +149,7 @@
                 toolchain
                 trunk
                 cargo-leptos
+                binaryen
               ];
             };
           };

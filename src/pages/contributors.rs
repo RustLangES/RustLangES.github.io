@@ -1,10 +1,12 @@
 use futures::future::join_all;
-use leptos::{error::Result, Fragment, IntoView, SignalGet, create_local_resource, island, serde, view};
+use leptos::{
+    create_local_resource, error::Result, island, serde, view, Fragment, IntoView, SignalGet,
+};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
 
-#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contributor {
     login: String,
     avatar_url: String,
@@ -12,6 +14,7 @@ pub struct Contributor {
     bio: Option<String>,
     twitter_username: Option<String>,
     location: Option<String>,
+    contributions: i32,
 }
 
 async fn fetch_contributors() -> Result<Vec<Contributor>> {
@@ -27,7 +30,8 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
         response
             .into_iter()
             .map(|contributor| fetch_contributor_info(contributor.login)),
-    ).await;
+    )
+    .await;
 
     let response = response
         .into_iter()
@@ -39,10 +43,10 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
 
 async fn fetch_contributor_info(username: String) -> Result<Contributor> {
     let response = reqwasm::http::Request::get(&format!("https://api.github.com/users/{username}"))
-    .send()
-    .await?
-    .json::<Contributor>()
-    .await?;
+        .send()
+        .await?
+        .json::<Contributor>()
+        .await?;
     Ok(response)
 }
 
@@ -50,6 +54,7 @@ async fn fetch_contributor_info(username: String) -> Result<Contributor> {
 pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |()| fetch_contributors());
     let contributorMapper = |item: &Contributor| {
+        println!("Contributor: {item:?}");
         view! {
             <ContributorCard
                 name=item.login.clone()
@@ -58,12 +63,14 @@ pub fn Contributors() -> impl IntoView {
                 brand_src=item.avatar_url.clone()
                 twitter=item.twitter_username.clone()
                 location=item.location.clone()
+                contributions=item.contributions
             />
         }
     };
 
     let contributors_view = move || {
-        let contributors = contributors_results.get()?.ok()?;
+        let mut contributors = contributors_results.get()?.ok()?;
+        contributors.sort_by_key(|a| a.contributions);
         let result = contributors
             .iter()
             .map(contributorMapper)
@@ -79,9 +86,19 @@ pub fn Contributors() -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
+                    <ContributorCard
+                        name="SergioRibera"
+                        description=Some("Algo".to_string())
+                        link="github.com/SergioRibera".to_string()
+                        brand_src="".to_string()
+                        twitter=Some("@sergioribera_rs".to_string())
+                        location=Some("Bolivia".to_string())
+                        contributions=50
+                    />
                     {contributors_view}
                 </div>
             </div>
         </section>
     }
 }
+
