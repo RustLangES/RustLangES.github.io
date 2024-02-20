@@ -86,15 +86,6 @@ pub fn Contributors() -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                    <ContributorCard
-                        name="SergioRibera"
-                        description=Some("Algo".to_string())
-                        link="github.com/SergioRibera".to_string()
-                        brand_src="".to_string()
-                        twitter=Some("@sergioribera_rs".to_string())
-                        location=Some("Bolivia".to_string())
-                        contributions=50
-                    />
                     {contributors_view}
                 </div>
             </div>
