@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contributor {
     login: String,
     avatar_url: String,
@@ -54,7 +54,6 @@ async fn fetch_contributor_info(username: String) -> Result<Contributor> {
 pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |()| fetch_contributors());
     let contributorMapper = |item: &Contributor| {
-        println!("Contributor: {item:?}");
         view! {
             <ContributorCard
                 name=item.login.clone()
@@ -92,4 +91,3 @@ pub fn Contributors() -> impl IntoView {
         </section>
     }
 }
-
