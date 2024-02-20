@@ -1,8 +1,9 @@
-use mod_use::mod_use;
+mod books;
+mod header;
+mod roadmap;
+mod youtube;
 
-mod_use![
-    books,
-    header,
-    roadmap,
-    youtube
-];
+pub use books::*;
+pub use header::*;
+pub use roadmap::*;
+pub use youtube::*;

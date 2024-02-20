@@ -1,8 +1,9 @@
-use mod_use::mod_use;
+mod card_title;
+mod community_card;
+mod contributor_card;
+mod project_card;
 
-mod_use![
-    card_title,
-    community_card,
-    contributor_card,
-    project_card
-];
+pub use card_title::*;
+pub use community_card::*;
+pub use contributor_card::*;
+pub use project_card::*;
