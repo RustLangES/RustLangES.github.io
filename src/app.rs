@@ -22,7 +22,7 @@ pub fn App() -> impl IntoView {
     {
         "aprende_preview.webp"
     } else {
-        "preview_concept.png"
+        "rustlanges_preview.webp"
     };
 
     view! {
