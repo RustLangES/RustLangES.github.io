@@ -43,9 +43,9 @@ pub fn App() -> impl IntoView {
             name="og:description"
             content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
         />
-        <Meta name="og:url" content="https://rustlanges.github.io"/>
-        <Meta name="og:image" content=format!("https://rustlanges.github.io/{preview}")/>
-        <Meta name="twitter:image" content=format!("https://rustlanges.github.io/{preview}")/>
+        <Meta name="og:url" content="https://rustlang-es.org"/>
+        <Meta name="og:image" content=format!("https://rustlang-es.org/{preview}")/>
+        <Meta name="twitter:image" content=format!("https://rustlang-es.org/{preview}")/>
         <Meta name="twitter:card" content="summary_large_image"/>
         <Meta name="twitter:site" content="@rustlang"/>
         <Meta
@@ -53,7 +53,7 @@ pub fn App() -> impl IntoView {
             content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
         />
 
-        <Body class="bg-orange-200"/>
+        <Body class="bg-orange-200 overflow-x-hidden"/>
         <Router>
             <Header/>
             <main>

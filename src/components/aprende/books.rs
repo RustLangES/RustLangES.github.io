@@ -43,31 +43,33 @@ pub fn Books() -> impl IntoView {
         view! {
             <section class="w-full md:w-1/2 lg:w-1/3 h-full xs:px-8">
                 <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
-                    {book.english.then_some(|| view! {
-                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-blue-400 dark:border-slate-900 badge-container">
-                            <span class="sr-only text-black badge-content transition-all transform">
-                                "En Inglés"
-                            </span>
-                        </span>
-                    })}
+                    {book
+                        .english
+                        .then_some(|| {
+                            view! {
+                                <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-blue-400 dark:border-slate-900 badge-container">
+                                    <span class="sr-only text-black badge-content transition-all transform">
+                                        "En Inglés"
+                                    </span>
+                                </span>
+                            }
+                        })}
                     <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
                         {book.name}
-                    </h1>
-                    <p class="container mx-auto">{book.description}</p>
-                    {(!book.complete).then_some(||
-                        view! {
-                            <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
-                                <p class="font-work-sans text-black text-sm">"ℹ️ Este Libro está marcado como incompleto"</p>
-                            </div>
-                        }
-                    )}
+                    </h1> <p class="container mx-auto">{book.description}</p>
+                    {(!book.complete)
+                        .then_some(|| {
+                            view! {
+                                <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
+                                    <p class="font-work-sans text-black text-sm">
+                                        "ℹ️ Este Libro está marcado como incompleto"
+                                    </p>
+                                </div>
+                            }
+                        })}
                     <div class="mx-auto">
-                        <ButtonLink
-                            href=book.url
-                            size="big"
-                            class="max-w-fit"
-                        >
-                        {book.url_name}
+                        <ButtonLink href=book.url size="big" class="max-w-fit">
+                            {book.url_name}
                         </ButtonLink>
                     </div>
                 </div>
@@ -149,7 +151,7 @@ pub fn Books() -> impl IntoView {
                 </p>
             </div>
             <div class="flex flex-row flex-wrap w-full gap-y-6 justify-center items-center container mx-auto">
-            {books_list}
+                {books_list}
             </div>
         </section>
     }
