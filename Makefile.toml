@@ -1,3 +1,13 @@
+[config]
+default_to_workspace = true
+skip_core_tasks = true
+skip_git_env_info = true
+skip_rust_env_info = true
+skip_crate_env_info = true
+
+[tasks.default]
+alias = "serve"
+
 [tasks.cargo-format]
 install_crate = "rustfmt"
 command = "cargo"
@@ -23,32 +33,39 @@ command = "leptosfmt"
 args = ["."]
 
 [tasks.format]
-dependencies = [
-    "cargo-format",
-    "leptos-format"
-]
+dependencies = ["cargo-format", "leptos-format"]
 
 [tasks.fmt]
 alias = "format"
 
 [tasks.get-sitemap]
 command = "sh"
-args = ["-c", "rm -f assets/sitemap.xml && wget -S -P assets https://github.com/ph4un00b/sitemap-rustico/releases/download/latest/sitemap.xml"]
+args = [
+    "-c",
+    "rm -f assets/sitemap.xml && wget -S -P assets https://github.com/ph4un00b/sitemap-rustico/releases/download/latest/sitemap.xml",
+]
 
 [tasks.prebuild]
 command = "npx"
 args = ["tailwindcss", "-i", "./input.css", "-o", "./style/output.css"]
 
 [tasks.build]
-dependencies = [
-    "get-sitemap",
-    "prebuild",
-]
-install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = ["leptos", "--version"], version = "0.2.12" }
+dependencies = ["get-sitemap", "prebuild"]
+install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
+    "leptos",
+    "--version",
+], version = "0.2.12" }
 command = "cargo"
 args = ["leptos", "serve", "-r"]
 
+[tasks.build-style]
+script.pre = "npx tailwind -i input.css -o style/output.css"
+
 [tasks.serve]
-install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = ["leptos", "--version"], version = "0.2.12" }
+install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
+    "leptos",
+    "--version",
+], version = "0.2.12" }
+dependencies = ["build-style"]
 command = "cargo"
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]
