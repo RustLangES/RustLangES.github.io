@@ -5,10 +5,15 @@ on:
     branches:
       - main
       - next
-    paths-ignore:
-      - ".rusty-hook.toml"
-      - "**/Makefile.toml"
-      - "README.md"
+    paths:
+      - "**.toml"
+      - "./src/**.rs"
+      - "build.rs"
+      - "input.css"
+      - "package.json"
+      - "../../extras/**"
+      - "../../assets/**"
+      - "../../tailwind.config.js"
 
 permissions:
   contents: read
