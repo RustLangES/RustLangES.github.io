@@ -9,12 +9,12 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 actix-files = { version = "0.6", optional = true }
 actix-web = { version = "4", features = ["macros"], optional = true }
-leptos = { version = "0.6.5", features = ["nightly", "experimental-islands"] }
-leptos_meta = { version = "0.6.5", features = ["nightly"] }
-leptos_actix = { version = "0.6.5", features = [
+leptos = { version = "0.6.9", features = ["nightly", "experimental-islands"] }
+leptos_meta = { version = "0.6.9", features = ["nightly"] }
+leptos_actix = { version = "0.6.9", features = [
     "experimental-islands",
 ], optional = true }
-leptos_router = { version = "0.6.5", features = ["nightly"] }
+leptos_router = { version = "0.6.9", features = ["nightly"] }
 wasm-bindgen = "=0.2"
 rand = "0.8.5"
 serde = { version = "1", features = ["derive"] }

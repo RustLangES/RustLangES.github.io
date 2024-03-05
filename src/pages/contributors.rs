@@ -1,11 +1,8 @@
 use futures::future::join_all;
-use leptos::{
-    create_local_resource, error::Result, island, serde, view, Fragment, IntoView, SignalGet,
-};
+use leptos::{create_local_resource, error::Result, island, view, Fragment, IntoView, SignalGet};
 use serde::{Deserialize, Serialize};
 
-use crate::components::ContributorCard;
-use crate::{error, log};
+use crate::{components::ContributorCard, error, log};
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Contributor {
