@@ -44,11 +44,11 @@ dependencies = [
     "get-sitemap",
     "prebuild",
 ]
-install_crate = "cargo-leptos"
+install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = ["leptos", "--version"], version = "0.2.12" }
 command = "cargo"
 args = ["leptos", "serve", "-r"]
 
 [tasks.serve]
-install_crate = "cargo-leptos"
+install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = ["leptos", "--version"], version = "0.2.12" }
 command = "cargo"
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]
