@@ -59,7 +59,7 @@ fn YoutubeCard(
     };
 
     view! {
-        <div class="list-container flex flex-col h-full gap-y-1 sm:p-6 bg-orange-100  drop-shadow-[0_0_0_rgba(0,0,0)] border border-black justify-between mb-4">
+        <div class="list-container flex flex-col h-full gap-y-1 p-4 sm:p-6 bg-orange-100  drop-shadow-[0_0_0_rgba(0,0,0)] border border-black justify-between mb-4">
             <img
                 src=format!("{}/{}.avif", assets_folder, username)
                 alt=format!("Foto del canal {}", username)
