@@ -11,10 +11,10 @@ use crate::{
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
-    let assets_folder = if cfg!(debug_assertions) {
-        "./assets"
+    let (assets_folder, bg_in_dark_mode) = if cfg!(debug_assertions) {
+        ("./assets", "dark:bg-kaku-dev")
     } else {
-        "."
+        (".", "dark:bg-kaku")
     };
 
     let preview = if use_context::<RouterIntegrationContext>()
@@ -53,7 +53,10 @@ pub fn App() -> impl IntoView {
             content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
         />
 
-        <Body class="bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed dark:bg-kaku dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]"/>
+        <Body class=format!(
+            "bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed {} dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]",
+            bg_in_dark_mode,
+        )/>
         <Router>
             <Header/>
             <main>

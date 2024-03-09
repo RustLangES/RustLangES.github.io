@@ -1,6 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: {
@@ -12,12 +9,13 @@ module.exports = {
       "work-sans": ["Work Sans", "sans-serif"],
     },
     extend: {
-      screens: {
+      screens: (theme) => ({
         'xs': '475px',
-        ...defaultTheme.screens,
-      },
+        ...theme.screens,
+      }),
       backgroundImage: (theme) => ({
-        "kaku": "url('/assets/kaku.png')",
+        "kaku-dev": "url('/assets/kaku.avif')",
+        "kaku": "url('/kaku.avif')",
       }),
       gridTemplateColumns:  (theme) => ({
         "divided": "2.5fr 1fr",
