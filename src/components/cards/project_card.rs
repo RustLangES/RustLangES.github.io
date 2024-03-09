@@ -15,7 +15,7 @@ pub fn ProjectCard(
     #[prop(into, optional)] button_text: &'static str,
 ) -> impl IntoView {
     let colors = HashMap::from([
-        ("white", "bg-white dark:bg-black text-black dark:text-white"),
+        ("white", "bg-white dark:bg-white text-black dark:text-black"),
         ("black", "bg-black dark:bg-white text-white dark:text-black"),
     ]);
     let current_color = (*colors.get(&button_bg_color).unwrap()).to_string();
