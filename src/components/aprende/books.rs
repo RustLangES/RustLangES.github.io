@@ -22,7 +22,7 @@ const OTHER_BOOKS: [BookData; 5] = [BookData {
     }, BookData { name: "Libro de Referencia de Rust", description: "Este libro es la guía definitiva para dominar Rust, explicando construcciones, memoria, concurrencia y más, con apéndices y referencias. Ideal para sumergirse en la programación con Rust.", english: true, complete: false, url: "https://doc.rust-lang.org/reference/introduction.html", url_name: "Ir a “El Libro de Referencia”" }, BookData { name: "Embedded Book", description: "Guía para usar Rust en sistemas integrados 'Bare Metal', ideal para programación integrada con seguridad y conceptos avanzados. Cubre configuración, prácticas y manuales, enfocado en ARM Cortex-M, sin asumir conocimientos previos.", english: true, complete: true, url: "https://docs.rust-embedded.org/book/intro/index.html", url_name: "Ir a “Embedded Book”" },
 BookData {
     name: "The Rustonomicon",
-    description: "¡Descubre los oscuros secretos de Rust no seguro! Este libro te lleva a las profundidades de la programación no segura en Rust, con detalles espeluznantes y útiles sobre su uso. Perfecto para aquellos que desean explorar las entrañas del lenguaje o escribir código no seguro. ¡Prepárate para una inmersión intensa en el lado oscuro de Rust!",
+    description: "Explora los aspectos oscuros de la programación no segura en Rust con este libro, que ofrece detalles espeluznantes y prácticos para aquellos interesados en adentrarse en el código no seguro. Una inmersión intensa en el lado oscuro de Rust.",
     english: true,
     complete: false,
     url: "https://doc.rust-lang.org/nomicon/intro.html",
@@ -41,8 +41,8 @@ BookData {
 pub fn Books() -> impl IntoView {
     let book = |book: BookData| {
         view! {
-            <section class="w-full md:w-1/2 lg:w-1/3 h-full xs:px-8">
-                <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
+            <section class="w-full md:w-1/2 lg:w-1/3 min-h-[28rem] px-8">
+                <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform min-h-[inherit]">
                     {book
                         .english
                         .then_some(|| {
@@ -86,7 +86,7 @@ pub fn Books() -> impl IntoView {
     };
 
     view! {
-        <section class=" bg-orange-300/30 py-20">
+        <section class=" bg-orange-300/30 dark:bg-transparent py-20">
             <div class="container mx-auto mb-5">
                 <h1 class="font-alfa-slab text-3xl sm:text-4xl lg:text-5xl text-center mb-5">
                     "¡Nuestros Libros!"
@@ -97,7 +97,7 @@ pub fn Books() -> impl IntoView {
             </div>
             <div class="flex flex-col md:flex-row justify-center items-center container mx-auto mb-16 md:mb-28 gap-4">
                 <section class="w-full md:w-1/2 px-8">
-                    <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
+                    <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100  dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
                         <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
                             <span class="sr-only text-black badge-content transition-all transform ">
                                 "Recomendado"
@@ -118,7 +118,7 @@ pub fn Books() -> impl IntoView {
                 </section>
 
                 <section class="w-full md:w-1/2 px-8 flex flex-col h-full">
-                    <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
+                    <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
                         <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-yellow-500 dark:border-slate-900 badge-container">
                             <span class="sr-only text-black badge-content transition-all transform ">
                                 "¡En Progreso!"

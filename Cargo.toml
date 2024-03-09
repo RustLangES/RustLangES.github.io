@@ -15,7 +15,7 @@ leptos_actix = { version = "0.6.9", features = [
     "experimental-islands",
 ], optional = true }
 leptos_router = { version = "0.6.9", features = ["nightly"] }
-wasm-bindgen = "=0.2.91"
+wasm-bindgen = "=0.2.92"
 rand = "0.8.5"
 serde = { version = "1", features = ["derive"] }
 futures = "0.3.30"
@@ -83,6 +83,16 @@ env = "DEV"
 #
 # Optional. Can be over-ridden with the command line parameter --bin-features
 bin-features = ["ssr"]
+# The tailwind input file.
+#
+# Optional, Activates the tailwind build
+# tailwind-input-file = "input.css"
+
+# The tailwind config file.
+#
+# Optional, defaults to "tailwind.config.js" which if is not present
+# is generated for you
+# tailwind-config-file = "tailwind.config.js"
 
 # If the --no-default-features flag should be used when compiling the bin target
 #

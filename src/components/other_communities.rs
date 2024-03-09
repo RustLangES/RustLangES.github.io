@@ -8,7 +8,7 @@ use crate::{
 #[component]
 pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoView {
     view! {
-        <section class="bg-orange-50 py-20">
+        <section class="bg-orange-50 dark:bg-transparent py-20">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Otras "</span>
@@ -46,9 +46,9 @@ pub fn OtherCommunities(#[prop(default = false)] show_more: bool) -> impl IntoVi
                         <div class="w-full flex justify-end my-3">
                             <a
                                 href="/comunidad"
-                                class="text-black/80 hover:text-orange-500 fill-black/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center"
+                                class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80  dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center"
                             >
-                                Ver todas las comunidades
+                                "Ver todas las comunidades"
                                 <span class="inline-block ml-2">
                                     <NextIcon class="fill-current" size=20/>
                                 </span>

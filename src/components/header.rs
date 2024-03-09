@@ -7,11 +7,6 @@ use crate::components::icons::LogoRustPageIcon;
 #[island]
 pub fn Header() -> impl IntoView {
     let (is_open, set_is_open) = create_signal(false);
-    let assets_folder = if cfg!(debug_assertions) {
-        "./assets"
-    } else {
-        "."
-    };
 
     view! {
         <header class="border-b border-b-black/20">
@@ -25,7 +20,7 @@ pub fn Header() -> impl IntoView {
                         on:click=move |_| { set_is_open.update(|n| *n = !*n) }
                         aria-label="Menu de opciones"
                     >
-                        <span class="w-6 h-1 bg-black block my-4 relative after:absolute after:block after:bg-black after:w-6 after:h-1 after:bottom-2 before:absolute before:block before:bg-black before:w-6 before:h-1 before:-bottom-2"></span>
+                        <span class="w-6 h-1 bg-black dark:bg-white block my-4 relative after:absolute after:block after:bg-black dark:after:bg-white after:w-6 after:h-1 after:bottom-2 before:absolute before:block before:bg-black dark:before:bg-white before:w-6 before:h-1 before:-bottom-2"></span>
                     </button>
                 </div>
                 <nav class=move || {

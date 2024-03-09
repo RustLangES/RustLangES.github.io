@@ -54,7 +54,7 @@ dependencies = ["get-sitemap", "prebuild"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.2.12" }
+], version = "0.2.16" }
 command = "cargo"
 args = ["leptos", "serve", "-r"]
 
@@ -65,7 +65,6 @@ script.pre = "npx tailwind -i input.css -o style/output.css"
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.2.12" }
-dependencies = ["build-style"]
+], version = "0.2.16" }
 command = "cargo"
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]

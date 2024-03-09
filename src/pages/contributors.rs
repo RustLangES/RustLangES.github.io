@@ -77,7 +77,7 @@ pub fn Contributors() -> impl IntoView {
     };
 
     view! {
-        <section class="bg-orange-300/30 py-16">
+        <section class="bg-orange-300/30 dark:bg-transparent py-16">
             <div class="flex flex-col gap-y-6 container mx-auto px-4">
                 <h2 class="text-3xl text-left mb-6">
                     <span class="font-work-sans font-light">"Nuestros "</span>

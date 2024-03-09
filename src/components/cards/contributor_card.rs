@@ -17,7 +17,7 @@ pub fn ContributorCard(
             <a
                 href=link.clone()
                 target="_blank"
-                class="group flex flex-col gap-y-6 border border-black p-4 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between h-full"
+                class="group flex flex-col gap-y-6 border border-black p-4 hover:bg-orange-500 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between h-full"
             >
                 <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-16 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
                     <span class="sr-only text-black badge-content transition-all transform">
@@ -26,21 +26,23 @@ pub fn ContributorCard(
                 </span>
                 <div class="flex flex-col gap-y-2">
                     <img src=brand_src width="60" class="rounded-full mb-4" alt=name.clone()/>
-                    <h2 class="font-work-sans text-black text-xl">{name}</h2>
+                    <h2 class="font-work-sans text-black dark:text-white text-xl">{name}</h2>
                     {location
                         .map_or_else(
                             || view! { <div class="hidden"></div> },
                             |location| {
                                 view! {
-                                    <div class="flex gap-2 items-center bg-slate-200/20 rounded-md p-1">
+                                    <div class="flex gap-2 items-center bg-slate-200/20 dark:bg-neutral-500/40 rounded-md p-1">
                                         <LocationIcon size=16/>
-                                        <p class="font-work-sans text-black text-sm">{location}</p>
+                                        <p class="font-work-sans text-black dark:text-white text-sm">
+                                            {location}
+                                        </p>
                                     </div>
                                 }
                             },
                         )}
 
-                    <p class="font-work-sans text-black">{description}</p>
+                    <p class="font-work-sans text-black dark:text-white">{description}</p>
                 </div>
                 <span class="ml-auto flex">
                     {twitter

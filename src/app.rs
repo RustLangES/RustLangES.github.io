@@ -53,7 +53,7 @@ pub fn App() -> impl IntoView {
             content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
         />
 
-        <Body class="bg-orange-200 overflow-x-hidden"/>
+        <Body class="bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed dark:bg-kaku dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]"/>
         <Router>
             <Header/>
             <main>

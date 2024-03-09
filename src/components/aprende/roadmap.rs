@@ -11,7 +11,7 @@ pub fn Roadmap() -> impl IntoView {
     };
 
     view! {
-        <section class="bg-orange-200 py-20 flex flex-col-reverse md:flex-row items-center justify-center  container mx-auto gap-10">
+        <section class="bg-orange-200 dark:bg-transparent py-20 flex flex-col-reverse md:flex-row items-center justify-center  container mx-auto gap-10">
             <div class="container px-10 lg:mx-auto flex flex-wrap text-balance gap-5 lg:w-1/2">
                 <h1 class="font-alfa-slab text-3xl sm:text-4xl lg:text-5xl text-center lg:text-left">
                     "Roadmap de aprendizaje del lenguaje"

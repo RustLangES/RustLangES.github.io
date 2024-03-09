@@ -15,25 +15,21 @@ pub fn ProjectCard(
     #[prop(into, optional)] button_text: &'static str,
 ) -> impl IntoView {
     let colors = HashMap::from([
-        ("white", "bg-white text-black"),
-        ("black", "bg-black text-white"),
+        ("white", "bg-white dark:bg-black text-black dark:text-white"),
+        ("black", "bg-black dark:bg-white text-white dark:text-black"),
     ]);
     let current_color = (*colors.get(&button_bg_color).unwrap()).to_string();
 
     view! {
-        <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 hover:bg-orange-500 bg-orange-100 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
+        <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 hover:bg-orange-500 dark:hover:bg-zinc-900/40 bg-orange-100 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
             <a href=link target="_blank">
-
                 <div class="flex flex-col justify-between gap-y-2">
                     {if brand_as_letter {
                         view! {
                             <span class=format!(
                                 "h-[60px] w-[60px] rounded-full text-4xl flex justify-center items-center {}",
                                 current_color,
-                            )>
-
-                                {brand_src}
-                            </span>
+                            )>{brand_src}</span>
                         }
                             .into_any()
                     } else {
@@ -49,7 +45,7 @@ pub fn ProjectCard(
                             .into_any()
                     }}
                     <CardTitle texts=name/>
-                    <p class="mt-2 font-work-sans text-black">{description}</p>
+                    <p class="mt-2 font-work-sans text-black dark:text-white">{description}</p>
                 </div>
                 <div class="flex gap-2 items-center mt-4">
                     <ButtonLink href=button_link size="tiny">

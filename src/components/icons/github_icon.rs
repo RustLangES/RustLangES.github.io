@@ -3,7 +3,7 @@ use leptos::{component, view, IntoView};
 #[component]
 pub fn GithubIcon(
     #[prop(default = 40)] size: u32,
-    #[prop(default = "fill-black")] class: &'static str,
+    #[prop(default = "fill-black dark:fill-[#bf8821]")] class: &'static str,
 ) -> impl IntoView {
     view! {
         <svg

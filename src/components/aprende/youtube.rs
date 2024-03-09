@@ -5,7 +5,7 @@ use crate::components::ButtonLink;
 #[component]
 pub fn Youtube() -> impl IntoView {
     view! {
-        <section class="bg-orange-200 py-20 gap-10 w-full lg:px-5">
+        <section class="bg-orange-200 dark:bg-transparent py-20 gap-10 w-full lg:px-5">
             <div class="">
                 <h1 class="font-alfa-slab text-2xl sm:text-3xl lg:text-4xl text-center text-balance mb-5">
                     "Algunos canales de Youtube que recomendamos"
@@ -59,7 +59,7 @@ fn YoutubeCard(
     };
 
     view! {
-        <div class="list-container flex flex-col h-full gap-y-1 p-4 sm:p-6 bg-orange-100  drop-shadow-[0_0_0_rgba(0,0,0)] border border-black justify-between mb-4">
+        <div class="list-container flex flex-col h-full gap-y-1 p-4 sm:p-6 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] border border-black justify-between mb-4">
             <img
                 src=format!("{}/{}.avif", assets_folder, username)
                 alt=format!("Foto del canal {}", username)

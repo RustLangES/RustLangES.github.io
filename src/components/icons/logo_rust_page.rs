@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn LogoRustPageIcon(
     #[prop(default = 40)] size: u32,
-    #[prop(default = "")] class: &'static str,
+    #[prop(default = "dark:fill-[#e2cea9]")] class: &'static str,
 ) -> impl IntoView {
     view! {
         <svg
