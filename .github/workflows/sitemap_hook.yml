@@ -33,7 +33,6 @@ jobs:
       - name: Pre Build
         run: |
           npm i
-          cargo check
       - name: Build
         run: cargo make build
       - name: Upload artifact
