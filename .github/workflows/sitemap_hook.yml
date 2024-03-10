@@ -1,5 +1,6 @@
 name: Deploy on new sitemap
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [sitemap_changed]
 
