@@ -3,6 +3,7 @@ mod button_link;
 mod cards;
 mod community_projects;
 mod footer;
+mod head_information;
 mod header;
 mod hero;
 mod icons;
@@ -15,6 +16,7 @@ pub use button_link::ButtonLink;
 pub use cards::{CardTitle, CommunityCard, ContributorCard, ProjectCard};
 pub use community_projects::CommunityProjects;
 pub use footer::Footer;
+pub use head_information::HeadInformation;
 pub use header::Header;
 pub use hero::Hero;
 pub use icons::{
