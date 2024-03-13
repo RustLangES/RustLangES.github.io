@@ -5,14 +5,11 @@ on:
     branches:
       - main
     paths:
-      - "**.toml"
-      - "./src/**.rs"
-      - "build.rs"
-      - "input.css"
-      - "package.json"
-      - "../../extras/**"
-      - "../../assets/**"
-      - "../../tailwind.config.js"
+      - 'src/**.rs'
+      - 'build.rs'
+      - 'input.css'
+      - 'package.json'
+      - 'tailwind.config.js'
 
 permissions:
   contents: read
