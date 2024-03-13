@@ -13,7 +13,7 @@ pub fn HeadInformation() -> impl IntoView {
     let location = use_location().pathname.get();
     let path = location.as_str();
 
-    let preview = if path == "aprende" {
+    let preview = if path == "/aprende" {
         "aprende_preview.webp"
     } else {
         "rustlanges_preview.webp"
