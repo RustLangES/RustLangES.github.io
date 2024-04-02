@@ -15,7 +15,7 @@ pub fn OurCommunities() -> impl IntoView {
                         <span class="font-work-sans font-light">"Unete a nuestra "</span>
                         <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                     </h2>
-                    <div class="flex items-center gap-x-12 gap-y-6 flex-col sm:flex-row">
+                    <div class="flex items-center gap-x-12 gap-y-6 flex-col *:w-full sm:flex-row">
                         <ButtonLink
                             href="https://discord.gg/4ng5HgmaMg"
                             shadow="box"
