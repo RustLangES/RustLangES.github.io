@@ -42,7 +42,7 @@ pub fn SloganButton() -> impl IntoView {
 
     view! {
         <div
-            class="flex select-none items-center justify-center lg:justify-start group dark:text-white  max-w-lg drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out  dark:delay-75 "
+            class="flex select-none items-center justify-center lg:justify-start group dark:text-white drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out  dark:delay-75 "
             on:click=click_handler
         >
             <button class="bg-orange-200 dark:bg-black/30  border-4 border-orange-400 group-hover:border-orange-500 dark:group-hover:bg-black/60 flex justify-center items-center rounded-full w-12 h-12 text-xl relative z-10 drop-shadow-sm">
