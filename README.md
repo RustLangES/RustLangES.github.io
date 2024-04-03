@@ -10,7 +10,7 @@
 antes de empezar tienes que instalar estos programas
 - [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
-- [Trunk](https://trunk.dev)
+- [Trunk](https://trunkrs.dev/)
 
 ## Requisitos Windows >= 10
 - [BusyBox](https://busybox.net/)
