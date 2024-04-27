@@ -149,7 +149,7 @@
                 toolchain
                 trunk
                 cargo-leptos
-                cargo-leptosfmt
+                leptosfmt
                 cargo-make
                 binaryen
               ];
