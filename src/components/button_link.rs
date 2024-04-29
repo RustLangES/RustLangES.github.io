@@ -31,7 +31,7 @@ pub fn ButtonLink(
             href=href
             target="_blank"
             class=format!(
-                "tracking-wider font-work-sans border border-black dark:border-white flex items-center px-4 transition w-fit gap-x-4 sm:whitespace-nowrap max-w-[10rem] sm:max-w-none {} {} {} {}",
+                "tracking-wider text-center font-work-sans border border-black dark:border-white flex items-center px-4 transition w-fit gap-x-4 max-w-[10rem] sm:max-w-none {} {} {} {}",
                 current_color,
                 current_size,
                 class,

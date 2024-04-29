@@ -55,10 +55,10 @@ pub fn ProjectCard(
                             button_text.to_string()
                         }}
 
-                        </ButtonLink>
-                        <span class="px-1">
+                    </ButtonLink>
+                    <span class="px-1">
                         <GithubIcon size=30/>
-                        </span>
+                    </span>
                 </div>
             </a>
         </div>
