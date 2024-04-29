@@ -20,7 +20,7 @@ async fn main() -> std::io::Result<()> {
         use actix_web::web;
         use leptos_actix::LeptosRoutes;
 
-        let addr = leptos_options.site_addr.clone();
+        let addr = leptos_options.site_addr;
         println!("listening on http://{}", &addr);
 
         return actix_web::HttpServer::new(move || {

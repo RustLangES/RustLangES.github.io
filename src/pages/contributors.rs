@@ -24,7 +24,7 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     .json::<Vec<Contributor>>()
     .await?;
 
-    let response = join_all(response.iter().map(|c| fetch_contributor_info(c)))
+    let response = join_all(response.iter().map(fetch_contributor_info))
         .await
         .iter()
         .flat_map(|c| c.clone().ok())
