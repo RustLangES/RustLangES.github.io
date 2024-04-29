@@ -42,14 +42,19 @@ BookData {
 pub fn Books() -> impl IntoView {
     let book = |book: BookData| {
         view! {
-            <Book title={book.name} description={book.description} link={book.url} link_text={book.url_name} incomplete={!book.complete}>
+            <Book
+                title=book.name
+                description=book.description
+                link=book.url
+                link_text=book.url_name
+                incomplete=!book.complete
+            >
                 {book
                     .english
                     .then_some(|| {
-                        view! {
-                            <Badge color="teal"> "En Inglés" </Badge>
-                        }
+                        view! { <Badge color="teal">"En Inglés"</Badge> }
                     })}
+
             </Book>
         }
     };
@@ -73,11 +78,21 @@ pub fn Books() -> impl IntoView {
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 container mx-auto mb-16 md:mb-28 gap-4 h-fit">
-                <Book title="El lenguaje de Programación Rust" description="Cariñosamente conocido como “el libro”, El Lenguaje de Programación Rust te dará una visión del lenguaje desde los principios básicos. Construirás unos cuantos proyectos por el camino y, al final, tendrás una comprensión sólida del lenguaje." link="https://rustlang-es.org/rust-book-es" link_text="Ir a “El Libro”">
-                    <Badge color="teal"> "Recomendado" </Badge>
+                <Book
+                    title="El lenguaje de Programación Rust"
+                    description="Cariñosamente conocido como “el libro”, El Lenguaje de Programación Rust te dará una visión del lenguaje desde los principios básicos. Construirás unos cuantos proyectos por el camino y, al final, tendrás una comprensión sólida del lenguaje."
+                    link="https://rustlang-es.org/rust-book-es"
+                    link_text="Ir a “El Libro”"
+                >
+                    <Badge color="teal">"Recomendado"</Badge>
                 </Book>
-                <Book title="Rust para C#/.NET Developers" description="La guía esta hecha por la misma Microsoft y es para  desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas." link="https://rustlang-es.org/rust-para-dotnet-devs" link_text="Ir a la guía">
-                    <Badge color="yellow"> "¡En Progreso!" </Badge>
+                <Book
+                    title="Rust para C#/.NET Developers"
+                    description="La guía esta hecha por la misma Microsoft y es para  desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
+                    link="https://rustlang-es.org/rust-para-dotnet-devs"
+                    link_text="Ir a la guía"
+                >
+                    <Badge color="yellow">"¡En Progreso!"</Badge>
                 </Book>
             </div>
 
@@ -98,25 +113,20 @@ pub fn Books() -> impl IntoView {
 
 #[component]
 fn Book(
-    #[prop(into)]
-    title: String, 
-    #[prop(into)]
-    description: String, 
-    #[prop(into)]
-    link: String, 
-    #[prop(into)]
-    link_text: String, 
-    #[prop(optional)]
-    incomplete: bool,
-    children: Children) -> impl IntoView {
+    #[prop(into)] title: String,
+    #[prop(into)] description: String,
+    #[prop(into)] link: String,
+    #[prop(into)] link_text: String,
+    #[prop(optional)] incomplete: bool,
+    children: Children,
+) -> impl IntoView {
     view! {
         <article class="w-full h-full px-8">
             <div class="h-full relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100  dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
                 {children()}
                 <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
                     {title}
-                </h1>
-                <p class="container mx-auto text-pretty"> {description} </p>
+                </h1> <p class="container mx-auto text-pretty">{description}</p>
                 {incomplete
                     .then_some(|| {
                         view! {
@@ -128,7 +138,7 @@ fn Book(
                         }
                     })}
                 <div class="mx-auto">
-                    <ButtonLink href={link} size="big">
+                    <ButtonLink href=link size="big">
                         {link_text}
                     </ButtonLink>
                 </div>
@@ -138,19 +148,14 @@ fn Book(
 }
 
 #[component]
-fn Badge(
-    color: &'static str,
-    children: Children) -> impl IntoView {
-    let colors = HashMap::from([
-        ("teal", "bg-teal-500"),
-        ("yellow", "bg-yellow-500"),
-    ]);
+fn Badge(color: &'static str, children: Children) -> impl IntoView {
+    let colors = HashMap::from([("teal", "bg-teal-500"), ("yellow", "bg-yellow-500")]);
     let color = (*colors.get(&color).expect("Unknown color")).to_string();
 
     view! {
         <span class=format!(
-            "absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 badge-container dark:border-slate-900 {}", 
-            color
+            "absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 badge-container dark:border-slate-900 {}",
+            color,
         )>
             <span class="sr-only text-black badge-content transition-all transform">
                 {children()}
@@ -158,4 +163,3 @@ fn Badge(
         </span>
     }
 }
-
