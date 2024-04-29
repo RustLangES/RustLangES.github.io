@@ -1,4 +1,5 @@
-use leptos::{component, view, IntoView};
+use leptos::{component, view, Children, IntoView};
+use std::collections::HashMap;
 
 use crate::components::ButtonLink;
 
@@ -41,39 +42,15 @@ BookData {
 pub fn Books() -> impl IntoView {
     let book = |book: BookData| {
         view! {
-            <section class="w-full md:w-1/2 lg:w-1/3 min-h-[28rem] px-8">
-                <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform min-h-[inherit]">
-                    {book
-                        .english
-                        .then_some(|| {
-                            view! {
-                                <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-blue-400 dark:border-slate-900 badge-container">
-                                    <span class="sr-only text-black badge-content transition-all transform">
-                                        "En Inglés"
-                                    </span>
-                                </span>
-                            }
-                        })}
-                    <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
-                        {book.name}
-                    </h1> <p class="container mx-auto">{book.description}</p>
-                    {(!book.complete)
-                        .then_some(|| {
-                            view! {
-                                <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
-                                    <p class="font-work-sans text-black text-sm">
-                                        "ℹ️ Este Libro está marcado como incompleto"
-                                    </p>
-                                </div>
-                            }
-                        })}
-                    <div class="mx-auto">
-                        <ButtonLink href=book.url size="big" class="max-w-fit">
-                            {book.url_name}
-                        </ButtonLink>
-                    </div>
-                </div>
-            </section>
+            <Book title={book.name} description={book.description} link={book.url} link_text={book.url_name} incomplete={!book.complete}>
+                {book
+                    .english
+                    .then_some(|| {
+                        view! {
+                            <Badge color="teal"> "En Inglés" </Badge>
+                        }
+                    })}
+            </Book>
         }
     };
 
@@ -95,51 +72,13 @@ pub fn Books() -> impl IntoView {
                     "Hemos dedicado tiempo y esfuerzo a adaptar libros al español, estamos orgullosos de compartir estos recursos, esperando que contribuyan al acceso y comprensión de valiosos conocimientos."
                 </p>
             </div>
-            <div class="flex flex-col md:flex-row justify-center items-center container mx-auto mb-16 md:mb-28 gap-4">
-                <section class="w-full md:w-1/2 px-8">
-                    <div class="relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100  dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
-                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
-                            <span class="sr-only text-black badge-content transition-all transform ">
-                                "Recomendado"
-                            </span>
-                        </span>
-                        <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
-                            "El Lenguaje de Programación Rust"
-                        </h1>
-                        <p class="container mx-auto">
-                            "Cariñosamente conocido como “el libro”, El Lenguaje de Programación Rust te dará una visión del lenguaje desde los principios básicos. Construirás unos cuantos proyectos por el camino y, al final, tendrás una comprensión sólida del lenguaje."
-                        </p>
-                        <div class="mx-auto">
-                            <ButtonLink href="https://rustlang-es.org/rust-book-es" size="big">
-                                "Ir a “El Libro”"
-                            </ButtonLink>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="w-full md:w-1/2 px-8 flex flex-col h-full">
-                    <div class="group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">
-                        <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-yellow-500 dark:border-slate-900 badge-container">
-                            <span class="sr-only text-black badge-content transition-all transform ">
-                                "¡En Progreso!"
-                            </span>
-                        </span>
-                        <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
-                            "Rust para C#/.NET Developers"
-                        </h1>
-                        <p class="container mx-auto">
-                            "La guía esta hecha por la misma Microsoft y es para  desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
-                        </p>
-                        <div class="mx-auto">
-                            <ButtonLink
-                                href="https://rustlang-es.org/rust-para-dotnet-devs"
-                                size="big"
-                            >
-                                "Ir a la guía"
-                            </ButtonLink>
-                        </div>
-                    </div>
-                </section>
+            <div class="grid grid-cols-1 md:grid-cols-2 container mx-auto mb-16 md:mb-28 gap-4 h-fit">
+                <Book title="El lenguaje de Programación Rust" description="Cariñosamente conocido como “el libro”, El Lenguaje de Programación Rust te dará una visión del lenguaje desde los principios básicos. Construirás unos cuantos proyectos por el camino y, al final, tendrás una comprensión sólida del lenguaje." link="https://rustlang-es.org/rust-book-es" link_text="Ir a “El Libro”">
+                    <Badge color="teal"> "Recomendado" </Badge>
+                </Book>
+                <Book title="Rust para C#/.NET Developers" description="La guía esta hecha por la misma Microsoft y es para  desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas." link="https://rustlang-es.org/rust-para-dotnet-devs" link_text="Ir a la guía">
+                    <Badge color="yellow"> "¡En Progreso!" </Badge>
+                </Book>
             </div>
 
             <div class="container mx-auto mb-5">
@@ -150,9 +89,73 @@ pub fn Books() -> impl IntoView {
                     "Estos son algunos otros libros que nos interesa compartir."
                 </p>
             </div>
-            <div class="flex flex-row flex-wrap w-full gap-y-6 justify-center items-center container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-y-6 container mx-auto">
                 {books_list}
             </div>
         </section>
     }
 }
+
+#[component]
+fn Book(
+    #[prop(into)]
+    title: String, 
+    #[prop(into)]
+    description: String, 
+    #[prop(into)]
+    link: String, 
+    #[prop(into)]
+    link_text: String, 
+    #[prop(optional)]
+    incomplete: bool,
+    children: Children) -> impl IntoView {
+    view! {
+        <article class="w-full h-full px-8">
+            <div class="h-full relative group flex flex-col gap-y-6 border border-black p-2 sm:p-6 bg-orange-100  dark:hover:bg-zinc-900/40 dark:bg-black/40  drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] justify-between group transition-all transform">
+                {children()}
+                <h1 class="font-alfa-slab text-xl sm:text-2xl lg:text-3xl text-center mb-5">
+                    {title}
+                </h1>
+                <p class="container mx-auto text-pretty"> {description} </p>
+                {incomplete
+                    .then_some(|| {
+                        view! {
+                            <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
+                                <p class="font-work-sans text-black text-sm">
+                                    "ℹ️ Este Libro está marcado como incompleto"
+                                </p>
+                            </div>
+                        }
+                    })}
+                <div class="mx-auto">
+                    <ButtonLink href={link} size="big">
+                        {link_text}
+                    </ButtonLink>
+                </div>
+            </div>
+        </article>
+    }
+}
+
+#[component]
+fn Badge(
+    color: &'static str,
+    children: Children) -> impl IntoView {
+    let colors = HashMap::from([
+        ("teal", "bg-teal-500"),
+        ("yellow", "bg-yellow-500"),
+    ]);
+    let color = (*colors.get(&color).expect("Unknown color")).to_string();
+
+    view! {
+        <span class=format!(
+            "absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-28 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 badge-container dark:border-slate-900 {}", 
+            color
+        )>
+            <span class="sr-only text-black badge-content transition-all transform">
+                {children()}
+            </span>
+        </span>
+    }
+}
+
