@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct CommunityItem {
     pub name: &'static [&'static str],
     pub description: &'static str,

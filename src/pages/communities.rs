@@ -1,13 +1,13 @@
 use leptos::{component, view, IntoView};
 
-use crate::components::{CommunityProjects, OtherCommunities};
+use crate::components::OtherCommunities;
 
 #[component]
-pub fn Communidad() -> impl IntoView {
+pub fn Communities() -> impl IntoView {
     view! {
         <div>
-            <CommunityProjects/>
             <OtherCommunities/>
+            <OtherCommunities other_communities=true/>
         </div>
     }
 }

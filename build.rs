@@ -21,7 +21,7 @@ fn main() {
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
-    write!(out, "#[rustfmt::skip]\nmod comunities;\n#[rustfmt::skip]\nmod projects;\npub use comunities::*;\npub use projects::*;\n").unwrap();
+    write!(out, "#[rustfmt::skip]\nmod other_communities;\nmod rust_communities;\n#[rustfmt::skip]\nmod projects;\npub use other_communities::*;\npub use rust_communities::*;\npub use projects::*;\n").unwrap();
 
     for folder in folders {
         let folder = folder.unwrap();
@@ -34,7 +34,7 @@ fn main() {
         path.push(folder.path());
 
         match folder.file_name().to_str().unwrap() {
-            "comunidades" => generate_comunity(&path),
+            "comunidades" => generate_community(&path),
             "proyectos" => generate_projects(&path),
             _ => {}
         }
@@ -55,9 +55,9 @@ fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> std::io::Result
     Ok(())
 }
 
-fn generate_comunity(path: &Path) {
+fn generate_community(path: &Path) {
     let folders = fs::read_dir(path).unwrap();
-    let mut comunities = Vec::new();
+    let mut communities = Vec::new();
 
     for file in folders {
         let file = file.unwrap();
@@ -68,15 +68,29 @@ fn generate_comunity(path: &Path) {
         let file_path = file.path();
         let toml_str = fs::read_to_string(&file_path).unwrap();
         let toml_str = toml::from_str::<CommunityItem>(&toml_str).unwrap();
-        comunities.push((file_path, toml_str));
+        communities.push((file_path, toml_str));
     }
-    let mut out = fs::File::create("src/extras/comunities.rs").unwrap();
+    let mut other_file = fs::File::create("src/extras/other_communities.rs").unwrap();
     write!(
-        out,
-        "use crate::models::CommunityItem;\npub const OTHER_COMUNITIES: &[CommunityItem] = &[\n"
+        other_file,
+        "use crate::models::CommunityItem;\npub const OTHER_COMMUNITIES: &[CommunityItem] = &[\n"
     )
-    .unwrap();
-    for (_p, t) in comunities {
+    .expect("No se pudo crear el archivo src/extras/other_communities.rs");
+
+    let mut rust_file = fs::File::create("src/extras/rust_communities.rs").unwrap();
+    write!(
+        rust_file,
+        "use crate::models::CommunityItem;\npub const RUST_COMMUNITIES: &[CommunityItem] = &[\n"
+    )
+    .expect("No se pudo crear el archivo src/extras/rust_communities.rs");
+
+    for (_p, community) in communities {
+        let mut output_file = if community.name.join("").to_lowercase().contains("rust") {
+            &rust_file
+        } else {
+            &other_file
+        };
+
         let CommunityItem {
             name,
             description,
@@ -84,10 +98,11 @@ fn generate_comunity(path: &Path) {
             icon,
             brand_src,
             brand_alt,
-        } = t;
+        } = community;
         let brand_src = brand_src.replace("./", "/gen_assets/");
+
         write!(
-            out,
+            output_file,
             r#"
     CommunityItem {{
         name: &{name:?},
@@ -100,7 +115,9 @@ fn generate_comunity(path: &Path) {
         )
         .unwrap();
     }
-    write!(out, "\n];").unwrap();
+
+    write!(other_file, "\n];").unwrap();
+    write!(rust_file, "\n];").unwrap();
 }
 
 fn iter_dir(path: &Path, mut callback: impl FnMut(DirEntry, Metadata)) {

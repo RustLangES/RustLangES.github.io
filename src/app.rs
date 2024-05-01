@@ -4,7 +4,7 @@ use leptos_router::{Router, Routes, StaticParamsMap, StaticRoute};
 
 use crate::{
     components::{Footer, HeadInformation, Header},
-    pages::{Aprende, Communidad, Contributors, Index},
+    pages::{Aprende, Communities, Contributors, Index, Projects},
 };
 
 #[component]
@@ -33,13 +33,18 @@ pub fn App() -> impl IntoView {
                         static_params=move || Box::pin(async move { StaticParamsMap::default() })
                     />
                     <StaticRoute
-                        path="/comunidad"
-                        view=Communidad
+                        path="/comunidades"
+                        view=Communities
                         static_params=move || Box::pin(async move { StaticParamsMap::default() })
                     />
                     <StaticRoute
                         path="/colaboradores"
                         view=Contributors
+                        static_params=move || Box::pin(async move { StaticParamsMap::default() })
+                    />
+                    <StaticRoute
+                        path="/proyectos"
+                        view=Projects
                         static_params=move || Box::pin(async move { StaticParamsMap::default() })
                     />
                     <StaticRoute
