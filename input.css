@@ -43,3 +43,19 @@
   width: 100%;
   height: auto;
 }
+
+/*
+* Navigation styles
+*/
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-item:after {
+    content: '';
+    @apply  block border border-orange-600 transition-transform ease-in-out duration-200 scale-x-0;
+}
+
+.nav-item:hover:after {
+  @apply  scale-x-100;
+}
