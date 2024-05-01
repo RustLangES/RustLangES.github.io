@@ -86,13 +86,13 @@ bin-features = ["ssr"]
 # The tailwind input file.
 #
 # Optional, Activates the tailwind build
-# tailwind-input-file = "input.css"
+tailwind-input-file = "input.css"
 
 # The tailwind config file.
 #
 # Optional, defaults to "tailwind.config.js" which if is not present
 # is generated for you
-# tailwind-config-file = "tailwind.config.js"
+tailwind-config-file = "tailwind.config.js"
 
 # If the --no-default-features flag should be used when compiling the bin target
 #

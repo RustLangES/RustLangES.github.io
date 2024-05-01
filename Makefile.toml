@@ -62,6 +62,7 @@ args = ["leptos", "serve", "-r"]
 script.pre = "npx tailwind -i input.css -o style/output.css"
 
 [tasks.serve]
+dependencies = ["prebuild"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",

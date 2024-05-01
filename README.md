@@ -10,7 +10,6 @@
 antes de empezar tienes que instalar estos programas
 - [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
-- [Trunk](https://trunkrs.dev/)
 
 ## Requisitos Windows >= 10
 - [BusyBox](https://busybox.net/)
@@ -39,15 +38,9 @@ rustup target add wasm32-unknown-unknown
 ```bash
 npm install
 ```
-```sh
-trunk build
-```
-```sh
-trunk serve --open
-```
-```sh
-# Or more verbose
-trunk --config Trunk.toml serve --verbose --open
+```bash
+cargo install cargo-make
+cargo make serve
 ```
 
 ## Configura tu VSCode
