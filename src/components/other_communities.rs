@@ -13,12 +13,7 @@ pub fn OtherCommunities(
     let communities = match (other_communities, show_more) {
         (true, false) => OTHER_COMMUNITIES.to_vec(),
         (false, false) => RUST_COMMUNITIES.to_vec(),
-        (_, true) => {
-            let mut all_communities = vec![];
-            all_communities.extend(OTHER_COMMUNITIES.to_vec());
-            all_communities.extend(RUST_COMMUNITIES.to_vec());
-            all_communities
-        }
+        (_, true) => RUST_COMMUNITIES.to_vec(),
     };
 
     view! {

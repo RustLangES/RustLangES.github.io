@@ -2,7 +2,7 @@ use leptos::{component, view, IntoView};
 
 use crate::components::{
     cards::card_title::CardTitle,
-    icons::{DiscordIcon, GithubIcon, TelegramIcon},
+    icons::{DiscordIcon, GithubIcon, TelegramIcon, WebIcon},
 };
 
 #[component]
@@ -37,6 +37,7 @@ pub fn CommunityCard(
                     "discord" => view! { <DiscordIcon size=30/> },
                     "github" => view! { <GithubIcon size=30/> },
                     "telegram" => view! { <TelegramIcon size=30/> },
+                    "web" => view! { <WebIcon size=30/> },
                     _ => unreachable!(),
                 }}
 
