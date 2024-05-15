@@ -1,5 +1,6 @@
 pub mod app;
 pub mod components;
+#[rustfmt::skip]
 pub mod extras;
 pub mod models;
 pub mod pages;
