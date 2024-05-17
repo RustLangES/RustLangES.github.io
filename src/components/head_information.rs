@@ -49,7 +49,7 @@ pub fn HeadInformation() -> impl IntoView {
 
             <Meta name="og:image" content=format!("https://rustlang-es.org/{preview}")/>
             <Meta name="twitter:image" content=format!("https://rustlang-es.org/{preview}")/>
-            <Link rel="canonical" href=format!("https://www.rustlang-es.org{}", path)/>
+            <Link rel="canonical" href=format!("https://rustlang-es.org{}", path)/>
         </>
     }
 }
