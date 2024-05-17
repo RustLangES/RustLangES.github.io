@@ -8,7 +8,7 @@ on:
     paths-ignore:
       - "extras"
       - ".rusty-hook.toml"
-      - ".github/workflows/gh-pages.yml"
+      - ".github/workflows/**.yml"
       - "**/Makefile.toml"
       - "README.md"
 
