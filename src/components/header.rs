@@ -46,7 +46,7 @@ pub fn Header() -> impl IntoView {
                             <a href="/colaboradores">"Colaboradores"</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://rustlang-es.org/blog/" target="_self">
+                            <a href="https://blog.rustlang-es.org/" target="_self">
                                 "Blog"
                             </a>
                         </li>
