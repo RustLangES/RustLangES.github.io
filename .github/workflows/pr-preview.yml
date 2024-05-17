@@ -59,7 +59,7 @@ jobs:
             ## ⚡ Cloudflare Pages Deployment
             | Name | Status | Preview |
             | :--- | :----- | :------ |
-            | ${{BRANCH_NAME}}     |  🔨 Building ([Logs](${env.ACTION_RUN}))  | waiting... |
+            | ${{env.BRANCH_NAME}}     |  🔨 Building ([Logs](${env.ACTION_RUN}))  | waiting... |
 
       # Build Rust Page
       - uses: actions-rs/toolchain@v1
@@ -96,7 +96,7 @@ jobs:
             ## ⚡ Cloudflare Pages Deployment
             | Name | Status | Preview |
             | :--- | :----- | :------ |
-            | ${{BRANCH_NAME}} | ✅ Ready ([Logs](${env.ACTION_RUN}))  | [${{env.SHA_SHORT}}](${{ steps.deploy.outputs.deployment-url }}) |
+            | ${{env.BRANCH_NAME}} | ✅ Ready ([Logs](${env.ACTION_RUN}))  | [${{env.SHA_SHORT}}](${{ steps.deploy.outputs.deployment-url }}) |
 
   # remove-preview:
   #   if: ${{ github.event.action == "closed" }}
@@ -130,4 +130,4 @@ jobs:
   #           ## ⚡ Removing Cloudflare Pages Preview
   #           | Name | Status |
   #           | :--- | :----- |
-  #           | ${{BRANCH_NAME}} | ✅ Removed |
+  #           | ${{env.BRANCH_NAME}} | ✅ Removed |
