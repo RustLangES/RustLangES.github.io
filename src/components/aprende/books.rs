@@ -81,7 +81,7 @@ pub fn Books() -> impl IntoView {
                 <Book
                     title="El lenguaje de Programación Rust"
                     description="Cariñosamente conocido como “el libro”, El Lenguaje de Programación Rust te dará una visión del lenguaje desde los principios básicos. Construirás unos cuantos proyectos por el camino y, al final, tendrás una comprensión sólida del lenguaje."
-                    link="https://rustlang-es.org/rust-book-es"
+                    link="https://book.rustlang-es.org"
                     link_text="Ir a “El Libro”"
                 >
                     <Badge color="teal">"Recomendado"</Badge>
@@ -89,7 +89,7 @@ pub fn Books() -> impl IntoView {
                 <Book
                     title="Rust para C#/.NET Developers"
                     description="La guía esta hecha por la misma Microsoft y es para  desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
-                    link="https://rustlang-es.org/rust-para-dotnet-devs"
+                    link="https://dotnet-book.rustlang-es.org"
                     link_text="Ir a la guía"
                 >
                     <Badge color="yellow">"¡En Progreso!"</Badge>
