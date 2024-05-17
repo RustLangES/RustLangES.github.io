@@ -20,13 +20,6 @@ on:
       - opened
       - edited
       - closed
-    paths:
-      - "**/**/**.rs"
-      - "**/**/**.toml"
-      - "**/**/**.css"
-      - "**.config.js"
-      - package.json
-      - Cargo.toml
 
 # cancel in-progress runs on new commits to same PR (github.event.number)
 concurrency:
