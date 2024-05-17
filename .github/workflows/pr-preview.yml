@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   deploy-preview:
-    if: ${{ github.event.action != "closed" }}
+    if: ${{ github.event.action != 'closed' }}
     permissions:
       contents: read
       pull-requests: write
