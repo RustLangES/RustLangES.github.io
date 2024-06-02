@@ -9,7 +9,9 @@ mod hero;
 mod icons;
 mod other_communities;
 mod our_communities;
+pub mod separator;
 mod slogan_button;
+mod sponsors;
 
 pub use aprende::{Books, HeaderAprende, Roadmap, Youtube};
 pub use button_link::ButtonLink;
@@ -20,8 +22,11 @@ pub use head_information::HeadInformation;
 pub use header::Header;
 pub use hero::Hero;
 pub use icons::{
-    DiscordIcon, GithubIcon, LinkedinIcon, LocationIcon, NextIcon, TelegramIcon, TwitterIcon,
+    CloudflareIcon, DiscordIcon, GithubIcon, LinkedinIcon, LocationIcon, NextIcon, TelegramIcon,
+    TwitterIcon,
 };
 pub use other_communities::OtherCommunities;
 pub use our_communities::OurCommunities;
+pub use separator::Separator;
 pub use slogan_button::SloganButton;
+pub use sponsors::Sponsors;
