@@ -19,16 +19,10 @@ pub fn Sponsors() -> impl IntoView {
                     </h3>
                     <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-8">
                         <SponsorCard
-                            name="Nerdearla"
-                            image="https://nerdear.la/static/img/logos/n-detailed.svg"
-                            link="https://nerdear.la/es/"
-                            description="El evento de tecnología más grande en LatinoAmerica ha estado presentando charlas de la comunidad por 4 años seguidos."
-                        />
-                        <SponsorCard
-                            name="Shuttle"
-                            link="https://shuttle.rs"
-                            image="assets/sponsors/shuttle.webp"
-                            description="La empresa #1 en PAAS para Rust ha estado hosteando voluntariamente algunos servicios de la comunidad como el Cangrebot y la API."
+                            name="Cloudflare"
+                            link="https://www.cloudflare.com/es-es/"
+                            component=CloudflareIcon().into_view()
+                            description="Cloudflare patrocina nuestra infraestructura y servicios"
                         />
                         <SponsorCard
                             name="Universidad Nur"
@@ -36,14 +30,14 @@ pub fn Sponsors() -> impl IntoView {
                             image="assets/sponsors/universidad_nur.png"
                             description="Esta universidad ha presentado un especial interés por Rust y la comunidad, nos han dado lugar a la divulgación con charlas y talleres."
                         />
+                        <SponsorCard
+                            name="Heavy Duty Builders"
+                            link="https://heavyduty.builders"
+                            image="assets/sponsors/heavydutybuilders.png"
+                            description="Queremos unir fuerzas con más constructores como nosotros en el ecosistema Blockchain, llámalo DAO si quieres, pero queremos decir mucho más."
+                        />
                     </div>
                     <div class="w-full flex flex-col md:flex-row items-center justify-center gap-x-8 gap-y-8">
-                        <SponsorCard
-                            name="Cloudflare"
-                            link="https://www.cloudflare.com/es-es/"
-                            component=CloudflareIcon().into_view()
-                            description="Cloudflare patrocina nuestra infraestructura y servicios"
-                        />
                         <SponsorCard
                             name="CrabNebula"
                             link="https://crabnebula.dev"
@@ -55,14 +49,6 @@ pub fn Sponsors() -> impl IntoView {
                             link="https://tauri.app"
                             image="assets/sponsors/tauri.png"
                             description="Cree una aplicación optimizada, segura e independiente del frontend para su implantación multiplataforma."
-                        />
-                    </div>
-                    <div class="w-full flex flex-col md:flex-row items-center justify-center gap-x-8 gap-y-8">
-                        <SponsorCard
-                            name="Cloudflare"
-                            link="https://heavyduty.builders"
-                            image="assets/sponsors/heavydutybuilder.png"
-                            description="Queremos unir fuerzas con más constructores como nosotros en el ecosistema Blockchain, llámalo DAO si quieres, pero queremos decir mucho más."
                         />
                     </div>
                 </div>
