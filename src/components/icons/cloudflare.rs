@@ -1,27 +1,6 @@
 use leptos::{component, view, IntoView};
 
 #[component]
-pub fn ShuttleIcon() -> impl IntoView {
-    view! {
-        <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 80 20"
-
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            class="text-8xl dark:text-head"
-        >
-            <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M21.5276 0.927734L14.3516 7.9646L7.17585 7.9646L0 15.0013H7.17585L7.17585 22.0375H0V29.0743H7.17585L7.17585 22.0383H14.3516V29.0751L21.5276 22.0383V15.0013L28.7034 7.9646V0.927734H21.5276Z"
-            ></path>
-        </svg>
-    }
-}
-
-#[component]
 pub fn CloudflareIcon() -> impl IntoView {
     view! {
         <svg
