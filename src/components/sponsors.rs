@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
-use leptos::{component, view, Children, ChildrenFn, IntoView, SignalUpdate, View, ViewFn};
+use leptos::{component, view, Children, IntoView, View};
 
-use crate::components::{CardTitle, CloudflareIcon, Separator};
+use crate::components::{CloudflareIcon, Separator};
 
 #[component]
 pub fn Sponsors() -> impl IntoView {
@@ -14,6 +14,9 @@ pub fn Sponsors() -> impl IntoView {
             <section class="bg-orange-400/30 dark:bg-gray-800/50">
                 <div class="container mx-auto py-20 px-8">
                     <h2 class="text-3xl text-left mb-2">"Respaldados por"</h2>
+                    <h3 class="text-lg text-left mb-6">
+                        "Estas son algunas organizaciones que apoyan nuestro trabajo."
+                    </h3>
                     <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-8">
                         <SponsorCard
                             name="Nerdearla"
@@ -21,12 +24,12 @@ pub fn Sponsors() -> impl IntoView {
                             link="https://nerdear.la/es/"
                             description="El evento de tecnología más grande en LatinoAmerica ha estado presentando charlas de la comunidad por 4 años seguidos."
                         />
-                        <!-- <SponsorCard
+                        <SponsorCard
                             name="Shuttle"
                             link="https://shuttle.rs"
                             image="assets/sponsors/shuttle.webp"
                             description="La empresa #1 en PAAS para Rust ha estado hosteando voluntariamente algunos servicios de la comunidad como el Cangrebot y la API."
-                        /> -->
+                        />
                         <SponsorCard
                             name="Universidad Nur"
                             link="https://www.nur.edu"
@@ -39,18 +42,29 @@ pub fn Sponsors() -> impl IntoView {
                             name="Cloudflare"
                             link="https://www.cloudflare.com/es-es/"
                             component=CloudflareIcon().into_view()
-                            description="Cloudflare."
+                            description="Cloudflare patrocina nuestra infraestructura y servicios"
                         />
                         <SponsorCard
-                            name="Cloudflare"
-                            link="https://www.cloudflare.com/es-es/"
-                            component=CloudflareIcon().into_view()
-                            description="Cloudflare."
+                            name="CrabNebula"
+                            link="https://crabnebula.dev"
+                            image="assets/sponsors/crabnebula.png"
+                            description="Agilice el ciclo de vida de desarrollo de sus aplicaciones, facilitando más que nunca su empaquetado y envío."
+                        />
+                        <SponsorCard
+                            name="Tauri"
+                            link="https://tauri.app"
+                            image="assets/sponsors/tauri.png"
+                            description="Cree una aplicación optimizada, segura e independiente del frontend para su implantación multiplataforma."
                         />
                     </div>
-                    <h3 class="text-lg text-left mb-6">
-                        "Estas son algunas organizaciones que apoyan nuestro trabajo."
-                    </h3>
+                    <div class="w-full flex flex-col md:flex-row items-center justify-center gap-x-8 gap-y-8">
+                        <SponsorCard
+                            name="Cloudflare"
+                            link="https://heavyduty.builders"
+                            image="assets/sponsors/heavydutybuilder.png"
+                            description="Queremos unir fuerzas con más constructores como nosotros en el ecosistema Blockchain, llámalo DAO si quieres, pero queremos decir mucho más."
+                        />
+                    </div>
                 </div>
             </section>
         </div>
