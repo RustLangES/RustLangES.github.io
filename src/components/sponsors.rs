@@ -2,10 +2,7 @@ use std::collections::HashMap;
 
 use leptos::{component, view, Children, ChildrenFn, IntoView, SignalUpdate, View, ViewFn};
 
-use crate::components::{
-    icons::{ShuttleIcon, ShuttleIconProps, __ShuttleIcon},
-    CardTitle, CloudflareIcon, Separator,
-};
+use crate::components::{CardTitle, CloudflareIcon, Separator};
 
 #[component]
 pub fn Sponsors() -> impl IntoView {
@@ -24,16 +21,16 @@ pub fn Sponsors() -> impl IntoView {
                             link="https://nerdear.la/es/"
                             description="El evento de tecnología más grande en LatinoAmerica ha estado presentando charlas de la comunidad por 4 años seguidos."
                         />
-                        <SponsorCard
+                        <!-- <SponsorCard
                             name="Shuttle"
-                            link="https://nerdear.la/es/"
+                            link="https://shuttle.rs"
                             image="assets/sponsors/shuttle.webp"
                             description="La empresa #1 en PAAS para Rust ha estado hosteando voluntariamente algunos servicios de la comunidad como el Cangrebot y la API."
-                        />
+                        /> -->
                         <SponsorCard
                             name="Universidad Nur"
                             link="https://www.nur.edu"
-                            image="assets/sponsors/universidad_nur2.png"
+                            image="assets/sponsors/universidad_nur.png"
                             description="Esta universidad ha presentado un especial interés por Rust y la comunidad, nos han dado lugar a la divulgación con charlas y talleres."
                         />
                     </div>
