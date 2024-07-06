@@ -32,16 +32,11 @@
           }:
           let
             inherit (pkgs) lib;
-            # Toolchain with wasm32 target
-            toolchain = with fenix.packages.${system};
-              combine [
-                complete.cargo
-                complete.clippy
-                complete.rust-src
-                complete.rustc
-                complete.rustfmt
-                targets.wasm32-unknown-unknown.latest.rust-std
-              ];
+            # fenix: rustup replacement for reproducible builds
+            toolchain = fenix.${system}.fromToolchainFile {
+              file = ./rust-toolchain.toml;
+              sha256 = "sha256-opUgs6ckUQCyDxcB9Wy51pqhd0MPGHUVbwRKKPGiwZU=";
+            };
             # craneLib with wasm32 toolchain
             craneLib = crane.lib.${system}.overrideToolchain toolchain;
             # Node modules installer
@@ -114,7 +109,6 @@
                 nativeBuildInputs = [ pkgs.leptosfmt ];
               });
           in
-          rec
           {
             # nix flake check
             checks = {
@@ -145,7 +139,6 @@
               packages = with pkgs; [
                 nodejs
                 tailwindcss
-                nodePackages.tailwindcss
                 toolchain
                 trunk
                 cargo-leptos
