@@ -22,7 +22,7 @@ pub fn Sponsors() -> impl IntoView {
                             name="Cloudflare"
                             link="https://www.cloudflare.com/es-es/"
                             component=CloudflareIcon().into_view()
-                            description="Cloudflare patrocina nuestra infraestructura y servicios"
+                            description="Cloudflare confiando en nuestra Vision, Metas y Objetivos, se suma como nuestro primer Sponsor, auspiciando nuestra infraestructura y servicios"
                         />
                         <SponsorCard
                             name="Universidad Nur"
