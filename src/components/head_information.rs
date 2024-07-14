@@ -52,6 +52,7 @@ pub fn HeadInformation() -> impl IntoView {
             <Link rel="canonical" href=format!("https://rustlang-es.org{}", path)/>
             <script type="text/javascript">
                 (function(c,l,a,r,i,t,y){
+                    if ("localhost0.0.0.0::0192.168.0.1192.168.1.1".includes(document.location.hostname)) return;
                     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
