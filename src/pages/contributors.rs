@@ -1,6 +1,6 @@
+use leptos::{component, view, Fragment, IntoView};
 #[cfg(not(debug_assertions))]
-use leptos::{create_local_resource, SignalGet};
-use leptos::{error::Result, island, serde_json::json, view, Fragment, IntoView};
+use leptos::{create_local_resource, error::Result, serde_json::json, SignalGet};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
@@ -85,7 +85,7 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
     Ok(res)
 }
 
-#[cfg_attr(not(debug_assertions), island)]
+#[cfg_attr(not(debug_assertions), component)]
 #[cfg(not(debug_assertions))]
 pub fn Contributors() -> impl IntoView {
     let contributors_results = create_local_resource(move || (), |()| fetch_contributors());
@@ -127,7 +127,7 @@ pub fn Contributors() -> impl IntoView {
     }
 }
 
-#[cfg_attr(debug_assertions, island)]
+#[cfg_attr(debug_assertions, component)]
 #[cfg(debug_assertions)]
 pub fn Contributors() -> impl IntoView {
     let contributors = [Contributor {
