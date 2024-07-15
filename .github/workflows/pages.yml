@@ -38,6 +38,8 @@ jobs:
         run: |
           npm i
       - name: Build
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: cargo make build
       - name: Upload artifact
         uses: actions/upload-artifact@v4
