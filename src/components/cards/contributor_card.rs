@@ -10,7 +10,7 @@ pub fn ContributorCard(
     #[prop(into)] location: Option<String>,
     #[prop(into)] link: String,
     #[prop(into)] brand_src: String,
-    #[prop(into)] contributions: i32,
+    #[prop(into)] contributions: u64,
 ) -> impl IntoView {
     view! {
         <article class="hover:z-10">
