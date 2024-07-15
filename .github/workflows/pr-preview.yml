@@ -13,7 +13,7 @@
 #
 #################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
 
-name: Docs - Preview Deployment
+name: Preview Deployment
 on:
   pull_request_target:
     types:
@@ -44,10 +44,6 @@ jobs:
           submodules: "recursive"
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Declare some variables
-        shell: bash
-        run: |
-          echo "SHA_SHORT=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
 
       - name: Create comment
         id: comment
@@ -59,15 +55,13 @@ jobs:
             ## ⚡ Cloudflare Pages Deployment
             | Name | Status | Preview |
             | :--- | :----- | :------ |
-            | ${{env.BRANCH_NAME}}     |  🔨 Building ([Logs](${env.ACTION_RUN}))  | waiting... |
+            | ${{env.BRANCH_NAME}}     |  🔨 Building ([Logs](${{env.ACTION_RUN}}))  | waiting... |
 
       # Build Rust Page
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
           toolchain: nightly-2024-02-12
           target: wasm32-unknown-unknown
-          override: true
 
       - uses: Swatinem/rust-cache@v2
       - uses: davidB/rust-cargo-make@v1
@@ -84,7 +78,12 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=homepage --branch="${ env.BRANCH_NAME }"
+          command: pages deploy ./dist --project-name=homepage --branch="${{ env.BRANCH_NAME }}"
+
+      - name: Extract hash from CF url Deploy
+        run: |
+          url_hash=$(echo "${{ steps.deploy.outputs.deployment-url }}" | sed -n 's|https://\([^.]*\).homepage.*|\1|p')
+          echo "SHA_SHORT=$url_hash" >> $GITHUB_ENV
 
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v4
