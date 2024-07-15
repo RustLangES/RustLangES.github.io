@@ -18,8 +18,11 @@ leptos_router = { version = "0.6.9", features = ["nightly"] }
 wasm-bindgen = "=0.2.92"
 rand = "0.8.5"
 serde = { version = "1", features = ["derive"] }
-futures = "0.3.30"
-reqwasm = "0.5.0"
+reqwest = { version = "0.12.5", features = [
+    "json",
+    "http2",
+    "rustls-tls",
+], default-features = false }
 
 [features]
 csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
