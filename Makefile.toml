@@ -46,8 +46,14 @@ args = [
 ]
 
 [tasks.prebuild]
+condition = { env_not_set = ["IN_NIX_SHELL"] }
 command = "npx"
 args = ["tailwindcss", "-i", "./input.css", "-o", "./style/output.css"]
+
+[tasks.prebuild-nixdev]
+condition = { env_set = ["IN_NIX_SHELL"] }
+command = "tailwindcss"
+args = ["-i", "./input.css", "-o", "./style/output.css"]
 
 [tasks.build]
 dependencies = ["get-sitemap", "prebuild"]
@@ -58,11 +64,8 @@ install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
 command = "cargo"
 args = ["leptos", "serve", "-r"]
 
-[tasks.build-style]
-script.pre = "npx tailwind -i input.css -o style/output.css"
-
 [tasks.serve]
-dependencies = ["prebuild"]
+dependencies = ["prebuild", "prebuild-nixdev"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
