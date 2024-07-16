@@ -147,11 +147,14 @@ pub fn Contributors() -> impl IntoView {
     view! {
         <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
             <div class="flex flex-col gap-y-6 container mx-auto px-4">
-                <h2 class="text-3xl text-left mb-6">
+                <h2 class="text-3xl text-left mb-3">
                     <span class="font-work-sans font-light">"Nuestros "</span>
                     <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
                 </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
+                <p class="md:max-w-[800px] mb-2">Gracias al esfuerzo y dedicación de estos extraordinarios colaboradores open source, los servicios y páginas de nuestra comunidad se mantienen activos y en constante evolución. Su pasión por el código abierto y el desarrollo de Rust es el corazón que impulsa nuestro crecimiento.</p>
+                <p class="md:max-w-[800px] mb-2">Te invitamos a unirte a esta vibrante comunidad, explorar nuestros repositorios en <a href="https://github.com/RustLangES" class="underline" target="_blank">GitHub</a> y contribuir con tu talento.</p>
+                <p class="md:max-w-[800px]"><strong>Juntos</strong>, podemos seguir construyendo un ecosistema Rust más fuerte y accesible para todos.</p>
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
                     <Await
                         future=|| fetch_contributors()
                         let:contributors
