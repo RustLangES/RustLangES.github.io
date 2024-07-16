@@ -1,13 +1,11 @@
 use std::collections::HashMap;
 
-use leptos::{
-    component, create_local_resource, error::Result, island, serde_json::json, view, Fragment,
-    IntoView, SignalGet,
-};
+use leptos::{component, serde_json::json, view, Await, IntoView};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
 
+// Test this query on: https://docs.github.com/es/graphql/overview/explorer
 const GRAPH_QUERY: &str = r#"
 query OrganizationContributors {
   organization(login: "RustLangES") {
@@ -59,15 +57,18 @@ pub struct ContributionCollection {
     issues: u64,
     #[serde(rename = "totalRepositoryContributions")]
     repository: u64,
+    #[serde(skip)]
+    total: u64,
 }
 
-pub async fn fetch_contributors() -> Result<Vec<Contributor>> {
+pub async fn fetch_contributors() -> Vec<Contributor> {
     let request_body = json!({
         "query": GRAPH_QUERY,
     });
 
     let mut headers = reqwest::header::HeaderMap::new();
 
+    headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
     headers.append(
         "Authorization",
         format!("Bearer {}", env!("GITHUB_API_TOKEN"))
@@ -77,15 +78,22 @@ pub async fn fetch_contributors() -> Result<Vec<Contributor>> {
 
     let client = reqwest::ClientBuilder::new()
         .default_headers(headers)
-        .build()?;
+        .build()
+        .unwrap();
 
-    let res: leptos::serde_json::Value = client
+    let res = client
         .post("https://api.github.com/graphql")
         .json(&request_body)
         .send()
-        .await?
-        .json()
-        .await?;
+        .await
+        .unwrap()
+        .text()
+        .await
+        .unwrap();
+
+    leptos::logging::log!("Raw: {res:?}");
+
+    let res: leptos::serde_json::Value = leptos::serde_json::from_str(&res).unwrap();
 
     let mut res = res["data"]["organization"]["repositories"]["nodes"]
         .as_array()
@@ -101,8 +109,13 @@ pub async fn fetch_contributors() -> Result<Vec<Contributor>> {
                         o.contributions_collection.as_mut(),
                         c.contributions_collection.as_ref(),
                     ) {
-                        (Some(o), Some(c)) => o.commits += c.commits,
-                        (Some(o), None) => o.commits += 1,
+                        (Some(o), Some(c)) => {
+                            o.total = o.total.max(
+                                (o.commits + o.issues + o.pull_request + o.repository)
+                                    .max(c.commits + c.issues + c.pull_request + c.repository),
+                            )
+                        }
+                        (Some(o), None) => o.total = 1,
                         _ => {}
                     }
                 })
@@ -110,48 +123,27 @@ pub async fn fetch_contributors() -> Result<Vec<Contributor>> {
             prev
         })
         .into_values()
+        .filter(|c| {
+            c.contributions_collection
+                .as_ref()
+                .is_some_and(|cc| cc.total != 0)
+        })
         .collect::<Vec<_>>();
 
     res.sort_by_key(|a| {
         a.contributions_collection
             .as_ref()
-            .map(|c| c.repository)
+            .map(|c| c.total)
             .unwrap_or(1)
     });
 
     res.reverse();
 
-    Ok(res)
+    res
 }
 
-#[island]
+#[component]
 pub fn Contributors() -> impl IntoView {
-    let contributors = create_local_resource(move || (), |()| fetch_contributors());
-
-    let contributorMapper = |item: &Contributor| {
-        view! {
-            <ContributorCard
-                name=item.login.clone()
-                description=item.bio.clone()
-                link=item.url.clone()
-                brand_src=item.avatar_url.clone()
-                twitter=item.twitter_username.clone()
-                location=item.location.clone()
-                contributions=item.contributions_collection.as_ref().map(|c| c.commits).unwrap_or(1)
-            />
-        }
-    };
-
-    let contributors_view = move || {
-        let result = contributors
-            .get()?
-            .ok()?
-            .iter()
-            .map(contributorMapper)
-            .collect::<Fragment>();
-        Some(result.into_view())
-    };
-
     view! {
         <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
             <div class="flex flex-col gap-y-6 container mx-auto px-4">
@@ -160,7 +152,22 @@ pub fn Contributors() -> impl IntoView {
                     <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                    {contributors_view}
+                    <Await
+                        future=|| fetch_contributors()
+                        let:contributors
+                    >
+                        {contributors.iter().map(|item| view! {
+                            <ContributorCard
+                                name=item.login.clone()
+                                description=item.bio.clone()
+                                link=item.url.clone()
+                                brand_src=item.avatar_url.clone()
+                                twitter=item.twitter_username.clone()
+                                location=item.location.clone()
+                                contributions=item.contributions_collection.as_ref().map(|c| c.total).unwrap_or(1)
+                            />
+                        }).collect::<Vec<_>>()}
+                    </Await>
                 </div>
             </div>
         </section>
