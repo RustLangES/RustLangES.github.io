@@ -56,13 +56,13 @@ command = "tailwindcss"
 args = ["-i", "./input.css", "-o", "./style/output.css"]
 
 [tasks.build]
-dependencies = ["get-sitemap", "prebuild"]
+dependencies = ["get-sitemap", "prebuild", "prebuild-nixdev"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
 ], version = "0.2.16" }
 command = "cargo"
-args = ["leptos", "serve", "-r"]
+args = ["leptos", "build", "-r"]
 
 [tasks.serve]
 dependencies = ["prebuild", "prebuild-nixdev"]

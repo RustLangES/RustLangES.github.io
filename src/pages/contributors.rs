@@ -67,6 +67,7 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
 
     let res: leptos::serde_json::Value = client
         .post("https://api.github.com/graphql")
+        .json(&request_body)
         .send()
         .await?
         .json()
@@ -82,6 +83,8 @@ async fn fetch_contributors() -> Result<Vec<Contributor>> {
 
     res.sort_by_key(|a| a.contributions_collection.total_commit_contributions);
 
+    println!("Result of Github Request: {res:#?}");
+
     Ok(res)
 }
 
@@ -94,11 +97,11 @@ pub fn Contributors() -> impl IntoView {
             <ContributorCard
                 name=item.login.clone()
                 description=item.bio.clone()
-                link=item.html_url.clone()
+                link=item.url.clone()
                 brand_src=item.avatar_url.clone()
                 twitter=item.twitter_username.clone()
                 location=item.location.clone()
-                contributions=item.contributions.unwrap_or(1)
+                contributions=item.contributions_collection.total_commit_contributions
             />
         }
     };
