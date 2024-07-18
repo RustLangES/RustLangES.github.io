@@ -39,7 +39,7 @@ jobs:
           npm i
       - name: Build
         env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COLLABORATORS_API_TOKEN: ${{ secrets.COLLABORATORS_API_TOKEN }}
         run: cargo make build
       - name: Upload artifact
         uses: actions/upload-artifact@v4

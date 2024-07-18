@@ -71,7 +71,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
     headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
     headers.append(
         "Authorization",
-        format!("Bearer {}", env!("GITHUB_API_TOKEN"))
+        format!("Bearer {}", env!("COLLABORATORS_API_TOKEN"))
             .parse()
             .unwrap(),
     );
