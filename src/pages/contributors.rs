@@ -99,7 +99,11 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
         .as_array()
         .unwrap_or(&Vec::new())
         .iter()
-        .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
+        .filter_map(|repo| {
+            (!repo["collaborators"].is_null())
+                .then(|| repo["collaborators"]["nodes"].as_array().unwrap())
+        })
+        .flatten()
         .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
         .fold(HashMap::new(), |prev, c| {
             let mut prev = prev;
