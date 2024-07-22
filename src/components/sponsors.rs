@@ -6,6 +6,12 @@ use crate::components::{CloudflareIcon, Separator};
 
 #[component]
 pub fn Sponsors() -> impl IntoView {
+    let assets_folder = if cfg!(debug_assertions) {
+        "./assets"
+    } else {
+        "."
+    };
+
     view! {
         <div class="bg-orange-50 dark:bg-transparent">
             <div class="max-w-full overflow-clip">
@@ -27,13 +33,13 @@ pub fn Sponsors() -> impl IntoView {
                         <SponsorCard
                             name="Universidad Nur"
                             link="https://www.nur.edu"
-                            image="assets/sponsors/universidad_nur.png"
+                            image=format!("{assets_folder}/sponsors/universidad_nur.png")
                             description="Esta universidad ha presentado un especial interés por Rust y la comunidad, nos han dado lugar a la divulgación con charlas y talleres."
                         />
                         <SponsorCard
                             name="Heavy Duty Builders"
                             link="https://heavyduty.builders"
-                            image="assets/sponsors/heavydutybuilders.png"
+                            image=format!("{assets_folder}/sponsors/heavydutybuilders.png")
                             description="Queremos unir fuerzas con más constructores como nosotros en el ecosistema Blockchain, llámalo DAO si quieres, pero queremos decir mucho más."
                         />
                     </div>
@@ -41,13 +47,13 @@ pub fn Sponsors() -> impl IntoView {
                         <SponsorCard
                             name="CrabNebula"
                             link="https://crabnebula.dev"
-                            image="assets/sponsors/crabnebula.png"
+                            image=format!("{assets_folder}/sponsors/crabnebula.png")
                             description="Agilice el ciclo de vida de desarrollo de sus aplicaciones, facilitando más que nunca su empaquetado y envío."
                         />
                         <SponsorCard
                             name="Tauri"
                             link="https://tauri.app"
-                            image="assets/sponsors/tauri.png"
+                            image=format!("{assets_folder}/sponsors/tauri.png")
                             description="Cree una aplicación optimizada, segura e independiente del frontend para su implantación multiplataforma."
                         />
                     </div>
@@ -62,7 +68,7 @@ pub fn SponsorCard(
     #[prop(into)] name: &'static str,
     #[prop(into)] link: &'static str,
     #[prop(into)] description: &'static str,
-    #[prop(into, default=None)] image: Option<&'static str>,
+    #[prop(into, optional, default=None)] image: Option<String>,
     #[prop(into, default=None)] component: Option<View>,
     #[prop(into, default = "black")] image_bg_color: &'static str,
 ) -> impl IntoView {
