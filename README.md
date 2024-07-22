@@ -43,6 +43,12 @@ cargo install cargo-make
 cargo make serve
 ```
 
+For do a commit:
+```
+cargo install rusty-hook
+cargo install leptosfmt --version 0.1.13
+```
+
 ## Configura tu VSCode
 Agrega esto en tu `settings.json`
 
