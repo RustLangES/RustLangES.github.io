@@ -32,6 +32,7 @@ pub fn SloganButton() -> impl IntoView {
         "Clippy >>>>>>>>>> ESLint!",
         "Null Sucks",
         "rust.cmp(&cpp) == Ordering::Greater",
+        "El codigo entra por los dedos, a programar para aprender",
     ];
     let (slogan, set_slogan) =
         create_signal((*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
