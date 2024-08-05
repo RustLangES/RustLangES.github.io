@@ -56,6 +56,12 @@ pub fn Sponsors() -> impl IntoView {
                             image=format!("{assets_folder}/sponsors/tauri.png")
                             description="Cree una aplicación optimizada, segura e independiente del frontend para su implantación multiplataforma."
                         />
+                        <SponsorCard
+                            name="FrontendCafé"
+                            link="https://frontend.cafe"
+                            image=format!("{assets_folder}/sponsors/frontendcafe.webp")
+                            description="Somos una comunidad de personas interesadas en tecnología y ciencias informáticas, lenguajes de programación, diseño web, infraestructura y muchas ganas de aprender entre todos."
+                        />
                     </div>
                 </div>
             </section>
