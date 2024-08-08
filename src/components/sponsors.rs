@@ -19,7 +19,9 @@ pub fn Sponsors() -> impl IntoView {
             </div>
             <section class="bg-orange-400/30 dark:bg-gray-800/50">
                 <div class="container mx-auto py-20 px-8">
-                    <h2 class="text-3xl text-left mb-2">"Respaldados por"</h2>
+                    <h2 class="text-3xl text-left mb-2" id="respaldados-por">
+                        "Respaldados por"
+                    </h2>
                     <h3 class="text-lg text-left mb-6">
                         "Estas son algunas organizaciones que apoyan nuestro trabajo."
                     </h3>
