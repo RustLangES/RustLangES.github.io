@@ -1,4 +1,5 @@
 mod cloudflare;
+mod calendar_icon;
 mod discord_icon;
 mod github_icon;
 mod linkedin_icon;
@@ -9,6 +10,7 @@ mod telegram_icon;
 mod twitter_icon;
 mod web_icon;
 
+pub use calendar_icon::*;
 pub use cloudflare::*;
 pub use discord_icon::*;
 pub use github_icon::*;
