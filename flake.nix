@@ -33,15 +33,10 @@
           let
             inherit (pkgs) lib;
             # Toolchain with wasm32 target
-            toolchain = with fenix.packages.${system};
-              combine [
-                complete.cargo
-                complete.clippy
-                complete.rust-src
-                complete.rustc
-                complete.rustfmt
-                targets.wasm32-unknown-unknown.latest.rust-std
-              ];
+            toolchain = fenix.packages.${system}.fromToolchainFile {
+              file = ./rust-toolchain.toml;
+              sha256 = "sha256-2Af13p12CWwmppsdujS1EeCQ41u0rMzJmqNh7WQ2QKM=";
+            };
             # craneLib with wasm32 toolchain
             craneLib = crane.lib.${system}.overrideToolchain toolchain;
             # Node modules installer
