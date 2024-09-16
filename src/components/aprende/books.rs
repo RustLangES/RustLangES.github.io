@@ -92,7 +92,7 @@ pub fn Books() -> impl IntoView {
                     link="https://dotnet-book.rustlang-es.org"
                     link_text="Ir a la guía"
                 >
-                    <Badge color="yellow">"¡En Progreso!"</Badge>
+                    <Badge color="teal">"Completo"</Badge>
                 </Book>
             </div>
 
