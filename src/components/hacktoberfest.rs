@@ -20,8 +20,8 @@ pub fn Hacktoberfest() -> impl IntoView {
                         </span>
                     </h2>
                     <p class="text-center text-xl">
-                        "Este" <span class="text-orange-500 font-alfa-slab">" 28 de septiembre"</span>"
-                        , nuestro comunidad se une a este emocionante evento de programación. 
+                        "Este" <span class="text-orange-500 font-alfa-slab">" 5 de Octubre"</span>"
+                        , nuestra comunidad se une a este emocionante evento de programación. 
                         Aprovecha esta excelente oportunidad para contribuir a proyectos open-source, aprender nuevas habilidades 
                         y conectar con otros amantes del open-source."
                     </p>
@@ -45,7 +45,7 @@ pub fn Hacktoberfest() -> impl IntoView {
                             "Añade a tu calendario"
                         </ButtonLargeLink>
                         <ButtonLargeLink
-                            href="https://github.com/RustLangES"
+                            href="https://forms.rustlang-es.org/form/1"
                             shadow="box"
                             color="white"
                             size="big"
