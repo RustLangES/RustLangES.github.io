@@ -24,6 +24,8 @@ pub fn HeadInformation() -> impl IntoView {
             <Html lang="es"/>
             <Meta charset="utf-8"/>
             <Meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa"/>
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811"/>
             <Stylesheet id="fonts" href=format!("{}/fonts.css", assets_folder)/>
             <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
             <Title text="Rust Lang en Español"/>
