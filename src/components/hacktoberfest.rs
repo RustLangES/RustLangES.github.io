@@ -36,7 +36,7 @@ pub fn Hacktoberfest() -> impl IntoView {
                             "Participa"
                         </ButtonLink>
                         <ButtonLargeLink
-                            href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M2ZiMjhzbGNqbTZoMjNrZ2ZpbW4zYzk1ZGUgZGFmYzYyODQwMzRkOWJlZjNlMzFkZTNiZDE1OTI2OGQ5OGU4YzlhOGY2MjU3Mzk4NGI3MGE1OWQ2NjU3ZjVhZkBn&tmsrc=dafc6284034d9bef3e31de3bd159268d98e8c9a8f62573984b70a59d6657f5af%40group.calendar.google.com"
+                            href="https://calendar.app.google/SQZKr1D1eni9MgJL7"
                             shadow="box"
                             color="white"
                             size="big"
