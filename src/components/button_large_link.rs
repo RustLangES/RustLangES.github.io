@@ -2,7 +2,7 @@ use leptos::{component, view, Children, IntoView};
 use std::collections::HashMap;
 
 #[component]
-pub fn ButtonLink(
+pub fn ButtonLargeLink(
     #[prop(into)] href: String,
     #[prop(default = "primary")] color: &'static str,
     #[prop(default = "normal")] size: &'static str,
@@ -31,7 +31,7 @@ pub fn ButtonLink(
             href=href
             target="_blank"
             class=format!(
-                "tracking-wider text-center font-work-sans border border-black dark:border-white flex items-center px-4 transition w-fit gap-x-4 max-w-[10rem] sm:max-w-none {} {} {} {}",
+                "tracking-wider text-center font-work-sans border border-black dark:border-white flex items-center px-4 transition w-full max-w-full sm:max-w-[20rem] gap-x-4 {} {} {} {} whitespace-nowrap",
                 current_color,
                 current_size,
                 class,
@@ -43,3 +43,4 @@ pub fn ButtonLink(
         </a>
     }
 }
+

@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn LinkedinIcon(
     #[prop(default = 40)] size: u32,
-    #[prop(default = "fill-black dark:fill-[#bf8821]")] class: &'static str,
+    #[prop(default = "fill-current dark:fill-[#bf8821]")] class: &'static str,
 ) -> impl IntoView {
     view! {
         <svg
@@ -17,3 +17,4 @@ pub fn LinkedinIcon(
         </svg>
     }
 }
+
