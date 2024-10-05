@@ -132,7 +132,7 @@ fn Book(
                         view! {
                             <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
                                 <p class="font-work-sans text-black text-sm">
-                                    "ℹ️ Este Libro está marcado como incompleto"
+                                    "Este Libro está marcado como incompleto!"
                                 </p>
                             </div>
                         }

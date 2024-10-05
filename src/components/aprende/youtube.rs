@@ -68,7 +68,11 @@ fn YoutubeCard(
             <h3 class="font-semibold">{title}</h3>
             <p>{description}</p>
             <div class="flex justify-center items-center gap-2">
-                <ButtonLink href=format!("https://www.youtube.com/@{}", username) size="tiny" class="p-2">
+                <ButtonLink
+                    href=format!("https://www.youtube.com/@{}", username)
+                    size="tiny"
+                    class="p-2"
+                >
                     "Youtube"
                 </ButtonLink>
                 {if twitch {
