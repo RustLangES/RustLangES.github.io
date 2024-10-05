@@ -137,8 +137,8 @@ fn Book(
                             </div>
                         }
                     })}
-                <div class="mx-auto">
-                    <ButtonLink href=link size="big">
+                <div class="mx-auto text-center text-sm font-bold pt-14 sm:text-sm md:text-base lg:text-lg leading-tight">
+                    <ButtonLink href=link size="big" class="p-8">
                         {link_text}
                     </ButtonLink>
                 </div>
