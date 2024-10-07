@@ -132,13 +132,13 @@ fn Book(
                         view! {
                             <div class="flex gap-2 items-center bg-orange-200 rounded-md px-2 py-3">
                                 <p class="font-work-sans text-black text-sm">
-                                    "ℹ️ Este Libro está marcado como incompleto"
+                                    "Este Libro está marcado como incompleto!"
                                 </p>
                             </div>
                         }
                     })}
-                <div class="mx-auto">
-                    <ButtonLink href=link size="big">
+                <div class="mx-auto text-center text-sm font-bold pt-14 sm:text-sm md:text-base lg:text-lg leading-tight">
+                    <ButtonLink href=link size="big" class="p-8">
                         {link_text}
                     </ButtonLink>
                 </div>
