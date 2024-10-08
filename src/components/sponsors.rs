@@ -82,6 +82,12 @@ pub fn Sponsors() -> impl IntoView {
                             image=format!("{assets_folder}/sponsors/nerdearla.svg")
                             description="Evento de tecnología, cinco días con más de 150 charlas y talleres de tecnología, divulgación científica y una gran variedad de temas."
                         />
+                        <SponsorCard
+                            name="Testing Bolivia"
+                            link="https://testingbolivia.com"
+                            image=format!("{assets_folder}/sponsors/testingbolivia.svg")
+                            description="Evento de tecnología, Hablemos de QA y Testing, su importancia dentro de las empresas y mucho mas."
+                        />
                     </div>
                 </div>
             </section>
