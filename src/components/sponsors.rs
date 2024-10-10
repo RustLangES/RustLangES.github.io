@@ -83,9 +83,10 @@ pub fn Sponsors() -> impl IntoView {
                             description="Evento de tecnología, cinco días con más de 150 charlas y talleres de tecnología, divulgación científica y una gran variedad de temas."
                         />
                         <SponsorCard
+                            image_bg_color="none"
                             name="Testing Bolivia"
                             link="https://testingbolivia.com"
-                            image=format!("{assets_folder}/sponsors/testingbolivia.svg")
+                            image=format!("{assets_folder}/sponsors/testingbolivia.png")
                             description="Evento de tecnología, Hablemos de QA y Testing, su importancia dentro de las empresas y mucho mas."
                         />
                     </div>
@@ -109,6 +110,7 @@ pub fn SponsorCard(
     let colors = HashMap::from([
         ("white", "bg-white dark:bg-white text-black dark:text-black"),
         ("black", "bg-black text-white dark:text-black"),
+        ("none", "text-white dark:text-black"),
     ]);
     let current_color = (*colors.get(&image_bg_color).unwrap()).to_string();
 
