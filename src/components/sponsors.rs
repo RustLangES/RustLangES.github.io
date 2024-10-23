@@ -30,7 +30,7 @@ pub fn Sponsors() -> impl IntoView {
                             name="Cloudflare"
                             link="https://www.cloudflare.com/es-es/"
                             component=CloudflareIcon().into_view()
-                            description="Cloudflare confiando en nuestra Vision, Metas y Objetivos, se suma como nuestro primer Sponsor, auspiciando nuestra infraestructura y servicios"
+                            description="Cloudflare confiando en nuestra Visión, Metas y Objetivos, se suma como nuestro primer Sponsor, auspiciando nuestra infraestructura y servicios"
                         />
                         <SponsorCard
                             name="Universidad Nur"
@@ -87,7 +87,7 @@ pub fn Sponsors() -> impl IntoView {
                             name="Testing Bolivia"
                             link="https://testingbolivia.com"
                             image=format!("{assets_folder}/sponsors/testingbolivia.png")
-                            description="Evento de tecnología, Hablemos de QA y Testing, su importancia dentro de las empresas y mucho mas."
+                            description="Evento de tecnología, Hablemos de QA y Testing, su importancia dentro de las empresas y mucho más."
                         />
                     </div>
                 </div>
