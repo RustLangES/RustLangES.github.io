@@ -12,7 +12,7 @@ pub fn OurCommunities() -> impl IntoView {
             <div class="container mx-auto px-4">
                 <div class="flex flex-col items-center py-20 gap-y-6">
                     <h2 class="text-4xl text-center mb-4">
-                        <span class="font-work-sans font-light">"Unete a nuestra "</span>
+                        <span class="font-work-sans font-light">"Únete a nuestra "</span>
                         <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                     </h2>
                     <div class="flex items-center gap-x-12 gap-y-6 flex-col *:w-full sm:flex-row">
