@@ -6,45 +6,47 @@
 <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/RustLangES/RustLangES.github.io/gh-pages.yml?label=deploy" />
 </p>
 
-## Requisitos Generales
-antes de empezar tienes que instalar estos programas
+## Requisitos Generales 
+Antes de empezar es necesario tener estos programas
 - [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
 
-## Requisitos Windows >= 10
-- [BusyBox](https://busybox.net/)
-  - try: `scoop install busybox`
-  - try: `choco install busybox`
+## Requisitos Windows >= 10 
+-[BusyBox](https://busybox.net/)
+	- Usando scoop `scoop install busybox`
+	- Usando choco  `choco install busybox`
 
 ## Desarrollo
 > [!NOTE]
 > necesitas fetch git submodules para clonar los assets externos para el desarrollo 
 
-```sh
+Con estos comandos podrá empezar a desarrollar
+```bash
 git submodule update --init --recursive
-```
-
-Now you can run:
-
-```bash
 rustup toolchain install nightly
-```
-```bash
 rustup default nightly
-```
-```bash
 rustup target add wasm32-unknown-unknown
-```
-```bash
 npm install
-```
-```bash
 cargo install cargo-make
+```
+
+### Si usas nix
+
+> [!NOTE]
+> Asegúrate de tener los flakes activados.
+
+Si usas nix es bastante sencillo, solo necesitas este comando:
+```bash
+nix develop
+```
+
+Ahora podemos iniciar el servidor con:
+```bash
 cargo make serve
 ```
 
-For do a commit:
-```
+Para hacer un commit:
+```bash
 cargo install rusty-hook
 cargo install leptosfmt --version 0.1.13
 ```
@@ -76,10 +78,9 @@ Agrega esto en tu `settings.json`
 
 
 
-# Summary
+# Resumen
+Este proyecto utiliza una rama personalizada de Leptos para poder servir directamente el directorio de salida como un sitio web estático.
 
-This project uses a custom branch of Leptos to be able to directly serve the output directory as a static website.
-
-`cargo make serve` serves the div directory with watch mode and hot-reload enabled.
-`cargo make build` builds the project in release. The output will be in the `dist` directory and the command will not serve it, but quit instead.
-`cargo make fmt` formats with `rustfmt` and `leptosfmt`.
+`cargo make serve` sirve el directorio div con watch mode y hot-reload. 
+`cargo make build` compila el proyecto en release. La salida estará en el directorio `dist` y el comando no lo servirá, sino que se cerrará. 
+`cargo make fmt` formatea con `rustfmt` y `leptosfmt`.
