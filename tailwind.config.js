@@ -14,12 +14,8 @@ module.exports = {
         ...theme.screens,
       }),
       backgroundImage: (theme) => ({
-        "kaku-dev": "url('/assets/rustlangeshalloween.webp')",
-        "kaku": "url('/rustlangeshalloween.webp')",
-      }),
-      backgroundSize: (theme) => ({
-        'small': '12rem',
-        ...theme.backgroundSize,
+        "kaku-dev": "url('/assets/kaku.avif')",
+        "kaku": "url('/kaku.avif')",
       }),
       gridTemplateColumns:  (theme) => ({
         "divided": "2.5fr 1fr",
