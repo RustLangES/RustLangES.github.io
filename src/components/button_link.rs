@@ -15,7 +15,7 @@ pub fn ButtonLink(
             "primary",
             "bg-orange-200 dark:bg-transparent hover:bg-black hover:text-white",
         ),
-        ("white", "bg-orange-100 dark:bg-transparent hover:bg-black hover:text-white"),
+        ("white", "bg-orange-100 dark:bg-transparent hover:bg-black"),
     ]);
     let shadows = HashMap::from([
         ("drop", "drop-shadow-[4px_4px_0_rgba(0,0,0)] hover:drop-shadow-[0_0_0_rgba(0,0,0)]"),
