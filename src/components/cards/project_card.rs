@@ -50,7 +50,7 @@ pub fn ProjectCard(
                 <div class="flex gap-4 sm:gap-0 justify-around items-center mt-4">
                     <ButtonLink href=button_link size="tiny">
                         {if button_text.is_empty() {
-                            name.join("")
+                            name.join(" ")
                         } else {
                             button_text.to_string()
                         }}
