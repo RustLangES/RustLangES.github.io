@@ -42,7 +42,7 @@ alias = "format"
 command = "sh"
 args = [
     "-c",
-    "rm -f assets/sitemap.xml && wget -S -P assets https://github.com/ph4un00b/sitemap-rustico/releases/download/latest/sitemap.xml",
+    "rm -f assets/sitemap.xml && wget -S -P assets https://github.com/Phosphorus-M/sitemap-rustico/releases/download/latest/sitemap.xml",
 ]
 
 [tasks.prebuild]
