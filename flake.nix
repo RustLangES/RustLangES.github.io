@@ -1,5 +1,5 @@
 {
-  description = "Rust Lang Esp flake for NixOs users";
+  description = "Rust Lang Es flake for NixOs users";
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
