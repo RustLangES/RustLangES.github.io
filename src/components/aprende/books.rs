@@ -13,7 +13,7 @@ struct BookData {
     url_name: &'static str,
 }
 
-const OTHER_BOOKS: [BookData; 5] = [BookData {
+const OTHER_BOOKS: [BookData; 6] = [BookData {
         name: "Comprehensive Rust",
         description: "Curso gratuito y de código abierto desarrollado por el equipo de Android de Google. Cubre todos los aspectos de Rust, desde la sintaxis básica hasta temas avanzados. Se ven algunos temas especializados como Android, Chromium y Bare-metal.",
         english: false,
@@ -36,6 +36,14 @@ BookData {
     complete: true,
     url: "https://cxx.rs/",
     url_name: "Ir a “CXX”",
+},
+BookData {
+    name: "Curso de programación con Rust",
+    description: "Este libro te brinda la oportunidad de adentrarte en los fundamentos de la programación en Rust y de consolidar tus conocimientos mediante ejemplos y ejercicios prácticos, sentando así una base sólida para seguir desarrollándote como programador en este lenguaje.",
+    english: false,
+    complete: true,
+    url: "https://anayamultimedia.es/libro/manuales-imprescindibles/curso-de-programacion-con-rust-eliezer-lopez-9788441549098/",
+    url_name: "Ir a “Curso de programación con Rust”",
 }];
 
 #[component]
