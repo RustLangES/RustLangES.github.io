@@ -1,6 +1,19 @@
 {
-  "devDependencies": {
-    "mini-svg-data-uri": "^1.4.4",
-    "tailwindcss": "^3.4.1"
+  "name": "rustlanges-page",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "postinstall": "cp node_modules/@rustlanges/styles/dist/bundled.css bundled.css",
+    "dev": "cargo leptos watch --features development --hot-reload",
+    "build": "cargo leptos serve -r --split"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RustLangES/RustLangES.github.io/issues"
+  },
+  "homepage": "https://github.com/RustLangES/RustLangES.github.io",
+  "dependencies": {
+    "@rustlanges/styles": "^0.0.1"
   }
 }

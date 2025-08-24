@@ -1,18 +1,21 @@
+use leptos::config::LeptosOptions;
+use leptos::{logging::log, prelude::*};
 use leptos_actix::generate_route_list_with_ssg;
-use leptos_router::build_static_routes;
+use rust_lang_es::app::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    use leptos::*;
-    use rust_lang_es::app::*;
-
-    let conf = get_configuration(None).await.unwrap();
+    let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
-    let (routes, static_data_map) = generate_route_list_with_ssg(App);
+    // Generate the list of routes in your Leptos App
+    let (routes, static_routes) = generate_route_list_with_ssg({
+        let leptos_options = leptos_options.clone();
+        move || shell(leptos_options.clone())
+    });
 
-    build_static_routes(&leptos_options, App, &routes, &static_data_map)
-        .await
-        .unwrap();
+    static_routes.generate(&leptos_options).await;
+
+    log!("{routes:?}");
 
     #[cfg(feature = "development")]
     {
@@ -21,10 +24,10 @@ async fn main() -> std::io::Result<()> {
         use leptos_actix::LeptosRoutes;
 
         let addr = leptos_options.site_addr;
-        println!("listening on http://{}", &addr);
+        println!("listening on http://{addr}");
 
         return actix_web::HttpServer::new(move || {
-            let site_root = &leptos_options.site_root;
+            let site_root = leptos_options.site_root.as_ref();
 
             actix_web::App::new()
                 .route("/api/{tail:.*}", leptos_actix::handle_server_fns())
@@ -34,7 +37,11 @@ async fn main() -> std::io::Result<()> {
                 .service(Files::new("/assets", site_root))
                 // serve the favicon from /favicon.ico
                 .service(favicon)
-                .leptos_routes(leptos_options.to_owned(), routes.to_owned(), App)
+                .app_data(leptos_options.clone())
+                .leptos_routes(routes.to_owned(), {
+                    let leptos_options = leptos_options.clone();
+                    move || shell(leptos_options.clone())
+                })
                 .app_data(web::Data::new(leptos_options.to_owned()))
         })
         .bind(&addr)?
@@ -47,7 +54,7 @@ async fn main() -> std::io::Result<()> {
 
 #[actix_web::get("favicon.ico")]
 async fn favicon(
-    leptos_options: actix_web::web::Data<leptos::LeptosOptions>,
+    leptos_options: actix_web::web::Data<LeptosOptions>,
 ) -> actix_web::Result<actix_files::NamedFile> {
     let leptos_options = leptos_options.into_inner();
     let site_root = &leptos_options.site_root;

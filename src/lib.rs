@@ -1,7 +1,5 @@
 pub mod app;
 pub mod components;
-#[rustfmt::skip]
-pub mod extras;
 pub mod models;
 pub mod pages;
 
@@ -36,12 +34,4 @@ macro_rules! warn {
 #[macro_export]
 macro_rules! error {
     ($($t:tt)*) => (error(format_args!($($t)*).to_string()))
-}
-
-#[wasm_bindgen]
-pub fn hydrate() {
-    #[cfg(target_arch = "wasm32")]
-    std::panic::set_hook(Box::new(|info: &std::panic::PanicInfo| error!("{info}")));
-
-    leptos::leptos_dom::HydrationCtx::stop_hydrating();
 }

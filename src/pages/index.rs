@@ -1,16 +1,13 @@
-use leptos::{component, view, IntoView};
+use leptos::prelude::*;
+use rustlanges_components::badge::{Type, Variant};
 
-use crate::components::{CommunityProjects, Hero, OtherCommunities, OurCommunities, Sponsors};
 
 #[component]
 pub fn Index() -> impl IntoView {
+    let (gcount , wcount) = signal(20);
     view! {
         <div>
-            <Hero/>
-            <OurCommunities/>
-            <CommunityProjects show_more=true/>
-            <OtherCommunities show_more=true/>
-            <Sponsors/>
+            <rustlanges_components::badge::Badge count=gcount variant=Variant::Reading r#type=Type::Text/>
         </div>
     }
 }

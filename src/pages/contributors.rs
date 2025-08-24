@@ -1,9 +1,7 @@
 use std::collections::HashMap;
 
-use leptos::{component, serde_json::json, view, Await, IntoView};
+use leptos::prelude::*;
 use serde::{Deserialize, Serialize};
-
-use crate::components::ContributorCard;
 
 // Test this query on: https://docs.github.com/es/graphql/overview/explorer
 const GRAPH_QUERY: &str = r#"
@@ -62,19 +60,14 @@ pub struct ContributionCollection {
 }
 
 pub async fn fetch_contributors() -> Vec<Contributor> {
-    let request_body = json!({
-        "query": GRAPH_QUERY,
-    });
+    // let request_body = json!({
+    //     "query": GRAPH_QUERY,
+    // });
 
     let mut headers = reqwest::header::HeaderMap::new();
 
     headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
-    headers.append(
-        "Authorization",
-        format!("Bearer {}", env!("COLLABORATORS_API_TOKEN"))
-            .parse()
-            .unwrap(),
-    );
+    headers.append("Authorization", "Bearer {}".parse().unwrap());
 
     let client = reqwest::ClientBuilder::new()
         .default_headers(headers)
@@ -83,7 +76,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
 
     let res = client
         .post("https://api.github.com/graphql")
-        .json(&request_body)
+        // .json(&request_body)
         .send()
         .await
         .unwrap()
@@ -149,50 +142,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
 #[component]
 pub fn Contributors() -> impl IntoView {
     view! {
-        <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
-            <div class="flex flex-col gap-y-6 container mx-auto px-4">
-                <h2 class="text-3xl text-left mb-3">
-                    <span class="font-work-sans font-light">"Nuestros "</span>
-                    <span class="font-alfa-slab text-orange-500">"Colaboradores"</span>
-                </h2>
-                <p class="md:max-w-[800px] mb-2">
-                    Gracias al esfuerzo y dedicación de estos extraordinarios colaboradores open source, los servicios y páginas de nuestra comunidad se mantienen activos y en constante evolución. Su pasión por el código abierto y el desarrollo de Rust es el corazón que impulsa nuestro crecimiento.
-                </p>
-                <p class="md:max-w-[800px] mb-2">
-                    Te invitamos a unirte a esta vibrante comunidad, explorar nuestros repositorios en
-                    <a href="https://github.com/RustLangES" class="underline" target="_blank">
-                        GitHub
-                    </a> y contribuir con tu talento.
-                </p>
-                <p class="md:max-w-[800px]">
-                    <strong>Juntos</strong>
-                    , podemos seguir construyendo un ecosistema Rust más fuerte y accesible para todos.
-                </p>
-                <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                    <Await future=|| fetch_contributors() let:contributors>
-                        {contributors
-                            .iter()
-                            .map(|item| {
-                                view! {
-                                    <ContributorCard
-                                        name=item.login.clone()
-                                        description=item.bio.clone()
-                                        link=item.url.clone()
-                                        brand_src=item.avatar_url.clone()
-                                        twitter=item.twitter_username.clone()
-                                        location=item.location.clone()
-                                        contributions=item
-                                            .contributions_collection
-                                            .as_ref()
-                                            .map(|c| c.total)
-                                            .unwrap_or(1)
-                                    />
-                                }
-                            })
-                            .collect::<Vec<_>>()}
-                    </Await>
-                </div>
-            </div>
+        <section>
         </section>
     }
 }

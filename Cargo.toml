@@ -9,24 +9,20 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 actix-files = { version = "0.6", optional = true }
 actix-web = { version = "4", features = ["macros"], optional = true }
-leptos = { version = "0.6.9", features = ["nightly", "experimental-islands"] }
-leptos_meta = { version = "0.6.9", features = ["nightly"] }
-leptos_actix = { version = "0.6.9", features = [
-    "experimental-islands",
-], optional = true }
-leptos_router = { version = "0.6.9", features = ["nightly"] }
-wasm-bindgen = "=0.2.92"
-rand = "0.8.5"
+leptos = { version = "0.8", features = ["nightly", "islands"] }
+leptos_meta = "0.8"
+leptos_actix = { version = "0.8", optional = true }
+leptos_router = { version = "0.8", features = ["nightly"] }
+wasm-bindgen = "0.2"
 serde = { version = "1", features = ["derive"] }
-reqwest = { version = "0.12.5", features = [
+reqwest = { version = "0.12", features = [
     "json",
     "http2",
     "rustls-tls",
 ], default-features = false }
+rustlanges-components = { version = "0.1.0", features = ["leptos"] }
 
 [features]
-csr = ["leptos/csr", "leptos_meta/csr", "leptos_router/csr"]
-hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
 ssr = [
     "dep:actix-files",
     "dep:actix-web",
@@ -49,8 +45,8 @@ panic = "abort"
 rusty-hook = "^0.11.2"
 
 [build-dependencies]
-toml = "0.8"
-serde = { version = "1.0.188", features = ["derive"] }
+toml = "0.9"
+serde = { version = "1", features = ["derive"] }
 
 [package.metadata.leptos]
 # The name used by wasm-bindgen/cargo-leptos for the JS/WASM bundle. Defaults to the crate name   
@@ -61,7 +57,7 @@ site-root = "dist"
 # Defaults to pkg	
 site-pkg-dir = "pkg"
 # [Optional] The source CSS file. If it ends with .sass or .scss then it will be compiled by dart-sass into CSS. The CSS is optimized by Lightning CSS before being written to <site-root>/<site-pkg>/app.css
-style-file = "style/output.css"
+style-file = "bundled.css"
 # Assets source dir. All files found here will be copied and synchronized to site-root.
 # The assets-dir cannot have a sub directory with the same name/path as site-pkg-dir.
 #
@@ -86,16 +82,6 @@ env = "DEV"
 #
 # Optional. Can be over-ridden with the command line parameter --bin-features
 bin-features = ["ssr"]
-# The tailwind input file.
-#
-# Optional, Activates the tailwind build
-tailwind-input-file = "input.css"
-
-# The tailwind config file.
-#
-# Optional, defaults to "tailwind.config.js" which if is not present
-# is generated for you
-tailwind-config-file = "tailwind.config.js"
 
 # If the --no-default-features flag should be used when compiling the bin target
 #
@@ -105,7 +91,7 @@ bin-default-features = false
 # The features to use when compiling the lib target
 #
 # Optional. Can be over-ridden with the command line parameter --lib-features
-lib-features = ["hydrate"]
+lib-features = []
 
 # If the --no-default-features flag should be used when compiling the lib target
 #
