@@ -1,17 +1,10 @@
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Link, Meta, MetaTags, Stylesheet, Title};
-use leptos_router::components::{ParentRoute, Route, Router, Routes};
-use leptos_router::hooks::use_location;
+use leptos_meta::{provide_meta_context, MetaTags};
+use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
 
-use crate::components::HeadInformation;
+use crate::components::{HeadInformation, Header};
 use crate::pages::{Aprende, Communities, Contributors, Index, Projects};
-
-#[cfg(debug_assertions)]
-const ASSETS_FOLDER: &str = "./assets";
-
-#[cfg(not(debug_assertions))]
-const ASSTES_FOLDERS: &str = ".";
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -55,7 +48,7 @@ pub fn App() -> impl IntoView {
             //     "bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed {} dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]",
             //     bg_in_dark_mode,
             // )/>
-            // <Header/>
+            <Header />
             <main>
                 <Routes fallback=|| "Not found.">
                    <Route

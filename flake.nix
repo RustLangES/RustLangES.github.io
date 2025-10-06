@@ -22,6 +22,7 @@
             rustToolchain
             
             # WASM tools
+            tailwindcss_4
             wasm-bindgen-cli
             
             # Leptos specific tools

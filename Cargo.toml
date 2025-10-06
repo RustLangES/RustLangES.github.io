@@ -82,6 +82,10 @@ env = "DEV"
 #
 # Optional. Can be over-ridden with the command line parameter --bin-features
 bin-features = ["ssr"]
+# The tailwind input file.
+#
+# Optional, Activates the tailwind build
+tailwind-input-file = "input.css"
 
 # If the --no-default-features flag should be used when compiling the bin target
 #
