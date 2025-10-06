@@ -20,9 +20,14 @@ reqwest = { version = "0.12", features = [
     "http2",
     "rustls-tls",
 ], default-features = false }
-rustlanges-components = { version = "0.1.0", features = ["leptos"] }
+# rustlanges-components = { version = "0.1.0", features = ["leptos"] }
+rustlanges-components = { path="../design-system-components", features = ["leptos"] }
+leptos-use = { version = "0.16.3", features = [] }
+console_error_panic_hook = { version = "0.1.7", optional = true }
+# leptos_theme = "0.1.2"
 
 [features]
+hydrate = ["leptos/hydrate", "dep:console_error_panic_hook"]
 ssr = [
     "dep:actix-files",
     "dep:actix-web",
@@ -30,6 +35,7 @@ ssr = [
     "leptos/ssr",
     "leptos_meta/ssr",
     "leptos_router/ssr",
+    "leptos-use/ssr"
 ]
 development = []
 
@@ -57,7 +63,7 @@ site-root = "dist"
 # Defaults to pkg	
 site-pkg-dir = "pkg"
 # [Optional] The source CSS file. If it ends with .sass or .scss then it will be compiled by dart-sass into CSS. The CSS is optimized by Lightning CSS before being written to <site-root>/<site-pkg>/app.css
-style-file = "bundled.css"
+# style-file = "input.css"
 # Assets source dir. All files found here will be copied and synchronized to site-root.
 # The assets-dir cannot have a sub directory with the same name/path as site-pkg-dir.
 #
@@ -95,7 +101,7 @@ bin-default-features = false
 # The features to use when compiling the lib target
 #
 # Optional. Can be over-ridden with the command line parameter --lib-features
-lib-features = []
+lib-features = ["hydrate"]
 
 # If the --no-default-features flag should be used when compiling the lib target
 #

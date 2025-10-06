@@ -1,5 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+    font-family: "Akira";
+    font-weight: bold;
+    src: url("/assets/new/fonts/Akira Bold.otf") format("opentype");
+}
+
+@import "tailwindcss";
 
 @import "@rustlanges/styles";
+
+.text-akira {
+    font-family: "Akira", sans-serif;
+}
+
+.rustlang-es-background {
+    background: url("/assets/new/background/hero-bg.svg") lightgray 50% / cover no-repeat;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
