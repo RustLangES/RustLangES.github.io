@@ -6,6 +6,10 @@
 <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/RustLangES/RustLangES.github.io/gh-pages.yml?label=deploy" />
 </p>
 
+> [!CAUTION]
+> Esta pagina no se publicará hasta que el nuevo diseño se encuentre listo
+> https://www.figma.com/design/S9yCZSaZ9q54XSojWNhJft/Rust-Lang-ES?node-id=0-1&p=f&t=Cn6Q0QzGflLYCOgo-0
+
 ## Requisitos Generales 
 Antes de empezar es necesario tener estos programas
 - [Rust](https://rust-lang.org/tools/install)
