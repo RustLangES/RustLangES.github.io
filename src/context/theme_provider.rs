@@ -6,7 +6,7 @@ use leptos::{
     server::codee::string::JsonSerdeCodec,
     *,
 };
-use leptos_use::{storage::use_local_storage, use_media_query, use_preferred_dark};
+use leptos_use::{storage::use_local_storage, use_media_query, use_preferred_dark, watch_with_options, WatchOptions};
 use serde::{Deserialize, Serialize};
 /// Defines an enumeration for UI themes.
 ///
@@ -48,37 +48,22 @@ const STORAGE_KEY: &'static str = "theme";
 /// * `theme` - The current theme (Light, Dark, System)
 /// * `prefers_dark` - Boolean flag indicating whether the system prefers a dark theme.
 fn update_css_for_theme(theme: Theme, prefers_dark: bool, use_data_attribute: bool) {
-    let document = web_sys::window().unwrap().document().unwrap();
-    let html_element = document.document_element().unwrap();
+    let document = web_sys::window().expect("should get window").document().expect("document should be available");
+    let html_element = document.document_element().expect("document should have a root element");
 
     // TODO: Change the theme following the system preference when Theme::System is selected
     if use_data_attribute {
         match theme {
             Theme::Light => {
-                html_element.set_attribute("data-theme", "light").unwrap();
+                html_element.set_attribute("data-theme", "light").expect("should set data-theme to light");
             }
             Theme::Dark => {
-                html_element.set_attribute("data-theme", "dark").unwrap();
+                html_element.set_attribute("data-theme", "dark").expect("should set data-theme to dark");
             }
             Theme::System => match prefers_dark {
-                true => html_element.set_attribute("data-theme", "dark").unwrap(),
-                false => html_element.set_attribute("data-theme", "light").unwrap(),
+                true => html_element.set_attribute("data-theme", "dark").expect("should set data-theme to dark"),
+                false => html_element.set_attribute("data-theme", "light").expect("should set data-theme to light"),
             },
-        }
-    } else {
-        match theme {
-            Theme::Light => {
-                html_element.class_list().remove_1("dark").unwrap();
-            }
-            Theme::Dark => {
-                html_element.class_list().add_1("dark").unwrap();
-            }
-            _ => {
-                html_element.class_list().remove_1("dark").unwrap();
-            } // Theme::System => match prefers_dark {
-              //     true => html_element.class_list().add_1("dark").unwrap(),
-              //     false => html_element.class_list().remove_1("dark").unwrap(),
-              // },
         }
     }
 }
@@ -110,19 +95,31 @@ pub fn ThemeProvider(children: Children) -> impl IntoView {
     let (theme_storage_state, set_theme_storage_state, _) =
         use_local_storage::<Theme, JsonSerdeCodec>(STORAGE_KEY);
 
-    let theme_state = RwSignal::new(theme_storage_state());
+    let theme_state = RwSignal::new(theme_storage_state.read_untracked().clone());
     provide_context(theme_state.clone());
 
     // Update local storage and CSS whenever the theme state changes
     Effect::new(move |_| {
-        let current_theme = theme_state.get();
-        _ = move || set_theme_storage_state.set(current_theme.clone());
+        let current_theme = theme_state();
+        set_theme_storage_state.set(current_theme.clone());
+        console_log(&format!("Theme changed to: {:?}", current_theme));
         update_css_for_theme(
             current_theme,
             is_dark_preferred_signal(),
             use_data_attribute,
         )
     });
+
+    Effect::watch(
+        move || is_dark_preferred_signal(), 
+        move | is_dark_preferred_signal, _, _| {
+            console_log(&format!("Theme changed to: {:?}", is_dark_preferred_signal));
+            // update_css_for_theme(
+            //     theme_state(),
+            //     is_dark_preferred_signal(),
+            //     use_data_attribute,
+            // );
+        }, true);
 
     view! { {children()} }
 }

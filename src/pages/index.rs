@@ -6,7 +6,7 @@ use rustlanges_components::{
 };
 
 use crate::components::{
-    community_project::CommunityProjectSection, our_community::OurCommunitySection,
+    community_project::CommunityProjectSection, our_community::OurCommunitySection, our_sponsors::OurSponsorsSection,
 };
 
 #[component]
@@ -24,12 +24,8 @@ pub fn Index() -> impl IntoView {
                         </p>
                     </div>
                     <div class="flex gap-4">
-                        <Button variant=ButtonVariant::Secondary on_click=|_| {}>
-                            Aprender
-                        </Button>
-                        <Button variant=ButtonVariant::Primary on_click=|_| {}>
-                            "Súmate"
-                        </Button>
+                        <Button variant=ButtonVariant::Secondary on_click=|_| {} label="Aprender" />
+                        <Button variant=ButtonVariant::Primary on_click=|_| {} label="Súmate" />
                     </div>
                 </div>
                 <div>
@@ -39,5 +35,6 @@ pub fn Index() -> impl IntoView {
         </div>
         <OurCommunitySection />
         <CommunityProjectSection />
+        <OurSponsorsSection />
     }
 }

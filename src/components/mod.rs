@@ -12,3 +12,5 @@ pub use icons::{
 pub mod community_project;
 pub mod our_community;
 pub mod project_card;
+pub mod our_sponsors;
+pub mod sponsor_block;

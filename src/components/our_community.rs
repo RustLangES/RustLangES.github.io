@@ -39,9 +39,7 @@ pub fn OurCommunitySection() -> impl IntoView {
                     </Card>
                 </div>
 
-                <Button variant=Variant::Primary on_click=move |_| {}>
-                    Conócenos
-                </Button>
+                <Button variant=Variant::Primary on_click=move |_| {} label="Conócenos" />
             </div>
         </section>
     }

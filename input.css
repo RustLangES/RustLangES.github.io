@@ -54,6 +54,10 @@
     z-index: -1;
 }
 
+.shadow-frontendcafe{
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+}
+
 
 /* .project-card-badge {
     border-width: 0 25px 25px 25px;

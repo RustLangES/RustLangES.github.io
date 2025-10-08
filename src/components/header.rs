@@ -78,15 +78,9 @@ pub fn Header() -> impl IntoView {
                     <a href="https://blog.rustlang-es.org">Blog</a>
                 </div>
                 <div class="flex gap-[16px] items-center">
-                    <Button variant=Variant::Secondary on_click=|_| {}>
-                        El Libro
-                    </Button>
-                    <Button variant=Variant::Primary on_click=move |_| console_log("hola")>
-                        "¡Únete!"
-                    </Button>
-                    <Button variant=Variant::Icon on_click=handler>
-                        {theme_switcher_icon}
-                    </Button>
+                    <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
+                    <Button variant=Variant::Primary label="¡Únete!" on_click=move |_| console_log("hola") />
+                    <Button variant=Variant::Icon on_click=handler icon=theme_switcher_icon() />
                 </div>
             </div>
         </header>

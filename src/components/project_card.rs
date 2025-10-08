@@ -9,7 +9,7 @@ pub fn ProjectCard(
     #[prop(into)] description: &'static str,
     #[prop()] users: Vec<GithubUser>,
     #[prop()] label: AnyView,
-    #[prop(optional, default="")] badge_color: &'static str
+    #[prop(optional, default = "")] badge_color: &'static str,
 ) -> impl IntoView {
     let avatars = users
         .iter()
@@ -21,12 +21,9 @@ pub fn ProjectCard(
 
     let badge_classes = format!("flex w-fit project-card-badge ml-6  px-5 pb-1 pt-2 items-center justify-center gap-2 text-black border-2 border-b-0 border-black before:bg-orange-400 {badge_color}");
 
-
     view! {
         <div>
-            <div class=badge_classes>
-                {label}
-            </div>
+            <div class=badge_classes>{label}</div>
             <Card class="relative max-w-xs lg:max-w-md min-h-96 flex flex-col justify-between ">
                 <div id="card-body-1">
                     <h3 class="text-h4">"Rust para C#/.NET Developers"</h3>
@@ -41,6 +38,7 @@ pub fn ProjectCard(
                     </div>
 
                     <div class="rounded-full border border-white p-1">
+                    // <Button>
                         <Github size=40 as u32 />
                     </div>
                 </div>
