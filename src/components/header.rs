@@ -79,7 +79,11 @@ pub fn Header() -> impl IntoView {
                 </div>
                 <div class="flex gap-[16px] items-center">
                     <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
-                    <Button variant=Variant::Primary label="¡Únete!" on_click=move |_| console_log("hola") />
+                    <Button
+                        variant=Variant::Primary
+                        label="¡Únete!"
+                        on_click=move |_| console_log("hola")
+                    />
                     <Button variant=Variant::Icon on_click=handler icon=theme_switcher_icon() />
                 </div>
             </div>

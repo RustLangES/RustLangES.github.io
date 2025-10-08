@@ -61,8 +61,12 @@ pub fn CommunityProjectSection() -> impl IntoView {
                     />
                 </div>
 
-                <Button variant=Variant::Secondary label="Ver proyectos" icon=view!{<Github />}.into_any() on_click=move |_| {}>
-                </Button>
+                <Button
+                    variant=Variant::Secondary
+                    label="Ver proyectos"
+                    icon=view! { <Github /> }.into_any()
+                    on_click=move |_| {}
+                ></Button>
             </div>
         </section>
     }

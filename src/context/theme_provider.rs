@@ -6,7 +6,10 @@ use leptos::{
     server::codee::string::JsonSerdeCodec,
     *,
 };
-use leptos_use::{storage::use_local_storage, use_media_query, use_preferred_dark, watch_with_options, WatchOptions};
+use leptos_use::{
+    storage::use_local_storage, use_media_query, use_preferred_dark, watch_with_options,
+    WatchOptions,
+};
 use serde::{Deserialize, Serialize};
 /// Defines an enumeration for UI themes.
 ///
@@ -48,21 +51,34 @@ const STORAGE_KEY: &'static str = "theme";
 /// * `theme` - The current theme (Light, Dark, System)
 /// * `prefers_dark` - Boolean flag indicating whether the system prefers a dark theme.
 fn update_css_for_theme(theme: Theme, prefers_dark: bool, use_data_attribute: bool) {
-    let document = web_sys::window().expect("should get window").document().expect("document should be available");
-    let html_element = document.document_element().expect("document should have a root element");
+    let document = web_sys::window()
+        .expect("should get window")
+        .document()
+        .expect("document should be available");
+    let html_element = document
+        .document_element()
+        .expect("document should have a root element");
 
     // TODO: Change the theme following the system preference when Theme::System is selected
     if use_data_attribute {
         match theme {
             Theme::Light => {
-                html_element.set_attribute("data-theme", "light").expect("should set data-theme to light");
+                html_element
+                    .set_attribute("data-theme", "light")
+                    .expect("should set data-theme to light");
             }
             Theme::Dark => {
-                html_element.set_attribute("data-theme", "dark").expect("should set data-theme to dark");
+                html_element
+                    .set_attribute("data-theme", "dark")
+                    .expect("should set data-theme to dark");
             }
             Theme::System => match prefers_dark {
-                true => html_element.set_attribute("data-theme", "dark").expect("should set data-theme to dark"),
-                false => html_element.set_attribute("data-theme", "light").expect("should set data-theme to light"),
+                true => html_element
+                    .set_attribute("data-theme", "dark")
+                    .expect("should set data-theme to dark"),
+                false => html_element
+                    .set_attribute("data-theme", "light")
+                    .expect("should set data-theme to light"),
             },
         }
     }
@@ -111,15 +127,17 @@ pub fn ThemeProvider(children: Children) -> impl IntoView {
     });
 
     Effect::watch(
-        move || is_dark_preferred_signal(), 
-        move | is_dark_preferred_signal, _, _| {
+        move || is_dark_preferred_signal(),
+        move |is_dark_preferred_signal, _, _| {
             console_log(&format!("Theme changed to: {:?}", is_dark_preferred_signal));
             // update_css_for_theme(
             //     theme_state(),
             //     is_dark_preferred_signal(),
             //     use_data_attribute,
             // );
-        }, true);
+        },
+        true,
+    );
 
     view! { {children()} }
 }

@@ -1605,6 +1605,8 @@ dependencies = [
 [[package]]
 name = "leptos-components"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2c46b5eed01396122481a5e85a01272160683382a41872daeab9ed2db2245ce"
 dependencies = [
  "leptos",
  "rustlanges-components-core",
@@ -2529,6 +2531,8 @@ dependencies = [
 [[package]]
 name = "rustlanges-components"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34a4aaefa229844c97f5527395c6d521115c7b91a73c93cc732bbff06785c230"
 dependencies = [
  "leptos-components",
  "rustlanges-components-core",
@@ -2537,6 +2541,8 @@ dependencies = [
 [[package]]
 name = "rustlanges-components-core"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e98f49fbb67dbbb1919697557de3fc50db66ebf03c3201b853e8458398d9edb1"
 dependencies = [
  "constcat",
 ]

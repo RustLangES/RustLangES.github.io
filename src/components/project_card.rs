@@ -38,7 +38,7 @@ pub fn ProjectCard(
                     </div>
 
                     <div class="rounded-full border border-white p-1">
-                    // <Button>
+                        // <Button>
                         <Github size=40 as u32 />
                     </div>
                 </div>

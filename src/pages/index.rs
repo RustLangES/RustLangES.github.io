@@ -6,7 +6,8 @@ use rustlanges_components::{
 };
 
 use crate::components::{
-    community_project::CommunityProjectSection, our_community::OurCommunitySection, our_sponsors::OurSponsorsSection,
+    community_project::CommunityProjectSection, our_community::OurCommunitySection,
+    our_sponsors::OurSponsorsSection,
 };
 
 #[component]
