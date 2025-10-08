@@ -65,7 +65,7 @@ dependencies = ["prebuild"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.2.42" }
+], version = "0.2.45" }
 command = "cargo"
 env = { LEPTOS_TAILWIND_VERSION="v4.1.14" }
 args = ["leptos", "watch", "--features", "development", "--features", "ssr", "--hot-reload"]

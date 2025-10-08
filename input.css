@@ -12,8 +12,63 @@
     font-family: "Akira", sans-serif;
 }
 
-.rustlang-es-background {
-    background: url("/assets/new/background/hero-bg.svg") lightgray 50% / cover no-repeat;
+.bg-ferris-left {
+    background-image: url("/assets/new/background/ferris-dark-left.svg");
+    background-size: cover;
 }
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+.bg-ferris-right {
+    background-image: url("/assets/new/background/ferris-dark-right.svg");
+    background-size: cover;
+}
+
+&:where([data-theme=light]) {
+    .rustlang-es-background {
+        background: url("/assets/new/background/hero-bg.svg") lightgray 50% / cover no-repeat;
+    }
+    .bg-ferris-left {
+        background-image: url("/assets/new/background/ferris-light-left.svg");
+        background-size: cover;
+    }
+    .bg-ferris-right {
+        background-image: url("/assets/new/background/ferris-light-right.svg");
+        background-size: cover;
+    }
+}
+
+.project-card-badge{
+    inset: 4px;
+    @apply bg-black relative;
+    clip-path: polygon(90.5% 27.43%, 100% 100%, 0% 100%, 9.36% 27.43%, 12.31% 12.33%, 87.67% 12.33%);
+
+}
+
+.project-card-badge::before {
+    content: "";
+    @apply absolute;
+    width: calc(100%);
+    top: 0;
+    left: 0;
+    height: calc(100%);
+    clip-path: polygon(90.5% 27.43%, 100% 100%, 0% 100%, 9.36% 27.43%, 12.31% 12.33%, 87.67% 12.33%);
+    z-index: -1;
+}
+
+
+/* .project-card-badge {
+    border-width: 0 25px 25px 25px;
+    height: 0;
+    width: 100px;
+    box-sizing: content-box;
+    position: relative;
+} */
+
+
+/* 
+@custom-variant dark (
+  :where([data-theme="dark"] *),
+  :where(:not([data-theme="light"] *) @media (prefers-color-scheme: dark))
+);
+ */
+    
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *), &:where(&:not([data-theme='light'], @media (prefers-color-scheme: dark))));

@@ -18,3 +18,6 @@ pub struct ProjectItem {
     pub brand_as_letter: bool,
     pub button_bg_color: &'static str,
 }
+
+mod github_user;
+pub use github_user::GithubUser;

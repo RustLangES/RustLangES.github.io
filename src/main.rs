@@ -1,5 +1,4 @@
-use leptos::config::LeptosOptions;
-use leptos::{logging::log, prelude::*};
+use leptos::{config::LeptosOptions, logging::log, prelude::*};
 use leptos_actix::generate_route_list_with_ssg;
 use rust_lang_es::app::*;
 

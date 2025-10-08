@@ -37,7 +37,6 @@ macro_rules! error {
     ($($t:tt)*) => (error(format_args!($($t)*).to_string()))
 }
 
-
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {

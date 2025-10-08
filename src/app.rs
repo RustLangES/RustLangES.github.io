@@ -1,26 +1,29 @@
-use leptos::leptos_dom::logging::console_log;
-use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, MetaTags};
-use leptos_router::components::{Route, Router, Routes};
-use leptos_router::path;
 use crate::context::theme_provider::ThemeProvider;
+use leptos::{leptos_dom::logging::console_log, prelude::*};
+use leptos_meta::{provide_meta_context, MetaTags};
+use leptos_router::{
+    components::{Route, Router, Routes},
+    path,
+};
 
-use crate::components::{HeadInformation, Header};
-use crate::pages::{Aprende, Communities, Contributors, Index, Projects};
+use crate::{
+    components::{HeadInformation, Header},
+    pages::{Aprende, Communities, Contributors, Index, Projects},
+};
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
         <!DOCTYPE html>
         <html lang="en">
             <head>
-                <meta charset="utf-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-                <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa"/>
-                <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811"/>
-                <AutoReload options=options.clone()/>
-                <HydrationScripts options islands=true/>
-                <MetaTags/>
+                // <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa"/>
+                // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811"/>
+                <AutoReload options=options.clone() />
+                <HydrationScripts options islands=true />
+                <MetaTags />
 
                 <script type="text/javascript">
                     (function(c,l,a,r,i,t,y){
@@ -32,7 +35,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
                 </script>
             </head>
             <body>
-                <App/>
+                <App />
             </body>
         </html>
     }
@@ -47,34 +50,29 @@ pub fn App() -> impl IntoView {
     view! {
         <ThemeProvider>
             <Router>
-                <HeadInformation/>
-                <Body {..} class="bg-[#FAFAFA] dark:bg-[#222222] text-[#222222] dark:text-[#FAFAFA]".to_string() />
+                <HeadInformation />
+                <Body
+                    {..}
+                    class="bg-[#FAFAFA] dark:bg-[#222222] text-[#222222] dark:text-[#FAFAFA]"
+                        .to_string()
+                />
                 <main>
-                <Header />
-                <Routes fallback=|| "Not found.">
-                    <Route
-                        path=path!("/")
-                        view=Index
-                    />
-                    // <Route
-                    //     path=path!("comunidades")
-                    //     view=Communities
-                    // />
-                    // <Route
-                    //     path=path!("colaboradores")
-                    //     view=Contributors
-                    // />
-                    // <Route
-                    //     path=path!("proyectos")
-                    //     view=Projects
-                    // />
-                    // <Route
-                    //     path=path!("aprende")
-                    //     view=Aprende
-                    // />
+                    <Header />
+                    <Routes fallback=|| "Not found.">
+                        <Route path=path!("/") view=Index />
+                        <Route path=path!("comunidades") view=Communities />
+                        // <Route
+                        // path=path!("colaboradores")
+                        // view=Contributors
+                        // />
+                        // <Route
+                        // path=path!("proyectos")
+                        // view=Projects
+                        // />
+                        <Route path=path!("aprende") view=Aprende />
                     </Routes>
-                    </main>
-                // <Footer />
+                </main>
+            // <Footer />
             </Router>
         </ThemeProvider>
     }

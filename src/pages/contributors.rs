@@ -141,8 +141,5 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    view! {
-        <section>
-        </section>
-    }
+    view! { <section></section> }
 }

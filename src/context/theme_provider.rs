@@ -1,13 +1,13 @@
-use leptos::leptos_dom::logging::console_log;
-use leptos::prelude::{use_context, RwSignal};
-use leptos::server::codee::string::JsonSerdeCodec;
-use leptos::*;
-use leptos::logging::log;
-use leptos_use::storage::use_local_storage;
-use leptos_use::{use_media_query, use_preferred_dark};
+use leptos::{
+    children::Children,
+    leptos_dom::logging::console_log,
+    logging::log,
+    prelude::{use_context, RwSignal, *},
+    server::codee::string::JsonSerdeCodec,
+    *,
+};
+use leptos_use::{storage::use_local_storage, use_media_query, use_preferred_dark};
 use serde::{Deserialize, Serialize};
-use leptos::children::Children;
-use leptos::prelude::*;
 /// Defines an enumeration for UI themes.
 ///
 /// This enum can be cloned, copied, and compared for equality.
@@ -51,6 +51,7 @@ fn update_css_for_theme(theme: Theme, prefers_dark: bool, use_data_attribute: bo
     let document = web_sys::window().unwrap().document().unwrap();
     let html_element = document.document_element().unwrap();
 
+    // TODO: Change the theme following the system preference when Theme::System is selected
     if use_data_attribute {
         match theme {
             Theme::Light => {
@@ -72,10 +73,12 @@ fn update_css_for_theme(theme: Theme, prefers_dark: bool, use_data_attribute: bo
             Theme::Dark => {
                 html_element.class_list().add_1("dark").unwrap();
             }
-            Theme::System => match prefers_dark {
-                true => html_element.class_list().add_1("dark").unwrap(),
-                false => html_element.class_list().remove_1("dark").unwrap(),
-            },
+            _ => {
+                html_element.class_list().remove_1("dark").unwrap();
+            } // Theme::System => match prefers_dark {
+              //     true => html_element.class_list().add_1("dark").unwrap(),
+              //     false => html_element.class_list().remove_1("dark").unwrap(),
+              // },
         }
     }
 }
@@ -88,9 +91,7 @@ pub fn use_theme() -> RwSignal<Theme> {
     use_context::<RwSignal<Theme>>().expect("there should be a global theme state")
 }
 
-
 use leptos::prelude::*;
-
 
 /// The `ThemeProvider` component.
 ///
@@ -101,33 +102,27 @@ use leptos::prelude::*;
 ///                     Defaults to `true`.
 /// * `children` - The child components that will consume the theme context.
 #[island]
-pub fn ThemeProvider(
-    children: Children,
-) -> impl IntoView {
+pub fn ThemeProvider(children: Children) -> impl IntoView {
     let use_data_attribute = true;
     let is_dark_preferred_signal = use_media_query("(prefers-color-scheme: dark)");
-    let prefers_dark = move || if is_dark_preferred_signal.get() { true } else { false };
-    // let (is_dark_preferred_signal, _) = signal(true);
 
     // Attempt to retrieve the theme from local storage
     let (theme_storage_state, set_theme_storage_state, _) =
         use_local_storage::<Theme, JsonSerdeCodec>(STORAGE_KEY);
 
-    // Determine the initial theme from local storage
-    let initial_theme = theme_storage_state.get();
-
-    // Initialize the theme state with the determined initial theme
-    let theme_state = RwSignal::new(initial_theme);
+    let theme_state = RwSignal::new(theme_storage_state());
     provide_context(theme_state.clone());
 
-    // // Update local storage whenever the theme state changes
+    // Update local storage and CSS whenever the theme state changes
     Effect::new(move |_| {
         let current_theme = theme_state.get();
         _ = move || set_theme_storage_state.set(current_theme.clone());
-        update_css_for_theme(current_theme, prefers_dark(), use_data_attribute)
+        update_css_for_theme(
+            current_theme,
+            is_dark_preferred_signal(),
+            use_data_attribute,
+        )
     });
 
-    view! {
-        {children()}
-    }
+    view! { {children()} }
 }

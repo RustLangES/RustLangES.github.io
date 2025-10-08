@@ -22,6 +22,4 @@ pub use telegram_icon::*;
 pub use twitter_icon::*;
 pub use web_icon::*;
 
-
-pub use new::logo_rust_light_page::*;
-pub use new::logo_rust_dark_page::*;
+pub use new::{logo_rust_dark_page::*, logo_rust_light_page::*};
