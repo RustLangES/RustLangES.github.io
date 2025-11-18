@@ -8,6 +8,11 @@
 
 @import "@rustlanges/styles";
 
+@theme static {
+  /* ----- Breakpoints ----- */
+  --breakpoint-desktop: 640px;
+}
+
 .text-akira {
     font-family: "Akira", sans-serif;
 }
@@ -22,9 +27,16 @@
     background-size: cover;
 }
 
+.rustlang-es-background-secondary {
+    background: linear-gradient(0deg, rgba(62, 28, 150, 0.80) 0%, rgba(62, 28, 150, 0.80) 100%), url("/assets/new/background/hero-secondary-bg.svg") lightgray 50% / cover no-repeat;
+}
+
 &:where([data-theme=light]) {
     .rustlang-es-background {
         background: url("/assets/new/background/hero-bg.svg") lightgray 50% / cover no-repeat;
+    }
+    .rustlang-es-background-secondary {
+        background: url("/assets/new/background/hero-secondary-bg.svg") lightgray 50% / cover no-repeat;
     }
     .bg-ferris-left {
         background-image: url("/assets/new/background/ferris-light-left.svg");
@@ -76,3 +88,11 @@
  */
     
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *), &:where(&:not([data-theme='light'], @media (prefers-color-scheme: dark))));
+
+
+
+.resource-card {
+    /* clip-path: polygon(66% 0, 100% 32%, 100% 100%, 0 100%, 0 0), inset(0 0 0 0 round 0% 20% 0 0%); */
+	aspect-ratio: 0.75;
+	clip-path: shape(from 86.92% 2.32%,curve to 80.37% 0% with 85.31% 0.85%/82.91% 0%,hline to 8.48%,curve to 0% 6.36% with 3.8% 0%/0% 2.85%,vline to 93.64%,curve to 8.48% 100% with 0% 97.15%/3.8% 100%,hline to 91.52%,curve to 100% 93.64% with 96.2% 100%/100% 97.15%,vline to 16.52%,curve to 98.07% 12.47% with 100% 15.04%/99.32% 13.61%,line to 86.92% 2.32%,close);
+}

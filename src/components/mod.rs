@@ -15,4 +15,5 @@ pub mod footer;
 pub mod our_community;
 pub mod our_sponsors;
 pub mod project_card;
+pub mod resources;
 pub mod sponsor_block;

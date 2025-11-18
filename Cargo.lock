@@ -1604,7 +1604,7 @@ dependencies = [
 
 [[package]]
 name = "leptos-components"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "leptos",
  "rustlanges-components-core",
@@ -2528,7 +2528,7 @@ dependencies = [
 
 [[package]]
 name = "rustlanges-components"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "leptos-components",
  "rustlanges-components-core",
@@ -2536,7 +2536,7 @@ dependencies = [
 
 [[package]]
 name = "rustlanges-components-core"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "constcat",
 ]

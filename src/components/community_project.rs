@@ -21,7 +21,7 @@ pub fn CommunityProjectSection() -> impl IntoView {
 
     view! {
         <section class="flex flex-col justify-center items-center w-full gap-8 py-20 bg-orange-100 dark:bg-neutral-950 bg-ferris-left">
-            <div class="container flex flex-col justify-center items-center gap-8">
+            <div class="flex flex-col justify-center items-center gap-8 w-full">
                 <h2 class="text-h2 mb-4">"Proyectos de la comunidad"</h2>
                 <div class="mb-8">
                     <p class="text-center max-w-lg">
@@ -34,31 +34,33 @@ pub fn CommunityProjectSection() -> impl IntoView {
                 </div>
 
                 // <div>
-                <div class="flex flex-row justify-center items-center gap-4 max-w-full flex-wrap">
-                    <ProjectCard
-                        label=view! {
-                            <StarBold size=16 as u32 />
-                            <p class="w-fit mr-2">Destacado</p>
-                        }
-                            .into_any()
-                        users=users.clone()
-                        title="Rust para C#/.NET Developers"
-                        description="La guía esta hecha por la misma Microsoft y es para desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
-                    />
-                    <ProjectCard
-                        label=view! { <p class="w-fit mr-2">Oficial</p> }.into_any()
-                        users=users.clone()
-                        title="Cangrebot"
-                        description="Bot de la comunidad de Discord de RustLang en Español."
-                        badge_color="before:bg-secondary-400"
-                    />
-                    <ProjectCard
-                        label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
-                        users=users
-                        title="Memsos"
-                        description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
-                        badge_color="before:bg-primary-200"
-                    />
+                <div class="flex flex-row justify-center items-center gap-4 max-w-full w-full">
+                    <div class="inline-flex flex-row items-center gap-8 overflow-x-auto p-4">
+                        <ProjectCard
+                            label=view! {
+                                <StarBold size=16 />
+                                <p class="w-fit mr-2">Destacado</p>
+                            }
+                                .into_any()
+                            users=users.clone()
+                            title="Rust para C#/.NET Developers"
+                            description="La guía esta hecha por la misma Microsoft y es para desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
+                        />
+                        <ProjectCard
+                            label=view! { <p class="w-fit mr-2">Oficial</p> }.into_any()
+                            users=users.clone()
+                            title="Cangrebot"
+                            description="Bot de la comunidad de Discord de RustLang en Español."
+                            badge_color="before:bg-secondary-400"
+                        />
+                        <ProjectCard
+                            label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
+                            users=users
+                            title="Memsos"
+                            description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
+                            badge_color="before:bg-primary-200"
+                        />
+                    </div>
                 </div>
 
                 <Button
