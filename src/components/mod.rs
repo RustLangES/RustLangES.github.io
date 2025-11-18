@@ -9,7 +9,9 @@ pub use icons::{
     TwitterIcon,
 };
 
+pub mod became_sponsor;
 pub mod community_project;
+pub mod footer;
 pub mod our_community;
 pub mod our_sponsors;
 pub mod project_card;

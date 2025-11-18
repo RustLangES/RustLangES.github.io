@@ -111,33 +111,19 @@ pub fn ThemeProvider(children: Children) -> impl IntoView {
     let (theme_storage_state, set_theme_storage_state, _) =
         use_local_storage::<Theme, JsonSerdeCodec>(STORAGE_KEY);
 
-    let theme_state = RwSignal::new(theme_storage_state.read_untracked().clone());
+    let theme_state = RwSignal::new(theme_storage_state.get_untracked());
     provide_context(theme_state.clone());
 
     // Update local storage and CSS whenever the theme state changes
     Effect::new(move |_| {
         let current_theme = theme_state();
         set_theme_storage_state.set(current_theme.clone());
-        console_log(&format!("Theme changed to: {:?}", current_theme));
         update_css_for_theme(
             current_theme,
             is_dark_preferred_signal(),
             use_data_attribute,
         )
     });
-
-    Effect::watch(
-        move || is_dark_preferred_signal(),
-        move |is_dark_preferred_signal, _, _| {
-            console_log(&format!("Theme changed to: {:?}", is_dark_preferred_signal));
-            // update_css_for_theme(
-            //     theme_state(),
-            //     is_dark_preferred_signal(),
-            //     use_data_attribute,
-            // );
-        },
-        true,
-    );
 
     view! { {children()} }
 }

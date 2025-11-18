@@ -62,7 +62,7 @@ pub fn Header() -> impl IntoView {
     view! {
         <header class="w-full py-[8px] px-[24px] flex flex-column items-center justify-between">
             {move || logo()} <div class="flex flex-column gap-[24px] items-center">
-                <div class="flex gap-[16px]">
+                <div class="gap-[16px] hidden md:flex">
                     <a href="/" class=move || active_link_class("/")>
                         Inicio
                     </a>
@@ -77,8 +77,13 @@ pub fn Header() -> impl IntoView {
                     </a>
                     <a href="https://blog.rustlang-es.org">Blog</a>
                 </div>
-                <div class="flex gap-[16px] items-center">
-                    <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
+                <div class="flex gap-[16px] items-center flex-wrap">
+                    <Button
+                        variant=Variant::Secondary
+                        label="El Libro"
+                        on_click=|_| {}
+                        class="hidden md:block"
+                    />
                     <Button
                         variant=Variant::Primary
                         label="¡Únete!"

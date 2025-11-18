@@ -20,8 +20,8 @@ reqwest = { version = "0.12.23", features = [
     "http2",
     "rustls-tls",
 ], default-features = false }
-rustlanges-components = { version = "0.1.0", features = ["leptos"] }
-# rustlanges-components = { path="../design-system-components", features = ["leptos"] }
+# rustlanges-components = { version = "0.1.0", features = ["leptos"] }
+rustlanges-components = { path="../design-system-components", features = ["leptos"] }
 leptos-use = { version = "0.16.3", features = [] }
 console_error_panic_hook = { version = "0.1.7", optional = true }
 # leptos_theme = "0.1.2"

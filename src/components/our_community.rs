@@ -15,7 +15,7 @@ pub fn OurCommunitySection() -> impl IntoView {
                     "Buscamos romper las barreras en el aprendizaje del lenguaje Rust. Por eso creamos, traducimos y difundimos material técnico en español."
                 </p>
 
-                <div class="flex flex-row justify-center items-center gap-4">
+                <div class="flex flex-row justify-center items-center gap-4  max-w-full flex-wrap">
                     <Card class="flex flex-col items-center justify-center">
                         <div class="bg-orange-200 border rounded-4xl p-3 text-black">
                             <Roadmap size=40 class="text-black fill-white" />

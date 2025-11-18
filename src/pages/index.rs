@@ -6,8 +6,8 @@ use rustlanges_components::{
 };
 
 use crate::components::{
-    community_project::CommunityProjectSection, our_community::OurCommunitySection,
-    our_sponsors::OurSponsorsSection,
+    became_sponsor::BecameSponsorSection, community_project::CommunityProjectSection,
+    footer::Footer, our_community::OurCommunitySection, our_sponsors::OurSponsorsSection,
 };
 
 #[component]
@@ -24,7 +24,7 @@ pub fn Index() -> impl IntoView {
                             Hacemos <span class="text-primary-500">Posible</span>Aprender Rust
                         </p>
                     </div>
-                    <div class="flex gap-4">
+                    <div class="flex gap-4 flex-wrap max-w-full">
                         <Button variant=ButtonVariant::Secondary on_click=|_| {} label="Aprender" />
                         <Button variant=ButtonVariant::Primary on_click=|_| {} label="Súmate" />
                     </div>
@@ -37,5 +37,7 @@ pub fn Index() -> impl IntoView {
         <OurCommunitySection />
         <CommunityProjectSection />
         <OurSponsorsSection />
+        <BecameSponsorSection />
+        <Footer />
     }
 }

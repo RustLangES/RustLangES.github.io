@@ -34,7 +34,7 @@ pub fn CommunityProjectSection() -> impl IntoView {
                 </div>
 
                 // <div>
-                <div class="flex flex-row justify-center items-center gap-4">
+                <div class="flex flex-row justify-center items-center gap-4 max-w-full flex-wrap">
                     <ProjectCard
                         label=view! {
                             <StarBold size=16 as u32 />
