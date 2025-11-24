@@ -30,10 +30,10 @@ pub fn Header() -> impl IntoView {
     let logo = move || match theme.get() {
         Theme::Dark => view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any(),
         Theme::Light => view! { <NewLogoRustLightPageIcon size=60 /> }.into_any(),
-        Theme::System if is_dark_preferred_signal() => {
+        Theme::System if (move || is_dark_preferred_signal())() => {
             view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any()
         }
-        Theme::System => view! { <NewLogoRustLightPageIcon size=60 /> }.into_any(),
+        Theme::System => view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any(),
     };
 
     let theme_switcher_icon = move || match theme() {
@@ -89,7 +89,11 @@ pub fn Header() -> impl IntoView {
                         label="¡Únete!"
                         on_click=move |_| console_log("hola")
                     />
-                    <Button variant=Variant::Icon on_click=handler icon=theme_switcher_icon() />
+                    <Button
+                        variant=Variant::Icon
+                        on_click=handler
+                        icon=(move || theme_switcher_icon()).into_any()
+                    />
                 </div>
             </div>
         </header>

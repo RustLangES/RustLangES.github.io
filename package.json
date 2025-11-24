@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/RustLangES/RustLangES.github.io",
   "dependencies": {
-    "@rustlanges/styles": "^0.0.2"
+    "@rustlanges/styles": "file:../design-system-components/styles"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.14"
