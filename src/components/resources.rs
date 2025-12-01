@@ -24,7 +24,10 @@ pub fn Resources() -> impl IntoView {
                     <InputSearch on_change_filter=move |resource: ResourceAlias| () />
                     <div class="gap-6 overflow-x-auto p-4 flex flex-row flex-wrap justify-center items-center">
 
-                        <Card class="p-4" variant=CardVariant::Resource>
+                        <Card
+                            class="p-4 text-primary-50 dark:text-neutral-900"
+                            variant=CardVariant::Resource
+                        >
                             <div class="flex flex-col gap-4 justify-between h-full overflow-hidden">
                                 <div>
                                     <Chip label="Destacado" variant=ChipVariant::Featured />

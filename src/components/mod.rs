@@ -10,6 +10,8 @@ pub use icons::{
 };
 
 pub mod became_sponsor;
+pub mod challenges;
+pub mod channels;
 pub mod community_project;
 pub mod footer;
 pub mod our_community;

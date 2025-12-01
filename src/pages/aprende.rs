@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use rustlanges_components::button::{Button, Variant as ButtonVariant};
 
-use crate::components::resources::Resources;
+use crate::components::{challenges::DailyChallenges, channels::Channels, resources::Resources};
 
 #[component]
 pub fn Aprende() -> impl IntoView {
@@ -9,13 +9,17 @@ pub fn Aprende() -> impl IntoView {
         <div class="w-full h-[65dvh] rustlang-es-background-secondary dark:bg-[#3E1C96CC] text-akira flex items-center justify-center">
             <div class="w-full container  flex  flex-col-reverse md:flex-row items-center justify-center m-auto">
                 <div class="flex flex-col justify-center gap-8">
-                    <div class="flex flex-col gap-2 justify-center">
+                    <div class="flex flex-col gap-2 justify-center not-md:items-center w-full text-center lg:text-left">
                         <p class="uppercase text-h1">Aprende Rust</p>
                         <p class="uppercase text-h1 text-primary-500">En Español</p>
-                        <p>"Roadmap de aprendizaje, libros, guías y más."</p>
-                        <p>"Explora todos los recursos y ¡empieza a tu viaje! 🚀"</p>
+                        <p class="text-heading-4 font-heading-4">
+                            "Roadmap de aprendizaje, libros, guías y más."
+                        </p>
+                        <p class="text-heading-4 font-heading-4">
+                            "Explora todos los recursos y ¡empieza a tu viaje! 🚀"
+                        </p>
                     </div>
-                    <div class="flex gap-4 flex-wrap max-w-full">
+                    <div class="flex gap-4 flex-wrap w-full not-md:justify-center not-md:items-center">
                         <Button
                             variant=ButtonVariant::Primary
                             class="bg-light"
@@ -34,5 +38,7 @@ pub fn Aprende() -> impl IntoView {
             </div>
         </div>
         <Resources />
+        <DailyChallenges />
+        <Channels />
     }
 }
