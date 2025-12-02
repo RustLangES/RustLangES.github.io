@@ -19,3 +19,4 @@ pub mod our_sponsors;
 pub mod project_card;
 pub mod resources;
 pub mod sponsor_block;
+pub mod why_rust;

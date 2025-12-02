@@ -60,7 +60,7 @@ pub fn App() -> impl IntoView {
                     <Header />
                     <Routes fallback=|| "Not found.">
                         <Route path=path!("/") view=Index />
-                        <Route path=path!("comunidades") view=Communities />
+                        <Route path=path!("comunidad") view=Communities />
                         // <Route
                         // path=path!("colaboradores")
                         // view=Contributors
