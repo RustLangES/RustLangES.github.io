@@ -28,7 +28,7 @@ cargo clippy -- -D warnings
 '''
 
 [tasks.leptos-format]
-install_crate = "leptosfmt"
+install_crate = { crate_name = "leptosfmt", version = "0.1.13" }
 command = "leptosfmt"
 args = ["."]
 
