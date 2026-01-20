@@ -1,6 +1,6 @@
 use leptos::{component, view, IntoView};
 use leptos_meta::{provide_meta_context, Body};
-use leptos_router::{Router, Routes, StaticParamsMap, StaticRoute};
+use leptos_router::{Route, Router, Routes, StaticParamsMap, StaticRoute};
 
 use crate::{
     components::{Footer, HeadInformation, Header},
@@ -19,19 +19,15 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Router>
-            <HeadInformation/>
+            <HeadInformation />
             <Body class=format!(
                 "bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed {} dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]",
                 bg_in_dark_mode,
-            )/>
-            <Header/>
+            ) />
+            <Header />
             <main>
                 <Routes>
-                    <StaticRoute
-                        path="/"
-                        view=Index
-                        static_params=move || Box::pin(async move { StaticParamsMap::default() })
-                    />
+                    <Route path="/" view=Index />
                     <StaticRoute
                         path="/comunidades"
                         view=Communities
@@ -59,7 +55,7 @@ pub fn App() -> impl IntoView {
                     />
                 </Routes>
             </main>
-            <Footer/>
+            <Footer />
         </Router>
     }
 }

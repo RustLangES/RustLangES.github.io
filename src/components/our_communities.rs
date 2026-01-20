@@ -22,7 +22,7 @@ pub fn OurCommunities() -> impl IntoView {
                             color="white"
                             size="big"
                         >
-                            <DiscordIcon size=30/>
+                            <DiscordIcon size=30 />
                             "Discord"
                         </ButtonLink>
                         <ButtonLink
@@ -31,7 +31,7 @@ pub fn OurCommunities() -> impl IntoView {
                             color="white"
                             size="big"
                         >
-                            <GithubIcon size=30/>
+                            <GithubIcon size=30 />
                             "Github"
                         </ButtonLink>
                         <ButtonLink
@@ -40,7 +40,7 @@ pub fn OurCommunities() -> impl IntoView {
                             size="big"
                             shadow="box"
                         >
-                            <LinkedinIcon size=30/>
+                            <LinkedinIcon size=30 />
                             "Linkedin"
                         </ButtonLink>
                         <ButtonLink
@@ -49,7 +49,7 @@ pub fn OurCommunities() -> impl IntoView {
                             color="white"
                             size="big"
                         >
-                            <TelegramIcon size=30/>
+                            <TelegramIcon size=30 />
                             "Telegram"
                         </ButtonLink>
                     </div>

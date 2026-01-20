@@ -71,7 +71,7 @@ pub fn OtherCommunities(
                             >
                                 "Ver todas las comunidades"
                                 <span class="inline-block ml-2">
-                                    <NextIcon class="fill-current" size=20/>
+                                    <NextIcon class="fill-current" size=20 />
                                 </span>
                             </a>
                         </div>

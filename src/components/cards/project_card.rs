@@ -43,8 +43,7 @@ pub fn ProjectCard(
                             />
                         }
                             .into_any()
-                    }}
-                    <CardTitle texts=name/>
+                    }} <CardTitle texts=name />
                     <p class="mt-2 font-work-sans text-black dark:text-white">{description}</p>
                 </div>
                 <div class="flex gap-4 sm:gap-0 justify-around items-center mt-4">
@@ -57,7 +56,7 @@ pub fn ProjectCard(
 
                     </ButtonLink>
                     <span class="px-1">
-                        <GithubIcon size=30/>
+                        <GithubIcon size=30 />
                     </span>
                 </div>
             </a>

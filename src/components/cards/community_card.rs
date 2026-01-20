@@ -29,15 +29,15 @@ pub fn CommunityCard(
                     loading="lazy"
                     alt=brand_alt
                 />
-                <CardTitle texts=name/>
+                <CardTitle texts=name />
                 <p class="font-work-sans text-black dark:text-white">{description}</p>
             </div>
             <span class="ml-auto">
                 {move || match icon {
-                    "discord" => view! { <DiscordIcon size=30/> },
-                    "github" => view! { <GithubIcon size=30/> },
-                    "telegram" => view! { <TelegramIcon size=30/> },
-                    "web" => view! { <WebIcon size=30/> },
+                    "discord" => view! { <DiscordIcon size=30 /> },
+                    "github" => view! { <GithubIcon size=30 /> },
+                    "telegram" => view! { <TelegramIcon size=30 /> },
+                    "web" => view! { <WebIcon size=30 /> },
                     _ => unreachable!(),
                 }}
 

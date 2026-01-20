@@ -3,7 +3,7 @@ use leptos::{create_signal, island, view, IntoView, SignalUpdate};
 use rand::seq::SliceRandom;
 
 #[island]
-pub fn SloganButton() -> impl IntoView {
+pub fn SloganButton(#[prop(into)] uwu: Option<bool>) -> impl IntoView {
     let slogans = [
         "Una comunidad de gente mal intencionada y tonta.",
         "Rust the lang, not the game",
@@ -41,6 +41,10 @@ pub fn SloganButton() -> impl IntoView {
 
     view! {
         <div
+            class=(
+                "flex select-none justify-center lg:justify-center dark:text-white drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out  dark:delay-75 ",
+                move || uwu == Some(true),
+            )
             class="flex select-none items-center justify-center lg:justify-start group dark:text-white drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out  dark:delay-75 "
             on:click=click_handler
         >
