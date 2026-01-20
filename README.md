@@ -30,8 +30,6 @@ npm install
 cargo install cargo-make
 ```
 
-### Si usas nix
-
 > [!NOTE]
 > Asegúrate de tener los flakes activados.
 
@@ -72,7 +70,8 @@ Agrega esto en tu `settings.json`
     "comments": "on",
     "strings": true
   },
-  "css.validate": false
+  "css.validate": false,
+  "rust-analyzer.cargo.features": ["development", "ssr"]
 }
 ```
 
