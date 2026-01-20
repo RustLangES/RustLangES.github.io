@@ -26,6 +26,8 @@ jobs:
           toolchain: nightly-2024-02-12
           target: wasm32-unknown-unknown
           override: true
+      - name: Assurancing Rust fmt
+        run: rustup component add rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
@@ -38,9 +40,9 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: nightly
+          toolchain: nightly-2024-02-12
+          target: wasm32-unknown-unknown
           override: true
-          components: clippy
       - name: Cache .cargo and target
         uses: actions/cache@v4
         with:
@@ -51,7 +53,7 @@ jobs:
             ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
             ${{ runner.os }}-cargo-leptos
       - name: Install LeptosFmt
-        run: cargo install leptosfmt --version 0.1.13
+        run: cargo install leptosfmt --version 0.1.33
       - name: Check LeptosFmt
         run: leptosfmt --check .
 

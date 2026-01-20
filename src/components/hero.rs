@@ -16,7 +16,6 @@ pub fn Hero() -> impl IntoView {
         (false, true) => "./RustLang_uwu.png",
     };
 
-
     view! {
         <section
             class=(
