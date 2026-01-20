@@ -33,6 +33,8 @@ cargo install cargo-make
 > [!NOTE]
 > Asegúrate de tener los flakes activados.
 
+### Si usas nix
+
 Si usas nix es bastante sencillo, solo necesitas este comando:
 ```bash
 nix develop
