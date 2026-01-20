@@ -21,37 +21,37 @@ pub fn HeadInformation() -> impl IntoView {
 
     view! {
         <>
-            <Html lang="es"/>
-            <Meta charset="utf-8"/>
-            <Meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa"/>
-            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811"/>
-            <Stylesheet id="fonts" href=format!("{}/fonts.css", assets_folder)/>
-            <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
-            <Title text="Rust Lang en Español"/>
+            <Html lang="es" />
+            <Meta charset="utf-8" />
+            <Meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa" />
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811" />
+            <Stylesheet id="fonts" href=format!("{}/fonts.css", assets_folder) />
+            <Stylesheet id="leptos" href="/pkg/leptos_start.css" />
+            <Title text="Rust Lang en Español" />
             <Meta
                 name="description"
                 content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
             />
 
-            <Meta name="og:site_name" content="Rust Lang en Español"/>
-            <Meta name="og:title" content="Bienvenidos a Rust Lang en Español"/>
+            <Meta name="og:site_name" content="Rust Lang en Español" />
+            <Meta name="og:title" content="Bienvenidos a Rust Lang en Español" />
             <Meta
                 name="og:description"
                 content="Únete a nuestra comunidad de Rust en español. Promovemos el aprendizaje y la difusión de Rust, compartiendo conocimientos y proyectos emocionantes."
             />
-            <Meta name="og:url" content="https://rustlang-es.org"/>
+            <Meta name="og:url" content="https://rustlang-es.org" />
 
-            <Meta name="twitter:card" content="summary_large_image"/>
-            <Meta name="twitter:site" content="@rustlang"/>
+            <Meta name="twitter:card" content="summary_large_image" />
+            <Meta name="twitter:site" content="@rustlang" />
             <Meta
                 name="google-site-verification"
                 content="OntIe2SKuQalaapGvxdded9tU4G2p57h0A6e0Rkoni0"
             />
 
-            <Meta name="og:image" content=format!("https://rustlang-es.org/{preview}")/>
-            <Meta name="twitter:image" content=format!("https://rustlang-es.org/{preview}")/>
-            <Link rel="canonical" href=format!("https://rustlang-es.org{}", path)/>
+            <Meta name="og:image" content=format!("https://rustlang-es.org/{preview}") />
+            <Meta name="twitter:image" content=format!("https://rustlang-es.org/{preview}") />
+            <Link rel="canonical" href=format!("https://rustlang-es.org{}", path) />
             <script type="text/javascript">
                 (function(c,l,a,r,i,t,y){
                     if ("localhost0.0.0.0::0192.168.0.1192.168.1.1".includes(document.location.hostname)) return;

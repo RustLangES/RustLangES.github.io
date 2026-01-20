@@ -1,5 +1,5 @@
 [hooks]
-pre-commit = "cargo fmt --all && leptosfmt src"
+pre-commit = "cargo fmt --all && cargo make cargo-format && cargo make leptos-format"
 post-commit = "echo yay"
 
 [logging]

@@ -6,7 +6,7 @@ use crate::components::CommunityProjects;
 pub fn Projects() -> impl IntoView {
     view! {
         <div class="mx-auto">
-            <CommunityProjects/>
+            <CommunityProjects />
 
         // TODO: Fetch all our projects from Discord using our API
         </div>

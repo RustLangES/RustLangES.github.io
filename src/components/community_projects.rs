@@ -51,7 +51,7 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                             >
                                 "Ver todos los proyectos"
                                 <span class="inline-block ml-2">
-                                    <NextIcon class="fill-current" size=20/>
+                                    <NextIcon class="fill-current" size=20 />
                                 </span>
                             </A>
                         </div>

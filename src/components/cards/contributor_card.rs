@@ -21,13 +21,13 @@ pub fn ContributorCard(
                     </span>
                 </span>
                 <div class="flex flex-col gap-y-2">
-                    <img src=brand_src width="60" class="rounded-full mb-4" alt=name.clone()/>
+                    <img src=brand_src width="60" class="rounded-full mb-4" alt=name.clone() />
                     <h2 class="font-work-sans text-black dark:text-white text-xl">{name}</h2>
                     {location
                         .map(|location| {
                             view! {
                                 <div class="flex gap-2 items-center bg-slate-200/20 dark:bg-neutral-500/40 rounded-md p-1">
-                                    <LocationIcon size=16/>
+                                    <LocationIcon size=16 />
                                     <p class="font-work-sans text-black dark:text-white text-sm">
                                         {location}
                                     </p>
@@ -43,12 +43,11 @@ pub fn ContributorCard(
                     .map(|twitter| {
                         view! {
                             <a href=format!("https://twitter.com/{}", twitter) target="_blank">
-                                <TwitterIcon size=30/>
+                                <TwitterIcon size=30 />
                             </a>
                         }
-                    })}
-                <a href=link target="_blank">
-                    <GithubIcon size=30/>
+                    })} <a href=link target="_blank">
+                    <GithubIcon size=30 />
                 </a>
             </div>
         </article>

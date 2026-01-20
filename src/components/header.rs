@@ -13,7 +13,7 @@ pub fn Header() -> impl IntoView {
             <div class="container mx-auto px-4 flex items-center justify-between flex-col lg:flex-row">
                 <div class="flex justify-between w-full lg:w-auto">
                     <a href="/" exact=true class="flex items-center gap-x-4">
-                        <LogoRustPageIcon size=80/>
+                        <LogoRustPageIcon size=80 />
                     </a>
                     <button
                         class="lg:hidden"

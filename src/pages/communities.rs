@@ -6,8 +6,8 @@ use crate::components::OtherCommunities;
 pub fn Communities() -> impl IntoView {
     view! {
         <div>
-            <OtherCommunities/>
-            <OtherCommunities other_communities=true/>
+            <OtherCommunities />
+            <OtherCommunities other_communities=true />
         </div>
     }
 }

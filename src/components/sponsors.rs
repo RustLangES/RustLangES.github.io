@@ -15,7 +15,7 @@ pub fn Sponsors() -> impl IntoView {
     view! {
         <div class="bg-orange-50 dark:bg-transparent">
             <div class="max-w-full overflow-clip">
-                <Separator/>
+                <Separator />
             </div>
             <section class="bg-orange-400/30 dark:bg-gray-800/50">
                 <div class="container mx-auto py-20 px-8">

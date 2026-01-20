@@ -162,7 +162,7 @@ pub fn Contributors() -> impl IntoView {
                     Te invitamos a unirte a esta vibrante comunidad, explorar nuestros repositorios en
                     <a href="https://github.com/RustLangES" class="underline" target="_blank">
                         GitHub
-                    </a> y contribuir con tu talento.
+                    </a>y contribuir con tu talento.
                 </p>
                 <p class="md:max-w-[800px]">
                     <strong>Juntos</strong>
