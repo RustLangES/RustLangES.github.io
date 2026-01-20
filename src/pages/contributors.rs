@@ -99,11 +99,8 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
         .as_array()
         .unwrap_or(&Vec::new())
         .iter()
-        .filter_map(|repo| {
-            (!repo["collaborators"].is_null())
-                .then(|| repo["collaborators"]["nodes"].as_array().unwrap())
-        })
-        .flatten()
+        .filter(|&repo| (!repo["collaborators"].is_null()))
+        .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
         .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
         .fold(HashMap::new(), |prev, c| {
             let mut prev = prev;
@@ -159,10 +156,10 @@ pub fn Contributors() -> impl IntoView {
                     Gracias al esfuerzo y dedicación de estos extraordinarios colaboradores open source, los servicios y páginas de nuestra comunidad se mantienen activos y en constante evolución. Su pasión por el código abierto y el desarrollo de Rust es el corazón que impulsa nuestro crecimiento.
                 </p>
                 <p class="md:max-w-[800px] mb-2">
-                    Te invitamos a unirte a esta vibrante comunidad, explorar nuestros repositorios en
+                    "Te invitamos a unirte a esta vibrante comunidad, explorar nuestros repositorios en "
                     <a href="https://github.com/RustLangES" class="underline" target="_blank">
                         GitHub
-                    </a> y contribuir con tu talento.
+                    </a> " y contribuir con tu talento."
                 </p>
                 <p class="md:max-w-[800px]">
                     <strong>Juntos</strong>

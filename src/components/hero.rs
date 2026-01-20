@@ -6,19 +6,22 @@ use leptos_router::use_query_map;
 pub fn Hero() -> impl IntoView {
     let query_params = use_query_map();
 
-    let image_src = if query_params.get().get("uwu").is_some() && cfg!(debug_assertions) {
-        "./assets/RustLang_Uwu.png"
-    } else {
-        "./assets/ferris-hero.avif"
+    let is_in_debug_mode = cfg!(debug_assertions);
+    let uwu = query_params.get().get("uwu").is_some();
+
+    let image_src = match (is_in_debug_mode, uwu) {
+        (true, true) => "./assets/RustLang_uwu.png",
+        (true, false) => "./assets/ferris-hero.avif",
+        (false, false) => "./ferris-hero.avif",
+        (false, true) => "./RustLang_uwu.png",
     };
 
-    let uwu = query_params.get().get("uwu").is_some();
 
     view! {
         <section
             class=(
                 "grid items-center py-14 lg:py-32 px-4 gap-x-20 gap-y-10 lg:grid-cols-2 w-full",
-                move || uwu == false,
+                move || !uwu,
             )
             class="grid items-center justify-center"
         >

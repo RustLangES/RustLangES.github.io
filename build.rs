@@ -145,7 +145,7 @@ fn generate_projects(path: &Path) {
             }
             let file_path = file.path();
 
-            if !file_path.extension().is_some_and(|e| e == "toml") {
+            if file_path.extension().is_none_or(|e| e != "toml") {
                 let file_name = file.file_name();
                 let file_name = file_name.to_str().unwrap();
                 // Copy images or other files
