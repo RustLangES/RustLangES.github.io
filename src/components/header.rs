@@ -1,5 +1,4 @@
-use leptos::{island, view, IntoView};
-use leptos::prelude::*;
+use leptos::{island, prelude::*, view, IntoView};
 
 use crate::components::ButtonLink;
 

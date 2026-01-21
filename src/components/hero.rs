@@ -1,6 +1,5 @@
 use crate::components::SloganButton;
-use leptos::{island, view, IntoView};
-use leptos::prelude::*;
+use leptos::{island, prelude::*, view, IntoView};
 use leptos_router::hooks::use_query_map;
 
 #[island]

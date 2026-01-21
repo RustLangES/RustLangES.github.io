@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use leptos::prelude::*;
+use std::collections::HashMap;
 
 use leptos::{component, serde_json::json, view, IntoView};
 use serde::{Deserialize, Serialize};

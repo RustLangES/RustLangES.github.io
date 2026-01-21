@@ -1,9 +1,8 @@
-use leptos::{component, view, IntoView};
-use leptos::prelude::*;
 use crate::components::{
     cards::card_title::CardTitle,
     icons::{DiscordIcon, GithubIcon, TelegramIcon, WebIcon},
 };
+use leptos::{component, prelude::*, view, IntoView};
 
 #[component]
 pub fn CommunityCard(

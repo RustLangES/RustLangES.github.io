@@ -1,21 +1,13 @@
-use leptos::{component, view, IntoView};
-use leptos_meta::Body;
-use leptos_meta::provide_meta_context;
-use leptos::prelude::*;
+use leptos::{component, prelude::*, view, IntoView};
+use leptos_meta::{provide_meta_context, Body};
 // use leptos_router::{Route, Router, Routes, StaticParamsMap, StaticRoute};
-use std::path::Path;
-use leptos_router::SsrMode;
-use leptos_router::components::*;
-use leptos_router::path;
-use leptos_router::static_routes::StaticRoute;
 use futures::{channel::mpsc, Stream};
+use leptos_router::{components::*, path, static_routes::StaticRoute, SsrMode};
+use std::path::Path;
 
-use crate::pages::Aprende;
-use crate::pages::Contributors;
-use crate::pages::Projects;
 use crate::{
     components::{Footer, HeadInformation, Header},
-    pages::{Communities, Index},
+    pages::{Aprende, Communities, Contributors, Index, Projects},
 };
 
 #[component]
@@ -88,16 +80,15 @@ fn watch_path(path: &Path) -> impl Stream<Item = ()> {
     {
         use notify::{RecursiveMode, Watcher};
 
-        let mut watcher =
-            notify::recommended_watcher(move |res: Result<_, _>| {
-                if res.is_ok() {
-                    // if this fails, it's because the buffer is full
-                    // this means we've already notified before it's regenerated,
-                    // so this page will be queued for regeneration already
-                    _ = tx.try_send(());
-                }
-            })
-            .expect("could not create watcher");
+        let mut watcher = notify::recommended_watcher(move |res: Result<_, _>| {
+            if res.is_ok() {
+                // if this fails, it's because the buffer is full
+                // this means we've already notified before it's regenerated,
+                // so this page will be queued for regeneration already
+                _ = tx.try_send(());
+            }
+        })
+        .expect("could not create watcher");
 
         // Add a path to be watched. All files and directories at that path and
         // below will be monitored for changes.

@@ -1,5 +1,4 @@
-use leptos::*;
-use leptos::prelude::*;
+use leptos::{prelude::*, *};
 
 #[component]
 pub fn LinkedinIcon(

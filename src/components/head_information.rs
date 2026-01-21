@@ -1,6 +1,5 @@
-use leptos::{component, view, IntoView};
+use leptos::{component, prelude::*, view, IntoView};
 use leptos_meta::{Html, Link, Meta, Stylesheet, Title};
-use leptos::prelude::*;
 use leptos_router::hooks::use_location;
 
 #[component]

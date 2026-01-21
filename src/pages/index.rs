@@ -1,5 +1,4 @@
-use leptos::{component, view, IntoView};
-use leptos::prelude::*;
+use leptos::{component, prelude::*, view, IntoView};
 
 use crate::components::{CommunityProjects, Hero, OtherCommunities, OurCommunities, Sponsors};
 

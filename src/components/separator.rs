@@ -1,5 +1,4 @@
-use leptos::{component, view, IntoView};
-use leptos::prelude::*;
+use leptos::{component, prelude::*, view, IntoView};
 
 // .shapedividers_com-4750{
 //     overflow:hidden;

@@ -1,8 +1,7 @@
 #![allow(dead_code)]
-use leptos::{island, view, IntoView};
-use leptos::prelude::*;
+use leptos::{island, prelude::*, view, IntoView};
 
-use rand::seq::{IndexedRandom};
+use rand::seq::IndexedRandom;
 
 #[island]
 pub fn SloganButton(uwu: bool) -> impl IntoView {
@@ -34,8 +33,7 @@ pub fn SloganButton(uwu: bool) -> impl IntoView {
         "rust.cmp(&cpp) == Ordering::Greater",
         "El codigo entra por los dedos, a programar para aprender",
     ];
-    let (slogan, set_slogan) =
-        signal((*slogans.choose(&mut rand::rng()).unwrap()).to_string());
+    let (slogan, set_slogan) = signal((*slogans.choose(&mut rand::rng()).unwrap()).to_string());
 
     let click_handler = move |_| {
         set_slogan.update(|n| *n = (*slogans.choose(&mut rand::rng()).unwrap()).to_string());

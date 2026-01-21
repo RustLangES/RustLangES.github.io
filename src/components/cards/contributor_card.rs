@@ -1,6 +1,5 @@
-use leptos::{component, view, IntoView};
-use leptos::prelude::*;
 use crate::components::icons::{GithubIcon, LocationIcon, TwitterIcon};
+use leptos::{component, prelude::*, view, IntoView};
 
 #[component]
 pub fn ContributorCard(

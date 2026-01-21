@@ -1,4 +1,4 @@
-use leptos_actix::{generate_route_list_with_ssg};
+use leptos_actix::generate_route_list_with_ssg;
 // use leptos_router::static_routes;
 use leptos::prelude::*;
 
