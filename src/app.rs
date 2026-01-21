@@ -1,5 +1,5 @@
 use leptos::{component, prelude::*, view, IntoView};
-use leptos_meta::{provide_meta_context, Body};
+use leptos_meta::provide_meta_context;
 // use leptos_router::{Route, Router, Routes, StaticParamsMap, StaticRoute};
 use futures::{channel::mpsc, Stream};
 use leptos_router::{components::*, path, static_routes::StaticRoute, SsrMode};
