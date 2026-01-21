@@ -1,4 +1,5 @@
-use leptos::{component, view, Children, IntoView};
+use leptos::{component, view, IntoView};
+use leptos::prelude::*;
 use std::collections::HashMap;
 
 #[component]

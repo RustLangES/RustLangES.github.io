@@ -1,4 +1,5 @@
 use leptos::{component, view, IntoView};
+use leptos::prelude::*;
 
 #[component]
 pub fn CardTitle(#[prop(into)] texts: &'static [&'static str]) -> impl IntoView {

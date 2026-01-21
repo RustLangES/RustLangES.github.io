@@ -1,6 +1,7 @@
 use crate::components::SloganButton;
-use leptos::{island, view, IntoView, SignalGet};
-use leptos_router::use_query_map;
+use leptos::{island, view, IntoView};
+use leptos::prelude::*;
+use leptos_router::hooks::use_query_map;
 
 #[island]
 pub fn Hero() -> impl IntoView {
@@ -35,10 +36,12 @@ pub fn Hero() -> impl IntoView {
                             class="ml-auto"
                         />
                     }
+                        .into_any()
                 } else {
                     view! {
                         <img src=image_src alt="Rust Lang en Español" height="700" width="700" />
                     }
+                        .into_any()
                 }}
             </figure>
             <div>
@@ -56,8 +59,9 @@ pub fn Hero() -> impl IntoView {
                             </span>
                         </h1>
                     }
+                        .into_any()
                 } else {
-                    view! { <h1 class="hidden">"UwU"</h1> }
+                    view! { <h1 class="hidden">"UwU"</h1> }.into_any()
                 }} <SloganButton uwu=uwu />
             </div>
         </section>

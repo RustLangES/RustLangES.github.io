@@ -23,7 +23,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: nightly-2024-02-12
+          toolchain: nightly-2026-01-20
           target: wasm32-unknown-unknown
           override: true
       - name: Assurancing Rust fmt
@@ -40,7 +40,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: nightly-2024-02-12
+          toolchain: nightly-2026-01-20
           target: wasm32-unknown-unknown
           override: true
       - name: Cache .cargo and target
@@ -53,9 +53,9 @@ jobs:
             ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
             ${{ runner.os }}-cargo-leptos
       - name: Install LeptosFmt
-        run: cargo install leptosfmt --version 0.1.18
+        run: cargo install leptosfmt --version 0.1.30
       - name: Check LeptosFmt
-        run: leptosfmt --check .
+        run: leptosfmt --check src
 
   clippy:
     needs: [fmt, leptosfmt]

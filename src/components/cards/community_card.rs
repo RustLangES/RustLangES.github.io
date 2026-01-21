@@ -1,5 +1,5 @@
 use leptos::{component, view, IntoView};
-
+use leptos::prelude::*;
 use crate::components::{
     cards::card_title::CardTitle,
     icons::{DiscordIcon, GithubIcon, TelegramIcon, WebIcon},
@@ -34,10 +34,10 @@ pub fn CommunityCard(
             </div>
             <span class="ml-auto">
                 {move || match icon {
-                    "discord" => view! { <DiscordIcon size=30 /> },
-                    "github" => view! { <GithubIcon size=30 /> },
-                    "telegram" => view! { <TelegramIcon size=30 /> },
-                    "web" => view! { <WebIcon size=30 /> },
+                    "discord" => view! { <DiscordIcon size=30 /> }.into_any(),
+                    "github" => view! { <GithubIcon size=30 /> }.into_any(),
+                    "telegram" => view! { <TelegramIcon size=30 /> }.into_any(),
+                    "web" => view! { <WebIcon size=30 /> }.into_any(),
                     _ => unreachable!(),
                 }}
 

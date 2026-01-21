@@ -1,5 +1,6 @@
 use leptos::{component, view, IntoView};
-use leptos_router::A;
+use leptos::prelude::*;
+use leptos_router::components::A;
 
 use crate::{
     components::{NextIcon, ProjectCard},
@@ -44,20 +45,19 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                 </div>
                 {if show_more {
                     view! {
-                        <div class="w-full flex justify-end my-3">
-                            <A
-                                href="/proyectos"
-                                class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80 dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center"
-                            >
-                                "Ver todos los proyectos"
-                                <span class="inline-block ml-2">
-                                    <NextIcon class="fill-current" size=20 />
-                                </span>
-                            </A>
+                        <div class="w-full flex justify-end my-3 ">
+                            <p class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80 dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
+                                <A href="/proyectos">
+                                    "Ver todos los proyectos" <span class="inline-block ml-2">
+                                        <NextIcon class="fill-current" size=20 />
+                                    </span>
+                                </A>
+                            </p>
                         </div>
                     }
+                        .into_any()
                 } else {
-                    view! { <div></div> }
+                    view! { <div></div> }.into_any()
                 }}
 
             </div>

@@ -1,4 +1,5 @@
 use leptos::{component, view, IntoView};
+use leptos::prelude::*;
 
 use crate::{
     components::{CommunityCard, NextIcon},
@@ -28,6 +29,7 @@ pub fn OtherCommunities(
                             <span class="font-work-sans font-light">" recomendadas "</span>
                         </h2>
                     }
+                        .into_any()
                 } else {
                     view! {
                         <h2 class="text-3xl text-left mb-6">
@@ -35,6 +37,7 @@ pub fn OtherCommunities(
                             <span class="font-alfa-slab text-orange-500">" Rust"</span>
                         </h2>
                     }
+                        .into_any()
                 }}
                 <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8">
 
@@ -76,8 +79,9 @@ pub fn OtherCommunities(
                             </a>
                         </div>
                     }
+                        .into_any()
                 } else {
-                    view! { <div></div> }
+                    view! { <div></div> }.into_any()
                 }}
 
             </div>

@@ -1,5 +1,5 @@
 use leptos::{component, view, IntoView};
-
+use leptos::prelude::*;
 use crate::components::icons::{GithubIcon, LocationIcon, TwitterIcon};
 
 #[component]

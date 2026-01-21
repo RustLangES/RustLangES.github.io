@@ -1,4 +1,5 @@
 use leptos::{component, view, IntoView};
+use leptos::prelude::*;
 
 use crate::components::ButtonLink;
 
@@ -87,8 +88,9 @@ fn YoutubeCard(
                             </ButtonLink>
                         </>
                     }
+                        .into_any()
                 } else {
-                    view! { <>""</> }
+                    view! { <>""</> }.into_any()
                 }}
 
             </div>

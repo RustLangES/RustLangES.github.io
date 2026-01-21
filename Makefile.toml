@@ -28,7 +28,7 @@ cargo clippy -- -D warnings
 '''
 
 [tasks.leptos-format]
-install_crate = { crate_name = "leptosfmt", version = "0.1.33" }
+install_crate = { crate_name = "leptosfmt", version = "0.1.30" }
 command = "leptosfmt"
 args = ["."]
 
@@ -60,7 +60,7 @@ dependencies = ["get-sitemap", "prebuild", "prebuild-nixdev"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.2.16" }
+], version = "0.3.2" }
 command = "cargo"
 args = ["leptos", "serve", "-r"]
 
@@ -69,6 +69,6 @@ dependencies = ["prebuild", "prebuild-nixdev"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.2.16" }
+], version = "0.3.2" }
 command = "cargo"
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]

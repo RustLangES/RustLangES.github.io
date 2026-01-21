@@ -1,6 +1,6 @@
 use leptos::{component, view, IntoView};
+use leptos::prelude::*;
 use std::collections::HashMap;
-
 use crate::components::{button_link::ButtonLink, cards::card_title::CardTitle, icons::GithubIcon};
 
 #[component]

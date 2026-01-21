@@ -1,4 +1,5 @@
-use leptos::{create_signal, island, view, IntoView, SignalUpdate};
+use leptos::{island, view, IntoView};
+use leptos::prelude::*;
 
 use crate::components::ButtonLink;
 
@@ -6,13 +7,13 @@ use crate::components::icons::LogoRustPageIcon;
 
 #[island]
 pub fn Header() -> impl IntoView {
-    let (is_open, set_is_open) = create_signal(false);
+    let (is_open, set_is_open) = signal(false);
 
     view! {
         <header class="border-b border-b-black/20">
             <div class="container mx-auto px-4 flex items-center justify-between flex-col lg:flex-row">
                 <div class="flex justify-between w-full lg:w-auto">
-                    <a href="/" exact=true class="flex items-center gap-x-4">
+                    <a href="/" class="flex items-center gap-x-4">
                         <LogoRustPageIcon size=80 />
                     </a>
                     <button

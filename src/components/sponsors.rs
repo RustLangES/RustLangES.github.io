@@ -1,6 +1,7 @@
+use leptos::prelude::*;
 use std::collections::HashMap;
 
-use leptos::{component, view, Children, IntoView, View};
+use leptos::{component, view, IntoView};
 
 use crate::components::{CloudflareIcon, Separator};
 
@@ -29,7 +30,7 @@ pub fn Sponsors() -> impl IntoView {
                         <SponsorCard
                             name="Cloudflare"
                             link="https://www.cloudflare.com/es-es/"
-                            component=CloudflareIcon().into_view()
+                            component=CloudflareIcon().into_any()
                             description="Cloudflare confiando en nuestra Visión, Metas y Objetivos, se suma como nuestro primer Sponsor, auspiciando nuestra infraestructura y servicios"
                         />
                         <SponsorCard
@@ -102,7 +103,7 @@ pub fn SponsorCard(
     #[prop(into)] link: &'static str,
     #[prop(into)] description: &'static str,
     #[prop(into, optional, default=None)] image: Option<String>,
-    #[prop(into, default=None)] component: Option<View>,
+    #[prop(into, default=None)] component: Option<AnyView>,
     #[prop(into, default = "black")] image_bg_color: &'static str,
     #[prop(into, default = true)] image_rounded: bool,
     #[prop(into, default = "")] image_padding: &'static str,

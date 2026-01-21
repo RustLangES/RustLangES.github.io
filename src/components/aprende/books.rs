@@ -1,5 +1,6 @@
-use leptos::{component, view, Children, IntoView};
+use leptos::{component, view, IntoView};
 use std::collections::HashMap;
+use leptos::prelude::*;
 
 use crate::components::ButtonLink;
 

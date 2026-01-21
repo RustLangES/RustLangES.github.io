@@ -1,18 +1,18 @@
-use leptos_actix::generate_route_list_with_ssg;
-use leptos_router::build_static_routes;
+use leptos_actix::{generate_route_list_with_ssg};
+// use leptos_router::static_routes;
+use leptos::prelude::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    use leptos::*;
     use rust_lang_es::app::*;
 
-    let conf = get_configuration(None).await.unwrap();
+    let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
-    let (routes, static_data_map) = generate_route_list_with_ssg(App);
+    let (routes, _static_data_map) = generate_route_list_with_ssg(App);
 
-    build_static_routes(&leptos_options, App, &routes, &static_data_map)
-        .await
-        .unwrap();
+    // build_static_routes(&leptos_options, App, &routes, &static_data_map)
+    //     .await
+    //     .unwrap();
 
     #[cfg(feature = "development")]
     {
@@ -31,10 +31,10 @@ async fn main() -> std::io::Result<()> {
                 // serve JS/WASM/CSS from `pkg`
                 .service(Files::new("/pkg", format!("{site_root}/pkg")))
                 // serve other assets from the `assets` directory
-                .service(Files::new("/assets", site_root))
+                .service(Files::new("/assets", &**site_root))
                 // serve the favicon from /favicon.ico
                 .service(favicon)
-                .leptos_routes(leptos_options.to_owned(), routes.to_owned(), App)
+                .leptos_routes(routes.to_owned(), App)
                 .app_data(web::Data::new(leptos_options.to_owned()))
         })
         .bind(&addr)?
@@ -47,7 +47,7 @@ async fn main() -> std::io::Result<()> {
 
 #[actix_web::get("favicon.ico")]
 async fn favicon(
-    leptos_options: actix_web::web::Data<leptos::LeptosOptions>,
+    leptos_options: actix_web::web::Data<leptos::prelude::LeptosOptions>,
 ) -> actix_web::Result<actix_files::NamedFile> {
     let leptos_options = leptos_options.into_inner();
     let site_root = &leptos_options.site_root;

@@ -1,7 +1,8 @@
 #![allow(dead_code)]
-use leptos::{create_signal, island, view, IntoView, SignalUpdate};
+use leptos::{island, view, IntoView};
+use leptos::prelude::*;
 
-use rand::seq::SliceRandom;
+use rand::seq::{IndexedRandom};
 
 #[island]
 pub fn SloganButton(uwu: bool) -> impl IntoView {
@@ -34,10 +35,10 @@ pub fn SloganButton(uwu: bool) -> impl IntoView {
         "El codigo entra por los dedos, a programar para aprender",
     ];
     let (slogan, set_slogan) =
-        create_signal((*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
+        signal((*slogans.choose(&mut rand::rng()).unwrap()).to_string());
 
     let click_handler = move |_| {
-        set_slogan.update(|n| *n = (*slogans.choose(&mut rand::thread_rng()).unwrap()).to_string());
+        set_slogan.update(|n| *n = (*slogans.choose(&mut rand::rng()).unwrap()).to_string());
     };
 
     view! {

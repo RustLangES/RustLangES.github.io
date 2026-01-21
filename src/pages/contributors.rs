@@ -1,6 +1,7 @@
 use std::collections::HashMap;
+use leptos::prelude::*;
 
-use leptos::{component, serde_json::json, view, Await, IntoView};
+use leptos::{component, serde_json::json, view, IntoView};
 use serde::{Deserialize, Serialize};
 
 use crate::components::ContributorCard;
@@ -61,6 +62,7 @@ pub struct ContributionCollection {
     total: u64,
 }
 
+#[cfg(feature = "ssr")]
 pub async fn fetch_contributors() -> Vec<Contributor> {
     let request_body = json!({
         "query": GRAPH_QUERY,
@@ -99,7 +101,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
         .as_array()
         .unwrap_or(&Vec::new())
         .iter()
-        .filter(|&repo| (!repo["collaborators"].is_null()))
+        .filter(|&repo| !repo["collaborators"].is_null())
         .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
         .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
         .fold(HashMap::new(), |prev, c| {
@@ -166,28 +168,33 @@ pub fn Contributors() -> impl IntoView {
                     , podemos seguir construyendo un ecosistema Rust más fuerte y accesible para todos.
                 </p>
                 <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                    <Await future=|| fetch_contributors() let:contributors>
-                        {contributors
-                            .iter()
-                            .map(|item| {
-                                view! {
-                                    <ContributorCard
-                                        name=item.login.clone()
-                                        description=item.bio.clone()
-                                        link=item.url.clone()
-                                        brand_src=item.avatar_url.clone()
-                                        twitter=item.twitter_username.clone()
-                                        location=item.location.clone()
-                                        contributions=item
-                                            .contributions_collection
-                                            .as_ref()
-                                            .map(|c| c.total)
-                                            .unwrap_or(1)
-                                    />
-                                }
-                            })
-                            .collect::<Vec<_>>()}
-                    </Await>
+                    {
+                        #[cfg(feature = "ssr")]
+                        view! {
+                            <Await future=fetch_contributors() let:contributors>
+                                {contributors
+                                    .iter()
+                                    .map(|item| {
+                                        view! {
+                                            <ContributorCard
+                                                name=item.login.clone()
+                                                description=item.bio.clone()
+                                                link=item.url.clone()
+                                                brand_src=item.avatar_url.clone()
+                                                twitter=item.twitter_username.clone()
+                                                location=item.location.clone()
+                                                contributions=item
+                                                    .contributions_collection
+                                                    .as_ref()
+                                                    .map(|c| c.total)
+                                                    .unwrap_or(1)
+                                            />
+                                        }
+                                    })
+                                    .collect::<Vec<_>>()}
+                            </Await>
+                        }
+                    }
                 </div>
             </div>
         </section>
