@@ -17,7 +17,10 @@ pub fn ProjectCard(
         ("white", "bg-white dark:bg-white text-black dark:text-black"),
         ("black", "bg-black dark:bg-white text-white dark:text-black"),
     ]);
-    let current_color = (*colors.get(&button_bg_color).unwrap()).to_string();
+    let current_color = (*colors
+        .get(&button_bg_color)
+        .expect("Button background color not found"))
+    .to_string();
 
     view! {
         <div class="group flex flex-col items-center sm:items-stretch  gap-y-6 border border-black p-4  sm:p-6 hover:bg-orange-500 dark:hover:bg-zinc-900/40 bg-orange-100 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between">

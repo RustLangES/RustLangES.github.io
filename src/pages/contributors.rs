@@ -1,12 +1,17 @@
 use leptos::prelude::*;
+
+#[cfg(feature = "ssr")]
+use crate::components::ContributorCard;
+#[cfg(feature = "ssr")]
+use leptos::serde_json::json;
+use leptos::{component, view, IntoView};
+#[cfg(feature = "ssr")]
+use serde::{Deserialize, Serialize};
+#[cfg(feature = "ssr")]
 use std::collections::HashMap;
 
-use leptos::{component, serde_json::json, view, IntoView};
-use serde::{Deserialize, Serialize};
-
-use crate::components::ContributorCard;
-
-// Test this query on: https://docs.github.com/es/graphql/overview/explorer
+/// Test this query on: https://docs.github.com/es/graphql/overview/explorer
+#[cfg(feature = "ssr")]
 const GRAPH_QUERY: &str = r#"
 query OrganizationContributors {
   organization(login: "RustLangES") {
@@ -35,6 +40,7 @@ query OrganizationContributors {
 }
 "#;
 
+#[cfg(feature = "ssr")]
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Contributor {
@@ -47,6 +53,7 @@ pub struct Contributor {
     contributions_collection: Option<ContributionCollection>,
 }
 
+#[cfg(feature = "ssr")]
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContributionCollection {
@@ -64,6 +71,12 @@ pub struct ContributionCollection {
 
 #[cfg(feature = "ssr")]
 pub async fn fetch_contributors() -> Vec<Contributor> {
+    let token = std::env::var("COLLABORATORS_API_TOKEN").unwrap_or_default();
+    if token.is_empty() {
+        leptos::logging::warn!("COLLABORATORS_API_TOKEN not set, skipping fetch");
+        return Vec::new();
+    }
+
     let request_body = json!({
         "query": GRAPH_QUERY,
     });
@@ -73,9 +86,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
     headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
     headers.append(
         "Authorization",
-        format!("Bearer {}", env!("COLLABORATORS_API_TOKEN"))
-            .parse()
-            .unwrap(),
+        format!("Bearer {}", token).parse().unwrap(),
     );
 
     let client = reqwest::ClientBuilder::new()
@@ -83,26 +94,42 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
         .build()
         .unwrap();
 
-    let res = client
+    let res = match client
         .post("https://api.github.com/graphql")
         .json(&request_body)
         .send()
         .await
-        .unwrap()
-        .text()
-        .await
-        .unwrap();
+    {
+        Ok(res) => res,
+        Err(e) => {
+            leptos::logging::error!("Failed to send request: {}", e);
+            return Vec::new();
+        }
+    };
+
+    let res = match res.text().await {
+        Ok(text) => text,
+        Err(e) => {
+            leptos::logging::error!("Failed to read response text: {}", e);
+            return Vec::new();
+        }
+    };
 
     leptos::logging::log!("Raw: {res:?}");
 
-    let res: leptos::serde_json::Value = leptos::serde_json::from_str(&res).unwrap();
+    let res: leptos::serde_json::Value =
+        leptos::serde_json::from_str(&res).expect("Failed to parse JSON response");
 
     let mut res = res["data"]["organization"]["repositories"]["nodes"]
         .as_array()
         .unwrap_or(&Vec::new())
         .iter()
         .filter(|&repo| !repo["collaborators"].is_null())
-        .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
+        .flat_map(|repo| {
+            repo["collaborators"]["nodes"]
+                .as_array()
+                .expect("Collaborators nodes should be an array")
+        })
         .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
         .fold(HashMap::new(), |prev, c| {
             let mut prev = prev;

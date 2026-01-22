@@ -22,9 +22,9 @@ pub fn ButtonLink(
         ("box", "drop-shadow-[4px_4px_0_rgba(0,0,0)] hover:drop-shadow-[0_0_0_rgba(0,0,0)] dark:drop-shadow-none shadow-sm hover:drop-shadow-none dark:hover:shadow-lg shadow-black"),
     ]);
     let sizes = HashMap::from([("tiny", "min-h-7"), ("normal", "h-9"), ("big", "h-12")]);
-    let current_color = (*colors.get(&color).unwrap()).to_string();
-    let current_size = (*sizes.get(&size).unwrap()).to_string();
-    let shadow = (*shadows.get(&shadow).unwrap()).to_string();
+    let current_color = (*colors.get(&color).expect("Color not found")).to_string();
+    let current_size = (*sizes.get(&size).expect("Size not found")).to_string();
+    let shadow = (*shadows.get(&shadow).expect("Shadow not found")).to_string();
 
     view! {
         <a

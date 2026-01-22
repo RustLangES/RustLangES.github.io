@@ -1,7 +1,6 @@
-use leptos::{component, prelude::*, view, IntoView};
-use leptos_meta::provide_meta_context;
-// use leptos_router::{Route, Router, Routes, StaticParamsMap, StaticRoute};
 use futures::{channel::mpsc, Stream};
+use leptos::{component, prelude::*, view, IntoView};
+use leptos_meta::{provide_meta_context, Body};
 use leptos_router::{components::*, path, static_routes::StaticRoute, SsrMode};
 use std::path::Path;
 
@@ -9,6 +8,24 @@ use crate::{
     components::{Footer, HeadInformation, Header},
     pages::{Aprende, Communities, Contributors, Index, Projects},
 };
+
+pub fn shell(options: LeptosOptions) -> impl IntoView {
+    view! {
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <leptos_meta::MetaTags />
+                <AutoReload options=options.clone() />
+                <HydrationScripts options=options.clone() />
+            </head>
+            <body>
+                <App />
+            </body>
+        </html>
+    }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -23,50 +40,41 @@ pub fn App() -> impl IntoView {
     view! {
         <Router>
             <HeadInformation />
-            <body class=format!(
-                "bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed {} dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]",
-                bg_in_dark_mode,
-            )>
-                <Header />
-                <main>
-                    <Routes fallback=|| Index>
-                        <Route path=path!("/") view=Index />
-                        <Route
-                            path=path!("/comunidades")
-                            view=Communities
-                            ssr=SsrMode::Static(
-                                StaticRoute::new()
-                                    .regenerate(|_| watch_path(Path::new("./comunidades"))),
-                            )
-                        />
-                        <Route
-                            path=path!("/colaboradores")
-                            view=Contributors
-                            ssr=SsrMode::Static(
-                                StaticRoute::new()
-                                    .regenerate(|_| watch_path(Path::new("./colaboradores"))),
-                            )
-                        />
-                        <Route
-                            path=path!("/proyectos")
-                            view=Projects
-                            ssr=SsrMode::Static(
-                                StaticRoute::new()
-                                    .regenerate(|_| watch_path(Path::new("./proyectos"))),
-                            )
-                        />
-                        <Route
-                            path=path!("/aprende")
-                            view=Aprende
-                            ssr=SsrMode::Static(
-                                StaticRoute::new()
-                                    .regenerate(|_| watch_path(Path::new("./aprende"))),
-                            )
-                        />
-                    </Routes>
-                </main>
-                <Footer />
-            </body>
+            <Body
+                {..}
+                class=format!(
+                    "bg-orange-200 dark:bg-[#131313]/90 bg-center bg-fixed {} dark:bri dark:bg-cover dark:bg-blend-darken dark:backdrop-blur-xl overflow-x-hidden dark:text-[#e2cea9]",
+                    bg_in_dark_mode,
+                )
+            />
+            <Header />
+            <main>
+                <FlatRoutes fallback=|| Index>
+                    <Route path=path!("/") view=Index ssr=SsrMode::Static(StaticRoute::new()) />
+                    <Route
+                        path=path!("/comunidades")
+                        view=Communities
+                        ssr=SsrMode::Static(StaticRoute::new())
+                    />
+                    <Route
+                        path=path!("/colaboradores")
+                        view=Contributors
+                        ssr=SsrMode::Static(StaticRoute::new())
+                    />
+                    <Route
+                        path=path!("/proyectos")
+                        view=Projects
+                        ssr=SsrMode::Static(StaticRoute::new())
+                    />
+                    <Route
+                        path=path!("/aprende")
+                        ssr=SsrMode::Static(StaticRoute::new())
+                        view=Aprende
+                    />
+                    <Route path=path!("/404") view=Index ssr=SsrMode::Static(StaticRoute::new()) />
+                </FlatRoutes>
+            </main>
+            <Footer />
         </Router>
     }
 }

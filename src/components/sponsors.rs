@@ -113,7 +113,10 @@ pub fn SponsorCard(
         ("black", "bg-black text-white dark:text-black"),
         ("none", "text-white dark:text-black"),
     ]);
-    let current_color = (*colors.get(&image_bg_color).unwrap()).to_string();
+    let current_color = (*colors
+        .get(&image_bg_color)
+        .expect("Image background color not found"))
+    .to_string();
 
     let image_rounded = if image_rounded { " rounded-full " } else { "" };
 

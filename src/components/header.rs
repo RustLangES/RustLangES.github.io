@@ -1,10 +1,11 @@
-use leptos::{island, prelude::*, view, IntoView};
+use leptos::{component, prelude::*, view, IntoView};
+use leptos_router::components::A;
 
 use crate::components::ButtonLink;
 
 use crate::components::icons::LogoRustPageIcon;
 
-#[island]
+#[component]
 pub fn Header() -> impl IntoView {
     let (is_open, set_is_open) = signal(false);
 
@@ -23,12 +24,10 @@ pub fn Header() -> impl IntoView {
                         <span class="w-6 h-1 bg-black dark:bg-white block my-4 relative after:absolute after:block after:bg-black dark:after:bg-white after:w-6 after:h-1 after:bottom-2 before:absolute before:block before:bg-black dark:before:bg-white before:w-6 before:h-1 before:-bottom-2"></span>
                     </button>
                 </div>
-                <nav class=move || {
-                    format!(
-                        "w-full lg:w-auto pb-10 pt-5 lg:p-0 {}",
-                        if is_open() { "block" } else { "hidden lg:block" },
-                    )
-                }>
+                <nav
+                    class="w-full lg:w-auto pb-10 pt-5 lg:p-0 lg:block"
+                    class=("hidden", move || !is_open.get())
+                >
                     <ul class="flex items-center gap-6 flex-col lg:flex-row lg:items-center">
                         <li class="nav-item">
                             <a href="https://book.rustlang-es.org" target="_blank">
@@ -36,7 +35,7 @@ pub fn Header() -> impl IntoView {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/aprende">"Aprende"</a>
+                            <A href="/aprende">"Aprende"</A>
                         </li>
                         <li class="nav-item">
                             <a href="/comunidades">"Comunidades"</a>

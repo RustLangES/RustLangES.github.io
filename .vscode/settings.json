@@ -16,5 +16,5 @@
         "strings": true
       },
       "css.validate": false,
-      "rust-analyzer.cargo.features": ["development", "ssr"]
+      "rust-analyzer.cargo.features": ["development", "ssr", "hydrate"]
 }

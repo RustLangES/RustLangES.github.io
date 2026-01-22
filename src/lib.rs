@@ -1,3 +1,5 @@
+#![recursion_limit = "256"]
+
 pub mod app;
 pub mod components;
 #[rustfmt::skip]
@@ -38,10 +40,15 @@ macro_rules! error {
     ($($t:tt)*) => (error(format_args!($($t)*).to_string()))
 }
 
-#[wasm_bindgen]
+#[cfg(feature = "hydrate")]
+#[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
+    use crate::app::*;
+
     #[cfg(target_arch = "wasm32")]
     std::panic::set_hook(Box::new(|info: &std::panic::PanicHookInfo| {
         error!("{info}")
     }));
+
+    leptos::mount::hydrate_body(App);
 }

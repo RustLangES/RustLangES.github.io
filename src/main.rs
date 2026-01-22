@@ -1,57 +1,68 @@
-use leptos_actix::generate_route_list_with_ssg;
-// use leptos_router::static_routes;
-use leptos::prelude::*;
+#![recursion_limit = "256"]
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
+#[cfg(feature = "ssr")]
+#[tokio::main]
+async fn main() {
+    use axum::Router;
+    use leptos::{config::get_configuration, logging::log};
+    use leptos_axum::{generate_route_list_with_ssg, LeptosRoutes};
     use rust_lang_es::app::*;
+    use tower_http::services::ServeDir;
 
     let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
-    let (routes, _static_data_map) = generate_route_list_with_ssg(App);
+    let addr = leptos_options.site_addr;
 
-    // build_static_routes(&leptos_options, App, &routes, &static_data_map)
-    //     .await
-    //     .unwrap();
+    let (routes, static_routes) = generate_route_list_with_ssg({
+        let leptos_options = leptos_options.clone();
+        move || shell(leptos_options.clone())
+    });
+
+    log!("{routes:?}");
+
+    // Run static route generation in a LocalSet to support spawn_local
+    let local = tokio::task::LocalSet::new();
+    local
+        .run_until(static_routes.generate(&leptos_options))
+        .await;
 
     #[cfg(feature = "development")]
     {
-        use actix_files::Files;
-        use actix_web::web;
-        use leptos_actix::LeptosRoutes;
+        println!("listening on http://{}", addr);
 
-        let addr = leptos_options.site_addr;
-        println!("listening on http://{}", &addr);
+        use axum::routing::get;
 
-        return actix_web::HttpServer::new(move || {
-            let site_root = &leptos_options.site_root;
+        let site_root = leptos_options.site_root.as_ref();
+        let pkg_dir = format!("{}/pkg", site_root);
 
-            actix_web::App::new()
-                .route("/api/{tail:.*}", leptos_actix::handle_server_fns())
-                // serve JS/WASM/CSS from `pkg`
-                .service(Files::new("/pkg", format!("{site_root}/pkg")))
-                // serve other assets from the `assets` directory
-                .service(Files::new("/assets", &**site_root))
-                // serve the favicon from /favicon.ico
-                .service(favicon)
-                .leptos_routes(routes.to_owned(), App)
-                .app_data(web::Data::new(leptos_options.to_owned()))
-        })
-        .bind(&addr)?
-        .run()
-        .await;
+        let file_serving = ServeDir::new(site_root);
+
+        let app = Router::new()
+            .route(
+                "/api/{*fn_name}",
+                get(leptos_axum::handle_server_fns).post(leptos_axum::handle_server_fns),
+            )
+            .leptos_routes(&leptos_options, routes, {
+                let leptos_options = leptos_options.clone();
+                move || shell(leptos_options.clone())
+            })
+            .nest_service("/pkg", ServeDir::new(pkg_dir))
+            .nest_service("/assets", file_serving.clone())
+            .nest_service(
+                "/favicon.ico",
+                ServeDir::new(format!("{}/favicon.ico", site_root)),
+            )
+            .fallback(leptos_axum::file_and_error_handler(shell))
+            .with_state(leptos_options);
+
+        let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
+        axum::serve(listener, app.into_make_service())
+            .await
+            .unwrap();
     }
-    #[cfg(not(feature = "development"))]
-    Ok(())
 }
 
-#[actix_web::get("favicon.ico")]
-async fn favicon(
-    leptos_options: actix_web::web::Data<leptos::prelude::LeptosOptions>,
-) -> actix_web::Result<actix_files::NamedFile> {
-    let leptos_options = leptos_options.into_inner();
-    let site_root = &leptos_options.site_root;
-    Ok(actix_files::NamedFile::open(format!(
-        "{site_root}/favicon.ico"
-    ))?)
+#[cfg(not(feature = "ssr"))]
+pub fn main() {
+    // no client-side main needed here
 }

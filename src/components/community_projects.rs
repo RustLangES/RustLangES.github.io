@@ -46,8 +46,9 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                     view! {
                         <div class="w-full flex justify-end my-3 ">
                             <p class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80 dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
-                                <A href="/proyectos">
-                                    "Ver todos los proyectos" <span class="inline-block ml-2">
+                                <A href="/proyectos" exact=true>
+                                    "Ver todos los proyectos"
+                                    <span class="inline-block ml-2">
                                         <NextIcon class="fill-current" size=20 />
                                     </span>
                                 </A>
