@@ -3,7 +3,7 @@ use leptos_router::components::A;
 
 use crate::{
     components::{NextIcon, ProjectCard},
-    extras::COMUNITY_PROJECTS,
+    extras::COMMUNITY_PROJECTS,
 };
 
 #[component]
@@ -16,10 +16,10 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                     <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-8">
-                    {COMUNITY_PROJECTS
-                        .iter()
-                        .take(if show_more { 4 } else { COMUNITY_PROJECTS.len() })
-                        .map(|item| {
+                    <For 
+                        each=move || COMMUNITY_PROJECTS.iter().take(if show_more { 4 } else { COMMUNITY_PROJECTS.len() })
+                        key=|item| item.name
+                        children={move |item| {
                             let image_src = if cfg!(debug_assertions)
                                 && item.brand_src.starts_with("/gen_assets")
                             {
@@ -27,6 +27,7 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                             } else {
                                 item.brand_src.to_string()
                             };
+
                             view! {
                                 <ProjectCard
                                     name=item.name
@@ -39,27 +40,21 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                                     button_bg_color=item.button_bg_color
                                 />
                             }
-                        })
-                        .collect::<Vec<_>>()}
+                        }}
+                    />
                 </div>
-                {if show_more {
-                    view! {
-                        <div class="w-full flex justify-end my-3 ">
-                            <p class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80 dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
-                                <A href="/proyectos" exact=true>
-                                    "Ver todos los proyectos"
-                                    <span class="inline-block ml-2">
-                                        <NextIcon class="fill-current" size=20 />
-                                    </span>
-                                </A>
-                            </p>
-                        </div>
-                    }
-                        .into_any()
-                } else {
-                    view! { <div></div> }.into_any()
-                }}
-
+                <Show when=move || show_more>
+                    <div class="w-full flex justify-end my-3 ">
+                        <p class="text-black/80 dark:text-white/80 hover:text-orange-500 fill-black/80 dark:fill-white/80 hover:fill-orange-500 font-work-sans font-light text-2xl flex justify-center items-center">
+                            <A href="/proyectos" exact=true>
+                                "Ver todos los proyectos"
+                                <span class="inline-block ml-2">
+                                    <NextIcon class="fill-current" size=20 />
+                                </span>
+                            </A>
+                        </p>
+                    </div>
+                </Show>
             </div>
         </section>
     }

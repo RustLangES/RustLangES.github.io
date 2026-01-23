@@ -2,7 +2,7 @@
 use leptos::{component, prelude::*, view, IntoView};
 
 #[component]
-pub fn SloganButton() -> impl IntoView {
+pub fn SloganButton(uwu: ReadSignal<bool>) -> impl IntoView {
     let slogans = [
         "Una comunidad de gente mal intencionada y tonta.",
         "Rust the lang, not the game",
@@ -35,7 +35,6 @@ pub fn SloganButton() -> impl IntoView {
     let (slogan, set_slogan) = signal(slogans[0].to_string());
 
     let click_handler = move |_| {
-        leptos::logging::log!("Button clicked!");
         #[cfg(target_arch = "wasm32")]
         {
             use wasm_bindgen::prelude::*;
@@ -45,7 +44,6 @@ pub fn SloganButton() -> impl IntoView {
                 fn random() -> f64;
             }
             let index = (random() * slogans.len() as f64).floor() as usize;
-            leptos::logging::log!("Selected index: {}, slogan: {}", index, slogans[index]);
             set_slogan.set(slogans[index].to_string());
         }
 
@@ -62,7 +60,9 @@ pub fn SloganButton() -> impl IntoView {
 
     view! {
         <div
-            class="flex select-none items-center justify-center lg:justify-start group dark:text-white drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out dark:delay-75 cursor-pointer"
+            class="flex select-none items-center justify-center lg:justify-start group dark:text-white drop-shadow-[7px_7px_2px_rgba(0,0,0,.5)] hover:drop-shadow-none dark:transition-all dark:ease-in-out  dark:delay-75 "
+            class=("lg:justify-center", move || uwu.get())
+
             on:click=click_handler
         >
             <button
