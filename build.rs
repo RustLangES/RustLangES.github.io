@@ -162,7 +162,7 @@ fn generate_projects(path: &Path) {
     let mut out = fs::File::create("src/extras/projects.rs").unwrap();
     write!(
         out,
-        "use crate::models::ProjectItem;\npub const COMUNITY_PROJECTS: &[ProjectItem] = &[\n"
+        "use crate::models::ProjectItem;\npub const COMMUNITY_PROJECTS: &[ProjectItem] = &[\n"
     )
     .unwrap();
     for (c, _p, t) in projects {
