@@ -10,29 +10,50 @@
 > Esta pagina no se publicará hasta que el nuevo diseño se encuentre listo
 > https://www.figma.com/design/S9yCZSaZ9q54XSojWNhJft/Rust-Lang-ES?node-id=0-1&p=f&t=Cn6Q0QzGflLYCOgo-0
 
-## Requisitos Generales 
+## Como ejecutar
+
+
+### Requisitos Generales 
 Antes de empezar es necesario tener estos programas
 - [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
 
-## Requisitos Windows >= 10 
+### Requisitos Windows >= 10 
 -[BusyBox](https://busybox.net/)
 	- Usando scoop `scoop install busybox`
 	- Usando choco  `choco install busybox`
 
-## Desarrollo
+### Desarrollo
 > [!NOTE]
 > necesitas fetch git submodules para clonar los assets externos para el desarrollo 
 
+
 Con estos comandos podrá empezar a desarrollar
+
 ```bash
 git submodule update --init --recursive
 rustup toolchain install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown
-npm install
+
+
+cd .. && git clone https://github.com/RustLangES/design-system-components
+cd design-system-components && pnpm install
+cd styles && pnpm run build
+
+cd ../../RustLangES.github.io && npm install
+
+# Sin cargo make:
+cargo leptos serve --hot-reload --features development
+
+# Con cargo make:
 cargo install cargo-make
+cargo make serve
 ```
+
+
+---
+
 
 ### Si usas nix
 
