@@ -38,7 +38,7 @@ rustup target add wasm32-unknown-unknown
 
 
 cd .. && git clone https://github.com/RustLangES/design-system-components
-cd design-system-components && pnpm install
+cd design-system-components && git checkout dev && pnpm install
 cd styles && pnpm run build
 
 cd ../../RustLangES.github.io && npm install
