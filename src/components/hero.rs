@@ -1,7 +1,10 @@
 use crate::components::SloganButton;
-use leptos::leptos_dom::logging;
-use leptos::{component, prelude::*, view, IntoView};
-use leptos::leptos_dom::helpers::location;
+use leptos::{
+    component,
+    leptos_dom::{helpers::location, logging},
+    prelude::*,
+    view, IntoView,
+};
 
 #[component]
 pub fn Hero() -> impl IntoView {
@@ -11,7 +14,12 @@ pub fn Hero() -> impl IntoView {
 
     Effect::new(move |_| {
         let location = location();
-        set_uwu.set(location.search().map(|s| s.contains("uwu")).unwrap_or(false));
+        set_uwu.set(
+            location
+                .search()
+                .map(|s| s.contains("uwu"))
+                .unwrap_or(false),
+        );
     });
 
     let image_src = move || match (is_in_debug_mode, uwu.get()) {
@@ -21,16 +29,18 @@ pub fn Hero() -> impl IntoView {
         (false, true) => "./RustLang_uwu.png",
     };
 
-    let class_fn = move || if !uwu.get() {
+    let class_fn = move || {
+        if !uwu.get() {
             "grid items-center py-14 lg:py-32 px-4 gap-x-20 gap-y-10 lg:grid-cols-2 w-full"
-        } else {    
+        } else {
             "grid items-center justify-center"
-        };
+        }
+    };
 
     view! {
         <section class=class_fn>
             <figure class="w-80 mx-auto lg:w-full">
-                {move ||  
+                {move || {
                     if !uwu.get() {
                         view! {
                             <img
@@ -53,10 +63,10 @@ pub fn Hero() -> impl IntoView {
                         }
                             .into_any()
                     }
-                }
+                }}
             </figure>
             <div>
-                <Show when=move || !uwu.get() >
+                <Show when=move || !uwu.get()>
                     <h1 class="flex flex-col mb-4 gap-y-2">
                         <span class="font-work-sans text-4xl font-light text-center lg:text-left">
                             "Bienvenidos a"

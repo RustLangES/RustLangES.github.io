@@ -16,10 +16,14 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                     <span class="font-alfa-slab text-orange-500">"Comunidad"</span>
                 </h2>
                 <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-8 gap-y-8">
-                    <For 
-                        each=move || COMMUNITY_PROJECTS.iter().take(if show_more { 4 } else { COMMUNITY_PROJECTS.len() })
+                    <For
+                        each=move || {
+                            COMMUNITY_PROJECTS
+                                .iter()
+                                .take(if show_more { 4 } else { COMMUNITY_PROJECTS.len() })
+                        }
                         key=|item| item.name
-                        children={move |item| {
+                        children=move |item| {
                             let image_src = if cfg!(debug_assertions)
                                 && item.brand_src.starts_with("/gen_assets")
                             {
@@ -40,7 +44,7 @@ pub fn CommunityProjects(#[prop(default = false)] show_more: bool) -> impl IntoV
                                     button_bg_color=item.button_bg_color
                                 />
                             }
-                        }}
+                        }
                     />
                 </div>
                 <Show when=move || show_more>
