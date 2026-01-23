@@ -1,10 +1,5 @@
 use crate::components::SloganButton;
-use leptos::{
-    component,
-    leptos_dom::{helpers::location, logging},
-    prelude::*,
-    view, IntoView,
-};
+use leptos::{component, leptos_dom::helpers::location, prelude::*, view, IntoView};
 
 #[component]
 pub fn Hero() -> impl IntoView {
