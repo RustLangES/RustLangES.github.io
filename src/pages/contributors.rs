@@ -169,12 +169,7 @@ mod config {
 
 #[cfg(feature = "ssr")]
 pub async fn fetch_contributors() -> ContributorsResponse {
-    println!("DEBUG: Starting fetch_contributors()");
     let mut all_contributors = fetch_all_contributors_with_pagination().await;
-    println!(
-        "DEBUG: fetch_contributors returned {} contributors",
-        all_contributors.len()
-    );
 
     all_contributors.sort_by_key(|a| {
         a.contributions_collection
@@ -231,14 +226,8 @@ async fn fetch_all_contributors_with_pagination() -> Vec<Contributor> {
                 }
 
                 let mut collab_page_info = collabs.page_info;
-                let repo_name = repo.name.clone();
                 while collab_page_info.has_next_page {
                     let collab_cursor = collab_page_info.end_cursor.clone();
-
-                    println!(
-                        "DEBUG: Fetching more collabs for repo '{}', repo_cursor={:?}, collab_cursor={:?}",
-                        repo_name, repo_cursor, collab_cursor
-                    );
 
                     let collab_response = execute_repository_query(
                         config::ORGANIZATION_LOGIN,
@@ -358,13 +347,6 @@ async fn execute_repository_query(
     };
 
     let org_data = parsed.data.unwrap_or_else(empty_org_data);
-    let repo_count = org_data
-        .organization
-        .repositories
-        .nodes
-        .as_ref()
-        .map(|n| n.len())
-        .unwrap_or(0);
 
     org_data
 }
