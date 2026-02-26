@@ -365,7 +365,6 @@ async fn execute_repository_query(
         .as_ref()
         .map(|n| n.len())
         .unwrap_or(0);
-    println!("DEBUG: Parsed org data, repos count: {}", repo_count);
 
     org_data
 }
