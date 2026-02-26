@@ -333,7 +333,6 @@ async fn execute_repository_query(
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    #[cfg(feature = "ssr")]
     {
         view! {
             <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
