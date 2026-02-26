@@ -357,30 +357,31 @@ pub fn Contributors() -> impl IntoView {
                     </p>
                     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
                         {
-                        #[cfg(feature = "ssr")]
-                        view! {
-                            <Await future=fetch_contributors() let:res>
-                                {res.contributors
-                                    .iter()
-                                    .map(|item| {
-                                        view! {
-                                            <ContributorCard
-                                                name=item.login.clone()
-                                                description=item.bio.clone()
-                                                link=item.url.clone()
-                                                brand_src=item.avatar_url.clone()
-                                                twitter=item.twitter_username.clone()
-                                                location=item.location.clone()
-                                                contributions=item
-                                                    .contributions_collection
-                                                    .as_ref()
-                                                    .map(|c| c.total)
-                                                    .unwrap_or(1)
-                                            />
-                                        }
-                                    })
-                                    .collect::<Vec<_>>()}
-                            </Await>
+                            #[cfg(feature = "ssr")]
+                            view! {
+                                <Await future=fetch_contributors() let:res>
+                                    {res
+                                        .contributors
+                                        .iter()
+                                        .map(|item| {
+                                            view! {
+                                                <ContributorCard
+                                                    name=item.login.clone()
+                                                    description=item.bio.clone()
+                                                    link=item.url.clone()
+                                                    brand_src=item.avatar_url.clone()
+                                                    twitter=item.twitter_username.clone()
+                                                    location=item.location.clone()
+                                                    contributions=item
+                                                        .contributions_collection
+                                                        .as_ref()
+                                                        .map(|c| c.total)
+                                                        .unwrap_or(1)
+                                                />
+                                            }
+                                        })
+                                        .collect::<Vec<_>>()}
+                                </Await>
                             }
                         }
                     </div>
