@@ -335,8 +335,6 @@ async fn execute_repository_query(
 pub fn Contributors() -> impl IntoView {
     #[cfg(feature = "ssr")]
     {
-        let contributors_data = Resource::new(|| (), |_| fetch_contributors());
-
         view! {
             <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
                 <div class="flex flex-col gap-y-6 container mx-auto px-4">
@@ -358,36 +356,33 @@ pub fn Contributors() -> impl IntoView {
                         , podemos seguir construyendo un ecosistema Rust más fuerte y accesible para todos.
                     </p>
                     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                        <Suspense fallback=move || {
-                            view! { <p>"Cargando colaboradores..."</p> }
-                        }>
-                            {move || {
-                                contributors_data
-                                    .get()
-                                    .map(|data| {
-                                        data.contributors
-                                            .iter()
-                                            .map(|item| {
-                                                view! {
-                                                    <ContributorCard
-                                                        name=item.login.clone()
-                                                        description=item.bio.clone()
-                                                        link=item.url.clone()
-                                                        brand_src=item.avatar_url.clone()
-                                                        twitter=item.twitter_username.clone()
-                                                        location=item.location.clone()
-                                                        contributions=item
-                                                            .contributions_collection
-                                                            .as_ref()
-                                                            .map(|c| c.total)
-                                                            .unwrap_or(1)
-                                                    />
-                                                }
-                                            })
-                                            .collect::<Vec<_>>()
+                        {
+                        #[cfg(feature = "ssr")]
+                        view! {
+                            <Await future=fetch_contributors() let:res>
+                                {res.contributors
+                                    .iter()
+                                    .map(|item| {
+                                        view! {
+                                            <ContributorCard
+                                                name=item.login.clone()
+                                                description=item.bio.clone()
+                                                link=item.url.clone()
+                                                brand_src=item.avatar_url.clone()
+                                                twitter=item.twitter_username.clone()
+                                                location=item.location.clone()
+                                                contributions=item
+                                                    .contributions_collection
+                                                    .as_ref()
+                                                    .map(|c| c.total)
+                                                    .unwrap_or(1)
+                                            />
+                                        }
                                     })
-                            }}
-                        </Suspense>
+                                    .collect::<Vec<_>>()}
+                            </Await>
+                            }
+                        }
                     </div>
                 </div>
             </section>
