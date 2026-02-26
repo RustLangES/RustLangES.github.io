@@ -62,7 +62,7 @@ install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "--version",
 ], version = "0.3.2" }
 command = "cargo"
-args = ["leptos", "serve", "-r"]
+args = ["leptos", "serve", "-r", "--features", "ssr"]
 
 [tasks.serve]
 dependencies = ["prebuild", "prebuild-nixdev"]

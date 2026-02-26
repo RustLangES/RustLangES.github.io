@@ -140,13 +140,13 @@ pub struct Contributor {
 #[serde(rename_all = "camelCase")]
 pub struct ContributionCollection {
     #[serde(rename = "totalCommitContributions")]
-    commits: u64,
+    commits: Option<u64>,
     #[serde(rename = "totalPullRequestContributions")]
-    pull_request: u64,
+    pull_request: Option<u64>,
     #[serde(rename = "totalIssueContributions")]
-    issues: u64,
+    issues: Option<u64>,
     #[serde(rename = "totalRepositoryContributions")]
-    repository: u64,
+    repository: Option<u64>,
     #[serde(skip)]
     total: u64,
 }
@@ -169,7 +169,12 @@ mod config {
 
 #[cfg(feature = "ssr")]
 pub async fn fetch_contributors() -> ContributorsResponse {
+    println!("DEBUG: Starting fetch_contributors()");
     let mut all_contributors = fetch_all_contributors_with_pagination().await;
+    println!(
+        "DEBUG: fetch_contributors returned {} contributors",
+        all_contributors.len()
+    );
 
     all_contributors.sort_by_key(|a| {
         a.contributions_collection
@@ -206,6 +211,17 @@ async fn fetch_all_contributors_with_pagination() -> Vec<Contributor> {
         )
         .await;
 
+        println!(
+            "Fetched a page of repositories with {} nodes",
+            response
+                .organization
+                .repositories
+                .nodes
+                .as_ref()
+                .map(|n| n.len())
+                .unwrap_or(0)
+        );
+
         let repos = response.organization.repositories;
 
         for repo in repos.nodes.unwrap_or_default() {
@@ -215,13 +231,19 @@ async fn fetch_all_contributors_with_pagination() -> Vec<Contributor> {
                 }
 
                 let mut collab_page_info = collabs.page_info;
+                let repo_name = repo.name.clone();
                 while collab_page_info.has_next_page {
                     let collab_cursor = collab_page_info.end_cursor.clone();
+
+                    println!(
+                        "DEBUG: Fetching more collabs for repo '{}', repo_cursor={:?}, collab_cursor={:?}",
+                        repo_name, repo_cursor, collab_cursor
+                    );
 
                     let collab_response = execute_repository_query(
                         config::ORGANIZATION_LOGIN,
                         1,
-                        repo_cursor.clone(),
+                        None, // FIX: Use None to stay on the same repo, not the repo cursor
                         config::COLLAB_PAGE_SIZE,
                         collab_cursor,
                     )
@@ -263,7 +285,10 @@ async fn fetch_all_contributors_with_pagination() -> Vec<Contributor> {
 #[cfg(feature = "ssr")]
 fn process_contributor(seen: &mut HashMap<String, Contributor>, mut contributor: Contributor) {
     if let Some(cc) = contributor.contributions_collection.as_mut() {
-        cc.total = cc.commits + cc.issues + cc.pull_request + cc.repository;
+        cc.total = cc.commits.unwrap_or(0)
+            + cc.issues.unwrap_or(0)
+            + cc.pull_request.unwrap_or(0)
+            + cc.repository.unwrap_or(0);
         if cc.total == 0 {
             cc.total = 1;
         }
@@ -292,6 +317,7 @@ async fn execute_repository_query(
 ) -> OrganizationData {
     let token = std::env::var("COLLABORATORS_API_TOKEN").unwrap_or_default();
     if token.is_empty() {
+        leptos::logging::warn!("COLLABORATORS_API_TOKEN is empty or not set!");
         return empty_org_data();
     }
 
@@ -317,7 +343,10 @@ async fn execute_repository_query(
 
     let text = match res {
         Ok(r) => r.text().await.unwrap_or_default(),
-        Err(_) => return empty_org_data(),
+        Err(e) => {
+            leptos::logging::error!("Request failed: {:?}", e);
+            return empty_org_data();
+        }
     };
 
     let parsed: GithubResponse = match serde_json::from_str(&text) {
@@ -328,7 +357,17 @@ async fn execute_repository_query(
         }
     };
 
-    parsed.data.unwrap_or_else(empty_org_data)
+    let org_data = parsed.data.unwrap_or_else(empty_org_data);
+    let repo_count = org_data
+        .organization
+        .repositories
+        .nodes
+        .as_ref()
+        .map(|n| n.len())
+        .unwrap_or(0);
+    println!("DEBUG: Parsed org data, repos count: {}", repo_count);
+
+    org_data
 }
 
 #[component]
