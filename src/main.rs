@@ -26,6 +26,8 @@ async fn main() {
         .run_until(static_routes.generate(&leptos_options))
         .await;
 
+    rust_lang_es::pages::load_contributors().await;
+
     #[cfg(feature = "development")]
     {
         println!("listening on http://{}", addr);

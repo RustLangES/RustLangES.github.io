@@ -2128,6 +2128,7 @@ dependencies = [
  "axum",
  "futures",
  "getrandom 0.3.4",
+ "gloo-net",
  "leptos",
  "leptos_axum",
  "leptos_meta",
