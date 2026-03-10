@@ -19,7 +19,11 @@
 }
 
 .group:hover > span.badge-container {
-  @apply first:min-h-6 items-center justify-center transition-all transform duration-1000;
+  @apply items-center justify-center transition-all transform duration-1000;
+}
+
+.group:hover > span.badge-container:first-child {
+  @apply min-h-6;
 }
 
 .group:hover > span.badge-container > span.badge-content {
@@ -58,4 +62,10 @@
 
 .nav-item:hover:after {
   @apply  scale-x-100;
+}
+
+.bg-chiwa {
+  background-image: url("https://pngimg.com/uploads/clown/clown_PNG1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
