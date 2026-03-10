@@ -1,4 +1,6 @@
-use leptos::{prelude::*, serde_json};
+use leptos::prelude::*;
+#[cfg(feature = "ssr")]
+use leptos::serde_json;
 
 use crate::components::ContributorCard;
 #[cfg(feature = "ssr")]
@@ -97,7 +99,7 @@ pub struct Contributor {
     pub contributions: u64,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ContributorsResponse {
     pub contributors: Vec<Contributor>,
     pub total: usize,
@@ -156,9 +158,10 @@ pub async fn load_contributors() -> ContributorsResponse {
     }
     #[cfg(not(feature = "ssr"))]
     {
-        ContributorsResponse {
-            contributors: vec![],
-            total: 0,
+        use gloo_net::http::Request;
+        match Request::get("/contributors.json").send().await {
+            Ok(resp) => resp.json::<ContributorsResponse>().await.unwrap_or_default(),
+            Err(_) => ContributorsResponse::default(),
         }
     }
 }
@@ -171,6 +174,10 @@ async fn fetch_contributors() -> ContributorsResponse {
         if let Ok(contents) = std::fs::read_to_string(CONTRIBUTORS_CACHE_PATH) {
             if let Ok(cached) = serde_json::from_str::<ContributorsResponse>(&contents) {
                 println!("Loaded {} contributors from cache ({})", cached.total, CONTRIBUTORS_CACHE_PATH);
+                let dist_path = std::env::var("LEPTOS_SITE_ROOT").unwrap_or_else(|_| "dist".to_string());
+                let _ = std::fs::create_dir_all(&dist_path);
+                let json_path = format!("{}/contributors.json", dist_path);
+                let _ = std::fs::write(&json_path, &contents);
                 return cached;
             }
         }
@@ -197,6 +204,16 @@ async fn fetch_contributors() -> ContributorsResponse {
                 }
             }
             Err(e) => eprintln!("Failed to serialize contributors cache: {}", e),
+        }
+    }
+
+    if let Ok(json) = serde_json::to_string(&response) {
+        let dist_path = std::env::var("LEPTOS_SITE_ROOT").unwrap_or_else(|_| "dist".to_string());
+        let _ = std::fs::create_dir_all(&dist_path);
+        let json_path = format!("{}/contributors.json", dist_path);
+        match std::fs::write(&json_path, &json) {
+            Ok(_) => println!("Wrote contributors to {}", json_path),
+            Err(e) => eprintln!("Failed to write {}: {}", json_path, e),
         }
     }
 
@@ -431,6 +448,8 @@ async fn fetch_user_profiles_batch(
 
 #[component]
 pub fn Contributors() -> impl IntoView {
+    let contributors = LocalResource::new(|| load_contributors());
+
     view! {
         <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
             <div class="flex flex-col gap-y-6 container mx-auto px-4">
@@ -452,25 +471,31 @@ pub fn Contributors() -> impl IntoView {
                     , podemos seguir construyendo un ecosistema Rust más fuerte y accesible para todos.
                 </p>
                 <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
-                    <Await future=load_contributors() let:res>
-                        {res
-                            .contributors
-                            .iter()
-                            .map(|item| {
-                                view! {
-                                    <ContributorCard
-                                        name=item.login.clone()
-                                        description=item.bio.clone()
-                                        link=item.url.clone()
-                                        brand_src=item.avatar_url.clone()
-                                        twitter=item.twitter_username.clone()
-                                        location=item.location.clone()
-                                        contributions=item.contributions
-                                    />
-                                }
-                            })
-                            .collect::<Vec<_>>()}
-                    </Await>
+                    <Suspense fallback=|| ()>
+                        {move || {
+                            contributors
+                                .get()
+                                .map(|res| {
+                                    res.contributors
+                                        .clone()
+                                        .into_iter()
+                                        .map(|item| {
+                                            view! {
+                                                <ContributorCard
+                                                    name=item.login.clone()
+                                                    description=item.bio.clone()
+                                                    link=item.url.clone()
+                                                    brand_src=item.avatar_url.clone()
+                                                    twitter=item.twitter_username.clone()
+                                                    location=item.location.clone()
+                                                    contributions=item.contributions
+                                                />
+                                            }
+                                        })
+                                        .collect::<Vec<_>>()
+                                })
+                        }}
+                    </Suspense>
                 </div>
             </div>
         </section>
