@@ -68,4 +68,5 @@
   background-image: url("https://pngimg.com/uploads/clown/clown_PNG1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-blend-mode: color;
 }
