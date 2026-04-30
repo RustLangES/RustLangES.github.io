@@ -3,9 +3,12 @@ use std::collections::HashMap;
 use leptos::prelude::*;
 use serde::{Deserialize, Serialize};
 
-// Test this query on: https://docs.github.com/es/graphql/overview/explorer
-const GRAPH_QUERY: &str = r#"
-query OrganizationContributors {
+use crate::components::{
+    contributor_card::{ContributorCard, ContributorInfo},
+    footer::Footer,
+};
+
+const GRAPH_QUERY: &str = r#"query OrganizationContributors {
   organization(login: "RustLangES") {
     repositories(first: 100) {
       nodes {
@@ -55,91 +58,190 @@ pub struct ContributionCollection {
     issues: u64,
     #[serde(rename = "totalRepositoryContributions")]
     repository: u64,
-    #[serde(skip)]
-    total: u64,
+}
+
+impl ContributionCollection {
+    fn total(&self) -> u64 {
+        self.commits + self.issues + self.pull_request + self.repository
+    }
+}
+
+#[derive(Serialize)]
+struct GqlBody<'a> {
+    query: &'a str,
 }
 
 pub async fn fetch_contributors() -> Vec<Contributor> {
-    // let request_body = json!({
-    //     "query": GRAPH_QUERY,
-    // });
+    let token = std::env::var("GITHUB_TOKEN").unwrap_or_default();
 
     let mut headers = reqwest::header::HeaderMap::new();
+    headers.append(
+        "User-Agent",
+        "RustLangES-Website/1.0".parse().unwrap(),
+    );
+    if !token.is_empty() {
+        if let Ok(auth_value) = format!("Bearer {}", token).parse() {
+            headers.append("Authorization", auth_value);
+        }
+    }
 
-    headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
-    headers.append("Authorization", "Bearer {}".parse().unwrap());
-
-    let client = reqwest::ClientBuilder::new()
+    let client = match reqwest::ClientBuilder::new()
         .default_headers(headers)
         .build()
-        .unwrap();
+    {
+        Ok(c) => c,
+        Err(e) => {
+            leptos::logging::log!("Failed to build HTTP client: {e:?}");
+            return vec![];
+        }
+    };
 
-    let res = client
+    let text = match client
         .post("https://api.github.com/graphql")
-        // .json(&request_body)
+        .json(&GqlBody { query: GRAPH_QUERY })
         .send()
         .await
-        .unwrap()
-        .text()
-        .await
-        .unwrap();
+    {
+        Ok(r) => match r.text().await {
+            Ok(t) => t,
+            Err(e) => {
+                leptos::logging::log!("Error reading response body: {e:?}");
+                return vec![];
+            }
+        },
+        Err(e) => {
+            leptos::logging::log!("Error sending GitHub request: {e:?}");
+            return vec![];
+        }
+    };
 
-    leptos::logging::log!("Raw: {res:?}");
+    leptos::logging::log!("GitHub API response: {text:?}");
 
-    let res: leptos::serde_json::Value = leptos::serde_json::from_str(&res).unwrap();
+    let json: leptos::serde_json::Value = match leptos::serde_json::from_str(&text) {
+        Ok(v) => v,
+        Err(e) => {
+            leptos::logging::log!("Error parsing JSON: {e:?}");
+            return vec![];
+        }
+    };
 
-    let mut res = res["data"]["organization"]["repositories"]["nodes"]
+    let empty = vec![];
+    let nodes = json["data"]["organization"]["repositories"]["nodes"]
         .as_array()
-        .unwrap_or(&Vec::new())
-        .iter()
-        .filter_map(|repo| {
-            (!repo["collaborators"].is_null())
-                .then(|| repo["collaborators"]["nodes"].as_array().unwrap())
-        })
-        .flatten()
-        .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
-        .fold(HashMap::new(), |prev, c| {
-            let mut prev = prev;
-            prev.entry(c.login.clone())
-                .and_modify(|o: &mut Contributor| {
-                    match (
+        .unwrap_or(&empty);
+
+    let mut contributor_map: HashMap<String, Contributor> = HashMap::new();
+
+    for repo_node in nodes {
+        if repo_node["collaborators"].is_null() {
+            continue;
+        }
+        let Some(collaborators) = repo_node["collaborators"]["nodes"].as_array() else {
+            continue;
+        };
+        for collab_json in collaborators {
+            let Ok(c) = leptos::serde_json::from_value::<Contributor>(collab_json.clone()) else {
+                continue;
+            };
+            contributor_map
+                .entry(c.login.clone())
+                .and_modify(|o| {
+                    if let (Some(o_cc), Some(c_cc)) = (
                         o.contributions_collection.as_mut(),
                         c.contributions_collection.as_ref(),
                     ) {
-                        (Some(o), Some(c)) => {
-                            o.total = o.total.max(
-                                (o.commits + o.issues + o.pull_request + o.repository)
-                                    .max(c.commits + c.issues + c.pull_request + c.repository),
-                            )
+                        if c_cc.total() > o_cc.total() {
+                            o_cc.commits = c_cc.commits;
+                            o_cc.pull_request = c_cc.pull_request;
+                            o_cc.issues = c_cc.issues;
+                            o_cc.repository = c_cc.repository;
                         }
-                        (Some(o), None) => o.total = 1,
-                        _ => {}
                     }
                 })
                 .or_insert(c);
-            prev
-        })
+        }
+    }
+
+    let mut result: Vec<Contributor> = contributor_map
         .into_values()
         .filter(|c| {
             c.contributions_collection
                 .as_ref()
-                .is_some_and(|cc| cc.total != 0)
+                .is_some_and(|cc| cc.total() > 0)
         })
-        .collect::<Vec<_>>();
+        .collect();
 
-    res.sort_by_key(|a| {
-        a.contributions_collection
+    result.sort_by_key(|c| {
+        c.contributions_collection
             .as_ref()
-            .map(|c| c.total)
-            .unwrap_or(1)
+            .map(|cc| cc.total())
+            .unwrap_or(0)
     });
-
-    res.reverse();
-
-    res
+    result.reverse();
+    result
 }
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    view! { <section></section> }
+    let contributors = Resource::new_blocking(|| (), |_| async { fetch_contributors().await });
+
+    view! {
+        // Hero
+        <div class="w-full min-h-[45dvh] rustlang-es-background-secondary dark:bg-[#3E1C96CC] text-akira flex items-center justify-center py-16">
+            <div class="container max-w-7xl mx-auto px-6 flex flex-col items-center justify-center gap-6 text-center">
+                <h1 class="uppercase leading-tight">"Colaboradores"</h1>
+                <p class="text-base font-normal font-body max-w-lg leading-relaxed">
+                    "Personas que hacen posible RustLangES con su código, traducciones y contenido."
+                </p>
+            </div>
+        </div>
+
+        // Contributors grid
+        <section class="bg-white dark:bg-neutral-900 py-20 w-full">
+            <div class="container max-w-7xl mx-auto px-6">
+                <Suspense fallback=move || view! {
+                    <div class="flex items-center justify-center py-20">
+                        <p class="text-neutral-500 font-body">"Cargando colaboradores..."</p>
+                    </div>
+                }>
+                    {move || contributors.get().map(|contribs| {
+                        if contribs.is_empty() {
+                            view! {
+                                <div class="flex flex-col items-center justify-center py-20 gap-4">
+                                    <p class="text-neutral-500 font-body text-lg">
+                                        "No se encontraron colaboradores."
+                                    </p>
+                                    <p class="text-neutral-400 font-body text-sm">
+                                        "Asegúrate de configurar la variable de entorno GITHUB_TOKEN."
+                                    </p>
+                                </div>
+                            }.into_any()
+                        } else {
+                            view! {
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+                                    {contribs.into_iter().map(|c| {
+                                        let total = c.contributions_collection
+                                            .as_ref()
+                                            .map(|cc| cc.total())
+                                            .unwrap_or(0);
+                                        let info = ContributorInfo {
+                                            login: c.login,
+                                            avatar_url: c.avatar_url,
+                                            url: c.url,
+                                            twitter_username: c.twitter_username,
+                                            location: c.location,
+                                            total_contributions: total,
+                                        };
+                                        view! { <ContributorCard contributor=info /> }
+                                    }).collect_view()}
+                                </div>
+                            }.into_any()
+                        }
+                    })}
+                </Suspense>
+            </div>
+        </section>
+
+        <Footer />
+    }
 }

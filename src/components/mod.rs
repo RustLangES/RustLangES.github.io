@@ -9,10 +9,12 @@ pub use icons::{
     TwitterIcon,
 };
 
+pub mod announcement_banner;
 pub mod became_sponsor;
 pub mod challenges;
 pub mod channels;
 pub mod community_project;
+pub mod contributor_card;
 pub mod footer;
 pub mod our_community;
 pub mod our_sponsors;

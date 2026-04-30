@@ -1,5 +1,5 @@
 use crate::context::theme_provider::ThemeProvider;
-use leptos::{leptos_dom::logging::console_log, prelude::*};
+use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, MetaTags};
 use leptos_router::{
     components::{Route, Router, Routes},
@@ -14,7 +14,7 @@ use crate::{
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="es">
             <head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,14 +61,7 @@ pub fn App() -> impl IntoView {
                     <Routes fallback=|| "Not found.">
                         <Route path=path!("/") view=Index />
                         <Route path=path!("comunidad") view=Communities />
-                        // <Route
-                        // path=path!("colaboradores")
-                        // view=Contributors
-                        // />
-                        // <Route
-                        // path=path!("proyectos")
-                        // view=Projects
-                        // />
+                        <Route path=path!("colaboradores") view=Contributors />
                         <Route path=path!("aprende") view=Aprende />
                     </Routes>
                 </main>

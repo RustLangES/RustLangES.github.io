@@ -104,3 +104,17 @@
     filter: drop-shadow(0px 0px 0px #000000) drop-shadow(4px 4px 0px #000000);
     @apply h-auto w-full stroke-[#000000];
 }
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+    display: inline-block;
+    animation: marquee-scroll 25s linear infinite;
+}
+
+.marquee-reverse {
+    animation-direction: reverse;
+}
