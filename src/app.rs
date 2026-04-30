@@ -8,7 +8,7 @@ use leptos_router::{
 
 use crate::{
     components::{HeadInformation, Header},
-    pages::{Aprende, Communities, Contributors, Index, Projects},
+    pages::{Aprende, Blog, Communities, Contributors, Events, Index, Projects},
 };
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
@@ -18,9 +18,6 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
             <head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-                // <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fed7aa"/>
-                // <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181811"/>
                 <AutoReload options=options.clone() />
                 <HydrationScripts options islands=true />
                 <MetaTags />
@@ -41,10 +38,8 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
     }
 }
 use leptos_meta::Body;
-// use leptos::html::Body;
 #[component]
 pub fn App() -> impl IntoView {
-    // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
     view! {
@@ -63,9 +58,11 @@ pub fn App() -> impl IntoView {
                         <Route path=path!("comunidad") view=Communities />
                         <Route path=path!("colaboradores") view=Contributors />
                         <Route path=path!("aprende") view=Aprende />
+                        <Route path=path!("eventos") view=Events />
+                        <Route path=path!("blog") view=Blog />
+                        <Route path=path!("proyectos") view=Projects />
                     </Routes>
                 </main>
-            // <Footer />
             </Router>
         </ThemeProvider>
     }
