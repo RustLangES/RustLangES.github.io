@@ -183,7 +183,7 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    let contributors = Resource::new_blocking(|| (), |_| async { fetch_contributors().await });
+    let contributors = LocalResource::new(|| fetch_contributors());
 
     view! {
         // Hero
@@ -204,7 +204,8 @@ pub fn Contributors() -> impl IntoView {
                         <p class="text-neutral-500 font-body">"Cargando colaboradores..."</p>
                     </div>
                 }>
-                    {move || contributors.get().map(|contribs| {
+                    {move || contributors.get().map(|guard| {
+                        let contribs = (*guard).clone();
                         if contribs.is_empty() {
                             view! {
                                 <div class="flex flex-col items-center justify-center py-20 gap-4">
