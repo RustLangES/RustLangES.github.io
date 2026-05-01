@@ -71,7 +71,8 @@ struct GqlBody<'a> {
     query: &'a str,
 }
 
-pub async fn fetch_contributors() -> Vec<Contributor> {
+#[cfg(feature = "ssr")]
+async fn fetch_contributors_impl() -> Vec<Contributor> {
     let token = std::env::var("GITHUB_TOKEN").unwrap_or_default();
 
     let mut headers = reqwest::header::HeaderMap::new();
@@ -181,9 +182,22 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
     result
 }
 
+pub async fn fetch_contributors() -> Vec<Contributor> {
+    #[cfg(feature = "ssr")]
+    {
+        return tokio::task::spawn_local(fetch_contributors_impl())
+            .await
+            .unwrap_or_default();
+    }
+    #[cfg(not(feature = "ssr"))]
+    {
+        vec![]
+    }
+}
+
 #[component]
 pub fn Contributors() -> impl IntoView {
-    let contributors = LocalResource::new(|| fetch_contributors());
+    let contributors = Resource::new_blocking(|| (), |_| async { fetch_contributors().await });
 
     view! {
         // Hero
@@ -204,8 +218,7 @@ pub fn Contributors() -> impl IntoView {
                         <p class="text-neutral-500 font-body">"Cargando colaboradores..."</p>
                     </div>
                 }>
-                    {move || contributors.get().map(|guard| {
-                        let contribs = (*guard).clone();
+                    {move || contributors.get().map(|contribs| {
                         if contribs.is_empty() {
                             view! {
                                 <div class="flex flex-col items-center justify-center py-20 gap-4">
