@@ -19,7 +19,9 @@ pub fn ProjectCard(
         })
         .collect_view();
 
-    let badge_classes = format!("flex w-fit project-card-badge ml-6  px-5 pb-1 pt-2 items-center justify-center gap-2 text-black border-2 border-b-0 border-black before:bg-orange-400 {badge_color}");
+    let badge_classes = format!(
+        "flex w-fit project-card-badge ml-6  px-5 pb-1 pt-2 items-center justify-center gap-2 text-black border-2 border-b-0 border-black before:bg-orange-400 {badge_color}"
+    );
 
     view! {
         <div class="min-w-[15rem] max-w-xs">

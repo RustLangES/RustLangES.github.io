@@ -2,13 +2,13 @@ use leptos::{
     children::Children,
     leptos_dom::logging::console_log,
     logging::log,
-    prelude::{use_context, RwSignal, *},
+    prelude::{RwSignal, use_context, *},
     server::codee::string::JsonSerdeCodec,
     *,
 };
 use leptos_use::{
-    storage::use_local_storage, use_media_query, use_preferred_dark, watch_with_options,
-    WatchOptions,
+    WatchOptions, storage::use_local_storage, use_media_query, use_preferred_dark,
+    watch_with_options,
 };
 use serde::{Deserialize, Serialize};
 /// Defines an enumeration for UI themes.
