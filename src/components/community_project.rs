@@ -7,7 +7,7 @@ use rustlanges_components::{
 };
 
 use crate::{
-    components::{project_card::ProjectCard, GithubIcon},
+    components::{GithubIcon, project_card::ProjectCard},
     models::GithubUser,
 };
 

@@ -1,6 +1,6 @@
 use crate::context::theme_provider::ThemeProvider;
 use leptos::{leptos_dom::logging::console_log, prelude::*};
-use leptos_meta::{provide_meta_context, MetaTags};
+use leptos_meta::{MetaTags, provide_meta_context};
 use leptos_router::{
     components::{Route, Router, Routes},
     path,
