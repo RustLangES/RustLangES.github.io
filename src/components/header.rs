@@ -1,6 +1,6 @@
 use crate::{
     components::icons::{NewLogoRustDarkPageIcon, NewLogoRustLightPageIcon},
-    context::theme_provider::{Theme, use_theme},
+    context::theme_provider::{use_theme, Theme},
 };
 use leptos::{leptos_dom::logging::console_log, prelude::*};
 use leptos_router::{components::A, hooks::use_url};
