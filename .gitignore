@@ -25,3 +25,5 @@ settings.json
 style/
 
 public/sitemap.xml
+
+.env
