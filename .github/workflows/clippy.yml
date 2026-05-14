@@ -68,7 +68,7 @@ jobs:
           submodules: "recursive"
       - name: Verify submodules
         run: git submodule status
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@nightly
         with:
           profile: minimal
           toolchain: nightly
