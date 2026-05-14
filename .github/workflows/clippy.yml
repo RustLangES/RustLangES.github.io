@@ -2,8 +2,7 @@ name: clippy
 on:
   workflow_dispatch:
   pull_request:
-    types:
-      - ready_for_review
+
   push:
     branches:
       - main
