@@ -24,7 +24,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: nightly-2024-02-12
+          toolchain: nightly-2025-07-12
           targets: wasm32-unknown-unknown
           components: rustfmt
 
