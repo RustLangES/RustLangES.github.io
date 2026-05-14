@@ -54,7 +54,7 @@ jobs:
             ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
             ${{ runner.os }}-cargo-leptos
       - name: Install LeptosFmt
-        run: cargo install leptosfmt --version 0.1.13
+        run: cargo install leptosfmt --version 0.1.33
       - name: Check LeptosFmt
         run: leptosfmt --check .
 
