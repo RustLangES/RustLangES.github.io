@@ -28,6 +28,9 @@ jobs:
           targets: wasm32-unknown-unknown
           components: rustfmt
 
+      - name: Set toolchain override
+        run: rustup override set nightly-2024-02-12
+
       - name: Check formatting
         run: cargo fmt --all -- --check
 
