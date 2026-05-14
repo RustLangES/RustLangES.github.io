@@ -25,7 +25,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@nightly
         with:
           toolchain: nightly-2024-02-12
-          target: wasm32-unknown-unknown
+          targets: wasm32-unknown-unknown
           components: rustfmt
 
       - name: Check formatting
