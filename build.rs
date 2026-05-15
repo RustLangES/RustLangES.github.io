@@ -10,10 +10,10 @@ fn main() {
     println!("cargo:rerun-if-changed=extras");
 
     let folders = fs::read_dir("extras").unwrap();
-    if let Err(e) = fs::create_dir("src/extras") {
-        if e.kind() != std::io::ErrorKind::AlreadyExists {
-            println!("{e:?}");
-        }
+    if let Err(e) = fs::create_dir("src/extras")
+        && e.kind() != std::io::ErrorKind::AlreadyExists
+    {
+        println!("{e:?}");
     }
 
     copy_dir_all("extras/proyectos/assets", "assets/gen_assets").unwrap();
