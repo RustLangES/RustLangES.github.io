@@ -4,10 +4,7 @@ use rustlanges_components::{
     icons::{Github, StarBold},
 };
 
-use crate::{
-    components::project_card::ProjectCard,
-    models::GithubUser,
-};
+use crate::{components::project_card::ProjectCard, models::GithubUser};
 
 #[component]
 pub fn CommunityProjectSection(
