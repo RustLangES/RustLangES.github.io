@@ -6,6 +6,7 @@ use rustlanges_components::{
     icons::Youtube,
 };
 
+#[allow(non_snake_case)]
 pub fn Channels() -> impl IntoView {
     view! {
         <section class="bg-light dark:bg-dark p-4 lg:p-20 w-full">

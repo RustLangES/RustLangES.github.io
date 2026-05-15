@@ -2,14 +2,14 @@ use leptos::prelude::*;
 
 #[component]
 pub fn LogoRustPageIcon(
-    #[prop(default = 40)] size: u32,
-    #[prop(default = "dark:fill-[#e2cea9]")] class: &'static str,
+    #[prop(default = 40)] _size: u32,
+    #[prop(default = "dark:fill-[#e2cea9]")] _class: &'static str,
 ) -> impl IntoView {
     view! {
         <svg
-            width=size
-            height=size
-            class=class
+            width=_size
+            height=_size
+            class=_class
             viewBox="0 0 144 144"
             xmlns="http://www.w3.org/2000/svg"
         >

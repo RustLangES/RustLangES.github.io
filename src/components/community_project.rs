@@ -1,13 +1,11 @@
-use leptos::{prelude::*, *};
+use leptos::prelude::*;
 use rustlanges_components::{
-    avatar::Avatar,
     button::{Button, Variant},
-    card::Card,
-    icons::{Book, Github, Project, Roadmap, StarBold},
+    icons::{Github, StarBold},
 };
 
 use crate::{
-    components::{GithubIcon, project_card::ProjectCard},
+    components::project_card::ProjectCard,
     models::GithubUser,
 };
 
@@ -103,7 +101,8 @@ pub fn CommunityProjectSection(
                             }
                                 .into_any()
                         } else {
-                            view! { <></> }.into_any()
+                            let _: () = view! { <></> };
+                            ().into_any()
                         }}
                     </div>
 

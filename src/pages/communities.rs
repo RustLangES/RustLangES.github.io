@@ -24,12 +24,10 @@ pub fn Communities() -> impl IntoView {
         avatar: "https://avatars.githubusercontent.com/u/56278796?u=9e3dac947b4fd3ca2f1a05024e083c64e4c69cfe&v=4",
     };
 
-    let users = vec![
-        juanperas.clone(),
+    let users = [juanperas.clone(),
         apika.clone(),
         sergio.clone(),
-        juanperas.clone(),
-    ];
+        juanperas.clone()];
 
     let avatars = users
         .iter()

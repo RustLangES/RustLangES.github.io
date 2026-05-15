@@ -1,5 +1,5 @@
 use crate::context::theme_provider::ThemeProvider;
-use leptos::{leptos_dom::logging::console_log, prelude::*};
+use leptos::prelude::*;
 use leptos_meta::{MetaTags, provide_meta_context};
 use leptos_router::{
     components::{Route, Router, Routes},
@@ -8,7 +8,7 @@ use leptos_router::{
 
 use crate::{
     components::{HeadInformation, Header},
-    pages::{Aprende, Communities, Contributors, Index, Projects},
+    pages::{Aprende, Communities, Index},
 };
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {

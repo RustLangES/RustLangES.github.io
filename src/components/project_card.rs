@@ -1,8 +1,9 @@
-use leptos::{children::Children, prelude::*, *};
+use leptos::prelude::*;
 use rustlanges_components::{avatar::Avatar, card::Card, icons::Github};
 
-use crate::{components::GithubIcon, models::GithubUser};
+use crate::models::GithubUser;
 
+#[allow(unused_variables)]
 #[component]
 pub fn ProjectCard(
     #[prop(into)] title: &'static str,
