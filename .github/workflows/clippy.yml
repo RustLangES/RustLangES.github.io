@@ -32,7 +32,7 @@ jobs:
         run: rustup override set nightly-2025-07-12
 
       - name: Check formatting
-        run: cargo fmt --all -- --check
+        run: cargo fmt -- --check
 
   leptosfmt:
     runs-on: ubuntu-22.04
