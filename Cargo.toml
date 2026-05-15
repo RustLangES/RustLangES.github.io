@@ -3,6 +3,9 @@ name = "rust-lang-es"
 version = "0.1.0"
 edition = "2024"
 
+[workspace]
+exclude = ["design-system-components"]
+
 [lib]
 crate-type = ["cdylib", "rlib"]
 
