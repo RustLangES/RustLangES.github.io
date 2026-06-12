@@ -1,5 +1,7 @@
 use crate::components::icons::{GithubIcon, LocationIcon, TwitterIcon};
-use leptos::{component, leptos_dom::helpers::location as location_dom, prelude::*, view, IntoView};
+use leptos::{
+    component, leptos_dom::helpers::location as location_dom, prelude::*, view, IntoView,
+};
 
 #[component]
 pub fn ContributorCard(
@@ -33,10 +35,10 @@ pub fn ContributorCard(
         }
     });
     view! {
-        <article 
+        <article
             class="hover:z-10 flex flex-col h-full gap-y-6 border border-black p-4 hover:bg-orange-500 bg-orange-100 dark:hover:bg-zinc-900/40 dark:bg-black/40 drop-shadow-[0_0_0_rgba(0,0,0)] hover:drop-shadow-[-4px_-4px_0_rgba(0,0,0)] transition justify-between"
             class=("bg-chiwa", move || name_for_class == "gg0074x" && easter_egg.get())
-            >
+        >
             <a href=link.clone() target="_blank" class="group flex flex-col justify-between">
                 <span class="absolute top-0 end-0 inline-flex items-center size-3.5 group-hover:min-w-16 rounded-full border-2 border-white text-xs font-medium transition-all transform -translate-y-1/2 translate-x-1/2 bg-teal-500 dark:border-slate-900 badge-container">
                     <span class="sr-only text-black badge-content transition-all transform">

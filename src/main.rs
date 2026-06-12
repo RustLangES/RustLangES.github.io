@@ -3,15 +3,12 @@
 #[cfg(feature = "ssr")]
 #[tokio::main]
 async fn main() {
-    use axum::Router;
     use leptos::{config::get_configuration, logging::log};
-    use leptos_axum::{generate_route_list_with_ssg, LeptosRoutes};
+    use leptos_axum::generate_route_list_with_ssg;
     use rust_lang_es::app::*;
-    use tower_http::services::ServeDir;
 
     let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
-    let addr = leptos_options.site_addr;
 
     let (routes, static_routes) = generate_route_list_with_ssg({
         let leptos_options = leptos_options.clone();
@@ -30,9 +27,13 @@ async fn main() {
 
     #[cfg(feature = "development")]
     {
-        println!("listening on http://{}", addr);
+        use axum::{routing::get, Router};
+        use leptos_axum::LeptosRoutes;
+        use tower_http::services::ServeDir;
 
-        use axum::routing::get;
+        let addr = leptos_options.site_addr;
+
+        println!("listening on http://{}", addr);
 
         let site_root = leptos_options.site_root.as_ref();
         let pkg_dir = format!("{}/pkg", site_root);

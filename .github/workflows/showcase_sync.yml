@@ -1,0 +1,64 @@
+name: Sync community projects to Discord showcase
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [community_projects_changed]
+
+jobs:
+  sync-showcase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+
+      - name: Update projects submodule
+        run: git submodule update --remote extras
+
+      - name: Build showcase sync payload
+        run: |
+          python3 <<'PY'
+          import json
+          import tomllib
+          from pathlib import Path
+
+          projects_root = Path("extras/proyectos")
+          projects = []
+
+          for path in sorted(projects_root.rglob("*.toml")):
+              with path.open("rb") as file:
+                  project = tomllib.load(file)
+
+              name = " ".join(part.strip() for part in project["name"] if part.strip())
+              key = str(path.relative_to("extras"))
+
+              projects.append(
+                  {
+                      "key": key,
+                      "name": name,
+                      "desc": project["description"],
+                      "url": project["link"],
+                      "tags": [],
+                  }
+              )
+
+          payload = {"projects": projects}
+
+          with Path("showcase_payload.json").open("w", encoding="utf-8") as file:
+              json.dump(payload, file, ensure_ascii=False)
+
+          print(f"Prepared {len(projects)} projects")
+          PY
+
+      - name: Call Cangrebot showcase sync
+        run: |
+          curl --fail-with-body -X POST "${CANGREBOT_URL%/}/showcase/sync" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $CANGREBOT_API_KEY" \
+            --data @showcase_payload.json
+        env:
+          CANGREBOT_URL: ${{ secrets.CANGREBOT_URL }}
+          CANGREBOT_API_KEY: ${{ secrets.CANGREBOT_API_KEY }}
