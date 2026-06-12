@@ -667,7 +667,7 @@ async fn fetch_contributors() -> ContributorsResponse {
 
     let mut all_contributors = fetch_all_contributors().await;
 
-    all_contributors.sort_by(|a, b| b.contributions.cmp(&a.contributions));
+    all_contributors.sort_by_key(|contributor| std::cmp::Reverse(contributor.contributions));
 
     let total = all_contributors.len();
 
@@ -930,7 +930,7 @@ async fn fetch_user_profiles_batch(
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    let contributors = LocalResource::new(|| load_contributors());
+    let contributors = LocalResource::new(load_contributors);
 
     view! {
         <section class="bg-orange-300/30 dark:bg-transparent py-16 min-h-[80vh]">
