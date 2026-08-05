@@ -1,10 +1,7 @@
 use leptos::prelude::*;
-use rustlanges_components::{
-    avatar::Avatar,
-    button::{Button, Variant as ButtonVariant},
-    card::Card,
-};
+use rustlanges_components::card::Card;
 
+#[allow(non_snake_case)]
 pub fn WhyRust() -> impl IntoView {
     view! {
         <section class="bg-light dark:bg-dark p-4 lg:p-20 w-full">

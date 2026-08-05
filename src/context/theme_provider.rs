@@ -1,15 +1,10 @@
 use leptos::{
     children::Children,
-    leptos_dom::logging::console_log,
-    logging::log,
-    prelude::{use_context, RwSignal, *},
+    prelude::{RwSignal, use_context, *},
     server::codee::string::JsonSerdeCodec,
     *,
 };
-use leptos_use::{
-    storage::use_local_storage, use_media_query, use_preferred_dark, watch_with_options,
-    WatchOptions,
-};
+use leptos_use::{storage::use_local_storage, use_media_query};
 use serde::{Deserialize, Serialize};
 /// Defines an enumeration for UI themes.
 ///
@@ -30,6 +25,7 @@ impl Default for Theme {
     }
 }
 
+#[allow(clippy::inherent_to_string)]
 impl Theme {
     /// Converts the `Theme` variant into a corresponding string.
     pub fn to_string(self) -> String {
@@ -42,7 +38,7 @@ impl Theme {
 }
 
 /// Define a constant for the local storage key used to store the theme setting.
-const STORAGE_KEY: &'static str = "theme";
+const STORAGE_KEY: &str = "theme";
 
 /// Updates the class selector for the respective theme.
 /// This function is responsible for applying the correct CSS class to the HTML and body elements based on the current theme.
@@ -92,8 +88,6 @@ pub fn use_theme() -> RwSignal<Theme> {
     use_context::<RwSignal<Theme>>().expect("there should be a global theme state")
 }
 
-use leptos::prelude::*;
-
 /// The `ThemeProvider` component.
 ///
 /// This component provides a theme context to its children, allowing them to access and react to theme changes.
@@ -112,12 +106,12 @@ pub fn ThemeProvider(children: Children) -> impl IntoView {
         use_local_storage::<Theme, JsonSerdeCodec>(STORAGE_KEY);
 
     let theme_state = RwSignal::new(theme_storage_state.get_untracked());
-    provide_context(theme_state.clone());
+    provide_context(theme_state);
 
     // Update local storage and CSS whenever the theme state changes
     Effect::new(move |_| {
         let current_theme = theme_state();
-        set_theme_storage_state.set(current_theme.clone());
+        set_theme_storage_state.set(current_theme);
         update_css_for_theme(
             current_theme,
             is_dark_preferred_signal(),

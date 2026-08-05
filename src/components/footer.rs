@@ -1,4 +1,4 @@
-use leptos::{prelude::*, *};
+use leptos::prelude::*;
 use rustlanges_components::{
     button::{Button, Variant as ButtonVariant},
     icons::{Discord, Github, Linkedin, Telegram},

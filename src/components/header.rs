@@ -1,9 +1,8 @@
 use crate::{
     components::icons::{NewLogoRustDarkPageIcon, NewLogoRustLightPageIcon},
-    context::theme_provider::{use_theme, Theme},
+    context::theme_provider::{Theme, use_theme},
 };
 use leptos::{leptos_dom::logging::console_log, prelude::*};
-use leptos_router::{components::A, hooks::use_url};
 use leptos_use::{use_media_query, use_window};
 use rustlanges_components::{
     button::{Button, Variant},
@@ -30,7 +29,7 @@ pub fn Header() -> impl IntoView {
     let logo = move || match theme.get() {
         Theme::Dark => view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any(),
         Theme::Light => view! { <NewLogoRustLightPageIcon size=60 /> }.into_any(),
-        Theme::System if (move || is_dark_preferred_signal())() => {
+        Theme::System if is_dark_preferred_signal() => {
             view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any()
         }
         Theme::System => view! { <NewLogoRustDarkPageIcon size=60 /> }.into_any(),
@@ -43,7 +42,7 @@ pub fn Header() -> impl IntoView {
     };
 
     let active_link_class = move |link: &str| {
-        if path() == format!("{:?}", link) {
+        if path() == format!("{link:?}") {
             "text-red-500 dark:text-orange-300"
         } else {
             ""
