@@ -2,6 +2,9 @@ name: clippy
 on:
   workflow_dispatch:
   pull_request:
+    types:
+      - ready_for_review
+
   push:
     branches:
       - main
@@ -19,30 +22,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: 'recursive'
-      - uses: actions-rs/toolchain@v1
+          submodules: "recursive"
+
+      - uses: dtolnay/rust-toolchain@nightly
         with:
-          profile: minimal
-          toolchain: nightly-2024-02-12
-          target: wasm32-unknown-unknown
-          override: true
-      - uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
+          toolchain: nightly-2025-07-12
+          targets: wasm32-unknown-unknown
+          components: rustfmt
+
+      - name: Set toolchain override
+        run: rustup override set nightly-2025-07-12
+
+      - name: Check formatting
+        run: cargo fmt -- --check
 
   leptosfmt:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@nightly
         with:
           profile: minimal
           toolchain: nightly
           override: true
           components: clippy
       - name: Cache .cargo and target
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo
@@ -51,9 +56,9 @@ jobs:
             ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
             ${{ runner.os }}-cargo-leptos
       - name: Install LeptosFmt
-        run: cargo install leptosfmt --version 0.1.13
+        run: cargo install leptosfmt --version 0.1.33
       - name: Check LeptosFmt
-        run: leptosfmt --check .
+        run: leptosfmt --check src
 
   clippy:
     needs: [fmt, leptosfmt]
@@ -62,8 +67,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: 'recursive'
-      - uses: actions-rs/toolchain@v1
+          submodules: "recursive"
+      - uses: dtolnay/rust-toolchain@nightly
         with:
           profile: minimal
           toolchain: nightly
@@ -71,8 +76,5 @@ jobs:
           components: clippy
 
       - uses: Swatinem/rust-cache@v2
-      - name: cargo clippy
-        uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: --features=ssr,hydrate -- -D warnings
+      - name: Run clippy
+        run: cargo clippy --features=ssr,hydrate -- -D warnings
