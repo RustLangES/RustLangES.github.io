@@ -41,16 +41,17 @@ Con estos comandos podrá empezar a desarrollar
 
 ```bash
 git submodule update --init --recursive
+
 rustup toolchain install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown
 
+cd design-system-components && pnpm install --ignore-scripts
 
-cd .. && git clone https://github.com/RustLangES/design-system-components
-cd design-system-components && git checkout dev && pnpm install
 cd styles && pnpm run build
 
-cd ../../RustLangES.github.io && npm install
+cd ../..
+pnpm run postinstall
 
 # Sin cargo make:
 cargo leptos serve --hot-reload --features development
@@ -67,10 +68,8 @@ cargo make serve
 > [!NOTE]
 > Asegúrate de tener los flakes activados.
 
-Si usas nix es bastante sencillo, solo necesitas este comando:
-
 ```bash
-nix develop
+direnv allow
 ```
 
 Ahora podemos iniciar el servidor con:

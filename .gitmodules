@@ -3,4 +3,5 @@
 	url = https://github.com/RustLangES/proyectos-comunitarios.git
 [submodule "design-system-components"]
 	path = design-system-components
-	url = git@github.com:RustLangES/design-system-components.git
+	url = https://github.com/RustLangES/design-system-components.git
+	branch = dev
