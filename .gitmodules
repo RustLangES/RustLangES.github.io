@@ -1,3 +1,6 @@
 [submodule "extras"]
 	path = extras
 	url = https://github.com/RustLangES/proyectos-comunitarios.git
+[submodule "design-system-components"]
+	path = design-system-components
+	url = git@github.com:RustLangES/design-system-components.git
