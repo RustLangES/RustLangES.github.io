@@ -33,8 +33,11 @@ async fn main() -> std::io::Result<()> {
 
             actix_web::App::new()
                 .route("/api/{tail:.*}", leptos_actix::handle_server_fns())
+                // serve JS/WASM/CSS from `pkg`
                 .service(Files::new("/pkg", format!("{site_root}/pkg")))
+                // serve other assets from the `assets` directory
                 .service(Files::new("/assets", site_root))
+                // serve the favicon from /favicon.ico
                 .service(favicon)
                 .app_data(leptos_options.clone())
                 .leptos_routes(routes.to_owned(), {
