@@ -11,6 +11,8 @@ alias = "serve"
 [tasks.setup]
 script = '''
 git submodule update --init --recursive
+rm -rf node_modules package-lock.json
+pnpm install --ignore-scripts
 cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build && cd ../..
 pnpm run postinstall
 echo ""

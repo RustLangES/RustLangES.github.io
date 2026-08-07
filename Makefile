@@ -58,7 +58,10 @@ doctor:
 
 setup:
 	git submodule update --init --recursive
-	cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build
+	rm -rf node_modules package-lock.json
+	pnpm install --ignore-scripts
+	cd design-system-components && pnpm install --ignore-scripts
+	cd design-system-components/styles && pnpm run build
 	pnpm run postinstall
 	@echo ""
 	@echo "Setup complete. Run 'make doctor' to verify, then 'make serve'."
