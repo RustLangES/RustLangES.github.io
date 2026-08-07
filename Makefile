@@ -34,6 +34,15 @@ get-sitemap:
 	wget -S -P assets https://github.com/Phosphorus-M/sitemap-rustico/releases/download/latest/sitemap.xml
 
 # ----------------------
+# Configuración
+# ----------------------
+
+setup:
+	git submodule update --init --recursive
+	cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build
+	pnpm run postinstall
+
+# ----------------------
 # Build & Serve
 # ----------------------
 
