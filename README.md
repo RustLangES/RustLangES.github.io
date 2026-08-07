@@ -35,28 +35,51 @@ Antes de empezar es necesario tener estos programas
 ### Desarrollo
 
 > [!NOTE]
-> necesitas fetch git submodules para clonar los assets externos para el desarrollo
+> Necesitas fetch git submodules para clonar los assets externos para el desarrollo
+
+Este proyecto usa `Makefile` para agilizar ciertos procesos y no tener que estar escribiendo comandos manualmente.
 
 Con estos comandos podrá empezar a desarrollar
 
-```bash
-git submodule update --init --recursive
+Rust:
 
+```bash
 rustup toolchain install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown
+```
+
+Para configurar el proyecto en general, se recomienda usar el siguiente comando, ya que este comando engloba todos los camandos listados más abajo:
+
+```bash
+cargo make setup
+```
+
+O si prefieres ejecutar cada uno de los comandos manualmente:
+
+```bash
+git submodule update --init --recursive
 
 cd design-system-components && pnpm install --ignore-scripts
 
 cd styles && pnpm run build
 
 cd ../..
+
 pnpm run postinstall
 
+```
+
+Para ejecutar el proyecto:
+
 # Sin cargo make:
+```bash
 cargo leptos serve --hot-reload --features development
+```
 
 # Con cargo make:
+
+```bash
 cargo install cargo-make
 cargo make serve
 ```
