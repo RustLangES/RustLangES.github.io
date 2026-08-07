@@ -5,7 +5,8 @@
   "scripts": {
     "postinstall": "cp node_modules/@rustlanges/styles/dist/bundled.css bundled.css",
     "dev": "cargo leptos watch --features development --hot-reload",
-    "build": "cargo leptos serve -r --split"
+    "build": "cargo leptos serve -r --split",
+    "doctor": "node -e \"const fs=require('fs');let ok=true;const ck=(p,msg)=>{if(!fs.existsSync(p)){console.log('  ✗ '+msg);ok=false}else console.log('  ✓ '+p)};ck('extras','extras/ missing — git submodule update --init --recursive');if(fs.existsSync('extras')&&!fs.readdirSync('extras').length)console.log('  ✗ extras/ empty — git submodule update --init --recursive');ck('design-system-components/Cargo.toml','design-system-components/ missing');ck('node_modules/@rustlanges/styles/dist/bundled.css','bundled.css not built — cargo make setup');ck('bundled.css','bundled.css missing — pnpm run postinstall');if(!ok)process.exit(1)\""
   },
   "author": "",
   "license": "MIT",

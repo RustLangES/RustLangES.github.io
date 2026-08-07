@@ -6,22 +6,60 @@ use std::{
     path::Path,
 };
 
+fn die(msg: &str) -> ! {
+    eprintln!("\n[build.rs] ERROR: {msg}\n");
+    eprintln!("  Fix: git submodule update --init --recursive");
+    eprintln!("  Then: cargo make setup");
+    eprintln!("  See README.md \"Como ejecutar\" for full steps.\n");
+    std::process::exit(1);
+}
+
 fn main() {
     println!("cargo:rerun-if-changed=extras");
+    println!("cargo:rerun-if-changed=.gitmodules");
+    println!("cargo:rerun-if-changed=design-system-components");
 
-    let folders = fs::read_dir("extras").unwrap();
+    if !Path::new("extras").exists() {
+        die("`extras/` not found — submodules not initialized.");
+    }
+    match fs::read_dir("extras") {
+        Ok(it) => {
+            if it.count() == 0 {
+                die("`extras/` is empty — run `git submodule update --init --recursive`.");
+            }
+        }
+        Err(e) => die(&format!("cannot read `extras/`: {e}")),
+    }
+
+    if !Path::new("design-system-components/Cargo.toml").exists() {
+        die(
+            "`design-system-components/` not found or empty — run `git submodule update --init --recursive`.",
+        );
+    }
+
     if let Err(e) = fs::create_dir("src/extras")
         && e.kind() != std::io::ErrorKind::AlreadyExists
     {
-        println!("{e:?}");
+        eprintln!("{e:?}");
     }
 
-    copy_dir_all("extras/proyectos/assets", "assets/gen_assets").unwrap();
-    copy_dir_all("extras/comunidades/assets", "assets/gen_assets").unwrap();
+    for (src, dst) in [
+        ("extras/proyectos/assets", "assets/gen_assets"),
+        ("extras/comunidades/assets", "assets/gen_assets"),
+    ] {
+        if Path::new(src).exists() {
+            if let Err(e) = copy_dir_all(src, dst) {
+                eprintln!("[build.rs] warning: copy {src} -> {dst} failed: {e}");
+            }
+        } else {
+            eprintln!("[build.rs] warning: `{src}` not found, skipping.");
+        }
+    }
 
-    // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
     write!(out, "#[rustfmt::skip]\nmod other_communities;\nmod rust_communities;\n#[rustfmt::skip]\nmod projects;\npub use other_communities::*;\npub use rust_communities::*;\npub use projects::*;\n").unwrap();
+
+    let folders = fs::read_dir("extras").unwrap();
 
     for folder in folders {
         let folder = folder.unwrap();
@@ -148,7 +186,6 @@ fn generate_projects(path: &Path) {
             if file_path.extension().is_none_or(|e| e != "toml") {
                 let file_name = file.file_name();
                 let file_name = file_name.to_str().unwrap();
-                // Copy images or other files
                 fs::copy(&file_path, format!("assets/gen_assets/{file_name}")).unwrap();
                 return;
             }
