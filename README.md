@@ -25,9 +25,18 @@ Antes de empezar es necesario tener estos programas
 - [Rust](https://rust-lang.org/tools/install)
 - [NodeJs](https://nodejs.org)
 
+
+> [!IMPORTANT]
+> Necesitas `wasm-bindgen-cli` en la versión `0.2.126` (la misma que fija
+> `flake.nix`). Si no coincide con el `wasm-bindgen` del `Cargo.lock`,
+> `cargo make serve`/`build` falla con un error de "schema version mismatch".
+> ```bash
+> cargo install -f wasm-bindgen-cli --version 0.2.126
+> ```
+
 ### Requisitos Windows >= 10
 
--[BusyBox](https://busybox.net/)
+[BusyBox](https://busybox.net/)
 
 - Usando scoop `scoop install busybox`
 - Usando choco  `choco install busybox`
@@ -47,6 +56,10 @@ Rust:
 rustup toolchain install nightly
 rustup default nightly
 rustup target add wasm32-unknown-unknown
+
+cargo install cargo-make
+cargo install rusty-hook
+cargo install leptosfmt --version 0.1.13
 ```
 
 Para configurar el proyecto en general, se recomienda usar el siguiente comando, ya que este comando engloba todos los camandos listados más abajo:
@@ -67,26 +80,24 @@ cd styles && pnpm run build
 cd ../..
 
 pnpm run postinstall
-
 ```
 
 Para ejecutar el proyecto:
 
-# Sin cargo make:
+Sin cargo make:
 ```bash
 cargo leptos serve --hot-reload --features development
 ```
 
-# Con cargo make:
+Con cargo make:
 
 ```bash
-cargo install cargo-make
 cargo make serve
 ```
 
 ---
 
-### Si usas nix
+Si usas nix
 
 > [!NOTE]
 > Asegúrate de tener los flakes activados.
@@ -99,13 +110,6 @@ Ahora podemos iniciar el servidor con:
 
 ```bash
 cargo make serve
-```
-
-Para hacer un commit:
-
-```bash
-cargo install rusty-hook
-cargo install leptosfmt --version 0.1.13
 ```
 
 ## Configura tu VSCode
