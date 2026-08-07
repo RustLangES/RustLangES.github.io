@@ -1,23 +1,27 @@
-use leptos::{prelude::*, *};
+use leptos::prelude::*;
 use rustlanges_components::{
-    avatar::Avatar,
     button::{Button, Variant},
-    card::Card,
-    icons::{Book, Github, Project, Roadmap, StarBold},
+    icons::{Github, StarBold},
 };
 
-use crate::{
-    components::{project_card::ProjectCard, GithubIcon},
-    models::GithubUser,
-};
+use crate::{components::project_card::ProjectCard, models::GithubUser};
 
 #[component]
 pub fn CommunityProjectSection(
     #[prop(into, default = false)] many_projects: bool,
 ) -> impl IntoView {
-    let juanperas = GithubUser{ username: "juanperas", avatar: "https://avatars.githubusercontent.com/u/136520331?u=7353ba372f09091049692d6e95f5a8cd8a42565f&v=4" };
-    let apika = GithubUser { username: "ApikaLucas", avatar: "https://avatars.githubusercontent.com/u/70247585?u=513513290efb6dc162afc899646e8e0467cedfc2&v=4"};
-    let sergio = GithubUser { username: "Sergio", avatar: "https://avatars.githubusercontent.com/u/56278796?u=9e3dac947b4fd3ca2f1a05024e083c64e4c69cfe&v=4"};
+    let juanperas = GithubUser {
+        username: "juanperas",
+        avatar: "https://avatars.githubusercontent.com/u/136520331?u=7353ba372f09091049692d6e95f5a8cd8a42565f&v=4",
+    };
+    let apika = GithubUser {
+        username: "ApikaLucas",
+        avatar: "https://avatars.githubusercontent.com/u/70247585?u=513513290efb6dc162afc899646e8e0467cedfc2&v=4",
+    };
+    let sergio = GithubUser {
+        username: "Sergio",
+        avatar: "https://avatars.githubusercontent.com/u/56278796?u=9e3dac947b4fd3ca2f1a05024e083c64e4c69cfe&v=4",
+    };
 
     let users = vec![juanperas, apika, sergio];
 
@@ -94,7 +98,8 @@ pub fn CommunityProjectSection(
                             }
                                 .into_any()
                         } else {
-                            view! { <></> }.into_any()
+                            let _: () = view! { <></> };
+                            ().into_any()
                         }}
                     </div>
 

@@ -1,6 +1,7 @@
-use leptos::{component, prelude::*};
+use leptos::prelude::*;
 use rustlanges_components::button::{Button, Variant as ButtonVariant};
 
+#[allow(non_snake_case)]
 pub fn DailyChallenges() -> impl IntoView {
     view! {
         <section class="bg-primary-500 dark:bg-primary-600 p-4 lg:p-20 w-full">

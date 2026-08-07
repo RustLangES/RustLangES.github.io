@@ -4,7 +4,7 @@ use leptos::prelude::*;
 use serde::{Deserialize, Serialize};
 
 // Test this query on: https://docs.github.com/es/graphql/overview/explorer
-const GRAPH_QUERY: &str = r#"
+const _GRAPH_QUERY: &str = r#"
 query OrganizationContributors {
   organization(login: "RustLangES") {
     repositories(first: 100) {
@@ -59,6 +59,7 @@ pub struct ContributionCollection {
     total: u64,
 }
 
+#[allow(dead_code)]
 pub async fn fetch_contributors() -> Vec<Contributor> {
     // let request_body = json!({
     //     "query": GRAPH_QUERY,
@@ -92,11 +93,8 @@ pub async fn fetch_contributors() -> Vec<Contributor> {
         .as_array()
         .unwrap_or(&Vec::new())
         .iter()
-        .filter_map(|repo| {
-            (!repo["collaborators"].is_null())
-                .then(|| repo["collaborators"]["nodes"].as_array().unwrap())
-        })
-        .flatten()
+        .filter(|&repo| !repo["collaborators"].is_null())
+        .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
         .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
         .fold(HashMap::new(), |prev, c| {
             let mut prev = prev;

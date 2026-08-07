@@ -6,8 +6,15 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { nixpkgs, flake-utils, rust-overlay, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      nixpkgs,
+      flake-utils,
+      rust-overlay,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         overlays = [ (import rust-overlay) ];
         pkgs = import nixpkgs {
@@ -20,19 +27,19 @@
           buildInputs = with pkgs; [
             # Rust toolchain with wasm target
             rustToolchain
-            
+
             # WASM tools
             tailwindcss_4
-            wasm-bindgen-cli
-            
+            wasm-bindgen-cli_0_2_126
+
             # Leptos specific tools
             leptosfmt
             cargo-leptos
-            
+
             # Additional development tools
             pkg-config
             openssl
-            nodePackages.npm
+            pnpm
           ];
         };
       }

@@ -8,6 +8,13 @@ skip_crate_env_info = true
 [tasks.default]
 alias = "serve"
 
+[tasks.setup]
+script = '''
+git submodule update --init --recursive
+cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build && cd ../..
+pnpm run postinstall
+'''
+
 [tasks.cargo-format]
 install_crate = "rustfmt"
 command = "cargo"

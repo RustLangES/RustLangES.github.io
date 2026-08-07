@@ -1,4 +1,4 @@
-use leptos::{component, prelude::*, view, IntoView};
+use leptos::{IntoView, component, prelude::*, view};
 use leptos_meta::{Link, Meta, Stylesheet, Title};
 use leptos_router::hooks::use_location;
 

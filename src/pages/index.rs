@@ -1,15 +1,12 @@
 use leptos::prelude::*;
-use leptos_router::hooks::use_url;
-use rustlanges_components::{
-    badge::{Type, Variant},
-    button::{Button, Variant as ButtonVariant},
-};
+use rustlanges_components::button::{Button, Variant as ButtonVariant};
 
 use crate::components::{
     became_sponsor::BecameSponsorSection, community_project::CommunityProjectSection,
     footer::Footer, our_community::OurCommunitySection, our_sponsors::OurSponsorsSection,
 };
 
+#[allow(unused_variables)]
 #[component]
 pub fn Index() -> impl IntoView {
     let (gcount, wcount) = signal(20);

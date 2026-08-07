@@ -1,4 +1,4 @@
-use leptos::{prelude::*, *};
+use leptos::prelude::*;
 
 use crate::components::sponsor_block::SponsorBlock;
 

@@ -1,6 +1,5 @@
 use leptos::{component, prelude::*};
 use rustlanges_components::{
-    badge::Badge,
     card::{Card, Variant as CardVariant},
     chip::{Chip, Variant as ChipVariant},
     input::{Filter, InputSearch},
@@ -9,6 +8,7 @@ use rustlanges_components::{
 
 type ResourceAlias = Vec<Filter>;
 
+#[allow(unused_variables)]
 #[component]
 pub fn Resources() -> impl IntoView {
     let (resources, set_resources) = signal(vec![Filter {
