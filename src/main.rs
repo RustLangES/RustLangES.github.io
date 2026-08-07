@@ -10,6 +10,7 @@ use rust_lang_es::app::*;
 async fn main() -> std::io::Result<()> {
     let conf = get_configuration(None).unwrap();
     let leptos_options = conf.leptos_options;
+    // Generate the list of routes in your Leptos App
     let (routes, static_routes) = generate_route_list_with_ssg({
         let leptos_options = leptos_options.clone();
         move || shell(leptos_options.clone())
