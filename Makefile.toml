@@ -11,7 +11,7 @@ alias = "serve"
 [tasks.setup]
 script = '''
 git submodule update --init --recursive
-cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build && cd ../..
+cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build
 pnpm run postinstall
 '''
 
@@ -63,7 +63,7 @@ dependencies = ["prebuild"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.3.2" }
+], version = "0.3.6" }
 command = "cargo"
 args = ["leptos", "serve", "-r", "--split"]
 
@@ -72,7 +72,7 @@ dependencies = ["prebuild"]
 install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
     "leptos",
     "--version",
-], version = "0.3.2" }
+], version = "0.3.6" }
 command = "cargo"
 env = { LEPTOS_TAILWIND_VERSION="v4.1.14" }
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]
