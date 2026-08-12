@@ -11,8 +11,10 @@ alias = "serve"
 [tasks.setup]
 script = '''
 git submodule update --init --recursive
-cd design-system-components && pnpm install --ignore-scripts && cd styles && pnpm run build
-pnpm run postinstall
+pnpm install --ignore-scripts
+cd design-system-components && pnpm install --ignore-scripts
+cd styles && pnpm run build
+cd ../.. && pnpm run postinstall
 '''
 
 [tasks.cargo-format]
