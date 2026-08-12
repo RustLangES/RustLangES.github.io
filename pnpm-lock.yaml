@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@rustlanges/styles':
-        specifier: file:../design-system-components/styles
-        version: file:../design-system-components/styles(tailwindcss@4.3.3)
+        specifier: file:design-system-components/styles
+        version: file:design-system-components/styles(tailwindcss@4.3.3)
     devDependencies:
       tailwindcss:
         specifier: ^4.3.1
@@ -18,8 +18,8 @@ importers:
 
 packages:
 
-  '@rustlanges/styles@file:../design-system-components/styles':
-    resolution: {directory: ../design-system-components/styles, type: directory}
+  '@rustlanges/styles@file:design-system-components/styles':
+    resolution: {directory: design-system-components/styles, type: directory}
     peerDependencies:
       tailwindcss: ^4.3.3
 
@@ -28,7 +28,7 @@ packages:
 
 snapshots:
 
-  '@rustlanges/styles@file:../design-system-components/styles(tailwindcss@4.3.3)':
+  '@rustlanges/styles@file:design-system-components/styles(tailwindcss@4.3.3)':
     dependencies:
       tailwindcss: 4.3.3
 
