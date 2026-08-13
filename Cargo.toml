@@ -6,6 +6,11 @@ edition = "2024"
 [workspace]
 exclude = ["design-system-components"]
 
+[[bin]]
+name = "rust-lang-es"
+path = "src/main.rs"
+required-features = ["ssr"]
+
 [lib]
 crate-type = ["cdylib", "rlib"]
 

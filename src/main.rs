@@ -1,7 +1,11 @@
+#[cfg(feature = "ssr")]
 use leptos::{config::LeptosOptions, logging::log, prelude::*};
+#[cfg(feature = "ssr")]
 use leptos_actix::generate_route_list_with_ssg;
+#[cfg(feature = "ssr")]
 use rust_lang_es::app::*;
 
+#[cfg(feature = "ssr")]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let conf = get_configuration(None).unwrap();
@@ -51,6 +55,7 @@ async fn main() -> std::io::Result<()> {
     Ok(())
 }
 
+#[cfg(feature = "ssr")]
 #[actix_web::get("favicon.ico")]
 async fn favicon(
     leptos_options: actix_web::web::Data<LeptosOptions>,
@@ -60,4 +65,26 @@ async fn favicon(
     Ok(actix_files::NamedFile::open(format!(
         "{site_root}/favicon.ico"
     ))?)
+}
+
+#[cfg(not(feature = "ssr"))]
+fn main() {
+    eprintln!(
+        "\n\
+         error: the `ssr` feature is required for the server binary.\n\
+         \n\
+         This project separates the WASM frontend (lib) from the Actix SSR server (bin).\n\
+         `cargo run` alone builds without `ssr` and cannot resolve actix/leptos_actix.\n\
+         \n\
+         Do one of:\n\
+           cargo run --features ssr\n\
+           cargo run --features ssr,development   # dev server (same as `cargo make serve`)\n\
+           cargo leptos watch --features development --hot-reload\n\
+           cargo make serve                       # recommended (handles CSS + assets)\n\
+         \n\
+         Fresh clone? Run once:\n\
+           cargo make setup   # git submodules + pnpm install + styles build\n\
+        "
+    );
+    std::process::exit(101);
 }
