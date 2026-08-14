@@ -61,7 +61,7 @@ direnv allow
 > [!NOTE]
 > Necesitas fetch git submodules para clonar los assets externos para el desarrollo
 
-Este proyecto usa `Makefile` para agilizar ciertos procesos y no tener que estar escribiendo comandos manualmente.
+Este proyecto usa `cargo make` para agilizar ciertos procesos y no tener que estar escribiendo comandos manualmente.
 
 Con estos comandos podrá empezar a desarrollar
 
