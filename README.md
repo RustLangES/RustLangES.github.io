@@ -1,16 +1,10 @@
 # ![image](https://github.com/RustLangES/RustLangES.github.io/assets/56278796/cc7009a2-a11b-4847-a561-fcc6807e1d98)
 
-<!-- markdownlint-disable-next-line MD033 -->
-<p align="center">
-    <!-- markdownlint-disable-next-line MD033 -->
-<img alt="GitHub Workflow Status (with event)"
-    src="https://img.shields.io/github/actions/workflow/status/RustLangES/
-    RustLangES.github.io/clippy.yml?label=ci" />
-<!-- markdownlint-disable-next-line MD033 -->
-<img alt="GitHub Workflow Status (with event)"
-    src="https://img.shields.io/github/actions/workflow/status/RustLangES/
-    RustLangES.github.io/gh-pages.yml?label=deploy" />
-</p>
+<div align="center">
+    
+[![ci](https://github.com/RustLangES/RustLangES.github.io/actions/workflows/clippy.yml/badge.svg)](https://github.com/RustLangES/RustLangES.github.io/actions/workflows/clippy.yml) [![deploy](https://github.com/RustLangES/RustLangES.github.io/actions/workflows/pages.yml/badge.svg)](https://github.com/RustLangES/RustLangES.github.io/actions/workflows/pages.yml)
+    
+</div>
 
 > [!CAUTION]
 > Esta pagina no se publicará hasta que el nuevo diseño se encuentre listo
