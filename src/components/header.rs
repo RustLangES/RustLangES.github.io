@@ -2,14 +2,18 @@ use crate::{
     components::icons::{NewLogoRustDarkPageIcon, NewLogoRustLightPageIcon},
     context::theme_provider::{Theme, use_theme},
 };
-use leptos::{leptos_dom::logging::console_log, prelude::*};
+use leptos::prelude::*;
 use leptos_use::{use_media_query, use_window};
 use rustlanges_components::{
     button::{Button, Variant},
     icons::{Moon, SunLine, SunMoon},
 };
 
+/// Path that redirects to the book in spanish from RustLangEs
 const BOOK_PATH: &str = "https://book.rustlang-es.org/";
+
+/// Path that redirects to the discord community server
+const JOIN_PATH: &str = "https://discord.rustlang-es.org/";
 
 #[island]
 pub fn Header() -> impl IntoView {
@@ -54,15 +58,17 @@ pub fn Header() -> impl IntoView {
     let handler = move |_| {
         let current_theme = theme.get();
         match current_theme {
-            Theme::System => theme.set(Theme::Dark),
-            Theme::Dark => theme.set(Theme::Light),
-            Theme::Light => theme.set(Theme::System),
+            Theme::Light => theme.set(Theme::Dark),
+            Theme::Dark | Theme::System => theme.set(Theme::Light),
         }
     };
 
     view! {
         <header class="w-full py-[8px] px-[24px] flex flex-column items-center justify-between">
-            {move || logo()} <div class="flex flex-column gap-[24px] items-center">
+            <a href="/" class=move || active_link_class("/")>
+                {move || logo()}
+            </a>
+            <div class="flex flex-column gap-[24px] items-center">
                 <div class="gap-[16px] hidden md:flex">
                     <a href="/" class=move || active_link_class("/")>
                         Inicio
@@ -90,11 +96,18 @@ pub fn Header() -> impl IntoView {
                         <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
                     </a>
 
-                    <Button
+                    <a
+                        href=JOIN_PATH
+                        class="hidden md:block"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Button
                         variant=Variant::Primary
                         label="¡Únete!"
-                        on_click=move |_| console_log("hola")
-                    />
+                        on_click=move |_| {} />
+                    </a>
+
                     <Button
                         variant=Variant::Icon
                         on_click=handler

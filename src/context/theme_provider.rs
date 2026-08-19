@@ -8,6 +8,7 @@ use leptos::{
 };
 use leptos_use::{use_cookie, use_media_query};
 use serde::{Deserialize, Serialize};
+
 /// Defines an enumeration for UI themes.
 ///
 /// This enum can be cloned, copied, and compared for equality.
