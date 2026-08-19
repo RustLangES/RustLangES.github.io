@@ -76,7 +76,9 @@ pub fn Header() -> impl IntoView {
                     <a href="/eventos" class=move || active_link_class("/eventos")>
                         Eventos
                     </a>
-                    <a href="https://blog.rustlang-es.org">Blog</a>
+                    <a href="/blog" class=move || active_link_class("/blog")>
+                        Blog
+                    </a>
                 </div>
                 <div class="flex gap-[16px] items-center flex-wrap">
                     <a
