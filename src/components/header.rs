@@ -49,7 +49,7 @@ pub fn Header() -> impl IntoView {
 
     let active_link_class = move |link: &str| {
         if path() == format!("{link:?}") {
-            "text-red-500 dark:text-orange-300"
+            "font-bold text-red-500 dark:text-orange-300"
         } else {
             ""
         }
@@ -70,19 +70,19 @@ pub fn Header() -> impl IntoView {
             </a>
             <div class="flex flex-column gap-[24px] items-center">
                 <div class="gap-[16px] hidden md:flex">
-                    <a href="/" class=move || active_link_class("/")>
+                    <a href="/" class=move || format!("font-semibold {}", active_link_class("/"))>
                         Inicio
                     </a>
-                    <a href="/aprende" class=move || active_link_class("/aprende")>
+                    <a href="/aprende" class=move || format!("font-semibold {}", active_link_class("/aprende"))>
                         Aprende Rust
                     </a>
-                    <a href="/comunidad" class=move || active_link_class("/comunidad")>
+                    <a href="/comunidad" class=move || format!("font-semibold {}", active_link_class("/comunidad"))>
                         Comunidad
                     </a>
-                    <a href="/eventos" class=move || active_link_class("/eventos")>
+                    <a href="/eventos" class=move || format!("font-semibold {}", active_link_class("/eventos"))>
                         Eventos
                     </a>
-                    <a href="/blog" class=move || active_link_class("/blog")>
+                    <a href="/blog" class=move || format!("font-semibold {}", active_link_class("/blog"))>
                         Blog
                     </a>
                 </div>
