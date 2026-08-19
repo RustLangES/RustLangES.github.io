@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use leptos::{
     children::Children,
     prelude::{RwSignal, use_context, *},
@@ -25,15 +27,18 @@ impl Default for Theme {
     }
 }
 
-#[allow(clippy::inherent_to_string)]
-impl Theme {
+impl Display for Theme {
     /// Converts the `Theme` variant into a corresponding string.
-    pub fn to_string(self) -> String {
-        String::from(match self {
-            Theme::Light => "light",
-            Theme::Dark => "dark",
-            Theme::System => "system",
-        })
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Theme::Light => "light",
+                Theme::Dark => "dark",
+                Theme::System => "system",
+            }
+        )
     }
 }
 
