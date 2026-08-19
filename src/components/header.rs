@@ -102,10 +102,7 @@ pub fn Header() -> impl IntoView {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button
-                        variant=Variant::Primary
-                        label="¡Únete!"
-                        on_click=move |_| {} />
+                        <Button variant=Variant::Primary label="¡Únete!" on_click=move |_| {} />
                     </a>
 
                     <Button
