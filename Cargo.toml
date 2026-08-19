@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace]
-exclude = ["design-system-components"]
+exclude = ["design-system-components/"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -38,7 +38,8 @@ ssr = [
     "leptos/ssr",
     "leptos_meta/ssr",
     "leptos_router/ssr",
-    "leptos-use/ssr"
+    "leptos-use/ssr",
+    "leptos-use/actix"
 ]
 development = []
 
