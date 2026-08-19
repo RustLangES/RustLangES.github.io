@@ -8,6 +8,8 @@ bundled.css
 /assets/gen_assets/
 /src/extras/
 
+Cargo.lock
+
 # NixOs output folder
 /result
 
