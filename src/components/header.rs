@@ -77,12 +77,13 @@ pub fn Header() -> impl IntoView {
                     <a href="https://blog.rustlang-es.org">Blog</a>
                 </div>
                 <div class="flex gap-[16px] items-center flex-wrap">
-                    <Button
-                        variant=Variant::Secondary
-                        label="El Libro"
-                        on_click=|_| {}
-                        class="hidden md:block"
-                    />
+                    <a href="https://book.rustlang-es.org/"
+                    class="hidden md:block"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
+                    </a>
+
                     <Button
                         variant=Variant::Primary
                         label="¡Únete!"
