@@ -9,6 +9,8 @@ use rustlanges_components::{
     icons::{Moon, SunLine, SunMoon},
 };
 
+const BOOK_PATH: &str = "https://book.rustlang-es.org/";
+
 #[island]
 pub fn Header() -> impl IntoView {
     let this = use_window();
@@ -77,10 +79,12 @@ pub fn Header() -> impl IntoView {
                     <a href="https://blog.rustlang-es.org">Blog</a>
                 </div>
                 <div class="flex gap-[16px] items-center flex-wrap">
-                    <a href="https://book.rustlang-es.org/"
-                    class="hidden md:block"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                    <a
+                        href=BOOK_PATH
+                        class="hidden md:block"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
                     </a>
 
