@@ -121,6 +121,36 @@ Agrega esto en tu `settings.json`
 }
 ```
 
+## Configura tu Zed
+
+Agrega esto en tu `settings.json`
+
+```json
+{
+  "lsp": {
+    "rust-analyzer": {
+      "binary": {
+        "path": "rust-analyzer"
+      },
+      "initialization_options": {
+        "cargo": {
+          "features": [
+            "ssr"
+          ]
+        },
+        "check": {
+          "command": "check",
+          "extraArgs": [
+            "--features",
+            "ssr"
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
 ## Resumen
 
 Este proyecto utiliza una rama personalizada de Leptos para poder servir
