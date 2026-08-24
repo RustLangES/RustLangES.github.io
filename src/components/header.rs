@@ -9,10 +9,7 @@ use rustlanges_components::{
     icons::{Close, Menu, Moon, SunLine, SunMoon},
 };
 
-/// Path that redirects to the book in spanish from RustLangEs
 const BOOK_PATH: &str = "https://book.rustlang-es.org/";
-
-/// Path that redirects to the discord community server
 const JOIN_PATH: &str = "https://discord.rustlang-es.org/";
 
 #[island]

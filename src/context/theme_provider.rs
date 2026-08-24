@@ -9,8 +9,6 @@ use leptos::{
 use leptos_use::{use_cookie, use_media_query};
 use serde::{Deserialize, Serialize};
 
-/// Defines an enumeration for UI themes.
-///
 /// This enum can be cloned, copied, and compared for equality.
 /// It also supports serialization and deserialization for local storage.
 #[derive(Clone, Copy, PartialEq, Serialize, Deserialize, Debug)]
@@ -20,16 +18,13 @@ pub enum Theme {
     System,
 }
 
-// Implementation of the default value for the `Theme` enum
 impl Default for Theme {
-    /// provides the default theme as `Dark`
     fn default() -> Self {
         Theme::Dark
     }
 }
 
 impl Display for Theme {
-    /// Converts the `Theme` variant into a corresponding string.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,
