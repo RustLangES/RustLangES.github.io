@@ -1,5 +1,8 @@
 use crate::{
-    components::icons::{NewLogoRustDarkPageIcon, NewLogoRustLightPageIcon},
+    components::{
+        BOOK_PATH, JOIN_PATH,
+        icons::{NewLogoRustDarkPageIcon, NewLogoRustLightPageIcon},
+    },
     context::theme_provider::{Theme, use_theme},
 };
 use leptos::prelude::*;
@@ -8,9 +11,6 @@ use rustlanges_components::{
     button::{Button, Variant},
     icons::{Close, Menu, Moon, SunLine, SunMoon},
 };
-
-const BOOK_PATH: &str = "https://book.rustlang-es.org/";
-const JOIN_PATH: &str = "https://discord.rustlang-es.org/";
 
 #[island]
 pub fn Header() -> impl IntoView {
