@@ -22,7 +22,7 @@ pub fn OtherCommunities() -> impl IntoView {
                     <p class="text-center max-w-lg">"Encuentra la comunidad más cercana a ti"</p>
                 </div>
                 <div class="flex flex-col justify-center mb-8 container mt-10 mx-auto max-w-fit">
-                    {{}} <InputSearch on_change_filter=move |resource: ResourceAlias| () />
+                    <InputSearch on_change_filter=move |resource: ResourceAlias| () />
                 </div>
             </div>
             <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
