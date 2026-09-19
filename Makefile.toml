@@ -26,14 +26,14 @@ args = ["fmt", "--all"]
 script = '''
 leptosfmt .
 cargo fmt --all
-cargo clippy --fix -- -D warnings
+cargo clippy --fix --features ssr -- -D warnings
 '''
 
 [tasks.check]
 script = '''
 leptosfmt --check .
 cargo fmt --all --check
-cargo clippy -- -D warnings
+cargo clippy --features ssr -- -D warnings
 '''
 
 [tasks.leptos-format]

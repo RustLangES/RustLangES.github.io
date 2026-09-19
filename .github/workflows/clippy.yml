@@ -6,8 +6,7 @@ on:
       - ready_for_review
 
   push:
-    branches:
-      - main
+    branches: [main, riir]
     paths-ignore:
       - "extras"
       - ".rusty-hook.toml"
