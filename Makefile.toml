@@ -24,14 +24,14 @@ args = ["fmt", "--all"]
 
 [tasks.fmt-all]
 script = '''
-leptosfmt .
+leptosfmt src
 cargo fmt --all
 cargo clippy --fix --features ssr -- -D warnings
 '''
 
 [tasks.check]
 script = '''
-leptosfmt --check .
+leptosfmt --check src
 cargo fmt --all --check
 cargo clippy --features ssr -- -D warnings
 '''
@@ -39,7 +39,7 @@ cargo clippy --features ssr -- -D warnings
 [tasks.leptos-format]
 install_crate = "leptosfmt"
 command = "leptosfmt"
-args = ["."]
+args = ["src"]
 
 [tasks.format]
 dependencies = ["cargo-format", "leptos-format"]
