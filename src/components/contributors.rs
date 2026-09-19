@@ -54,7 +54,7 @@ pub fn Contributors() -> impl IntoView {
                         </div>
                     </Card>
                 </div>
-            };
+            }
         })
         .collect_view();
 
@@ -74,7 +74,7 @@ pub fn Contributors() -> impl IntoView {
 
             <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
                 <div class="items-center gap-8 overflow-x-auto p-4 xl:grid xl:grid-cols-3">
-                    {{ contributors_list }}
+                    {contributors_list}
                 </div>
             </div>
             <div class="flex flex-row justify-center items-center m-auto w-full mt-10">
