@@ -28,8 +28,7 @@ pub fn Contributors() -> impl IntoView {
     let contributors_list = contributors
         .into_iter()
         .map(|c| {
-            return view! {
-                // <div class="min-w-60 max-w-xs h-full">
+            view! {
                 <div class="min-w-87.5 max-w-md h-full mt-5">
                     <Card class="min-w-87.5 max-w-md h-full">
                         <div class="flex flex-col gap-4 justify-between h-full">

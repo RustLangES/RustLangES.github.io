@@ -1,13 +1,11 @@
 use leptos::prelude::*;
 use rustlanges_components::{
     avatar::Avatar,
-    badge::Badge,
     button::{Button, Variant as ButtonVariant},
-    card::{Card, Variant as CardVariant},
+    card::Card,
     chip::{Chip, Variant as ChipVariant},
-    icons::{Github, Telegram, Twitter},
+    icons::Telegram,
     input::{Filter, InputSearch},
-    tag::Tag,
 };
 
 type ResourceAlias = Vec<Filter>;
@@ -22,7 +20,8 @@ pub fn OtherCommunities() -> impl IntoView {
                     <p class="text-center max-w-lg">"Encuentra la comunidad más cercana a ti"</p>
                 </div>
                 <div class="flex flex-col justify-center mb-8 container mt-10 mx-auto max-w-fit">
-                    <InputSearch on_change_filter=move |resource: ResourceAlias| () />
+                    // TODO: Implement functionality referenced in the issue: https://github.com/RustLangES/RustLangES.github.io/issues/113
+                    <InputSearch on_change_filter=move |_resource: ResourceAlias| () />
                 </div>
             </div>
             <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
