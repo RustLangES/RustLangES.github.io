@@ -1,8 +1,7 @@
 use leptos::prelude::*;
-use leptos_router::{NavigateOptions, hooks::use_navigate};
 use rustlanges_components::{
     avatar::Avatar,
-    button::{Button, Variant as ButtonVariant, button_class},
+    button::{Variant as ButtonVariant, button_class},
     card::Card,
     chip::{Chip, Variant as ChipVariant},
     icons::IconVariant,

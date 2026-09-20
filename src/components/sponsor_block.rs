@@ -23,7 +23,7 @@ pub enum SponsorVariant {
 impl SponsorVariant {
     pub fn random_colored() -> Self {
         thread_local! {
-            static COLOR_DISTRIBUTION: RefCell<Vec<SponsorVariant>> = RefCell::new(Vec::new());
+            static COLOR_DISTRIBUTION: RefCell<Vec<SponsorVariant>> = const {RefCell::new(Vec::new())};
         }
 
         COLOR_DISTRIBUTION.with_borrow_mut(|c| {
