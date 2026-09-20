@@ -2,23 +2,13 @@ use leptos::prelude::*;
 
 use crate::components::sponsor_block::{SponsorBlock, SponsorVariant};
 
+#[derive(Default)]
 struct SponsorDef {
     variant: SponsorVariant,
 
     img: &'static str,
     alt: &'static str,
     class: &'static str,
-}
-
-impl Default for SponsorDef {
-    fn default() -> Self {
-        Self {
-            variant: SponsorVariant::default(),
-            img: Default::default(),
-            alt: Default::default(),
-            class: "object-contain w-full h-full",
-        }
-    }
 }
 
 enum SponsorBrick {
@@ -42,12 +32,14 @@ fn sponsors() -> impl IntoView {
             img: "/assets/new/sponsors/testing-bolivia.png",
             alt: "Testing Bolivia",
             class: "mix-blend-difference",
+            ..Default::default()
         },
         SponsorDef {
             variant: Custom("#00c39d"),
             img: "/assets/new/sponsors/frontendcafe.png",
             alt: "FrontendCafe",
             class: "shadow-frontendcafe w-full h-full object-contain",
+            ..Default::default()
         },
         SponsorDef {
             variant: Custom("#193270"),
@@ -60,6 +52,7 @@ fn sponsors() -> impl IntoView {
             img: "/assets/sponsors/shuttle.webp",
             alt: "ShuttleRS",
             class: "mix-blend-difference",
+            ..Default::default()
         },
         SponsorDef {
             variant: Primary,
@@ -71,7 +64,7 @@ fn sponsors() -> impl IntoView {
             variant: Custom("#051024"),
             img: "/assets/new/sponsors/crabnebula.svg",
             alt: "Crabnebula",
-            class: "mix-blend-difference object-contain w-full h-full", // -mt-3
+            class: "mix-blend-difference",
         },
         SponsorDef {
             variant: Custom("var(--color-neutral-950)"),
