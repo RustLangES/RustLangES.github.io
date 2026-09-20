@@ -1,4 +1,4 @@
-use leptos::prelude::*;
+use leptos::{leptos_dom::logging::console_warn, prelude::*};
 
 use crate::components::sponsor_block::{SponsorBlock, SponsorVariant};
 
@@ -80,6 +80,8 @@ fn sponsors() -> impl IntoView {
         },
     ];
 
+    // Sponsors will be "popped" from the buffer, so reverse it
+    // to get the same order as written
     sponsors_buf.reverse();
 
     const SPONSOR_BRICKS: usize = 26;
@@ -120,7 +122,7 @@ fn sponsors() -> impl IntoView {
         next_id
     };
 
-    BRICKS.map(|b| match b {
+    let view = BRICKS.map(|b| match b {
         SponsorBrick::Sponsor(c) if let Some(sponsor) = sponsors_buf.pop() => {
             view! {
                 <SponsorBlock index=next_id() variant=sponsor.variant class=c>
@@ -133,11 +135,29 @@ fn sponsors() -> impl IntoView {
             }
         }
         .into_any(),
+        // If there's no more sponsors, just show it as random empty brick.
+        // This allows to design and assign spaces to sponsors even if not enough
         SponsorBrick::Sponsor(c) | SponsorBrick::Empty(c) => view! { <SponsorBlock index=next_id() variant=SponsorVariant::random_colored() class=c /> }
         .into_any(),
+        // Reserve an entire brick.
+        // Consult "What the hell???" section (below) to know more about this.
         SponsorBrick::Space(c) => view! { <div class=format!("col-span-4 {c}") /> }
         .into_any(),
-    })
+    });
+
+    if !sponsors_buf.is_empty() {
+        console_warn(&format!(
+            "{} Sponsors left. Some sponsors are not rendered: {}",
+            sponsors_buf.len(),
+            sponsors_buf
+                .into_iter()
+                .map(|s| s.alt)
+                .collect::<Vec<_>>()
+                .join(", ")
+        ));
+    }
+
+    view
 }
 
 #[component]
@@ -156,9 +176,17 @@ pub fn OurSponsorsSection() -> impl IntoView {
                     <img src="/assets/new/logos/ferris-hero.png" alt="" width="300" />
                 </div>
 
+                // What the hell???
+                // R: The grid is composed from every brick section (each brick's top-connections)
+                // to align correctly in any™ position a brick is located. The cols are just an
+                // arbritrary amount of bricks that looks good in each breakpoint.
                 <div
-                    style="--brick: 38px 35px 35px 34px;"
-                    class="grid grid-cols-[repeat(3,var(--brick))] sm:grid-cols-[repeat(4,var(--brick))] md:grid-cols-[repeat(5,var(--brick))] lg:grid-cols-[repeat(7,var(--brick))]"
+                    style="--brick: 38px 36px 34px 34px;"
+                    class="grid \
+                    grid-cols-[repeat(3,var(--brick))] \
+                    sm:grid-cols-[repeat(4,var(--brick))] \
+                    md:grid-cols-[repeat(5,var(--brick))] \
+                    lg:grid-cols-[repeat(7,var(--brick))]"
                 >
                     {sponsors}
                 </div>
