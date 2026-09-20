@@ -32,14 +32,12 @@ fn sponsors() -> impl IntoView {
             img: "/assets/new/sponsors/testing-bolivia.png",
             alt: "Testing Bolivia",
             class: "mix-blend-difference",
-            ..Default::default()
         },
         SponsorDef {
             variant: Custom("#00c39d"),
             img: "/assets/new/sponsors/frontendcafe.png",
             alt: "FrontendCafe",
             class: "shadow-frontendcafe w-full h-full object-contain",
-            ..Default::default()
         },
         SponsorDef {
             variant: Custom("#193270"),
@@ -52,7 +50,6 @@ fn sponsors() -> impl IntoView {
             img: "/assets/sponsors/shuttle.webp",
             alt: "ShuttleRS",
             class: "mix-blend-difference",
-            ..Default::default()
         },
         SponsorDef {
             variant: Primary,
