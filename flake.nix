@@ -26,6 +26,7 @@
             rustToolchain
 
             # WASM tools
+            nodejs
             tailwindcss_4
             wasm-bindgen-cli_0_2_126
 

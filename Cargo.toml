@@ -27,6 +27,8 @@ reqwest = { version = "0.13.4", features = [
 rustlanges-components = { path="design-system-components", features = ["leptos"] }
 leptos-use = { version = "0.19.0", features = [] }
 console_error_panic_hook = { version = "0.1.7", optional = true }
+rand = "0.10.3"
+getrandom = { version = "0.4.3", features = ["wasm_js"] }
 # leptos_theme = "0.1.2"
 
 [features]
