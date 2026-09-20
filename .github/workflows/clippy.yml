@@ -45,17 +45,9 @@ jobs:
           toolchain: nightly
           override: true
           components: clippy
-      - name: Cache .cargo and target
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo
-          key: ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-leptos-${{ hashFiles('**/Cargo.lock') }}
-            ${{ runner.os }}-cargo-leptos
+      - uses: cargo-bins/cargo-binstall@main
       - name: Install LeptosFmt
-        run: cargo install leptosfmt --version 0.1.33
+        run: cargo binstall --disable-telemetry --no-confirm leptosfmt --version 0.1.33
       - name: Check LeptosFmt
         run: leptosfmt --check src
 
