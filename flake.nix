@@ -6,29 +6,27 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs =
-    {
-      nixpkgs,
-      flake-utils,
-      rust-overlay,
-      ...
-    }:
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    rust-overlay,
+    ...
+  }:
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        overlays = [ (import rust-overlay) ];
+      system: let
+        overlays = [(import rust-overlay)];
         pkgs = import nixpkgs {
           inherit system overlays;
         };
         rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             # Rust toolchain with wasm target
             rustToolchain
 
             # WASM tools
+            nodejs
             tailwindcss_4
             wasm-bindgen-cli_0_2_126
 
@@ -40,6 +38,7 @@
             pkg-config
             openssl
             pnpm
+            cargo-make
           ];
         };
       }

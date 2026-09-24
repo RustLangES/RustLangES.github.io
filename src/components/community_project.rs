@@ -40,9 +40,10 @@ pub fn CommunityProjectSection(
                 </div>
 
                 // <div>
-                <div class="flex flex-row justify-center items-center gap-4 max-w-full w-full">
+                <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
                     <div
-                        class="inline-flex flex-row items-center gap-8 overflow-x-auto p-4"
+                        // class="inline-flex flex-row items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
+                        class="items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
                         class:md:flex-wrap=many_projects
                     >
                         <ProjectCard

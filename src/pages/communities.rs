@@ -5,7 +5,10 @@ use rustlanges_components::{
 };
 
 use crate::{
-    components::{community_project::CommunityProjectSection, why_rust::WhyRust},
+    components::{
+        community_project::CommunityProjectSection, contributors::Contributors, footer::Footer,
+        other_communities::OtherCommunities, why_rust::WhyRust,
+    },
     models::GithubUser,
 };
 
@@ -98,5 +101,8 @@ pub fn Communities() -> impl IntoView {
         </section>
         <WhyRust />
         <CommunityProjectSection many_projects=true />
+        <Contributors />
+        <OtherCommunities />
+        <Footer />
     }
 }
