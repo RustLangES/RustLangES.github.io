@@ -12,6 +12,8 @@
 
 ## Como ejecutar
 
+La configuración está pensada para funcionar en entornos Linux y Mac, si tienes alguna configuración extra en tu `.cargo/config.toml` puede que el proceso de buildeo falle.
+
 ### Requisitos Generales
 
 Antes de empezar es necesario tener estos programas
@@ -48,13 +50,6 @@ Si usas NixOS
 ```bash
 direnv allow
 ```
-
-### Requisitos Windows >= 10
-
-[BusyBox](https://busybox.net/)
-
-- Usando scoop `scoop install busybox`
-- Usando choco  `choco install busybox`
 
 ### Desarrollo
 
@@ -118,6 +113,36 @@ Agrega esto en tu `settings.json`
     "strings": true
   },
   "css.validate": false
+}
+```
+
+## Configura tu Zed
+
+Agrega esto en tu `settings.json`
+
+```json
+{
+  "lsp": {
+    "rust-analyzer": {
+      "binary": {
+        "path": "rust-analyzer"
+      },
+      "initialization_options": {
+        "cargo": {
+          "features": [
+            "ssr"
+          ]
+        },
+        "check": {
+          "command": "check",
+          "extraArgs": [
+            "--features",
+            "ssr"
+          ]
+        }
+      }
+    }
+  }
 }
 ```
 

@@ -22,3 +22,9 @@ pub mod project_card;
 pub mod resources;
 pub mod sponsor_block;
 pub mod why_rust;
+
+const BOOK_PATH: &str = "https://book.rustlang-es.org/";
+const JOIN_PATH: &str = "https://discord.rustlang-es.org/";
+const GITHUB_PATH: &str = "https://github.com/RustLangES";
+const LINKEDIN_PATH: &str = "https://www.linkedin.com/company/rustlanges";
+const TELEGRAM_PATH: &str = "https://t.me/rust_es";

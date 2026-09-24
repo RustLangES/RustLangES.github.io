@@ -4,35 +4,45 @@ use rustlanges_components::{
     icons::{Discord, Github, Linkedin, Telegram},
 };
 
+use crate::components::{GITHUB_PATH, JOIN_PATH, LINKEDIN_PATH, TELEGRAM_PATH};
+
 #[component]
 pub fn Footer() -> impl IntoView {
     view! {
-        <section class="flex flex-col justify-center items-center w-full gap-8 py-10 bg-primary-500 dark:bg-primary-600">
-            <div class="container flex flex-col justify-center items-center gap-3">
-                <p class="text-center max-w-xl">"Comunidad - Rust Lang en Español"</p>
-                <div class="flex gap-4 justify-center items-center w-full">
+        <footer class="w-full flex flex-col items-center justify-between bg-primary-500 dark:bg-primary-600 py-10">
+            <section>
+                <p class="py-3 font-semibold">"Comunidad - Rust Lang en Español"</p>
+            </section>
+            <div class="flex gap-4 justify-center items-center w-full">
+                <a href=JOIN_PATH target="_blank" rel="noopener noreferrer">
                     <Button
                         variant=ButtonVariant::Icon
                         on_click=|_| {}
                         icon=view! { <Discord /> }.into_any()
                     />
+                </a>
+                <a href=GITHUB_PATH target="_blank" rel="noopener noreferrer">
                     <Button
                         variant=ButtonVariant::Icon
                         on_click=|_| {}
                         icon=view! { <Github /> }.into_any()
                     />
+                </a>
+                <a href=LINKEDIN_PATH target="_blank" rel="noopener noreferrer">
                     <Button
                         variant=ButtonVariant::Icon
                         on_click=|_| {}
                         icon=view! { <Linkedin /> }.into_any()
                     />
+                </a>
+                <a href=TELEGRAM_PATH target="_blank" rel="noopener noreferrer">
                     <Button
                         variant=ButtonVariant::Icon
                         on_click=|_| {}
                         icon=view! { <Telegram /> }.into_any()
                     />
-                </div>
+                </a>
             </div>
-        </section>
+        </footer>
     }
 }

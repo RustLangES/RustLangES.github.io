@@ -1742,6 +1742,7 @@ version = "0.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cc07f2657dcc366ef2d80045354143f6e0a86919763a1a5753cd3871f8f95e2d"
 dependencies = [
+ "actix-web",
  "cfg-if",
  "chrono",
  "codee",
@@ -1749,9 +1750,11 @@ dependencies = [
  "default-struct-builder",
  "futures-util",
  "gloo-timers",
+ "http 0.2.12",
  "js-sys",
  "lazy_static",
  "leptos",
+ "leptos_actix",
  "paste",
  "send_wrapper",
  "thiserror 2.0.19",

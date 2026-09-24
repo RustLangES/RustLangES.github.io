@@ -1,13 +1,14 @@
+use std::fmt::Display;
+
 use leptos::{
     children::Children,
     prelude::{RwSignal, use_context, *},
     server::codee::string::JsonSerdeCodec,
     *,
 };
-use leptos_use::{storage::use_local_storage, use_media_query};
+use leptos_use::{use_cookie, use_media_query};
 use serde::{Deserialize, Serialize};
-/// Defines an enumeration for UI themes.
-///
+
 /// This enum can be cloned, copied, and compared for equality.
 /// It also supports serialization and deserialization for local storage.
 #[derive(Clone, Copy, PartialEq, Serialize, Deserialize, Debug)]
@@ -17,28 +18,28 @@ pub enum Theme {
     System,
 }
 
-// Implementation of the default value for the `Theme` enum
 impl Default for Theme {
-    /// provides the default theme as `Dark`
     fn default() -> Self {
         Theme::Dark
     }
 }
 
-#[allow(clippy::inherent_to_string)]
-impl Theme {
-    /// Converts the `Theme` variant into a corresponding string.
-    pub fn to_string(self) -> String {
-        String::from(match self {
-            Theme::Light => "light",
-            Theme::Dark => "dark",
-            Theme::System => "system",
-        })
+impl Display for Theme {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Theme::Light => "light",
+                Theme::Dark => "dark",
+                Theme::System => "system",
+            }
+        )
     }
 }
 
-/// Define a constant for the local storage key used to store the theme setting.
-const STORAGE_KEY: &str = "theme";
+/// Define a constant for the cookie key used to store the theme setting.
+const COOKIE_KEY: &str = "theme";
 
 /// Updates the class selector for the respective theme.
 /// This function is responsible for applying the correct CSS class to the HTML and body elements based on the current theme.
@@ -102,16 +103,16 @@ pub fn ThemeProvider(children: Children) -> impl IntoView {
     let is_dark_preferred_signal = use_media_query("(prefers-color-scheme: dark)");
 
     // Attempt to retrieve the theme from local storage
-    let (theme_storage_state, set_theme_storage_state, _) =
-        use_local_storage::<Theme, JsonSerdeCodec>(STORAGE_KEY);
+    let (theme_storage_state, set_theme_storage_state) =
+        use_cookie::<Theme, JsonSerdeCodec>(COOKIE_KEY);
 
-    let theme_state = RwSignal::new(theme_storage_state.get_untracked());
+    let theme_state = RwSignal::new(theme_storage_state.get_untracked().unwrap_or_default());
     provide_context(theme_state);
 
     // Update local storage and CSS whenever the theme state changes
     Effect::new(move |_| {
-        let current_theme = theme_state();
-        set_theme_storage_state.set(current_theme);
+        let current_theme: Theme = theme_state();
+        set_theme_storage_state.set(Some(current_theme));
         update_css_for_theme(
             current_theme,
             is_dark_preferred_signal(),
