@@ -12,6 +12,8 @@
 
 ## Como ejecutar
 
+La configuración está pensada para funcionar en entornos Linux y Mac, si tienes alguna configuración extra en tu `.cargo/config.toml` puede que el proceso de buildeo falle.
+
 ### Requisitos Generales
 
 Antes de empezar es necesario tener estos programas
@@ -48,13 +50,6 @@ Si usas NixOS
 ```bash
 direnv allow
 ```
-
-### Requisitos Windows >= 10
-
-[BusyBox](https://busybox.net/)
-
-- Usando scoop `scoop install busybox`
-- Usando choco  `choco install busybox`
 
 ### Desarrollo
 
