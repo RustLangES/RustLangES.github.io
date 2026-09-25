@@ -11,17 +11,12 @@ use serde::{Deserialize, Serialize};
 
 /// This enum can be cloned, copied, and compared for equality.
 /// It also supports serialization and deserialization for local storage.
-#[derive(Clone, Copy, PartialEq, Serialize, Deserialize, Debug)]
+#[derive(Clone, Copy, PartialEq, Serialize, Deserialize, Debug, Default)]
 pub enum Theme {
     Light,
+    #[default]
     Dark,
     System,
-}
-
-impl Default for Theme {
-    fn default() -> Self {
-        Theme::Dark
-    }
 }
 
 impl Display for Theme {
