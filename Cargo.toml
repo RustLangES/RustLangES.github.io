@@ -12,10 +12,10 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 actix-files = { version = "0.6.10", optional = true }
 actix-web = { version = "4.14.0", features = ["macros"], optional = true }
-leptos = { version = "0.8.20", features = ["nightly", "islands", "islands-router"] }
+leptos = { version = "0.8.21", features = ["nightly", "islands", "islands-router"] }
 leptos_meta = "0.8.6"
-leptos_actix = { version = "0.8.7", features = ["islands-router"], optional = true }
-leptos_router = { version = "0.8.15", features = ["nightly"] }
+leptos_actix = { version = "0.8.8", features = ["islands-router"], optional = true }
+leptos_router = { version = "0.8.16", features = ["nightly"] }
 wasm-bindgen = "0.2.126"
 serde = { version = "1.0.229", features = ["derive"] }
 reqwest = { version = "0.13.4", features = [
@@ -87,9 +87,9 @@ end2end-dir = "end2end"
 #  The browserlist query used for optimizing the CSS.
 browserquery = "defaults"
 # Set by cargo-leptos watch when building with that tool. Controls whether autoreload JS will be included in the head
-watch = false
+# watch = false
 # The environment Leptos will run in, usually either "DEV" or "PROD"
-env = "DEV"
+# env = "DEV"
 # The features to use when compiling the bin target
 #
 # Optional. Can be over-ridden with the command line parameter --bin-features
