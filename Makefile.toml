@@ -62,19 +62,11 @@ cp node_modules/@rustlanges/styles/dist/bundled.css bundled.css
 
 [tasks.build]
 dependencies = ["prebuild"]
-install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
-    "leptos",
-    "--version",
-], version = "0.3.6" }
 command = "cargo"
 args = ["leptos", "serve", "-r", "--split"]
 
 [tasks.serve]
 dependencies = ["prebuild"]
-install_crate = { crate_name = "cargo-leptos", binary = "cargo", test_arg = [
-    "leptos",
-    "--version",
-], version = "0.3.6" }
 command = "cargo"
 env = { LEPTOS_TAILWIND_VERSION="v4.1.14" }
 args = ["leptos", "watch", "--features", "development", "--hot-reload"]
