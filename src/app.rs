@@ -53,7 +53,7 @@ pub fn App() -> impl IntoView {
                 <HeadInformation />
                 <Body
                     {..}
-                    class="bg-[#FAFAFA] dark:bg-[#222222] text-[#222222] dark:text-[#FAFAFA]"
+                    class="bg-light dark:bg-neutral-950 text-neutral-950 dark:text-light"
                         .to_string()
                 />
                 <main>

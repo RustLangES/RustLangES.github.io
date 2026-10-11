@@ -33,7 +33,6 @@
             # Leptos specific tools
             leptosfmt
             cargo-leptos
-
             # Additional development tools
             pkg-config
             openssl

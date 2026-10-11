@@ -30,6 +30,7 @@ rustup default nightly
 rustup target add wasm32-unknown-unknown
 
 cargo install cargo-make
+cargo install cargo-leptos
 cargo install rusty-hook
 cargo install leptosfmt --version 0.1.33
 ```
