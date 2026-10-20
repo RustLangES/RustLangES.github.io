@@ -1,79 +1,42 @@
+use super::photo_card::PhotoCard;
 use leptos::prelude::*;
-use rustlanges_components::card::Card;
 
 #[component]
 pub fn OnSiteEvents() -> impl IntoView {
     view! {
-        <div class="w-full h-[90dvh] dark:bg-neutral-900 flex flex-col items-center justify-center overflow-clip">
-            <div class="w-full container flex flex-col-reverse md:flex-row items-center justify-between m-auto">
-                <div class="flex flex-col justify-center gap-8 container max-w-md">
-                    <div class="flex flex-col gap-2 justify-center not-md:items-center w-full text-center lg:text-left">
-                        <p class="text-heading-2 font-heading-2 text-4xl font-bold">
-                            "Eventos presenciales"
-                        </p>
-                        <p class="font-heading-3 text-lg">
-                            "Contamos con participación en eventos presenciales, tanto organizados como invitaciones"
-                        </p>
-                    </div>
-                </div>
-                <div class="relative min-w-lg max-w-full flex flex-row justify-between items-start">
-                    <Card class="relative max-w-full rotate-35 z-10">
-                        <img
-                            src="/assets/presencial.png"
-                            class="shadow-brutal rounded-lg border border-black mb-2"
-                        />
-                        <p class="font-heading-4 text-balance text-center text-lg">
-                            "Descripción"
-                        </p>
-                    </Card>
-
-                    <Card class=" max-w-full -rotate-20 mt-20">
-                        <img
-                            src="/assets/presencial.png"
-                            class="shadow-brutal rounded-lg border border-black mb-2"
-                        />
-                        <p class="font-heading-4 text-balance text-center text-lg">
-                            "Descripción"
-                        </p>
-                    </Card>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center gap-8 mb-20">
-                <div class="flex flex-col gap-2 justify-center not-md:items-center w-full text-center">
-                    <p class="text-heading-2 font-heading-2 text-4xl font-bold text-center">
-                        "Ediciones pasadas"
+        <section class="w-full py-20 dark:bg-[#333333] flex flex-col items-center gap-16 overflow-x-clip">
+            <div class="container max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-16">
+                <div class="flex flex-col gap-6 max-w-md text-center md:text-left">
+                    <h2 class="text-heading-2 font-heading-2 text-3xl font-bold">
+                        "Eventos presenciales"
+                    </h2>
+                    <p class="font-heading-4 text-lg leading-loose">
+                        "Contamos con participación en eventos presenciales, tanto organizados como invitaciones"
                     </p>
-                    <div class="flex flex-row justify-center items-center gap-4  max-w-full flex-wrap">
-                        <Card class="">
-                            <img
-                                src="/assets/presencial.png"
-                                class="shadow-brutal rounded-lg border border-black mb-2"
-                            />
-                            <p class="font-heading-4 text-balance text-center text-lg">
-                                "Descripción"
-                            </p>
-                        </Card>
-                        <Card class="">
-                            <img
-                                src="/assets/presencial.png"
-                                class="shadow-brutal rounded-lg border border-black mb-2"
-                            />
-                            <p class="font-heading-4 text-balance text-center text-lg">
-                                "Descripción"
-                            </p>
-                        </Card>
-                        <Card class="">
-                            <img
-                                src="/assets/presencial.png"
-                                class="shadow-brutal rounded-lg border border-black mb-2"
-                            />
-                            <p class="font-heading-4 text-balance text-center text-lg">
-                                "Descripción"
-                            </p>
-                        </Card>
-                    </div>
+                </div>
+                <div class="relative w-full max-w-lg aspect-square">
+                    <PhotoCard
+                        src="/assets/presencial.png"
+                        description="Descripción"
+                        class="absolute right-0 bottom-0 w-3/5 -rotate-8"
+                    />
+                    <PhotoCard
+                        src="/assets/presencial.png"
+                        description="Descripción"
+                        class="absolute left-0 top-0 w-3/5 rotate-20 z-10"
+                    />
                 </div>
             </div>
-        </div>
+            <div class="container max-w-6xl px-6 flex flex-col items-center gap-8">
+                <h2 class="text-heading-2 font-heading-2 text-3xl font-semibold text-center">
+                    "Ediciones pasadas"
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                    <PhotoCard src="/assets/presencial.png" description="Descripción" />
+                    <PhotoCard src="/assets/presencial.png" description="Descripción" />
+                    <PhotoCard src="/assets/presencial.png" description="Descripción" />
+                </div>
+            </div>
+        </section>
     }
 }

@@ -22,6 +22,7 @@ pub mod on_site_events;
 pub mod other_communities;
 pub mod our_community;
 pub mod our_sponsors;
+pub mod photo_card;
 pub mod project_card;
 pub mod resources;
 pub mod sponsor_block;

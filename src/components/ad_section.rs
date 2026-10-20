@@ -4,14 +4,14 @@ use rustlanges_components::button::{Button, Variant as ButtonVariant};
 #[component]
 pub fn AdSection() -> impl IntoView {
     view! {
-        <div class="w-full h-[25dvh] bg-primary-50 dark:bg-neutral-950 flex items-center justify-center">
-            <div class="w-full container flex  flex-col items-center justify-center m-auto gap-3">
-                <p class="text-heading-2 text-4xl font-bold font-heading-3 text-center">
-                    <span class="text-secondary-500">"Tu publicidad"</span>
+        <section class="w-full py-16 bg-primary-50 dark:bg-neutral-950 flex items-center justify-center">
+            <div class="w-full container px-6 flex flex-col items-center justify-center m-auto gap-6">
+                <h2 class="text-heading-2 text-3xl font-bold font-heading-3 text-center">
+                    <span class="text-secondary-500 dark:text-primary-500">"Tu publicidad"</span>
                     " + Nuestra comunidad"
-                </p>
+                </h2>
 
-                <div class="container gap-4 flex flex-col justify-center items-center">
+                <div class="gap-4 flex flex-col justify-center items-center">
                     <p class="text-heading-4 font-heading-4 font-bold max-w-xl text-center text-balance">
                         "¿Sabías que puedes publicitar tus productos o servicios en nuestros eventos y página web?"
                     </p>
@@ -29,6 +29,6 @@ pub fn AdSection() -> impl IntoView {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     }
 }
