@@ -1731,6 +1731,7 @@ dependencies = [
 name = "leptos-components"
 version = "0.2.10"
 dependencies = [
+ "chrono",
  "leptos",
  "rustlanges-components-core",
  "tailwind_fuse",

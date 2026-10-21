@@ -5,7 +5,7 @@ use rustlanges_components::{
 };
 
 use crate::components::{
-    ad_section::AdSection, next_events::NextEvents, on_site_events::OnSiteEvents,
+    ad_section::AdSection, agenda::Agenda, next_events::NextEvents, on_site_events::OnSiteEvents,
     stay_up_date::StayUpDate,
 };
 
@@ -61,5 +61,6 @@ pub fn Events() -> impl IntoView {
         <AdSection />
         <OnSiteEvents />
         <StayUpDate />
+        <Agenda />
     }
 }
