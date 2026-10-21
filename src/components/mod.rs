@@ -9,18 +9,24 @@ pub use icons::{
     TwitterIcon,
 };
 
+pub mod ad_section;
+pub mod agenda;
 pub mod became_sponsor;
 pub mod challenges;
 pub mod channels;
 pub mod community_project;
 pub mod contributors;
 pub mod footer;
+pub mod next_events;
+pub mod on_site_events;
 pub mod other_communities;
 pub mod our_community;
 pub mod our_sponsors;
+pub mod photo_card;
 pub mod project_card;
 pub mod resources;
 pub mod sponsor_block;
+pub mod stay_up_date;
 pub mod why_rust;
 
 const BOOK_PATH: &str = "https://book.rustlang-es.org/";
