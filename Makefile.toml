@@ -31,6 +31,7 @@ cargo clippy --fix --features ssr -- -D warnings
 
 [tasks.check]
 script = '''
+cargo check --features ssr
 leptosfmt --check src
 cargo fmt --all --check
 cargo clippy --features ssr -- -D warnings
