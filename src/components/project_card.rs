@@ -11,12 +11,18 @@ pub fn ProjectCard(
     #[prop()] users: Vec<GithubUser>,
     #[prop()] label: AnyView,
     #[prop(optional, default = "")] badge_color: &'static str,
+    #[prop(optional)] link: Option<&'static str>,
 ) -> impl IntoView {
     let avatars = users
         .iter()
-        .skip(1)
-        .map(|user| {
-            view! { <Avatar class="-ml-2 border-black" url=user.avatar alt=user.username /> }
+        .enumerate()
+        .map(|(i, user)| {
+            let class = if i == 0 {
+                "border-black"
+            } else {
+                "-ml-2 border-black"
+            };
+            view! { <Avatar class=class url=user.avatar alt=user.username /> }
         })
         .collect_view();
 
@@ -29,21 +35,15 @@ pub fn ProjectCard(
             <div class=badge_classes>{label}</div>
             <Card class="relative max-w-xs lg:max-w-md min-h-96 flex flex-col justify-between ">
                 <div id="card-body-1">
-                    <h3 class="text-h4">"Rust para C#/.NET Developers"</h3>
-                    <p>
-                        "La guía esta hecha por la misma Microsoft y es para desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
-                    </p>
+                    <h3 class="text-h4">{title}</h3>
+                    <p>{description}</p>
                 </div>
                 <div class="flex items-center justify-between [&>*]:-ml-2">
-                    <div class="flex items-center justify-center ">
-                        <Avatar class="border-black" url=users[0].avatar alt=users[0].username />
-                        {avatars}
-                    </div>
+                    <div class="flex items-center justify-center ">{avatars}</div>
 
-                    <div class="rounded-full border border-white p-1">
-                        // <Button>
+                    <a class="rounded-full border border-white p-1" href=link target="_blank">
                         <Github size=40 />
-                    </div>
+                    </a>
                 </div>
             </Card>
         </div>

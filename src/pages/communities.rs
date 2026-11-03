@@ -100,7 +100,7 @@ pub fn Communities() -> impl IntoView {
             </div>
         </section>
         <WhyRust />
-        <CommunityProjectSection many_projects=true />
+        <CommunityProjectSection with_price=true />
         <Contributors />
         <OtherCommunities />
         <Footer />

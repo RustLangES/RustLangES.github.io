@@ -20,4 +20,6 @@ pub struct ProjectItem {
 }
 
 mod github_user;
+mod top_project;
 pub use github_user::GithubUser;
+pub use top_project::TopProject;

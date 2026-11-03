@@ -1,6 +1,7 @@
 pub mod app;
 pub mod components;
 pub mod context;
+pub mod extras;
 pub mod models;
 pub mod pages;
 

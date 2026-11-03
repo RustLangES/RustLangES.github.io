@@ -1,15 +1,15 @@
 use leptos::prelude::*;
 use rustlanges_components::{
-    button::{Button, Variant},
+    button::{Variant, button_class},
     icons::{Github, StarBold},
 };
 
-use crate::{components::project_card::ProjectCard, models::GithubUser};
+use crate::{components::project_card::ProjectCard, extras::TOP_PROJECTS, models::GithubUser};
+
+const BADGE_COLORS: [&str; 3] = ["", "before:bg-secondary-400", "before:bg-primary-200"];
 
 #[component]
-pub fn CommunityProjectSection(
-    #[prop(into, default = false)] many_projects: bool,
-) -> impl IntoView {
+pub fn CommunityProjectSection(#[prop(into, default = false)] with_price: bool) -> impl IntoView {
     let juanperas = GithubUser {
         username: "juanperas",
         avatar: "https://avatars.githubusercontent.com/u/136520331?u=7353ba372f09091049692d6e95f5a8cd8a42565f&v=4",
@@ -44,74 +44,64 @@ pub fn CommunityProjectSection(
                     <div
                         // class="inline-flex flex-row items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
                         class="items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
-                        class:md:flex-wrap=many_projects
+                        class:md:flex-wrap=with_price
                     >
-                        <ProjectCard
-                            label=view! {
-                                <StarBold size=16 />
-                                <p class="w-fit mr-2">Destacado</p>
-                            }
-                                .into_any()
-                            users=users.clone()
-                            title="Rust para C#/.NET Developers"
-                            description="La guía esta hecha por la misma Microsoft y es para desarrolladores experimentados en C#/.NET que exploran Rust. Ofrece una breve comparación, enlaces a recursos y respuestas rápidas."
-                        />
-                        <ProjectCard
-                            label=view! { <p class="w-fit mr-2">Oficial</p> }.into_any()
-                            users=users.clone()
-                            title="Cangrebot"
-                            description="Bot de la comunidad de Discord de RustLang en Español."
-                            badge_color="before:bg-secondary-400"
-                        />
-                        <ProjectCard
-                            label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
-                            users=users.clone()
-                            title="Memsos"
-                            description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
-                            badge_color="before:bg-primary-200"
-                        />
-
-                        {if many_projects {
-                            view! {
-                                <>
-                                    <ProjectCard
-                                        label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
-                                        users=users.clone()
-                                        title="Memsos"
-                                        description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
-                                        badge_color="before:bg-primary-200"
-                                    />
-                                    <ProjectCard
-                                        label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
-                                        users=users.clone()
-                                        title="Memsos"
-                                        description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
-                                        badge_color="before:bg-primary-200"
-                                    />
-                                    <ProjectCard
-                                        label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
-                                        users=users.clone()
-                                        title="Memsos"
-                                        description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
-                                        badge_color="before:bg-primary-200"
-                                    />
-                                </>
-                            }
-                                .into_any()
+                        {if with_price {
+                            (0..3)
+                                .map(|_| {
+                                    view! {
+                                        <ProjectCard
+                                            label=view! { <p class="w-fit mr-2">$200</p> }.into_any()
+                                            users=users.clone()
+                                            title="Memsos"
+                                            description="Memsos is a tool written in rust with the objective to check your memory in a fast way, memsos works for both uefi and bios."
+                                            badge_color="before:bg-primary-200"
+                                        />
+                                    }
+                                })
+                                .collect_view()
                         } else {
-                            let _: () = view! { <></> };
-                            ().into_any()
+                            TOP_PROJECTS
+                                .iter()
+                                .zip(BADGE_COLORS.iter().cycle())
+                                .map(|(project, badge_color)| {
+                                    let label = match project.stars {
+                                        Some(stars) => {
+                                            view! {
+                                                <StarBold size=16 />
+                                                <p class="w-fit mr-2">{stars}</p>
+                                            }
+                                                .into_any()
+                                        }
+                                        None => {
+                                            view! { <p class="w-fit mr-2">Destacado</p> }.into_any()
+                                        }
+                                    };
+                                    view! {
+                                        <ProjectCard
+                                            label=label
+                                            users=project.contributors.to_vec()
+                                            title=project.name
+                                            description=project.description
+                                            badge_color=*badge_color
+                                            link=project.link
+                                        />
+                                    }
+                                })
+                                .collect_view()
                         }}
                     </div>
 
                 </div>
 
-                <Button
-                    variant=Variant::Secondary
-                    label="Ver proyectos"
-                    icon=view! { <Github /> }.into_any()
-                    on_click=move |_| {}
-                ></Button>
+                <a
+                    class=button_class(Variant::Secondary, None)
+                    href="https://github.com/orgs/RustLangES/repositories?q=sort%3Astars"
+                    target="_blank"
+                >
+                    "Ver proyectos"
+                    <Github />
+                </a>
             </div>
         </section>
     }
