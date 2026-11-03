@@ -59,8 +59,7 @@ pub fn generate(path: &Path) {
 
         write!(
             output_file,
-            r#"
-    CommunityItem {{
+            r#"    CommunityItem {{
         name: &{name:?},
         description: "{description}",
         link: "{link}",
@@ -73,5 +72,5 @@ pub fn generate(path: &Path) {
     }
 
     write!(other_file, "\n];").unwrap();
-    write!(rust_file, "\n];").unwrap();
+    write!(rust_file, "\n];\n").unwrap();
 }

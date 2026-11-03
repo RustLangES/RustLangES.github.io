@@ -43,7 +43,7 @@ pub fn generate(extra_projects: &[ProjectItem]) {
         return;
     }
 
-    let projects = fetch().unwrap_or_else(|e| random_extra_projects(extra_projects));
+    let projects = fetch().unwrap_or_else(|_e| random_extra_projects(extra_projects));
 
     write(&projects);
 }
