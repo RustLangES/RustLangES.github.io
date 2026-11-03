@@ -36,7 +36,7 @@ pub fn generate(path: &Path) {
     let mut rust_file = fs::File::create("src/extras/rust_communities.rs").unwrap();
     write!(
         rust_file,
-        "use crate::models::CommunityItem;\npub const RUST_COMMUNITIES: &[CommunityItem] = &[\n"
+        "use crate::models::CommunityItem;\npub const RUST_COMMUNITIES: &[CommunityItem] = &["
     )
     .expect("No se pudo crear el archivo src/extras/rust_communities.rs");
 
@@ -73,5 +73,5 @@ pub fn generate(path: &Path) {
     }
 
     write!(other_file, "\n];").unwrap();
-    write!(rust_file, "\n];").unwrap();
+    write!(rust_file, "\n];\n").unwrap();
 }

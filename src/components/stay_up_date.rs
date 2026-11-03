@@ -1,8 +1,5 @@
 use leptos::prelude::*;
-use rustlanges_components::{
-    button::{Button, Variant as ButtonVariant},
-    card::Card,
-};
+use rustlanges_components::button::{Button, Variant as ButtonVariant};
 
 #[component]
 pub fn StayUpDate() -> impl IntoView {

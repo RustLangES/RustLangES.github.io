@@ -20,7 +20,7 @@ fn main() {
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
-    write!(out, "#[rustfmt::skip]\nmod other_communities;\nmod rust_communities;\n#[rustfmt::skip]\nmod projects;\n#[rustfmt::skip]\nmod top_projects;\npub use other_communities::*;\npub use rust_communities::*;\npub use projects::*;\npub use top_projects::*;\n").unwrap();
+    write!(out, "#[rustfmt::skip]\nmod other_communities;\n#[rustfmt::skip]\nmod projects;\nmod rust_communities;\n#[rustfmt::skip]\nmod top_projects;\npub use other_communities::*;\npub use projects::*;\npub use rust_communities::*;\npub use top_projects::*;\n").unwrap();
 
     let mut extra_projects = Vec::new();
 
