@@ -31,17 +31,21 @@ pub fn ProjectCard(
     );
 
     view! {
-        <div class="min-w-[15rem] max-w-xs">
+        <div class="shrink-0 snap-start w-[80%] min-w-[15rem] max-w-xs lg:w-auto flex flex-col">
             <div class=badge_classes>{label}</div>
-            <Card class="relative max-w-xs lg:max-w-md min-h-96 flex flex-col justify-between ">
-                <div id="card-body-1">
+            <Card class="relative grow max-w-xs lg:max-w-md min-h-80 md:min-h-96 flex flex-col justify-between gap-4">
+                <div id="card-body-1" class="flex flex-col gap-2">
                     <h3 class="text-h4">{title}</h3>
-                    <p>{description}</p>
+                    <p class="text-paragraph-1">{description}</p>
                 </div>
                 <div class="flex items-center justify-between [&>*]:-ml-2">
                     <div class="flex items-center justify-center ">{avatars}</div>
 
-                    <a class="rounded-full border border-white p-1" href=link target="_blank">
+                    <a
+                        class="rounded-full border border-black dark:border-white p-1"
+                        href=link
+                        target="_blank"
+                    >
                         <Github size=40 />
                     </a>
                 </div>

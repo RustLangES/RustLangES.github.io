@@ -9,11 +9,11 @@ use crate::components::{GITHUB_PATH, JOIN_PATH, LINKEDIN_PATH, TELEGRAM_PATH};
 #[component]
 pub fn Footer() -> impl IntoView {
     view! {
-        <footer class="w-full flex flex-col items-center justify-between bg-primary-500 dark:bg-primary-600 py-10">
+        <footer class="w-full flex flex-col items-center justify-between bg-primary-500 dark:bg-primary-600 px-4 py-10">
             <section>
-                <p class="py-3 font-semibold">"Comunidad - Rust Lang en Español"</p>
+                <p class="py-3 font-semibold text-center">"Comunidad - Rust Lang en Español"</p>
             </section>
-            <div class="flex gap-4 justify-center items-center w-full">
+            <div class="flex flex-wrap gap-4 justify-center items-center w-full">
                 <a href=JOIN_PATH target="_blank" rel="noopener noreferrer">
                     <Button
                         variant=ButtonVariant::Icon

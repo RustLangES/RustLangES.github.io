@@ -74,17 +74,17 @@ pub fn Header() -> impl IntoView {
     };
 
     view! {
-        <header class="w-full py-[8px] px-[0px] flex flex-column items-center justify-between md:px-[24px] relative">
-            <div class="flex justify-between items-center">
+        <header class="w-full py-[8px] px-4 flex flex-column items-center justify-between gap-2 md:px-[24px] relative">
+            <div class="flex justify-between items-center gap-2">
                 <Button
                     variant=Variant::Text
-                    class="px-[10px] md:hidden flex items-center justify-center"
+                    class="px-0 w-auto lg:hidden flex items-center justify-center"
                     on_click=menu_handler
                     icon=(move || menu_icon()).into_any()
                 />
                 <div class=move || {
                     format!(
-                        "md:hidden absolute top-full left-0 w-full bg-white dark:bg-dark flex flex-col gap-[32px] p-[16px] z-50 {}",
+                        "lg:hidden absolute top-full left-0 w-full bg-white dark:bg-dark flex flex-col gap-[32px] p-[16px] z-50 {}",
                         if menu_open() { "flex" } else { "hidden" },
                     )
                 }>
@@ -134,7 +134,7 @@ pub fn Header() -> impl IntoView {
                 <div
                     class=move || {
                         format!(
-                            "fixed inset-0 bg-black/50 z-40 md:hidden {}",
+                            "fixed inset-0 bg-black/50 z-40 lg:hidden {}",
                             if menu_open() { "block" } else { "hidden" },
                         )
                     }
@@ -145,7 +145,7 @@ pub fn Header() -> impl IntoView {
                 </a>
             </div>
             <div class="flex flex-column gap-[24px] items-center">
-                <nav class="gap-[16px] hidden md:flex">
+                <nav class="gap-[16px] hidden lg:flex">
                     <a href="/" class=move || format!("font-semibold {}", active_link_class("/"))>
                         Inicio
                     </a>
@@ -177,25 +177,20 @@ pub fn Header() -> impl IntoView {
                 <div class="flex gap-[16px] items-center flex-wrap">
                     <a
                         href=BOOK_PATH
-                        class="hidden md:flex"
+                        class="hidden lg:flex"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
                         <Button variant=Variant::Secondary label="El Libro" on_click=|_| {} />
                     </a>
 
-                    <a
-                        href=JOIN_PATH
-                        class="px-[10px] md:px-[0px]"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <a href=JOIN_PATH target="_blank" rel="noopener noreferrer">
                         <Button variant=Variant::Primary label="¡Únete!" on_click=move |_| {} />
                     </a>
 
                     <Button
                         variant=Variant::Icon
-                        class="hidden md:flex"
+                        class="hidden lg:flex"
                         on_click=theme_handler
                         icon=(move || theme_switcher_icon()).into_any()
                     />

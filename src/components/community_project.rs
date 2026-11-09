@@ -26,24 +26,26 @@ pub fn CommunityProjectSection(#[prop(into, default = false)] with_price: bool) 
     let users = vec![juanperas, apika, sergio];
 
     view! {
-        <section class="flex flex-col justify-center items-center w-full gap-8 py-20 bg-orange-100 dark:bg-neutral-950 bg-ferris-left">
-            <div class="flex flex-col justify-center items-center gap-8 w-full">
-                <h2 class="text-h2 mb-4">"Proyectos de la comunidad"</h2>
-                <div class="mb-8">
+        <section class="flex flex-col justify-center items-center w-full gap-8 py-12 md:py-20 bg-orange-100 dark:bg-neutral-950 bg-ferris-left">
+            <div class="flex flex-col justify-center items-center gap-6 md:gap-8 w-full">
+                <h2 class="text-heading-2 md:text-heading-1 font-bold text-center px-4 md:mb-4">
+                    "Proyectos de la comunidad"
+                </h2>
+                <div class="px-4 mb-2 md:mb-8 text-paragraph-1">
                     <p class="text-center max-w-lg">
                         "Te mostramos algunos de los proyectos más relevantes."
                     </p>
-                    <p class="text-center max-w-lg m">
+                    <p class="text-center max-w-lg">
                         Conoce los <span class="font-bold">+40</span>
                         que tenemos en nuestro repositorio
                     </p>
                 </div>
 
                 // <div>
-                <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
+                <div class="flex flex-row lg:justify-center items-center gap-4 w-full lg:w-auto max-w-full m-auto">
                     <div
                         // class="inline-flex flex-row items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
-                        class="items-center gap-8 overflow-x-auto p-4 grid grid-cols-3"
+                        class="flex items-stretch gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-px-4 w-full px-4 py-4 lg:grid lg:grid-cols-3 lg:w-auto lg:items-center lg:overflow-visible"
                         class:md:flex-wrap=with_price
                     >
                         {if with_price {
