@@ -36,7 +36,7 @@ pub fn Channels() -> impl IntoView {
                                         <p class="text-paragraph-1">"Subtítulo"</p>
                                     </div>
                                 </div>
-                                
+
                                 <p class="text-paragraph-1">
                                     "Breve descripción del canal o recurso contando qué muestra o para qué sirve."
                                 </p>

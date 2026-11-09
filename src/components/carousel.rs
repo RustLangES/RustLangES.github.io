@@ -5,7 +5,7 @@ use rustlanges_components::{
 };
 
 // This was not planned but I think that it could be a good idea, however we must to move this component
-// to the design system eventually 
+// to the design system eventually
 #[island]
 pub fn Carousel(
     children: Children,
@@ -17,7 +17,7 @@ pub fn Carousel(
     let overflows = RwSignal::new(false);
     let last = count.saturating_sub(1);
 
-    // I was not secure how to this so maybe could bre wrong, the cards are all the same width, so the 
+    // I was not secure how to this so maybe could bre wrong, the cards are all the same width, so the
     // scroll position tells us which one is in view, I translate this trick from JS to Leptos
     // in the most closed to the original
     let update = move || {
@@ -29,8 +29,6 @@ pub fn Carousel(
         overflows.set(max > 1.0 && last > 0);
 
         current.set((el.scroll_left() as f64 / max * last as f64).round() as usize);
-        if max > 0.0 {
-        }
     };
 
     let scroll_to = move |i: usize| {
@@ -78,7 +76,7 @@ pub fn Carousel(
                 >
                     <ArrowLeft />
                 </button>
-                
+
                 <div class="flex items-center gap-1.5">
                     {(0..count)
                         .map(|i| {

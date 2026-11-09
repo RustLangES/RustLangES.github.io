@@ -15,7 +15,7 @@ type ResourceAlias = Vec<Filter>;
 pub fn Resources() -> impl IntoView {
     view! {
         <section class="bg-light dark:bg-dark py-12 lg:p-20 w-full">
-            
+
             <div class="container xl:max-w-7xl lg:px-36 mx-auto flex flex-col gap-6">
                 <div class="px-4 flex flex-col gap-2 items-center text-center">
                     <h2 class="text-heading-2 md:text-heading-1 font-bold">"Recursos"</h2>
@@ -89,7 +89,7 @@ pub fn Resources() -> impl IntoView {
                             })
                             .collect_view()}
                     </ul>
-                    
+
                 </details>
             </div>
         </section>
