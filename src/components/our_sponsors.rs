@@ -160,17 +160,19 @@ fn sponsors() -> impl IntoView {
 #[component]
 pub fn OurSponsorsSection() -> impl IntoView {
     view! {
-        <section class="flex flex-col justify-center items-center w-full gap-8 py-20 dark:bg-neutral-900">
-            <div class="container flex flex-col justify-center items-center gap-8">
-                <h2 class="text-h2 mb-4">"Nuestros sponsors"</h2>
-                <p class="text-center mb-8 max-w-lg">
+        <section class="flex flex-col justify-center items-center w-full gap-8 py-12 md:py-20 overflow-x-clip dark:bg-neutral-900">
+            <div class="container px-4 flex flex-col justify-center items-center gap-6 md:gap-8">
+                <h2 class="text-heading-2 md:text-heading-1 font-bold text-center md:mb-4">
+                    "Nuestros sponsors"
+                </h2>
+                <p class="text-center text-paragraph-1 mb-2 md:mb-8 max-w-lg">
                     Todos nuestros eventos y actividades son
                     <span class="font-bold">gratuitas</span>
                     gracias a las organizaciones que apoyan nuestro trabajo.
                 </p>
 
                 <div>
-                    <img src="/assets/new/logos/ferris-hero.png" alt="" width="300" />
+                    <img src="/assets/new/logos/ferris-hero.png" alt="" class="w-60 md:w-[300px]" />
                 </div>
 
                 // What the hell???
