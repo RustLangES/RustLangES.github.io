@@ -12,6 +12,7 @@ pub use icons::{
 pub mod ad_section;
 pub mod agenda;
 pub mod became_sponsor;
+pub mod carousel;
 pub mod challenges;
 pub mod channels;
 pub mod community_project;
