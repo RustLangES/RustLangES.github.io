@@ -34,7 +34,6 @@ async fn main() -> std::io::Result<()> {
                 .service(Files::new("/pkg", format!("{site_root}/pkg")))
                 // serve other assets from the `assets` directory
                 .service(Files::new("/assets", site_root))
-                .service(Files::new("/gen_assets", site_root))
                 // serve the favicon from /favicon.ico
                 .service(favicon)
                 .app_data(leptos_options.clone())
@@ -42,6 +41,7 @@ async fn main() -> std::io::Result<()> {
                     let leptos_options = leptos_options.clone();
                     move || shell(leptos_options.clone())
                 })
+                .service(Files::new("/", site_root))
                 .app_data(web::Data::new(leptos_options.to_owned()))
         })
         .bind(&addr)?

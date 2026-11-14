@@ -25,6 +25,8 @@ pub mod our_community;
 pub mod our_sponsors;
 pub mod photo_card;
 pub mod project_card;
+pub mod resource_card;
+pub mod resource_explorer;
 pub mod resources;
 pub mod sponsor_block;
 pub mod stay_up_date;

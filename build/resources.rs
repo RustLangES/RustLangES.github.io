@@ -7,7 +7,7 @@ struct ResourceItem {
     pub description: String,
     pub link: String,
     pub language: String,
-    pub kind: String,
+    pub kinds: Vec<String>,
     #[serde(default)]
     pub featured: bool,
 }
@@ -34,7 +34,7 @@ pub fn generate(path: &Path) {
             description,
             link,
             language,
-            kind,
+            kinds,
             featured,
         } = toml::from_str::<ResourceItem>(&toml_str).unwrap();
 
@@ -46,7 +46,7 @@ pub fn generate(path: &Path) {
         description: {description:?},
         link: {link:?},
         language: {language:?},
-        kind: {kind:?},
+        kinds: &{kinds:?},
         featured: {featured},
     }},"#
         )

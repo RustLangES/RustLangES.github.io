@@ -19,12 +19,13 @@ pub struct ProjectItem {
     pub button_bg_color: &'static str,
 }
 
+#[derive(PartialEq)]
 pub struct ResourceItem {
     pub name: &'static str,
     pub description: &'static str,
     pub link: &'static str,
     pub language: &'static str,
-    pub kind: &'static str,
+    pub kinds: &'static [&'static str],
     pub featured: bool,
 }
 
