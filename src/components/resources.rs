@@ -7,12 +7,31 @@ use rustlanges_components::{
     tag::Tag,
 };
 
-use crate::components::carousel::Carousel;
+use crate::{components::carousel::Carousel, extras::RESOURCES, models::ResourceItem};
 
 type ResourceAlias = Vec<Filter>;
 
+fn kind_tag(kind: &str) -> &'static str {
+    match kind {
+        "libro" => "#libro",
+        "guia" => "#guía",
+        "video" => "#video",
+        "curso" => "#curso",
+        _ => "#recurso",
+    }
+}
+
+fn language_tag(language: &str) -> &'static str {
+    match language {
+        "es" => "#español",
+        _ => "#inglés",
+    }
+}
+
 #[component]
 pub fn Resources() -> impl IntoView {
+    let featured = RESOURCES.iter().filter(|r| r.featured).collect::<Vec<_>>();
+
     view! {
         <section class="bg-light dark:bg-dark py-12 lg:p-20 w-full">
 
@@ -37,30 +56,35 @@ pub fn Resources() -> impl IntoView {
                 </div>
 
                 <Carousel
-                    count=3
+                    count=featured.len()
                     class="md:flex-wrap md:justify-center md:overflow-visible".to_string()
                 >
-                    {(0..3)
-                        .map(|_| {
+                    {featured
+                        .into_iter()
+                        .map(|resource| {
+                            let ResourceItem { name, description, link, language, kind, .. } = resource;
                             view! {
-                                <div class="shrink-0 snap-start w-[75%] max-w-72 md:w-72">
+                                <a
+                                    href=*link
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="shrink-0 snap-start w-[75%] max-w-72 md:w-72"
+                                >
                                     <Card variant=CardVariant::Resource>
                                         <div class="flex flex-col gap-4 justify-between h-full w-full overflow-hidden">
                                             <div class="flex flex-col gap-2 items-start">
                                                 <Chip label="Destacado" variant=ChipVariant::Featured />
-                                                <h3 class="text-h4">"Título del recurso"</h3>
-                                                <p class="text-paragraph-1">
-                                                    "Lorem ipsum dolor sit amet consectetur."
-                                                </p>
+                                                <h3 class="text-h4">{*name}</h3>
+                                                <p class="text-paragraph-1 line-clamp-6">{*description}</p>
                                             </div>
 
                                             <div class="flex gap-2 flex-wrap">
-                                                <Tag label="#tag" />
-                                                <Tag label="#tag" />
+                                                <Tag label=kind_tag(kind) />
+                                                <Tag label=language_tag(language) />
                                             </div>
                                         </div>
                                     </Card>
-                                </div>
+                                </a>
                             }
                         })
                         .collect_view()}
@@ -76,14 +100,21 @@ pub fn Resources() -> impl IntoView {
                     </summary>
 
                     <ul class="flex flex-col gap-3 pt-2">
-                        {(0..3)
-                            .map(|_| {
+                        {RESOURCES
+                            .iter()
+                            .map(|resource| {
                                 view! {
                                     <li>
-                                        <Card class="flex items-center gap-3 py-3 bg-primary-50 dark:bg-neutral-900">
-                                            <File class="text-primary-500 shrink-0" />
-                                            <span class="text-h5">"Título del recurso"</span>
-                                        </Card>
+                                        <a
+                                            href=resource.link
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Card class="flex items-center gap-3 py-3 bg-primary-50 dark:bg-neutral-900">
+                                                <File class="text-primary-500 shrink-0" />
+                                                <span class="text-h5">{resource.name}</span>
+                                            </Card>
+                                        </a>
                                     </li>
                                 }
                             })

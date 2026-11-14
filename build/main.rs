@@ -1,5 +1,7 @@
+mod channels;
 mod communities;
 mod projects;
+mod resources;
 mod top_projects;
 
 use std::{fs, io::Write, path::Path};
@@ -17,10 +19,13 @@ fn main() {
 
     copy_dir_all("extras/proyectos/assets", "assets/gen_assets").unwrap();
     copy_dir_all("extras/comunidades/assets", "assets/gen_assets").unwrap();
+    if Path::new("extras/canales/assets").exists() {
+        copy_dir_all("extras/canales/assets", "assets/gen_assets").unwrap();
+    }
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
-    write!(out, "#[rustfmt::skip]\nmod other_communities;\n#[rustfmt::skip]\nmod projects;\nmod rust_communities;\n#[rustfmt::skip]\nmod top_projects;\npub use other_communities::*;\npub use projects::*;\npub use rust_communities::*;\npub use top_projects::*;\n").unwrap();
+    write!(out, "#[rustfmt::skip]\nmod channels;\n#[rustfmt::skip]\nmod other_communities;\n#[rustfmt::skip]\nmod projects;\n#[rustfmt::skip]\nmod resources;\nmod rust_communities;\n#[rustfmt::skip]\nmod top_projects;\npub use channels::*;\npub use other_communities::*;\npub use projects::*;\npub use resources::*;\npub use rust_communities::*;\npub use top_projects::*;\n").unwrap();
 
     let mut extra_projects = Vec::new();
 
@@ -37,6 +42,8 @@ fn main() {
         match folder.file_name().to_str().unwrap() {
             "comunidades" => communities::generate(&path),
             "proyectos" => extra_projects = projects::generate(&path),
+            "recursos" => resources::generate(&path),
+            "canales" => channels::generate(&path),
             _ => {}
         }
     }
