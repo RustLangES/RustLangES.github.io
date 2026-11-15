@@ -13,11 +13,30 @@ pub fn ResourceExplorer(children: Children) -> impl IntoView {
     let active_filters: RwSignal<Vec<Filter>> = RwSignal::new(vec![]);
     let details = NodeRef::<html::Details>::new();
 
-    let searching = move || !query.read().trim().is_empty();
+    let filters = [
+        ("Libros", "libro"),
+        ("Guías", "guia"),
+        ("Videos", "video"),
+        ("Cursos", "curso"),
+    ]
+    .map(|(label, value)| Filter {
+        label: label.to_string(),
+        value: value.to_string(),
+    })
+    .to_vec();
+
+    let searching = move || !query.read().trim().is_empty() || !active_filters.read().is_empty();
     let results = Memo::new(move |_| {
         let query = query.read();
+        let active_filters = active_filters.read();
         RESOURCES
             .iter()
+            .filter(|r| {
+                active_filters.is_empty()
+                    || active_filters
+                        .iter()
+                        .any(|f| r.kinds.contains(&f.value.as_str()))
+            })
             .filter(|r| {
                 query.trim().is_empty()
                     || r.name.contains(query.as_str())
@@ -48,11 +67,14 @@ pub fn ResourceExplorer(children: Children) -> impl IntoView {
         }
     });
 
-    let ignore_filters = |_: Vec<Filter>| ();
-
     view! {
-        <div class="px-4 w-full" on:input=move |ev| query.set(event_target_value(&ev))>
-            <InputSearch on_change_filter=ignore_filters />
+        <div class="px-4 w-full">
+            <InputSearch
+                filters
+                active_filters
+                on_change_filter=move |filters| active_filters.set(filters)
+                on_input=move |text| query.set(text)
+            />
         </div>
 
         <div class:hidden=searching>{children()}</div>
