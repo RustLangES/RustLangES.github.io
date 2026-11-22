@@ -8,7 +8,7 @@ use leptos_router::{
 
 use crate::{
     components::{HeadInformation, Header},
-    pages::{Aprende, Blog, Communities, Events, Index},
+    pages::{Aprende, Blog, Communities, Contributors, Events, Index},
 };
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
@@ -62,6 +62,7 @@ pub fn App() -> impl IntoView {
                         <Route path=path!("/") view=Index />
                         <Route path=path!("aprende") view=Aprende />
                         <Route path=path!("comunidad") view=Communities />
+                        <Route path=path!("colaboradores") view=Contributors />
                         <Route path=path!("eventos") view=Events />
                         <Route path=path!("blog") view=Blog />
                     </Routes>

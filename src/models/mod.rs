@@ -37,7 +37,9 @@ pub struct ChannelItem {
     pub twitch: Option<&'static str>,
 }
 
+mod contributor;
 mod github_user;
 mod top_project;
+pub use contributor::Contributor;
 pub use github_user::GithubUser;
 pub use top_project::TopProject;
