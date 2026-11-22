@@ -1,5 +1,6 @@
 mod channels;
 mod communities;
+mod contributors;
 mod projects;
 mod resources;
 mod top_projects;
@@ -25,7 +26,7 @@ fn main() {
 
     // Generate src/extras/mod.rs
     let mut out = fs::File::create("src/extras/mod.rs").unwrap();
-    write!(out, "#[rustfmt::skip]\nmod channels;\n#[rustfmt::skip]\nmod other_communities;\n#[rustfmt::skip]\nmod projects;\n#[rustfmt::skip]\nmod resources;\nmod rust_communities;\n#[rustfmt::skip]\nmod top_projects;\npub use channels::*;\npub use other_communities::*;\npub use projects::*;\npub use resources::*;\npub use rust_communities::*;\npub use top_projects::*;\n").unwrap();
+    write!(out, "#[rustfmt::skip]\nmod channels;\n#[rustfmt::skip]\nmod contributors;\n#[rustfmt::skip]\nmod other_communities;\n#[rustfmt::skip]\nmod projects;\n#[rustfmt::skip]\nmod resources;\nmod rust_communities;\n#[rustfmt::skip]\nmod top_projects;\npub use channels::*;\npub use contributors::*;\npub use other_communities::*;\npub use projects::*;\npub use resources::*;\npub use rust_communities::*;\npub use top_projects::*;\n").unwrap();
 
     let mut extra_projects = Vec::new();
 
@@ -49,6 +50,7 @@ fn main() {
     }
 
     top_projects::generate(&extra_projects);
+    contributors::generate();
 }
 
 fn copy_dir_all(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> std::io::Result<()> {
