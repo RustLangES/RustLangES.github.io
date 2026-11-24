@@ -50,8 +50,7 @@ pub fn ContributorCard(
                                     />
                                 </a>
                             }
-                        })}
-                    <a href=contributor.github_url() target="_blank">
+                        })} <a href=contributor.github_url() target="_blank">
                         <Button
                             variant=ButtonVariant::Icon
                             icon=view! { <Github /> }.into_any()

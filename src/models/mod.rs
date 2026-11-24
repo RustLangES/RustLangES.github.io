@@ -1,3 +1,15 @@
+use rustlanges_components::icons::IconVariant;
+
+// TODO(@Lemin-n): quitar el pub, please
+// Moved from other place, please check the blame :sparklessss:
+pub struct Community {
+    pub logo: &'static str,
+    pub name: &'static str,
+    pub country: &'static str,
+    pub description: &'static str,
+    pub link: Option<(&'static str, IconVariant)>,
+}
+
 #[derive(Clone)]
 pub struct CommunityItem {
     pub name: &'static [&'static str],

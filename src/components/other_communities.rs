@@ -1,25 +1,9 @@
 use leptos::prelude::*;
-use rustlanges_components::{
-    avatar::Avatar,
-    button::{Variant as ButtonVariant, button_class},
-    card::Card,
-    chip::{Chip, Variant as ChipVariant},
-    icons::IconVariant,
-    input::{Filter, InputSearch},
-};
+use rustlanges_components::{icons::IconVariant, input::InputSearch};
 
-type ResourceAlias = Vec<Filter>;
+use crate::{components::community_card::CommunityCard, models::Community};
 
-// TODO(@Lemin-n): quitar el pub, please
-struct Community {
-    pub logo: &'static str,
-    pub name: &'static str,
-    pub country: &'static str,
-    pub description: &'static str,
-    pub link: Option<(&'static str, IconVariant)>,
-}
-
-const COMMUNITIES: [Community; 7] = [
+const COMMUNITIES: &[Community] = &[
     Community {
         name: "Rust Colombia",
         country: "Colombia",
@@ -72,40 +56,19 @@ const COMMUNITIES: [Community; 7] = [
 ];
 
 #[allow(non_snake_case)]
+#[island]
 pub fn OtherCommunities() -> impl IntoView {
-    let communities = COMMUNITIES.map(|community| {
-        let button_link = community.link.map(|(link, link_icon)| {
-            view! {
-                <a
-                    class=button_class(
-                        ButtonVariant::Icon,
-                        Some("-top-3 -right-2 absolute".to_string()),
-                    )
-                    href=link
-                >
-                    {link_icon.to_view()}
-                </a>
-            }
-        });
-
-        view! {
-            <div class="min-w-87.5 max-w-md h-full mt-5">
-                <Card class="min-w-87.5 max-w-md h-full p-4">
-                    <div class="flex flex-col gap-4 justify-between h-full">
-                        <div class="flex flex-col items-center gap-4  h-full justify-stretch p-2">
-                            <div class="relative">
-                                {button_link} <Avatar url=community.logo size=100 />
-                            </div>
-                            <h2 class="text-h3 mt-2">{community.name}</h2>
-                            <Chip label=community.country variant=ChipVariant::Location />
-                            <p class="text-paragraph-3 mb-4 text-center text-balance mx-auto">
-                                {community.description}
-                            </p>
-                        </div>
-                    </div>
-                </Card>
-            </div>
-        }
+    let query = RwSignal::new("".to_string());
+    let results = Signal::derive(move || {
+        let query = query.read();
+        COMMUNITIES
+            .iter()
+            .filter(|c| {
+                [c.name, c.country, c.description]
+                    .iter()
+                    .any(|text| text.contains(query.as_str()))
+            })
+            .collect::<Vec<_>>()
     });
 
     view! {
@@ -116,15 +79,20 @@ pub fn OtherCommunities() -> impl IntoView {
                     <p class="text-center max-w-lg">"Encuentra la comunidad más cercana a ti"</p>
                 </div>
                 <div class="flex flex-col justify-center mb-8 container mt-10 mx-auto max-w-fit">
-                    // TODO: Implement functionality referenced in the issue: https://github.com/RustLangES/RustLangES.github.io/issues/113
-                    <InputSearch on_change_filter=move |_resource: ResourceAlias| () />
+                    <InputSearch on_input=move |text| query.set(text) />
                 </div>
             </div>
             <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
                 <div class="items-center gap-8 overflow-x-auto p-4 grid md:grid-cols-2 xl:grid-cols-3">
-                    {communities}
+                    <For each=move || results.get() key=|community| community.name let:community>
+                        <CommunityCard community />
+                    </For>
                 </div>
             </div>
+
+            <Show when=move || results.read().is_empty()>
+                <p class="text-paragraph-1 text-center py-3">"No se encontraron comunidades"</p>
+            </Show>
         </section>
     }
 }

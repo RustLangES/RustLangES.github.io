@@ -15,6 +15,7 @@ pub mod became_sponsor;
 pub mod carousel;
 pub mod challenges;
 pub mod channels;
+pub mod community_card;
 pub mod community_project;
 pub mod contributor_card;
 pub mod contributors;
