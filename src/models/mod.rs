@@ -6,7 +6,18 @@ pub struct CommunityItem {
     pub icon: &'static str,
     pub brand_src: &'static str,
     pub brand_alt: &'static str,
+    pub country: Option<&'static str>,
 }
+
+impl CommunityItem {
+    pub fn matches(&self, search: &str) -> bool {
+        let name = self.name.concat();
+        let country = self.country.unwrap_or_default();
+
+        name.contains(search) || country.contains(search) || self.description.contains(search)
+    }
+}
+
 pub struct ProjectItem {
     pub name: &'static [&'static str],
     pub category: &'static str,
@@ -37,7 +48,9 @@ pub struct ChannelItem {
     pub twitch: Option<&'static str>,
 }
 
+mod contributor;
 mod github_user;
 mod top_project;
+pub use contributor::Contributor;
 pub use github_user::GithubUser;
 pub use top_project::TopProject;

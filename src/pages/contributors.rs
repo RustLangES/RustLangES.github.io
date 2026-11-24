@@ -1,143 +1,84 @@
-use std::collections::HashMap;
-
 use leptos::prelude::*;
-use serde::{Deserialize, Serialize};
 
-// Test this query on: https://docs.github.com/es/graphql/overview/explorer
-const _GRAPH_QUERY: &str = r#"
-query OrganizationContributors {
-  organization(login: "RustLangES") {
-    repositories(first: 100) {
-      nodes {
-        name
-        collaborators(first: 100) {
-          nodes {
-            login
-            avatarUrl
-            url
-            bio
-            twitterUsername
-            location
-            contributionsCollection(organizationID: "O_kgDOBHON2w") {
-              totalCommitContributions
-              totalPullRequestContributions
-              totalIssueContributions
-              totalRepositoryContributions
-            }
-          }
-        }
-      }
-    }
-  }
-}
-"#;
+use crate::{
+    components::{
+        contributor_card::ContributorCard,
+        footer::Footer,
+        ranking::{
+            Ranking,
+            RankingBrick::{self, *},
+        },
+    },
+    extras::CONTRIBUTORS,
+};
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Contributor {
-    login: String,
-    avatar_url: String,
-    url: String,
-    bio: Option<String>,
-    twitter_username: Option<String>,
-    location: Option<String>,
-    contributions_collection: Option<ContributionCollection>,
-}
+const DESKTOP_BRICKS: &[RankingBrick] = &[
+    Place(1, "col-start-11"),
+    Place(2, "col-start-6"),
+    Empty("col-start-10"),
+    Empty("col-start-7"),
+    Empty("col-start-11"),
+    Place(3, "col-start-15"),
+    Place(4, "col-start-1"),
+    Empty("col-start-5"),
+    Empty("col-start-9"),
+    Empty("col-start-13"),
+    Empty("col-start-3"),
+    Empty("col-start-7"),
+    Empty("col-start-11"),
+    Empty("col-start-15"),
+    Place(5, "col-start-19"),
+];
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ContributionCollection {
-    #[serde(rename = "totalCommitContributions")]
-    commits: u64,
-    #[serde(rename = "totalPullRequestContributions")]
-    pull_request: u64,
-    #[serde(rename = "totalIssueContributions")]
-    issues: u64,
-    #[serde(rename = "totalRepositoryContributions")]
-    repository: u64,
-    #[serde(skip)]
-    total: u64,
-}
+const MOBILE_BRICKS: &[RankingBrick] = &[
+    Place(1, "col-start-6"),
+    Place(2, "col-start-1"),
+    Empty("col-start-5"),
+    Empty("col-start-2"),
+    Empty("col-start-6"),
+    Place(3, "col-start-10"),
+];
 
-#[allow(dead_code)]
-pub async fn fetch_contributors() -> Vec<Contributor> {
-    // let request_body = json!({
-    //     "query": GRAPH_QUERY,
-    // });
-
-    let mut headers = reqwest::header::HeaderMap::new();
-
-    headers.append("User-Agent", "RustLangES Automation Agent".parse().unwrap());
-    headers.append("Authorization", "Bearer {}".parse().unwrap());
-
-    let client = reqwest::ClientBuilder::new()
-        .default_headers(headers)
-        .build()
-        .unwrap();
-
-    let res = client
-        .post("https://api.github.com/graphql")
-        // .json(&request_body)
-        .send()
-        .await
-        .unwrap()
-        .text()
-        .await
-        .unwrap();
-
-    leptos::logging::log!("Raw: {res:?}");
-
-    let res: leptos::serde_json::Value = leptos::serde_json::from_str(&res).unwrap();
-
-    let mut res = res["data"]["organization"]["repositories"]["nodes"]
-        .as_array()
-        .unwrap_or(&Vec::new())
-        .iter()
-        .filter(|&repo| !repo["collaborators"].is_null())
-        .flat_map(|repo| repo["collaborators"]["nodes"].as_array().unwrap())
-        .filter_map(|c| leptos::serde_json::from_value::<Contributor>(c.clone()).ok())
-        .fold(HashMap::new(), |prev, c| {
-            let mut prev = prev;
-            prev.entry(c.login.clone())
-                .and_modify(|o: &mut Contributor| {
-                    match (
-                        o.contributions_collection.as_mut(),
-                        c.contributions_collection.as_ref(),
-                    ) {
-                        (Some(o), Some(c)) => {
-                            o.total = o.total.max(
-                                (o.commits + o.issues + o.pull_request + o.repository)
-                                    .max(c.commits + c.issues + c.pull_request + c.repository),
-                            )
-                        }
-                        (Some(o), None) => o.total = 1,
-                        _ => {}
-                    }
-                })
-                .or_insert(c);
-            prev
-        })
-        .into_values()
-        .filter(|c| {
-            c.contributions_collection
-                .as_ref()
-                .is_some_and(|cc| cc.total != 0)
-        })
-        .collect::<Vec<_>>();
-
-    res.sort_by_key(|a| {
-        a.contributions_collection
-            .as_ref()
-            .map(|c| c.total)
-            .unwrap_or(1)
-    });
-
-    res.reverse();
-
-    res
-}
+const BRICK_COLORS: &[&str] = &[
+    "bg-primary-500",
+    "bg-secondary-500",
+    "bg-primary-300",
+    "bg-secondary-300",
+    "bg-neutral-50 dark:bg-neutral-900",
+    "bg-primary-200",
+    "bg-secondary-400",
+    "bg-primary-400",
+    "bg-primary-100",
+];
 
 #[component]
 pub fn Contributors() -> impl IntoView {
-    view! { <section></section> }
+    let contributors_list = CONTRIBUTORS
+        .iter()
+        .map(|c| view! { <ContributorCard contributor=c /> })
+        .collect_view();
+
+    view! {
+        <div class="w-full py-12 tablet:py-16 rustlang-es-background dark:bg-[#F04906] flex items-center justify-center">
+            <h1 class="uppercase text-akira heading text-[22px] tablet:text-[28px] desktop:text-[40px] text-primary-500 dark:text-light">
+                "Colaboradores"
+            </h1>
+        </div>
+        <section class="bg-light dark:bg-dark w-full px-4 py-12 desktop:py-16">
+            <div class="flex flex-col items-center gap-10 w-full max-w-[1046px] mx-auto">
+                <div class="flex flex-col items-center gap-4 text-center">
+                    <h2 class="text-h2">"Ranking de contribuciones"</h2>
+                    <p class="text-subtitle-1 max-w-lg">
+                        "Su pasión por el código abierto y el desarrollo de Rust es el corazón que impulsa nuestro crecimiento."
+                    </p>
+
+                </div>
+                <Ranking desktop=DESKTOP_BRICKS mobile=MOBILE_BRICKS colors=BRICK_COLORS />
+                <div class="grid grid grid-cols-1 tablet:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+                    {contributors_list}
+                </div>
+            </div>
+        </section>
+        <Footer />
+    }
 }
