@@ -1,15 +1,3 @@
-use rustlanges_components::icons::IconVariant;
-
-// TODO(@Lemin-n): quitar el pub, please
-// Moved from other place, please check the blame :sparklessss:
-pub struct Community {
-    pub logo: &'static str,
-    pub name: &'static str,
-    pub country: &'static str,
-    pub description: &'static str,
-    pub link: Option<(&'static str, IconVariant)>,
-}
-
 #[derive(Clone)]
 pub struct CommunityItem {
     pub name: &'static [&'static str],
@@ -18,7 +6,18 @@ pub struct CommunityItem {
     pub icon: &'static str,
     pub brand_src: &'static str,
     pub brand_alt: &'static str,
+    pub country: Option<&'static str>,
 }
+
+impl CommunityItem {
+    pub fn matches(&self, search: &str) -> bool {
+        let name = self.name.concat();
+        let country = self.country.unwrap_or_default();
+
+        name.contains(search) || country.contains(search) || self.description.contains(search)
+    }
+}
+
 pub struct ProjectItem {
     pub name: &'static [&'static str],
     pub category: &'static str,

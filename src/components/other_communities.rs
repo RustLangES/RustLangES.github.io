@@ -1,59 +1,10 @@
 use leptos::prelude::*;
-use rustlanges_components::{icons::IconVariant, input::InputSearch};
+use rustlanges_components::input::InputSearch;
 
-use crate::{components::community_card::CommunityCard, models::Community};
-
-const COMMUNITIES: &[Community] = &[
-    Community {
-        name: "Rust Colombia",
-        country: "Colombia",
-        description: "Comunidad de Rust con dos sedes, en Medellín y en Bogotá",
-        logo: "https://rustlang-es.org/gen_assets/rust-colombia.webp",
-        link: Some(("https://discord.gg/krm22PuDVw", IconVariant::Discord)),
-    },
-    Community {
-        name: "Rust Venezuela",
-        country: "Venezuela duh",
-        description: "Venezuela dih",
-        logo: "https://rustlang-es.org/gen_assets/rust-venezuela.webp",
-        link: Some(("https://t.me/rustlangVE", IconVariant::Telegram)),
-    },
-    Community {
-        name: "Rust Argentina",
-        country: "Argentina claro",
-        description: "Anteriormente Rust Argentina, hoy una comunidad internacional",
-        logo: "https://rustlang-es.org/gen_assets/rust-argentina.webp",
-        link: Some(("https://t.me/rust_lang_es", IconVariant::Telegram)),
-    },
-    Community {
-        name: "Rust Ecuador",
-        country: "Ecuador",
-        description: "¡Comunidad de Rust en Ecuador!",
-        logo: "https://rustlang-es.org/gen_assets/rust_ecuador.webp",
-        link: Some(("https://t.me/rustecuador", IconVariant::Telegram)),
-    },
-    Community {
-        name: "Rust MX",
-        country: "Mexico",
-        description: "¡Comunidad de Rust en Mexico!",
-        logo: "https://rustlang-es.org/gen_assets/RustMX-min.webp",
-        link: Some(("https://t.me/RustMX", IconVariant::Telegram)),
-    },
-    Community {
-        name: "Bcn Rust",
-        country: "España",
-        description: "Comunidad de Rust en Barcelona",
-        logo: "https://rustlang-es.org/gen_assets/RustBCN.webp",
-        link: Some(("https://discord.gg/DeZKCCyMcq", IconVariant::Discord)),
-    },
-    Community {
-        name: "Rust Perú",
-        country: "Perú",
-        description: "¡Comunidad de Rust en Perú!",
-        logo: "https://rustlang-es.org/gen_assets/rust-peru.webp",
-        link: Some(("https://peru.rustlang-es.org/", IconVariant::Link)),
-    },
-];
+use crate::{
+    components::community_card::CommunityCard,
+    extras::{OTHER_COMMUNITIES, RUST_COMMUNITIES},
+};
 
 #[allow(non_snake_case)]
 #[island]
@@ -61,13 +12,10 @@ pub fn OtherCommunities() -> impl IntoView {
     let query = RwSignal::new("".to_string());
     let results = Signal::derive(move || {
         let query = query.read();
-        COMMUNITIES
+        RUST_COMMUNITIES
             .iter()
-            .filter(|c| {
-                [c.name, c.country, c.description]
-                    .iter()
-                    .any(|text| text.contains(query.as_str()))
-            })
+            .chain(OTHER_COMMUNITIES)
+            .filter(|community| community.matches(&query))
             .collect::<Vec<_>>()
     });
 
@@ -84,7 +32,7 @@ pub fn OtherCommunities() -> impl IntoView {
             </div>
             <div class="flex flex-row justify-center items-center gap-4 max-w-full m-auto">
                 <div class="items-center gap-8 overflow-x-auto p-4 grid md:grid-cols-2 xl:grid-cols-3">
-                    <For each=move || results.get() key=|community| community.name let:community>
+                    <For each=move || results.get() key=|community| community.link let:community>
                         <CommunityCard community />
                     </For>
                 </div>

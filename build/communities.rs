@@ -9,6 +9,8 @@ struct CommunityItem {
     pub icon: String,
     pub brand_src: String,
     pub brand_alt: String,
+    #[serde(default)]
+    pub country: Option<String>,
 }
 
 pub fn generate(path: &Path) {
@@ -54,6 +56,7 @@ pub fn generate(path: &Path) {
             icon,
             brand_src,
             brand_alt,
+            country,
         } = community;
         let brand_src = brand_src.replace("./", "/gen_assets/");
 
@@ -67,6 +70,7 @@ pub fn generate(path: &Path) {
         icon: "{icon}",
         brand_src: "{brand_src}",
         brand_alt: "{brand_alt}",
+        country: {country:?},
     }},"#
         )
         .unwrap();
